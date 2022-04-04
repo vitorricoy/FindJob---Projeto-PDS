@@ -2,10 +2,10 @@
 ##### Projeto de Prática e Desenvolvimento de Software
 
 ## Grupo:
-* André Luiz Moreira Dutra - 2019006345
-* Gustavo Couto Alves - 2019430007
-* Vitor Assunção Rabello de Oliveira - 2019007104
-* Vitor Rodarte Ricoy - 2019007112
+* André Luiz Moreira Dutra - 2019006345 - Backend
+* Gustavo Couto Alves - 2019430007 - Frontend
+* Vitor Assunção Rabello de Oliveira - 2019007104 - Frontend
+* Vitor Rodarte Ricoy - 2019007112 - Backend
 
 ## Escopo
 
@@ -22,4 +22,4 @@ Sistema para clientes encontrarem profissionais freelancers para seus projetos. 
 ### Tecnologias:
 * MySQL
 * C#
-* Javascript (ReactJS)
+* Typescript (React)
