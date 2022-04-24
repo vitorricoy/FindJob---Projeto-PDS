@@ -3,9 +3,8 @@
 
 ## Grupo:
 * André Luiz Moreira Dutra - 2019006345 - Backend
-* Gustavo Couto Alves - 2019430007 - Frontend
 * Vitor Assunção Rabello de Oliveira - 2019007104 - Frontend
-* Vitor Rodarte Ricoy - 2019007112 - Backend
+* Vitor Rodarte Ricoy - 2019007112 - Full-stack
 
 ## Escopo
 
