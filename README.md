@@ -54,61 +54,54 @@ O fluxo do MVP será o seguinte: primeiro, um cliente que necessitar de algum se
 
 * Tarefas Técnicas.
   * Tarefa 1: Preparar o ambiente para desenvolvimento em C# (.NET Core) [André e Vitor R.]
-  * Tarefa 2: Preparar o ambiente para desenvolvimento com MySQL (.NET Core) [André e Vitor R.]
+  * Tarefa 2: Preparar o ambiente para desenvolvimento com MySQL [André e Vitor R.]
   * Tarefa 3: Preparar o ambiente para desenvolvimento em React com Typescript [Vitor A. e Vitor R.]
   * Tarefa 4: Discutir e criar o esquema de dados [André]
   * Tarefa 5: Criar o projeto e estrutura inicial do frontend [Vitor A.]
   * Tarefa 6: Criar o projeto e estrutura inicial do backend [Vitor R.]
-
-
 * História: Como usuário, quero me cadastrar no sistema.
-  * Tarefa 1: Implementar a página web
-  * Tarefa 2: Implementar a camada de acesso aos dados
-  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de cadastrar um cliente.
-  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de cadastrar um freelancer.
+  * Tarefa 1: Implementar a página web. [Vitor A.]
+  * Tarefa 2: Implementar a camada de acesso aos dados. [André]
+  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de cadastrar um cliente. [André]
+  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de cadastrar um freelancer. [André]
 * História: Como usuário, quero logar e deslogar do sistema.
-  * Tarefa 1: Implementar a página web
-  * Tarefa 2: Implementar a camada de acesso aos dados
-  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de logar no sistema.
-  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de deslogar do sistema.
+  * Tarefa 1: Implementar a página web. [Vitor A.]
+  * Tarefa 2: Implementar a camada de acesso aos dados. [Vitor R.]
+  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de logar no sistema. [Vitor R.]
+  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de deslogar do sistema. [Vitor R.]
 * História: Como usuário, quero ter acesso a um chat de texto entre cliente e freelancer.
-  * Tarefa 1: Implementar a página web
-  * Tarefa 2: Implementar a camada de acesso aos dados
-  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de carregar o histórico de mensagens.
-  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de enviar mensagens.
+  * Tarefa 1: Implementar a página web. [Vitor R.]
+  * Tarefa 2: Implementar a camada de acesso aos dados. [Vitor R.]
+  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de carregar o histórico de mensagens. [Vitor R.]
+  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de enviar mensagens. [Vitor R.]
 * História:  Como cliente, quero poder encontrar o freelancer ideal para resolver o meu problema.
-  * Tarefa 1: Implementar a página web
-  * Tarefa 2: Implementar a camada de acesso aos dados
-  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de carregar freelancers que se cadastraram para um determinado job.
-  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de ordenar os freelancers pelo nível de habilidade.
+  * Tarefa 1: Implementar a página web. [Vitor A.]
+  * Tarefa 2: Implementar a camada de acesso aos dados. [André]
+  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de carregar freelancers que se cadastraram para um determinado job. [André]
+  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de ordenar os freelancers pelo nível de habilidade. [André]
 * História: Como cliente, quero ter liberdade para descrever meu problema e quais habilidades serão necessárias para resolvê-lo.
-  * Tarefa 1: Implementar a página web
-  * Tarefa 2: Implementar a camada de acesso aos dados
-  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de cadastrar um novo job.
-  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de cadastrar uma nova habilidade.
-  * Tarefa 5: Implementar a camada de lógica de negócio e a camada de controle para a operação de selecionar habilidades dentre uma lista de habilidades.
+  * Tarefa 1: Implementar a página web. [Vitor A.]
+  * Tarefa 2: Implementar a camada de acesso aos dados. [André]
+  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de cadastrar um novo job. [André]
+  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de cadastrar uma nova habilidade. [André]
+  * Tarefa 5: Implementar a camada de lógica de negócio e a camada de controle para a operação de selecionar habilidades dentre uma lista de habilidades. [André]
 * História: Como cliente, quero poder avaliar o serviço de um freelancer após contratá-lo.
-  * Tarefa 1: Implementar a página web
-  * Tarefa 2: Implementar a camada de acesso aos dados
-  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de escrever uma avaliação para um freelancer.
+  * Tarefa 1: Implementar a página web. [Vitor R.]
+  * Tarefa 2: Implementar a camada de acesso aos dados. [Vitor R.]
+  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de escrever uma avaliação para um freelancer. [Vitor R.]
 * História: Como usuário, quero ter acesso a uma página inicial que facilite a navegação pela aplicação.
-  * Tarefa 1: Implementar a página web
-  * Tarefa 2: Implementar a camada de acesso aos dados
+  * Tarefa 1: Implementar a página web. [Vitor A.]
+  * Tarefa 2: Implementar a camada de acesso aos dados. [André]
 * História: Como freelancer, quero poder buscar por todos os jobs disponíveis oferecidos pelos clientes.
-  * Tarefa 1: Implementar a página web
-  * Tarefa 2: Implementar a camada de acesso aos dados
-  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de exibir todos os jobs criados por clientes.
-  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de filtrar os jobs exibidos de acordo com as habilidades do freelancer.
-* História: Como freelancer, quero poder buscar por todos os jobs disponíveis oferecidos pelos clientes.
-  * Tarefa 1: Implementar a página web
-  * Tarefa 2: Implementar a camada de acesso aos dados
-  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de exibir todos os jobs criados por clientes.
-  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de filtrar os jobs exibidos de acordo com as habilidades do freelancer.
-* História: Como freelancer, quero poder analisar um job específico e oferecer meus serviços.
-  * Tarefa 1: Implementar a página web
-  * Tarefa 2: Implementar a camada de acesso aos dados
-  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de exibir detalhes do job selecionado.
-  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de candidatar-se a um job específico.
+  * Tarefa 1: Implementar a página web. [Vitor A.]
+  * Tarefa 2: Implementar a camada de acesso aos dados. [Vitor R.]
+  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de exibir todos os jobs criados por clientes. [Vitor R.]
+  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de filtrar os jobs exibidos de acordo com as habilidades do freelancer. [Vitor R.]
+* História: Como freelancer, quero poder analisar um job específico e oferecer meus serviços. [Vitor R.]
+  * Tarefa 1: Implementar a página web. [Vitor R.]
+  * Tarefa 2: Implementar a camada de acesso aos dados. [Vitor R.]
+  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de exibir detalhes do job selecionado. [Vitor R.]
+  * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de candidatar-se a um job específico. [Vitor R.]
 
 ### Protótipos das Telas
 
