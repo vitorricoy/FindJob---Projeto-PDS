@@ -101,3 +101,6 @@ O fluxo do MVP será o seguinte: primeiro, um cliente que necessitar de algum se
   * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de exibir detalhes do job selecionado.
   * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de candidatar-se a um job específico.
 
+### Protótipos das Telas
+
+https://www.figma.com/file/MHr9zWxxdfCjEYeTqEYSRX/FindJob
