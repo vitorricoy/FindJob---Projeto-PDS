@@ -52,6 +52,15 @@ O fluxo do MVP será o seguinte: primeiro, um cliente que necessitar de algum se
 
 ### Backlog da Sprint
 
+* Tarefas Técnicas.
+  * Tarefa 1: Preparar o ambiente para desenvolvimento em C# (.NET Core) [André e Vitor R.]
+  * Tarefa 2: Preparar o ambiente para desenvolvimento com MySQL (.NET Core) [André e Vitor R.]
+  * Tarefa 3: Preparar o ambiente para desenvolvimento em React com Typescript [Vitor A. e Vitor R.]
+  * Tarefa 4: Discutir e criar o esquema de dados [André]
+  * Tarefa 5: Criar o projeto e estrutura inicial do frontend [Vitor A.]
+  * Tarefa 6: Criar o projeto e estrutura inicial do backend [Vitor R.]
+
+
 * História: Como usuário, quero me cadastrar no sistema.
   * Tarefa 1: Implementar a página web
   * Tarefa 2: Implementar a camada de acesso aos dados
