@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repos\\Backend\\Backend\\Backend.csproj": {}
+    "D:\\Repos\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "D:\\Repos\\Backend\\Backend\\Backend.csproj": {
+    "D:\\Repos\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repos\\Backend\\Backend\\Backend.csproj",
+        "projectUniqueName": "D:\\Repos\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "D:\\Repos\\Backend\\Backend\\Backend.csproj",
+        "projectPath": "D:\\Repos\\Backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\Vitor Rodarte\\.nuget\\packages\\",
-        "outputPath": "D:\\Repos\\Backend\\Backend\\obj\\",
+        "outputPath": "D:\\Repos\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Vitor Rodarte\\AppData\\Roaming\\NuGet\\NuGet.Config",
