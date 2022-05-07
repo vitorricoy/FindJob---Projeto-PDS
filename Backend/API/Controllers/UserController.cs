@@ -1,4 +1,5 @@
 using Backend.Domain.Entity;
+using Backend.Domain.Exceptions;
 using Backend.Domain.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,10 +17,21 @@ namespace Backend.Controllers
             this.userService = userService;
         }
 
-        [HttpGet(Name = "")]
-        public User Get()
+        [HttpGet(Name = "login")]
+        public IActionResult Login(string email, string password)
         {
-            return new User();
+            try
+            {
+                return Ok(userService.Login(email, password));
+            } 
+            catch (InvalidLoginCredentialsException ex)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, ex);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
         }
     }
 }

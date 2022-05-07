@@ -2,11 +2,23 @@
 {
     public class User
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
-        public string phone { get; set; }
-        public bool isFreelancer { get; set; }
-        public Dictionary<Skill, double> skills { get; set; }
+        public int Id { get; }
+        public string Name { get; }
+        public string Email { get; }
+        public string Password { get; }
+        public string Phone { get; }
+        public bool IsFreelancer { get; }
+        public Dictionary<Skill, double> Skills { get; }
+
+        public User(int id, string name, string email, string password, string phone, bool isFreelancer, Dictionary<Skill, double> skills)
+        {
+            Id = id;
+            Name = name;
+            Email = email;
+            Password = password;
+            Phone = phone;
+            IsFreelancer = isFreelancer;
+            Skills = skills;
+        }
     }
 }

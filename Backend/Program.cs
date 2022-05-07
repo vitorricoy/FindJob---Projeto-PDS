@@ -1,12 +1,23 @@
 using Backend.Domain.Repository;
 using Backend.Domain.Service;
 using Backend.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+// Add DB Context
+
+builder.Services.AddDbContext<ApplicationDbContext>(
+        options => {
+            var folder = Environment.SpecialFolder.LocalApplicationData;
+            var path = Environment.GetFolderPath(folder);
+            options.UseSqlite($"Data Source={System.IO.Path.Join(path, "findJob.db")}");
+        });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

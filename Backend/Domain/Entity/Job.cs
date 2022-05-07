@@ -2,12 +2,25 @@
 {
     public class Job
     {
-        public string id { get; set; }
-        public string title { get; set; }
-        public string description { get; set; }
-        public int deadline { get; set; }
-        public double payment { get; set; }
-        public bool isPaymentByHour { get; set; }
-        public List<Skill> skills { get; set; }
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public int Deadline { get; set; }
+        public double Payment { get; set; }
+        public bool IsPaymentByHour { get; set; }
+        public List<Skill> Skills { get; set; }
+        public User Client { get; set; }
+
+        public Job(string id, string title, string description, int deadline, double payment, bool isPaymentByHour, List<Skill> skills, User client)
+        {
+            Id = id;
+            Title = title;
+            Description = description;
+            Deadline = deadline;
+            Payment = payment;
+            IsPaymentByHour = isPaymentByHour;
+            Skills = skills;
+            Client = client;
+        }
     }
 }

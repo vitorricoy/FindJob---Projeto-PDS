@@ -2,7 +2,11 @@
 
 namespace Backend.Persistence
 {
-    public class JobRepository : IJobRepository
+    public class JobRepository : BaseRepository, IJobRepository
     {
+        public JobRepository(ApplicationDbContext dbContext) : base(dbContext)
+        {
+
+        }
     }
 }

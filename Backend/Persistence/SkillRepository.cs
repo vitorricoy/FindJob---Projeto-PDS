@@ -2,7 +2,11 @@
 
 namespace Backend.Persistence
 {
-    public class SkillRepository : ISkillRepository
+    public class SkillRepository : BaseRepository, ISkillRepository
     {
+        public SkillRepository(ApplicationDbContext dbContext) : base(dbContext)
+        {
+
+        }
     }
 }
