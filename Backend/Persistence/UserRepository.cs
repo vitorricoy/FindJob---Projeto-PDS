@@ -12,7 +12,7 @@ namespace Backend.Persistence
 
         public User GetUserByEmailAndPasswordHash(string email, string password)
         {
-            UserEntity user = dbContext.Users.Where(u => u.Email.Equals(email) && u.Password.Equals(password)).First();
+            UserModel user = dbContext.Users.Where(u => u.Email.Equals(email) && u.Password.Equals(password)).First();
 
             return user.ToDomainObject();
         }
@@ -20,6 +20,11 @@ namespace Backend.Persistence
         public User GetUserById(int id)
         {
             return dbContext.Users.Where(u => u.Id == id).First().ToDomainObject();
+        }
+
+        public User UpdateUser(User user)
+        {
+            return dbContext.Users.Update(UserModel.FromDomainObject(user)).Entity.ToDomainObject();
         }
     }
 }

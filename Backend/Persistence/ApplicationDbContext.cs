@@ -5,9 +5,9 @@ namespace Backend.Persistence
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<JobEntity> Jobs { get; set; }
-        public DbSet<MessageEntity> Messages { get; set; }
-        public DbSet<SkillEntity> Skills { get; set; }
-        public DbSet<UserEntity> Users { get; set; }
+        public DbSet<JobModel> Jobs { get; set; }
+        public DbSet<MessageModel> Messages { get; set; }
+        public DbSet<SkillModel> Skills { get; set; }
+        public DbSet<UserModel> Users { get; set; }
     }
 }

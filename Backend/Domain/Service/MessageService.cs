@@ -1,4 +1,5 @@
 ﻿using Backend.Domain.Entity;
+using Backend.Domain.Exceptions;
 using Backend.Domain.Repository;
 
 namespace Backend.Domain.Service
@@ -18,6 +19,11 @@ namespace Backend.Domain.Service
         {
             User sender = userService.GetUserById(senderId);
             User receiver = userService.GetUserById(receiverId);
+
+            if (sender == null || receiver == null)
+            {
+                throw new InvalidUserIdException();
+            }
 
             Message newMessage = new Message(text, sender, receiver, sentTime, false);
 

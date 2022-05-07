@@ -12,7 +12,7 @@ namespace Backend.Persistence
 
         public Message CreateMessage(Message message)
         {
-            MessageEntity messageEntity = MessageEntity.FromDomainObject(message);
+            MessageModel messageEntity = MessageModel.FromDomainObject(message);
             return dbContext.Add(messageEntity).Entity.ToDomainObject();
         }
 

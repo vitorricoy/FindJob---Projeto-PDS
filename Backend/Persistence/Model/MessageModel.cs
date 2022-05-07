@@ -3,18 +3,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Domain.Entity
 {
-    public class MessageEntity
+    public class MessageModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Content { get; set; }
-        public UserEntity Sender { get; set; }
-        public UserEntity Receiver { get; set; }
+        public UserModel Sender { get; set; }
+        public UserModel Receiver { get; set; }
         public DateTime SentTime { get; set; }
         public bool IsRead { get; set; }
 
-        private MessageEntity(int id, string content, UserEntity sender, UserEntity receiver, DateTime sentTime, bool isRead)
+        private MessageModel(int id, string content, UserModel sender, UserModel receiver, DateTime sentTime, bool isRead)
         {
             Id = id;
             Content = content;
@@ -29,9 +29,9 @@ namespace Backend.Domain.Entity
             return new Message(Id, Content, Sender.ToDomainObject(), Receiver.ToDomainObject(), SentTime, IsRead);
         }
 
-        public static MessageEntity FromDomainObject(Message message)
+        public static MessageModel FromDomainObject(Message message)
         {
-            return new MessageEntity(message.Id, message.Content, UserEntity.FromDomainObject(message.Sender), UserEntity.FromDomainObject(message.Receiver), 
+            return new MessageModel(message.Id, message.Content, UserModel.FromDomainObject(message.Sender), UserModel.FromDomainObject(message.Receiver), 
                 message.SentTime, message.IsRead);
         }
     }

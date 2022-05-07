@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Domain.Entity
 {
-    public class UserEntity
+    public class UserModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,8 +13,8 @@ namespace Backend.Domain.Entity
         public string Password { get; }
         public string Phone { get; }
         public bool IsFreelancer { get; }
-        public Dictionary<SkillEntity, double> Skills { get; }
-        private UserEntity(int id, string name, string email, string password, string phone, bool isFreelancer, Dictionary<SkillEntity, double> skills)
+        public Dictionary<SkillModel, Tuple<double, int>> Skills { get; }
+        private UserModel(int id, string name, string email, string password, string phone, bool isFreelancer, Dictionary<SkillModel, Tuple<double, int>> skills)
         {
             Id = id;
             Name = name;
@@ -27,14 +27,14 @@ namespace Backend.Domain.Entity
 
         public User ToDomainObject()
         {
-            Dictionary<Skill, double> domainSkills = Skills.ToDictionary(kv => kv.Key.ToDomainObject(), kv => kv.Value);
+            Dictionary<Skill, Tuple<double, int>> domainSkills = Skills.ToDictionary(kv => kv.Key.ToDomainObject(), kv => kv.Value);
             return new User(Id, Name, Email, Password, Phone, IsFreelancer, domainSkills);
         }
 
-        public static UserEntity FromDomainObject(User user)
+        public static UserModel FromDomainObject(User user)
         {
-            return new UserEntity(user.Id, user.Name, user.Email, user.Password, user.Phone, user.IsFreelancer, 
-                user.Skills.ToDictionary(kv => SkillEntity.FromDomainObject(kv.Key), kv => kv.Value));
+            return new UserModel(user.Id, user.Name, user.Email, user.Password, user.Phone, user.IsFreelancer, 
+                user.Skills.ToDictionary(kv => SkillModel.FromDomainObject(kv.Key), kv => kv.Value));
         }
     }
 }

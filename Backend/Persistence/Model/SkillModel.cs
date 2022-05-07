@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Domain.Entity
 {
-    public class SkillEntity
+    public class SkillModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public Skill ToDomainObject()
@@ -15,15 +15,15 @@ namespace Backend.Domain.Entity
             return new Skill(Id, Name);
         }
 
-        public SkillEntity(string id, string name)
+        public SkillModel(int id, string name)
         {
             Id = id;
             Name = name;
         }
 
-        public static SkillEntity FromDomainObject(Skill skill)
+        public static SkillModel FromDomainObject(Skill skill)
         {
-            return new SkillEntity(skill.Id, skill.Name);
+            return new SkillModel(skill.Id, skill.Name);
         }
     }
 }

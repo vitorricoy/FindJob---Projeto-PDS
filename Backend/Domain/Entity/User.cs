@@ -8,9 +8,9 @@
         public string Password { get; }
         public string Phone { get; }
         public bool IsFreelancer { get; }
-        public Dictionary<Skill, double> Skills { get; }
+        public Dictionary<Skill, Tuple<double, int>> Skills { get; }
 
-        public User(int id, string name, string email, string password, string phone, bool isFreelancer, Dictionary<Skill, double> skills)
+        public User(int id, string name, string email, string password, string phone, bool isFreelancer, Dictionary<Skill, Tuple<double, int>> skills)
         {
             Id = id;
             Name = name;

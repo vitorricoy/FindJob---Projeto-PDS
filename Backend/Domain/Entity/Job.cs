@@ -10,8 +10,11 @@
         public bool IsPaymentByHour { get; set; }
         public List<Skill> Skills { get; set; }
         public User Client { get; set; }
+        public User AssignedFreelancer;
+        public bool Active { get; set; }
+        public bool Available { get; set; }
 
-        public Job(string id, string title, string description, int deadline, double payment, bool isPaymentByHour, List<Skill> skills, User client)
+        public Job(string id, string title, string description, int deadline, double payment, bool isPaymentByHour, List<Skill> skills, User client, User assignedFreelancer, bool active, bool available)
         {
             Id = id;
             Title = title;
@@ -21,6 +24,9 @@
             IsPaymentByHour = isPaymentByHour;
             Skills = skills;
             Client = client;
+            AssignedFreelancer = assignedFreelancer;
+            Active = active;
+            Available = available;
         }
     }
 }
