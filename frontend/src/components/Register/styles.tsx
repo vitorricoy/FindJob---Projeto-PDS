@@ -1,4 +1,4 @@
-import { Button, Checkbox, ListItemText, Slider, TextField } from "@material-ui/core";
+import { Button, Checkbox, FormControlLabel, ListItemText, Slider, TextField } from "@material-ui/core";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -66,6 +66,23 @@ export const StyledInput = styled(TextField)`
     margin-block: 8px;
     width: 300px;
     heigth: 50px;
+
+    & label {
+        color: #2D3748;
+    }
+
+    & label.Mui-focused {
+        color: #004E85;
+    }
+
+    & .MuiOutlinedInput-root {
+        & fieldset {
+            border-color: #2D3748;
+        },
+        &.Mui-focused fieldset {
+            border-color: #004E85;
+        },
+    }
 `;
 
 export const FreelancerContainer = styled.div`
@@ -75,8 +92,9 @@ export const FreelancerContainer = styled.div`
 
 export const StyledAddAbilityButton = styled(Button)`
     background-color: #004E85 !important;
-    height: 27px !important;
-    width: 27px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    max-width: 32px !important;
 
     .MuiButton-label {
         color: #FFFFFF;
@@ -97,4 +115,10 @@ export const StyledSlider = styled(Slider)`
 `;
 
 export const StyledCheckbox = styled(Checkbox)`
+`;
+
+export const StyledFormControlLabel = styled(FormControlLabel)`
+    .MuiFormControlLabel-label {
+        color: #2D3748;
+    }
 `;

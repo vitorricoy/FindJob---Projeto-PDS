@@ -1,4 +1,4 @@
-import { FormControlLabel, List, ListItem } from "@material-ui/core";
+import { List, ListItem } from "@material-ui/core";
 import React from "react";
 import { 
     Container,
@@ -14,17 +14,19 @@ import {
     StyledAddAbilityButton,
     StyledSlider,
     StyledListItemText,
-    StyledCheckbox
+    StyledCheckbox,
+    StyledFormControlLabel
 } from "./styles";
 
 export function Register () {
     const [checked, setChecked] = React.useState(false);
+    const [value, setValue] = React.useState<number>(30);
+    const [newAbilityInput, setNewAbilityInput] = React.useState<boolean>(false);
+    const [abilities, setAbilities] = React.useState<any[]>(["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB"]);
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
     };
-
-    const [value, setValue] = React.useState<number>(30);
 
     let abilitiesScore: any;
 
@@ -33,7 +35,24 @@ export function Register () {
         abilitiesScore.habilidade = newValue;
     };
 
-    const abilities = ["Java", "Python", "Habilidade Secreta Interessante", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "Programação WEB"];
+    const handleAddNewAbilityInput = () => {
+        setNewAbilityInput(!newAbilityInput);
+    };
+
+    const [name, setName] = React.useState('');
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value);
+    };
+    
+    const handleAddNewAbility = (ability: string) => {
+        if (ability.trim().length > 0) {
+            let newAbilities = abilities;
+            newAbilities.push(ability);
+            setAbilities(newAbilities);
+        }
+        setName("");
+        setNewAbilityInput(false);
+    };
 
     return (
         <div>
@@ -58,10 +77,10 @@ export function Register () {
                         </RowContainer>
 
                         <div style={{height: "8%"}}>
-                            <FormControlLabel control={
+                            <StyledFormControlLabel control={
                                 <StyledCheckbox
                                     checked={checked}
-                                    onChange={handleChange}
+                                    onChange={handleCheck}
                                     inputProps={{ 'aria-label': 'controlled' }}
                                     color="primary"
                                 />
@@ -84,7 +103,7 @@ export function Register () {
                                     <List>
                                         {abilities.map(ability => {
                                             return(
-                                                <ListItem style={{justifyContent: "space-between", display: "flex", width: "60%"}}>
+                                                <ListItem style={{justifyContent: "space-between", display: "flex", width: "60%"}} key={ability}>
                                                     <div style={{width: "40%", marginRight: "8px", overflow: "hidden", textOverflow: "ellipsis"}}>
                                                         <StyledListItemText primary={ability} style={{color: "#2D3748"}}/>
                                                     </div>
@@ -105,7 +124,23 @@ export function Register () {
                                         })}
                                     </List>
 
-                                    <StyledAddAbilityButton>+</StyledAddAbilityButton>
+                                    <div style={{display: "flex", alignItems: "center"}}>
+                                        {newAbilityInput && 
+                                            <div style={{padding: "0 16px"}}>
+                                                <StyledInput 
+                                                    variant="standard"
+                                                    label="Nova habilidade"
+                                                    value={name}
+                                                    onChange={handleChange}
+                                                    onKeyPress={(ev) => {
+                                                        if (ev.key === 'Enter') {
+                                                            handleAddNewAbility(name)
+                                                        }
+                                                    }}/>
+                                            </div>}
+
+                                        {!newAbilityInput && <StyledAddAbilityButton onClick={handleAddNewAbilityInput}>+</StyledAddAbilityButton>}
+                                    </div>
                                 </div>
                             : null}
                         </FreelancerContainer>
