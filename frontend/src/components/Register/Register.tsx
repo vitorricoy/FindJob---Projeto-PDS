@@ -26,6 +26,7 @@ export function Register () {
 
     const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
+        setNewAbilityInput(false);
     };
 
     let abilitiesScore: any;
