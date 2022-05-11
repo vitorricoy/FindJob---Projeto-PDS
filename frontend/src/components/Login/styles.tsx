@@ -86,7 +86,7 @@ export const StyledLoginButton = styled(Button)`
     .MuiButton-label {
         color: #FFFFFF;
     }
-    `;
+`;
 
 export const StyledSignUp = styled.div`
     margin-top: 32px;
