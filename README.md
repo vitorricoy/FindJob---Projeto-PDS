@@ -118,3 +118,11 @@ O fluxo do MVP será o seguinte: primeiro, um cliente que necessitar de algum se
 ### Protótipos das Telas
 
 https://www.figma.com/file/MHr9zWxxdfCjEYeTqEYSRX/FindJob
+
+### Documentação da Arquitetura
+
+#### Arquitetura Hexagonal
+
+O sistema adota a arquitetura hexagonal com o objetivo de separar o código relativo às tecnologias usadas (Web API e SQLite com Entity Framework Core) do código do domínio do sistema. Assim, para isso, foram criados três pacotes principais: Controllers, Domain e Persistence. O pacote de Controllers implementa a Web API, o pacote de Persistence implementa o acesso ao banco de dados SQLite e o pacote Domain implementa as lógicas de negócio.
+
+#### Domain-Driven Design
