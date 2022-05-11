@@ -7,19 +7,25 @@ namespace Backend.Domain.Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public int Deadline { get; set; }
         public double Payment { get; set; }
         public bool IsPaymentByHour { get; set; }
+        [ForeignKey("Id")]
         public List<SkillModel> Skills { get; set; }
-        public UserModel Client { get; set; }
-        public UserModel AssignedFreelancer { get; set; }
+        public int AssignedFreelancerId { get; set; }
+        public int ClientId { get; set; }
+
+        [ForeignKey("ClientId")]
+        public virtual UserModel Client { get; set; }
+        [ForeignKey("AssignedFreelancerId")]
+        public virtual UserModel? AssignedFreelancer { get; set; }
         public bool Active { get; set; }
         public bool Available { get; set; }
 
-        public JobModel(string id, string title, string description, double payment, bool isPaymentByHour, List<SkillModel> skills, UserModel client, UserModel assignedFreelancer, bool active, bool available)
+        public JobModel(int id, string title, string description, double payment, bool isPaymentByHour, List<SkillModel> skills, UserModel client, UserModel assignedFreelancer, bool active, bool available)
         {
             Id = id;
             Title = title;
@@ -31,6 +37,13 @@ namespace Backend.Domain.Entity
             AssignedFreelancer = assignedFreelancer;
             Active = active;
             Available = available;
+            AssignedFreelancerId = assignedFreelancer.Id;
+            ClientId = client.Id;
+        }
+
+        public JobModel()
+        {
+
         }
 
         public Job ToDomainObject()

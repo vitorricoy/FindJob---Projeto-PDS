@@ -1,3 +1,4 @@
+using Backend.API.Controllers.Models;
 using Backend.Domain.Entity;
 using Backend.Domain.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -5,10 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("api/job/[controller]")]
+    [Route("api/job")]
     public class JobController : ControllerBase
     {
-        
+
         private readonly IJobService jobService;
 
         public JobController(IJobService jobService)
@@ -16,21 +17,23 @@ namespace Backend.Controllers
             this.jobService = jobService;
         }
 
-        [HttpPost(Name = "rate")]
-        public IActionResult RateJob(int jobId, double rating)
+        [HttpPost]
+        [Route("rate")]
+        public IActionResult RateJob([FromBody] RateJobInput input)
         {
             try
             {
-                return Ok(jobService.RateJob(jobId, rating));
+                return Ok(jobService.RateJob(input.JobId, input.Rating));
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
-        [HttpGet(Name = "list")]
-        public IActionResult ListJobsByUser(int userId)
+        [HttpGet]
+        [Route("list")]
+        public IActionResult ListJobsByUser([FromQuery(Name = "userId")] int userId)
         {
             try
             {
@@ -38,12 +41,13 @@ namespace Backend.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
-        [HttpGet(Name = "search")]
-        public IActionResult SearchJobsForFreelancer(int userId)
+        [HttpGet]
+        [Route("search")]
+        public IActionResult SearchJobsForFreelancer([FromQuery(Name = "userId")] int userId)
         {
             try
             {
@@ -51,12 +55,12 @@ namespace Backend.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
-        [HttpGet(Name = "")]
-        public IActionResult Get(int jobId)
+        [HttpGet]
+        public IActionResult Get([FromQuery(Name = "jobId")] int jobId)
         {
             try
             {
@@ -64,7 +68,7 @@ namespace Backend.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
     }

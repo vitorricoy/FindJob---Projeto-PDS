@@ -1,3 +1,4 @@
+using Backend.API.Controllers.Models;
 using Backend.Domain.Entity;
 using Backend.Domain.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -5,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("api/skill/[controller]")]
+    [Route("api/skill")]
     public class SkillController : ControllerBase
     {
         
@@ -16,10 +17,31 @@ namespace Backend.Controllers
             this.skillService = skillService;
         }
 
-        [HttpGet(Name = "")]
-        public Skill Get()
+        [HttpGet]
+        [Route("all")]
+        public IActionResult GetAllSkills()
         {
-            return new Skill();
+            try
+            {
+                return Ok(skillService.GetAllSkills());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult CreateNewSkill([FromBody] CreateSkillInput input)
+        {
+            try
+            {
+                return Ok(skillService.CreateNewSkill(input.Name));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
     }
 }

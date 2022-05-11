@@ -5,11 +5,14 @@
 
         public int Id { get; set; }
         public string Name { get; set; }
+        
+        public string NormalizedName { get; set; }
 
-        public Skill(int id, string name)
+        public Skill(int id, string name, string normalizedName)
         {
             Id = id;
             Name = name;
+            NormalizedName = normalizedName;
         }
 
         public override int GetHashCode()

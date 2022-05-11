@@ -50,6 +50,8 @@ namespace Backend.Persistence
             jobModel.Active = false;
 
             dbContext.Jobs.Update(jobModel);
+
+            dbContext.SaveChanges();
         }
     }
 }

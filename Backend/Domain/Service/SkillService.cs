@@ -1,13 +1,25 @@
-﻿using Backend.Domain.Repository;
+﻿using Backend.Domain.Entity;
+using Backend.Domain.Repository;
 
 namespace Backend.Domain.Service
 {
     public class SkillService : ISkillService
     {
-        private readonly ISkillRepository jobRepository;
-        public SkillService(ISkillRepository jobRepository)
+        private readonly ISkillRepository skillRepository;
+        public SkillService(ISkillRepository skillRepository)
         {
-            this.jobRepository = jobRepository;
+            this.skillRepository = skillRepository;
+        }
+
+        public Skill CreateNewSkill(string name)
+        {
+            string normalizedName = name.ToLower().Replace(" ", "");
+            return skillRepository.CreateNewSkill(new Skill(0, name, normalizedName));
+        }
+
+        public List<Skill> GetAllSkills()
+        {
+            return skillRepository.GetAllSkills();
         }
     }
 }
