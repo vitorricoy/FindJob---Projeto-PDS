@@ -6,7 +6,7 @@ namespace Backend.Domain.Repository
     {
         public Job GetJobById(int jobId);
         public void SetJobAsDone(int jobId);
-        public List<Job> ListJobsByFreelancer(int userId);
+        public List<Job> ListJobsByUser(int userId, bool isFreelancer);
         public List<Job> GetAllAvailableJobs();
     }
 }

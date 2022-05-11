@@ -30,11 +30,11 @@ namespace Backend.Controllers
         }
 
         [HttpGet(Name = "list")]
-        public IActionResult ListJobsByFreelancer(int userId)
+        public IActionResult ListJobsByUser(int userId)
         {
             try
             {
-                return Ok(jobService.ListJobsByFreelancer(userId));
+                return Ok(jobService.ListJobsByUser(userId));
             }
             catch (Exception ex)
             {
@@ -56,9 +56,16 @@ namespace Backend.Controllers
         }
 
         [HttpGet(Name = "")]
-        public Job Get()
+        public IActionResult Get(int jobId)
         {
-            return new Job();
+            try
+            {
+                return Ok(jobService.GetJobById(jobId));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
         }
     }
 }

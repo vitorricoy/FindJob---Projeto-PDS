@@ -24,13 +24,23 @@ namespace Backend.Persistence
             return dbContext.Jobs.Where(j => j.Id.Equals(jobId)).First().ToDomainObject();
         }
 
-        public List<Job> ListJobsByFreelancer(int userId)
+        public List<Job> ListJobsByUser(int userId, bool isFreelancer)
         {
-            return dbContext.Jobs
-                .Where(j => j.AssignedFreelancer != null && j.AssignedFreelancer.Id == userId)
-                .ToList()
-                .Select(j => j.ToDomainObject())
-                .ToList();
+            if (isFreelancer)
+            {
+                return dbContext.Jobs
+                    .Where(j => j.AssignedFreelancer != null && j.AssignedFreelancer.Id == userId)
+                    .ToList()
+                    .Select(j => j.ToDomainObject())
+                    .ToList();
+            } else
+            {
+                return dbContext.Jobs
+                    .Where(j => j.Client != null && j.Client.Id == userId)
+                    .ToList()
+                    .Select(j => j.ToDomainObject())
+                    .ToList();
+            }
         }
 
         public void SetJobAsDone(int jobId)

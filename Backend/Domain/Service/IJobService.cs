@@ -6,8 +6,10 @@ namespace Backend.Domain.Service
     {
         public bool RateJob(int jobId, double rating);
 
-        public List<Job> ListJobsByFreelancer(int userId); 
+        public List<Job> ListJobsByUser(int userId); 
 
         public List<Job> SearchJobsForFreelancer(int userId);
+
+        public Job GetJobById(int jobId);
     }
 }
