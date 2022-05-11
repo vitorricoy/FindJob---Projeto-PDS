@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("api/user/[controller]")]
+    [Route("api/user")]
     public class UserController : ControllerBase
     {
         
@@ -17,8 +17,9 @@ namespace Backend.Controllers
             this.userService = userService;
         }
 
-        [HttpGet(Name = "login")]
-        public IActionResult Login(string email, string password)
+        [HttpGet]
+        [Route("login")]
+        public IActionResult Login([FromQuery(Name = "email")] string email, [FromQuery(Name = "password")] string password)
         {
             try
             {
@@ -26,11 +27,11 @@ namespace Backend.Controllers
             } 
             catch (InvalidLoginCredentialsException ex)
             {
-                return StatusCode(StatusCodes.Status403Forbidden, ex);
+                return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
             }
             catch(Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
     }

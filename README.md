@@ -19,8 +19,8 @@ Sistema para clientes encontrarem profissionais freelancers para seus projetos. 
 * Sistema de avaliação do freelancer no fim de um projeto
 
 ### Tecnologias:
-* MySQL
-* C#
+* SQLite
+* C# (.NET Core)
 * Typescript (React)
 
 ### MVP
@@ -92,16 +92,28 @@ O fluxo do MVP será o seguinte: primeiro, um cliente que necessitar de algum se
 * História: Como usuário, quero ter acesso a uma página inicial que facilite a navegação pela aplicação.
   * Tarefa 1: Implementar a página web. [Vitor A.]
   * Tarefa 2: Implementar a camada de acesso aos dados. [André]
+* História: Como freelancer, quero poder buscar por todos os jobs atribuidos a mim.
+  * Tarefa 1: Implementar a página web. [Vitor A.]
+  * Tarefa 2: Implementar a camada de acesso aos dados. [Vitor R.]
+  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de exibir todos os jobs atribuídos ao freelancer. [Vitor R.]
+* História: Como cliente, quero poder buscar por todos os jobs ofertados por mim.
+  * Tarefa 1: Implementar a página web. [Vitor A.]
+  * Tarefa 2: Implementar a camada de acesso aos dados. [Vitor R.]
+  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de exibir todos os jobs criados por um cliente. [Vitor R.]
 * História: Como freelancer, quero poder buscar por todos os jobs disponíveis oferecidos pelos clientes.
   * Tarefa 1: Implementar a página web. [Vitor A.]
   * Tarefa 2: Implementar a camada de acesso aos dados. [Vitor R.]
   * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de exibir todos os jobs criados por clientes. [Vitor R.]
   * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de filtrar os jobs exibidos de acordo com as habilidades do freelancer. [Vitor R.]
-* História: Como freelancer, quero poder analisar um job específico e oferecer meus serviços. [Vitor R.]
+* História: Como freelancer, quero poder analisar um job específico e oferecer meus serviços.
   * Tarefa 1: Implementar a página web. [Vitor R.]
   * Tarefa 2: Implementar a camada de acesso aos dados. [Vitor R.]
   * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de exibir detalhes do job selecionado. [Vitor R.]
   * Tarefa 4: Implementar a camada de lógica de negócio e a camada de controle para a operação de candidatar-se a um job específico. [Vitor R.]
+
+* História: Como usuário, quero poder adicionar novas habilidades no sistema.
+  * Tarefa 2: Implementar a camada de acesso aos dados. [Vitor R.]
+  * Tarefa 3: Implementar a camada de lógica de negócio e a camada de controle para a operação de adicionar novas habilidades. [Vitor R.]
 
 ### Protótipos das Telas
 

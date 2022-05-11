@@ -1,3 +1,4 @@
+using Backend.API.Controllers.Models;
 using Backend.Domain.Entity;
 using Backend.Domain.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -5,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("api/message/[controller]")]
+    [Route("api/message")]
     public class MessageController : ControllerBase
     {
         
@@ -16,8 +17,9 @@ namespace Backend.Controllers
             this.messageService = messageService;
         }
 
-        [HttpGet(Name = "history")]
-        public IActionResult GetHistory(int userId1, int userId2)
+        [HttpGet]
+        [Route("history")]
+        public IActionResult GetHistory([FromQuery(Name = "userId1")] int userId1, [FromQuery(Name = "userId2")] int userId2)
         {
             try
             {
@@ -25,12 +27,13 @@ namespace Backend.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
-        [HttpGet(Name = "lastMessage")]
-        public IActionResult GetLastMessage(int userId1, int userId2)
+        [HttpGet]
+        [Route("lastMessage")]
+        public IActionResult GetLastMessage([FromQuery(Name = "userId1")] int userId1, [FromQuery(Name = "userId2")] int userId2)
         {
             try
             {
@@ -38,20 +41,20 @@ namespace Backend.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
-        [HttpPost()]
-        public IActionResult CreateMessage(string text, DateTime sentTime, int senderId, int receiverId)
+        [HttpPost]
+        public IActionResult CreateMessage([FromBody] CreateMessageInput input)
         {
             try
             {
-                return Ok(messageService.CreateMessage(text, sentTime, senderId, receiverId));
+                return Ok(messageService.CreateMessage(input.Text, input.SentTime, input.SenderId, input.ReceiverId));
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
     }

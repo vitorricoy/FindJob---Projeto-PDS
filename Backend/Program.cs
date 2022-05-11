@@ -1,6 +1,7 @@
 using Backend.Domain.Repository;
 using Backend.Domain.Service;
 using Backend.Persistence;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(
             var path = Environment.GetFolderPath(folder);
             options.UseSqlite($"Data Source={System.IO.Path.Join(path, "findJob.db")}");
         });
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -34,12 +34,25 @@ builder.Services.AddScoped<ISkillRepository, SkillRepository>();
 
 var app = builder.Build();
 
+using(var scope = app.Services.CreateScope())
+{
+
+    var client = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    client?.Database.EnsureCreated();
+}
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod());
+
 
 app.UseHttpsRedirection();
 

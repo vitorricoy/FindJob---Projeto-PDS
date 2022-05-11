@@ -24,7 +24,9 @@ namespace Backend.Persistence
 
         public User UpdateUser(User user)
         {
-            return dbContext.Users.Update(UserModel.FromDomainObject(user)).Entity.ToDomainObject();
+            User returnValue = dbContext.Users.Update(UserModel.FromDomainObject(user)).Entity.ToDomainObject();
+            dbContext.SaveChanges();
+            return returnValue;
         }
     }
 }

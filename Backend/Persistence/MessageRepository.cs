@@ -13,7 +13,9 @@ namespace Backend.Persistence
         public Message CreateMessage(Message message)
         {
             MessageModel messageEntity = MessageModel.FromDomainObject(message);
-            return dbContext.Add(messageEntity).Entity.ToDomainObject();
+            Message returnValue = dbContext.Add(messageEntity).Entity.ToDomainObject();
+            dbContext.SaveChanges();
+            return returnValue;
         }
 
         public List<Message> GetHistory(int userId1, int userId2)
