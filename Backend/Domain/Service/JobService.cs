@@ -15,7 +15,7 @@ namespace Backend.Domain.Service
             this.userRepository = userRepository;
         }
 
-        public List<Job> ListJobsByFreelancer(int userId)
+        public List<Job> ListJobsByUser(int userId)
         {
             User user = userRepository.GetUserById(userId);
 
@@ -24,14 +24,14 @@ namespace Backend.Domain.Service
                 throw new InvalidUserIdException();
             }
 
-            return jobRepository.ListJobsByFreelancer(userId);
+            return jobRepository.ListJobsByUser(userId, user.IsFreelancer);
         }
 
         public List<Job> SearchJobsForFreelancer(int userId)
         {
             User user = userRepository.GetUserById(userId);
 
-            if (user == null)
+            if (user == null || !user.IsFreelancer)
             {
                 throw new InvalidUserIdException();
             }
@@ -84,6 +84,11 @@ namespace Backend.Domain.Service
             userRepository.UpdateUser(assignedFreelancer);
 
             return true;
+        }
+
+        public Job GetJobById(int jobId)
+        {
+            return jobRepository.GetJobById(jobId);
         }
     }
 }
