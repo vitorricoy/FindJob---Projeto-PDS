@@ -164,20 +164,20 @@ export function CreateJob () {
                                 >+</StyledAddSkillButton>
                             </Skills2>
                             <Skills3>
-                            <List dense={true}>
-                                {abilities.map(ability => {
-                                    return(
-                                        <ListItem>
-                                            <ListItemText
-                                                primary={ability}
-                                            />
-                                            <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteSkill(ability)}>
-                                                <DeleteIcon />
-                                            </IconButton>
-                                        </ListItem>
+                                <List dense={true}>
+                                    {abilities.map(ability => {
+                                        return(
+                                            <ListItem>
+                                                <ListItemText
+                                                    primary={ability}
+                                                />
+                                                <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteSkill(ability)}>
+                                                    <DeleteIcon />
+                                                </IconButton>
+                                            </ListItem>
+                                        )}
                                     )}
-                                )}
-                            </List>
+                                </List>
                             </Skills3>
                         </GrayPaper>
                     </SkillsDiv>
