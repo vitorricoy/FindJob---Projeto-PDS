@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import styled from "styled-components";
 
 export const StyledHeader = styled.div`
-    height: 10%;
+    height: 7.5vh;
     background-color: #406682;
     display: flex;
 `;
@@ -24,8 +24,8 @@ export const Title = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 40px;
-    line-height: 47px;
+    font-size: 30px;
+    line-height: 5vh;
     color: #FFFFFF;
 `;
 
@@ -35,8 +35,8 @@ export const SubTitle = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 23px;
+    font-size: 15px;
+    line-height: 1vh;
     color: #FFFFFF;
 `;
 
