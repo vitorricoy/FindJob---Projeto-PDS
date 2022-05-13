@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledFooter = styled.div`
-    height: 5%;
+    height: 5vh;
     background-color: #406682;
     text-align: center;
 

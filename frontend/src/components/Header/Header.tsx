@@ -1,7 +1,7 @@
 import { Badge, Button, Menu, MenuItem } from "@material-ui/core";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import React from "react";
-import { 
+import {
     HeaderTitle,
     MenuIcon,
     MenuIconSvg,
@@ -11,22 +11,22 @@ import {
     StyledMenuButton,
     SubTitle,
     Title,
- } from "./styles"
+} from "./styles"
 
-export function Header () {
+export function Header() {
     const [freelancer, setFreelancer] = React.useState(false);
     const [notifications, setNotifications] = React.useState(2);
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
     const handleMenuClose = () => {
-      setAnchorEl(null);
+        setAnchorEl(null);
     };
-    
-    return(
+
+    return (
         <StyledHeader>
             <MenuIcon>
                 <StyledMenuButton
@@ -36,7 +36,7 @@ export function Header () {
                     aria-expanded={open ? 'true' : undefined}
                     onClick={handleMenuClick}
                 >
-                    <MenuIconSvg viewBox="0 0 19 20" width="48" height="48">
+                    <MenuIconSvg viewBox="-7 -3.5 35 35">
                         <MenuIconSvgPath />
                     </MenuIconSvg>
                 </StyledMenuButton>
@@ -67,17 +67,17 @@ export function Header () {
 
             <HeaderTitle>
                 <Title>
-                    FindJob 
+                    FindJob
                 </Title>
                 <SubTitle>
-                    {freelancer? "Freelancer": "Cliente"}
+                    {freelancer ? "Freelancer" : "Cliente"}
                 </SubTitle>
             </HeaderTitle>
 
             <NotificationIcon>
-                <Button style={{padding: "0 !important"}}>
-                    <Badge 
-                        badgeContent={notifications} 
+                <Button style={{ padding: "0 !important" }}>
+                    <Badge
+                        badgeContent={notifications}
                         color="primary"
                     >
                         <NotificationsIcon color="action" />

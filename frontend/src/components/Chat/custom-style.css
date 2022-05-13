@@ -1,0 +1,68 @@
+.message-list {
+    margin: 15px 0px 15px 0px;
+}
+
+.title-conversation {
+    justify-content: center;
+    cursor: default;
+}
+
+.title-conversation:hover {
+    background-color: white;
+}
+
+.title-conversation:active {
+    background-color: white !important;
+}
+
+.title-avatar {
+    width: auto !important;
+    margin-right: 0px;
+}
+
+.regular-conversation {
+    margin: 10px 0px 10px 0px;
+}
+
+.cs-message-input {
+    background-color: #F7F7F7 !important;
+}
+
+.cs-message-input__content-editor-wrapper {
+    background-color: #F7F7F7 !important;
+}
+
+.cs-message-input__content-editor {
+    background-color: #F7F7F7 !important;
+}
+
+.cs-conversation-header {
+    border-bottom: solid 0px !important;
+}
+
+.cs-chat-container .cs-message-input {
+    border-top: solid 0px !important;
+}
+
+.cs-conversation-header {
+    background-color: #F7F7F7 !important;
+}
+
+.cs-message--outgoing .cs-message__content {
+    color: white;
+    background-color: #001835;
+}
+
+.cs-message--incoming .cs-message__content {
+    color: white;
+    background-color: #0F82FF;
+}
+
+.cs-message-separator {
+    color: #406682;
+}
+
+.cs-message-separator::before,
+.cs-message-separator::after {
+    background-color: #406682 !important;
+}
