@@ -2,7 +2,7 @@
 {
     public class Job
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public int Deadline { get; set; }
@@ -14,7 +14,7 @@
         public bool Active { get; set; }
         public bool Available { get; set; }
 
-        public Job(int id, string title, string description, int deadline, double payment, bool isPaymentByHour, List<Skill> skills, User client, User assignedFreelancer, bool active, bool available)
+        public Job(string id, string title, string description, int deadline, double payment, bool isPaymentByHour, List<Skill> skills, User client, User assignedFreelancer, bool active, bool available)
         {
             Id = id;
             Title = title;

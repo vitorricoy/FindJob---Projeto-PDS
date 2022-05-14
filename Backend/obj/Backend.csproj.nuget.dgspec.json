@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repos\\Backend\\Backend.csproj": {}
+    "C:\\UFMG\\7_Periodo\\PDS\\FindJob-Projeto-PDS\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "D:\\Repos\\Backend\\Backend.csproj": {
+    "C:\\UFMG\\7_Periodo\\PDS\\FindJob-Projeto-PDS\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repos\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\UFMG\\7_Periodo\\PDS\\FindJob-Projeto-PDS\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "D:\\Repos\\Backend\\Backend.csproj",
-        "packagesPath": "C:\\Users\\Vitor Rodarte\\.nuget\\packages\\",
-        "outputPath": "D:\\Repos\\Backend\\obj\\",
+        "projectPath": "C:\\UFMG\\7_Periodo\\PDS\\FindJob-Projeto-PDS\\Backend\\Backend.csproj",
+        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+        "outputPath": "C:\\UFMG\\7_Periodo\\PDS\\FindJob-Projeto-PDS\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Vitor Rodarte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

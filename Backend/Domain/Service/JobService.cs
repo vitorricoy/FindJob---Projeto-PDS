@@ -15,7 +15,7 @@ namespace Backend.Domain.Service
             this.userRepository = userRepository;
         }
 
-        public List<Job> ListJobsByUser(int userId)
+        public List<Job> ListJobsByUser(string userId)
         {
             User user = userRepository.GetUserById(userId);
 
@@ -27,7 +27,7 @@ namespace Backend.Domain.Service
             return jobRepository.ListJobsByUser(userId, user.IsFreelancer);
         }
 
-        public List<Job> SearchJobsForFreelancer(int userId)
+        public List<Job> SearchJobsForFreelancer(string userId)
         {
             User user = userRepository.GetUserById(userId);
 
@@ -54,7 +54,7 @@ namespace Backend.Domain.Service
             return orderedJobs;
         }
 
-        public bool RateJob(int jobId, double rating)
+        public bool RateJob(string jobId, double rating)
         {
             Job job = jobRepository.GetJobById(jobId);
             if (job == null)
@@ -86,7 +86,7 @@ namespace Backend.Domain.Service
             return true;
         }
 
-        public Job GetJobById(int jobId)
+        public Job GetJobById(string jobId)
         {
             return jobRepository.GetJobById(jobId);
         }

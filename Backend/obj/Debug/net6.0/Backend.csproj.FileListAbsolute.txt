@@ -50,3 +50,13 @@ D:\Repos\Backend\obj\Debug\net6.0\refint\Backend.dll
 D:\Repos\Backend\obj\Debug\net6.0\Backend.pdb
 D:\Repos\Backend\obj\Debug\net6.0\Backend.genruntimeconfig.cache
 D:\Repos\Backend\obj\Debug\net6.0\ref\Backend.dll
+C:\UFMG\7_Periodo\PDS\FindJob-Projeto-PDS\Backend\obj\Debug\net6.0\Backend.csproj.AssemblyReference.cache
+C:\UFMG\7_Periodo\PDS\FindJob-Projeto-PDS\Backend\obj\Debug\net6.0\Backend.GeneratedMSBuildEditorConfig.editorconfig
+C:\UFMG\7_Periodo\PDS\FindJob-Projeto-PDS\Backend\obj\Debug\net6.0\Backend.AssemblyInfoInputs.cache
+C:\UFMG\7_Periodo\PDS\FindJob-Projeto-PDS\Backend\obj\Debug\net6.0\Backend.AssemblyInfo.cs
+C:\UFMG\7_Periodo\PDS\FindJob-Projeto-PDS\Backend\obj\Debug\net6.0\Backend.csproj.CoreCompileInputs.cache
+C:\UFMG\7_Periodo\PDS\FindJob-Projeto-PDS\Backend\obj\Debug\net6.0\Backend.MvcApplicationPartsAssemblyInfo.cs
+C:\UFMG\7_Periodo\PDS\FindJob-Projeto-PDS\Backend\obj\Debug\net6.0\Backend.MvcApplicationPartsAssemblyInfo.cache
+C:\UFMG\7_Periodo\PDS\FindJob-Projeto-PDS\Backend\obj\Debug\net6.0\Backend.dll
+C:\UFMG\7_Periodo\PDS\FindJob-Projeto-PDS\Backend\obj\Debug\net6.0\refint\Backend.dll
+C:\UFMG\7_Periodo\PDS\FindJob-Projeto-PDS\Backend\obj\Debug\net6.0\Backend.pdb

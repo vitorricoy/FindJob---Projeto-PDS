@@ -2,7 +2,7 @@
 {
     public class User
     {
-        public int Id { get; }
+        public string Id { get; }
         public string Name { get; }
         public string Email { get; }
         public string Password { get; }
@@ -10,7 +10,7 @@
         public bool IsFreelancer { get; }
         public Dictionary<Skill, Tuple<double, int>> Skills { get; }
 
-        public User(int id, string name, string email, string password, string phone, bool isFreelancer, Dictionary<Skill, Tuple<double, int>> skills)
+        public User(string id, string name, string email, string password, string phone, bool isFreelancer, Dictionary<Skill, Tuple<double, int>> skills)
         {
             Id = id;
             Name = name;

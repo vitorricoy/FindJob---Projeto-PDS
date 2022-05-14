@@ -4,9 +4,9 @@ namespace Backend.Domain.Repository
 {
     public interface IJobRepository
     {
-        public Job GetJobById(int jobId);
-        public void SetJobAsDone(int jobId);
-        public List<Job> ListJobsByUser(int userId, bool isFreelancer);
+        public Job GetJobById(string jobId);
+        public void SetJobAsDone(string jobId);
+        public List<Job> ListJobsByUser(string userId, bool isFreelancer);
         public List<Job> GetAllAvailableJobs();
     }
 }

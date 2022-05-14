@@ -13,28 +13,33 @@ namespace Backend.Persistence
         public Message CreateMessage(Message message)
         {
             MessageModel messageEntity = MessageModel.FromDomainObject(message);
-            Message returnValue = dbContext.Add(messageEntity).Entity.ToDomainObject();
+
+            User sender = ToDomainObject(messageEntity.Sender);
+            User receiver = ToDomainObject(messageEntity.Receiver);
+            Message returnValue = ToDomainObject(dbContext.Add(messageEntity).Entity);
             dbContext.SaveChanges();
             return returnValue;
         }
 
-        public List<Message> GetHistory(int userId1, int userId2)
+        public List<Message> GetHistory(string userId1, string userId2)
         {
             return dbContext.Messages
                 .Where(m => m.Sender.Id.Equals(userId1) && m.Receiver.Id.Equals(userId2) || m.Sender.Id.Equals(userId2) && m.Receiver.Id.Equals(userId1))
                 .OrderByDescending(m => m.SentTime)
                 .ToList()
-                .Select(m => m.ToDomainObject())
+                .Select(m => ToDomainObject(m))
                 .ToList();
         }
 
-        public Message GetLastMessage(int userId1, int userId2)
+        public Message GetLastMessage(string userId1, string userId2)
         {
-            return dbContext.Messages
+            MessageModel messMod = dbContext.Messages
                 .Where(m => m.Sender.Id.Equals(userId1) && m.Receiver.Id.Equals(userId2) || m.Sender.Id.Equals(userId2) && m.Receiver.Id.Equals(userId1))
                 .OrderByDescending(m => m.SentTime)
-                .First()
-                .ToDomainObject();
+                .First();
+            return ToDomainObject(messMod);
         }
+
+        
     }
 }

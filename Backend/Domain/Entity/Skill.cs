@@ -1,24 +1,29 @@
-﻿namespace Backend.Domain.Entity
+﻿using System.Text;
+
+namespace Backend.Domain.Entity
 {
     public class Skill
     {
 
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         
         public string NormalizedName { get; set; }
 
-        public Skill(int id, string name, string normalizedName)
+        public Skill(string id, string name, string normalizedName)
         {
             Id = id;
             Name = name;
             NormalizedName = normalizedName;
         }
 
+        
         public override int GetHashCode()
         {
-            return Id;
+            byte[] idBytes = Encoding.ASCII.GetBytes(Id);
+            return BitConverter.ToInt32(idBytes);
         }
+
         public override bool Equals(object obj)
         {
             if (obj == null)

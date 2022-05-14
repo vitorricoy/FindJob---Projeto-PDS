@@ -4,12 +4,12 @@ namespace Backend.Domain.Service
 {
     public interface IJobService
     {
-        public bool RateJob(int jobId, double rating);
+        public bool RateJob(string jobId, double rating);
 
-        public List<Job> ListJobsByUser(int userId); 
+        public List<Job> ListJobsByUser(string userId); 
 
-        public List<Job> SearchJobsForFreelancer(int userId);
+        public List<Job> SearchJobsForFreelancer(string userId);
 
-        public Job GetJobById(int jobId);
+        public Job GetJobById(string jobId);
     }
 }

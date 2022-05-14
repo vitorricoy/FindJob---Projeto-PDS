@@ -4,10 +4,10 @@ namespace Backend.Domain.Service
 {
     public interface IMessageService
     {
-        public List<Message> GetHistory(int userId1, int userId2);
+        public List<Message> GetHistory(string userId1, string userId2);
 
-        public Message GetLastMessage(int userId1, int userId2);
+        public Message GetLastMessage(string userId1, string userId2);
 
-        public Message CreateMessage(string text, DateTime sentTime, int senderId, int receiverId);
+        public Message CreateMessage(string text, DateTime sentTime, string senderId, string receiverId);
     }
 }

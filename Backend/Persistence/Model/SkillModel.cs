@@ -6,18 +6,12 @@ namespace Backend.Domain.Entity
     public class SkillModel
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
 
         public string NormalizedName { get; set; }
 
-        public Skill ToDomainObject()
-        {
-            return new Skill(Id, Name, NormalizedName);
-        }
-
-        public SkillModel(int id, string name, string normalizedName)
+        public SkillModel(string id, string name, string normalizedName)
         {
             Id = id;
             Name = name;

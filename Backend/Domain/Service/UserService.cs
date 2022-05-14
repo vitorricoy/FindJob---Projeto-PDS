@@ -28,7 +28,7 @@ namespace Backend.Domain.Service
             return loggedUser;
         }
 
-        public User GetUserById(int id)
+        public User GetUserById(string id)
         {
             return userRepository.GetUserById(id);
         }

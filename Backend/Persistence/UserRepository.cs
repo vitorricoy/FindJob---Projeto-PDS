@@ -14,17 +14,17 @@ namespace Backend.Persistence
         {
             UserModel user = dbContext.Users.Where(u => u.Email.Equals(email) && u.Password.Equals(password)).First();
 
-            return user.ToDomainObject();
+            return ToDomainObject(user);
         }
 
-        public User GetUserById(int id)
+        public User GetUserById(string id)
         {
-            return dbContext.Users.Where(u => u.Id == id).First().ToDomainObject();
+            return ToDomainObject(dbContext.Users.Where(u => u.Id == id).First());
         }
 
         public User UpdateUser(User user)
         {
-            User returnValue = dbContext.Users.Update(UserModel.FromDomainObject(user)).Entity.ToDomainObject();
+            User returnValue = ToDomainObject(dbContext.Users.Update(UserModel.FromDomainObject(user)).Entity);
             dbContext.SaveChanges();
             return returnValue;
         }

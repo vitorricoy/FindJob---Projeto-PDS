@@ -15,7 +15,7 @@ namespace Backend.Domain.Service
             this.userService = userService;
         }
 
-        public Message CreateMessage(string text, DateTime sentTime, int senderId, int receiverId)
+        public Message CreateMessage(string text, DateTime sentTime, string senderId, string receiverId)
         {
             User sender = userService.GetUserById(senderId);
             User receiver = userService.GetUserById(receiverId);
@@ -25,17 +25,17 @@ namespace Backend.Domain.Service
                 throw new InvalidUserIdException();
             }
 
-            Message newMessage = new Message(text, sender, receiver, sentTime, false);
+            Message newMessage = new Message(Guid.NewGuid().ToString(),text, sender, receiver, sentTime, false);
 
             return messageRepository.CreateMessage(newMessage);
         }
 
-        public List<Message> GetHistory(int userId1, int userId2)
+        public List<Message> GetHistory(string userId1, string userId2)
         {
             return messageRepository.GetHistory(userId1, userId2);
         }
 
-        public Message GetLastMessage(int userId1, int userId2)
+        public Message GetLastMessage(string userId1, string userId2)
         {
             return messageRepository.GetLastMessage(userId1, userId2);
         }

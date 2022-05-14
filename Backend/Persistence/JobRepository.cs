@@ -15,35 +15,35 @@ namespace Backend.Persistence
             return dbContext.Jobs
                 .Where(j => j.Available)
                 .ToList()
-                .Select(j => j.ToDomainObject())
+                .Select(j => ToDomainObject(j))
                 .ToList();
         }
 
-        public Job GetJobById(int jobId)
+        public Job GetJobById(string jobId)
         {
-            return dbContext.Jobs.Where(j => j.Id.Equals(jobId)).First().ToDomainObject();
+            return ToDomainObject(dbContext.Jobs.Where(j => j.Id.Equals(jobId)).First());
         }
 
-        public List<Job> ListJobsByUser(int userId, bool isFreelancer)
+        public List<Job> ListJobsByUser(string userId, bool isFreelancer)
         {
             if (isFreelancer)
             {
                 return dbContext.Jobs
                     .Where(j => j.AssignedFreelancer != null && j.AssignedFreelancer.Id == userId)
                     .ToList()
-                    .Select(j => j.ToDomainObject())
+                    .Select(j => ToDomainObject(j))
                     .ToList();
             } else
             {
                 return dbContext.Jobs
                     .Where(j => j.Client != null && j.Client.Id == userId)
                     .ToList()
-                    .Select(j => j.ToDomainObject())
+                    .Select(j => ToDomainObject(j))
                     .ToList();
             }
         }
 
-        public void SetJobAsDone(int jobId)
+        public void SetJobAsDone(string jobId)
         {
             JobModel jobModel = dbContext.Jobs.Where(j => j.Id.Equals(jobId)).First();
 
@@ -53,5 +53,7 @@ namespace Backend.Persistence
 
             dbContext.SaveChanges();
         }
+
+        
     }
 }

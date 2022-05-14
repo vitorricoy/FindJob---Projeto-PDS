@@ -6,6 +6,6 @@ namespace Backend.Domain.Service
     {
         public User Login(string email, string password);
 
-        public User GetUserById(int id);
+        public User GetUserById(string id);
     }
 }

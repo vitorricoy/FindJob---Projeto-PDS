@@ -1,5 +1,4 @@
 ﻿using Backend.Domain.Entity;
-using Backend.Persistence.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Persistence
@@ -15,6 +14,7 @@ namespace Backend.Persistence
         public DbSet<MessageModel> Messages { get; set; }
         public DbSet<SkillModel> Skills { get; set; }
         public DbSet<UserModel> Users { get; set; }
-        public DbSet<UserSkillModel> UserSkills { get; set; }
+        public DbSet<UserProficiencyModel> UserSkills { get; set; }
+        public DbSet<JobRequirementModel> JobSkills { get; set; }
     }
 }

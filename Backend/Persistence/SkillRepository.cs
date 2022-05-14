@@ -12,14 +12,14 @@ namespace Backend.Persistence
 
         public Skill CreateNewSkill(Skill skill)
         {
-            Skill returnValue = dbContext.Skills.Add(SkillModel.FromDomainObject(skill)).Entity.ToDomainObject();
+            Skill returnValue = ToDomainObject(dbContext.Skills.Add(SkillModel.FromDomainObject(skill)).Entity);
             dbContext.SaveChanges();
             return returnValue;
         }
 
         public List<Skill> GetAllSkills()
         {
-            return dbContext.Skills.ToList().Select(s => s.ToDomainObject()).ToList();
+            return dbContext.Skills.ToList().Select(s => ToDomainObject(s)).ToList();
         }
     }
 }
