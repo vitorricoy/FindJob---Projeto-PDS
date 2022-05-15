@@ -28,5 +28,32 @@ namespace Backend.Persistence
             dbContext.SaveChanges();
             return returnValue;
         }
+
+        public User CreateNewUser(User user)
+        {
+            Skill findSkill;
+
+            if(user.IsFreelancer)
+            {
+                foreach(KeyValuePair<Skill,Tuple<double,int>> skillRate in user.Skills)
+                {
+                    findSkill = ToDomainObject(dbContext.Skills.Where(s => s.NormalizedName == skillRate.Key.NormalizedName).First());
+
+                    if(findSkill == null)
+                    {
+                        dbContext.Skills.Add(SkillModel.FromDomainObject(skillRate.Key));
+                    }
+
+                    foreach(UserProficiencyModel userSkillEntry in UserProficiencyModel.FromUserDomainObject(user))
+                    {
+                        dbContext.UserSkills.Add(userSkillEntry);
+                    }
+                }
+            }
+            
+            User returnValue = ToDomainObject(dbContext.Users.Add(UserModel.FromDomainObject(user)).Entity);
+            dbContext.SaveChanges();
+            return returnValue;
+        }
     }
 }

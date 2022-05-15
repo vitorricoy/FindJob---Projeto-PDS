@@ -9,5 +9,7 @@ namespace Backend.Domain.Repository
         public User GetUserById(string id);
 
         public User UpdateUser(User user);
+
+        public User CreateNewUser(User user);
     }
 }

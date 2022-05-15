@@ -14,8 +14,6 @@ namespace Backend.Persistence
         {
             MessageModel messageEntity = MessageModel.FromDomainObject(message);
 
-            User sender = ToDomainObject(messageEntity.Sender);
-            User receiver = ToDomainObject(messageEntity.Receiver);
             Message returnValue = ToDomainObject(dbContext.Add(messageEntity).Entity);
             dbContext.SaveChanges();
             return returnValue;
