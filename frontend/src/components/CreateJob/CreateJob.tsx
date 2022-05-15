@@ -1,4 +1,4 @@
-import { 
+import {
     Body,
     Container,
     DescribeYourJobDiv,
@@ -44,12 +44,12 @@ const currencies = [
         label: 'R$',
     },
     {
-         value: 'USD',
-         label: 'US$',
+        value: 'USD',
+        label: 'US$',
     },
     {
         value: 'EUR',
-         label: '€',
+        label: '€',
     },
     {
         value: 'BTC',
@@ -59,9 +59,9 @@ const currencies = [
         value: 'JPY',
         label: '¥',
     },
-  ];
+];
 
-export function CreateJob () {
+export function CreateJob() {
     const [abilities, setAbilities] = React.useState<any[]>(["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB"]);
 
     const handleDeleteSkill = (ability: string) => {
@@ -104,16 +104,16 @@ export function CreateJob () {
 
     return (
         <Container>
-            <Header/>
+            <Header />
 
             <Body>
                 <LeftDiv>
                     <DescribeYourJobDiv>
                         <DescribeYourJobUp>
-                            <br/>Descreva seu job
+                            <br />Descreva seu job
                         </DescribeYourJobUp>
 
-                        <DescribeYourJobBottom style={{margin: "auto", width: "90%", height: "40%"}}>
+                        <DescribeYourJobBottom style={{ margin: "auto", width: "90%", height: "40%" }}>
                             Diga-nos o que precisa ser feito e encontraremos os freelancers ideais para você. Você defines seus limites.
                         </DescribeYourJobBottom>
                     </DescribeYourJobDiv>
@@ -124,13 +124,13 @@ export function CreateJob () {
                                 Título
                             </TitleDescription1>
                             <TitleDescription2>
-                                <TitleTextField id="outlined-basic" variant="outlined" size="small" placeholder="Ex: Website de comércio de roupas online"/>
+                                <TitleTextField id="outlined-basic" variant="outlined" size="small" placeholder="Ex: Website de comércio de roupas online" />
                             </TitleDescription2>
                             <TitleDescription3>
                                 Descrição
                             </TitleDescription3>
                             <TitleDescription4>
-                                <DescriptionTextField 
+                                <DescriptionTextField
                                     id="standard-multiline-static"
                                     multiline
                                     rows={10}
@@ -152,13 +152,13 @@ export function CreateJob () {
                                 Habilidades
                             </Skills1>
                             <Skills2>
-                                <SkillField 
-                                    id="outlined-basic" 
-                                    variant="outlined" 
+                                <SkillField
+                                    id="outlined-basic"
+                                    variant="outlined"
                                     size="small"
                                     value={name}
                                     onChange={handleChange}
-                                /> 
+                                />
                                 <StyledAddSkillButton
                                     onClick={() => handleAddNewAbility(name)}
                                 >+</StyledAddSkillButton>
@@ -166,7 +166,7 @@ export function CreateJob () {
                             <Skills3>
                                 <List dense={true}>
                                     {abilities.map(ability => {
-                                        return(
+                                        return (
                                             <ListItem>
                                                 <ListItemText
                                                     primary={ability}
@@ -175,7 +175,8 @@ export function CreateJob () {
                                                     <DeleteIcon />
                                                 </IconButton>
                                             </ListItem>
-                                        )}
+                                        )
+                                    }
                                     )}
                                 </List>
                             </Skills3>
@@ -194,8 +195,8 @@ export function CreateJob () {
                                     label="Moeda"
                                     value={currency}
                                     onChange={handleCurrencyChange}
-                                    style={{width: "100%"}}
-                                    >
+                                    style={{ width: "100%" }}
+                                >
                                     {currencies.map((option) => (
                                         <MenuItem key={option.value} value={option.value}>
                                             {option.label}
@@ -205,27 +206,27 @@ export function CreateJob () {
                             </Payment2>
                             <Payment3>
                                 <FormGroup>
-                                    <div style={{display: "flex"}}>
-                                        <FormControlLabel control={<Checkbox defaultChecked color="primary" onChange={() => handlePaymentMethodChange('total')} checked={totalChecked}/>} label="Valor total" />
-                                        <FormControlLabel control={<Checkbox color="primary" checked={perHourChecked} onChange={() => handlePaymentMethodChange('hour')}/>} label="Por hora" />
+                                    <div style={{ display: "flex" }}>
+                                        <FormControlLabel control={<Checkbox defaultChecked color="primary" onChange={() => handlePaymentMethodChange('total')} checked={totalChecked} />} label="Valor total" />
+                                        <FormControlLabel control={<Checkbox color="primary" checked={perHourChecked} onChange={() => handlePaymentMethodChange('hour')} />} label="Por hora" />
                                     </div>
                                 </FormGroup>
                             </Payment3>
                             <Payment4>
-                                {currency} <CurrencyTextField id="outlined-basic" variant="outlined"/> {totalChecked? '': '/hour'}
+                                {currency} <CurrencyTextField id="outlined-basic" variant="outlined" /> <sub>{totalChecked ? '' : '/hr'} </sub>
                             </Payment4>
                         </GrayPaper>
                     </PaymentDiv>
 
                     <PostJobDiv>
-                        <div style={{textAlign: "center", marginBlock: "5%"}}>
+                        <div style={{ textAlign: "center", marginBlock: "5%" }}>
                             <StyledButton variant="contained"> Postar job </StyledButton>
                         </div>
                     </PostJobDiv>
                 </RightDiv>
             </Body>
 
-            <Footer/>
+            <Footer />
         </Container>
     );
 }

@@ -241,7 +241,7 @@ export const StyledButton = styled(Button)`
     margin: auto;
     width: 80%;
     height: 80px;
-    background-color: #004E85 !important;
+    background-color: #04C35C !important;
 
     .MuiButton-label {
         font-family: 'Roboto Condensed', sans-serif;
