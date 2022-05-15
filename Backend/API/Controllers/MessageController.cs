@@ -19,7 +19,7 @@ namespace Backend.Controllers
 
         [HttpGet]
         [Route("history")]
-        public IActionResult GetHistory([FromQuery(Name = "userId1")] int userId1, [FromQuery(Name = "userId2")] int userId2)
+        public IActionResult GetHistory([FromQuery(Name = "userId1")] string userId1, [FromQuery(Name = "userId2")] string userId2)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace Backend.Controllers
 
         [HttpGet]
         [Route("lastMessage")]
-        public IActionResult GetLastMessage([FromQuery(Name = "userId1")] int userId1, [FromQuery(Name = "userId2")] int userId2)
+        public IActionResult GetLastMessage([FromQuery(Name = "userId1")] string userId1, [FromQuery(Name = "userId2")] string userId2)
         {
             try
             {

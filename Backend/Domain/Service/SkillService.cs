@@ -14,7 +14,7 @@ namespace Backend.Domain.Service
         public Skill CreateNewSkill(string name)
         {
             string normalizedName = name.ToLower().Replace(" ", "");
-            return skillRepository.CreateNewSkill(new Skill(Guid.NewGuid().ToString(), name, normalizedName));
+            return skillRepository.CreateNewSkill(new Skill(name, normalizedName));
         }
 
         public List<Skill> GetAllSkills()

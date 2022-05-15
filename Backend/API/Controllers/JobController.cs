@@ -33,7 +33,7 @@ namespace Backend.Controllers
 
         [HttpGet]
         [Route("list")]
-        public IActionResult ListJobsByUser([FromQuery(Name = "userId")] int userId)
+        public IActionResult ListJobsByUser([FromQuery(Name = "userId")] string userId)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace Backend.Controllers
 
         [HttpGet]
         [Route("search")]
-        public IActionResult SearchJobsForFreelancer([FromQuery(Name = "userId")] int userId)
+        public IActionResult SearchJobsForFreelancer([FromQuery(Name = "userId")] string userId)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery(Name = "jobId")] int jobId)
+        public IActionResult Get([FromQuery(Name = "jobId")] string jobId)
         {
             try
             {

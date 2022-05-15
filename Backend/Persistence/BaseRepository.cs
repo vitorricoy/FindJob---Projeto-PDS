@@ -18,7 +18,7 @@ namespace Backend.Persistence
 
             foreach (JobRequirementModel pair in skillPairs)
             {
-                skills.Add(ToDomainObject(dbContext.Skills.Where(s => s.Id == pair.Skill.Id).First()));
+                skills.Add(ToDomainObject(dbContext.Skills.Where(s => s.NormalizedName == pair.Skill.NormalizedName).First()));
             }
 
             return new Job(jobMod.Id, jobMod.Title, jobMod.Description, jobMod.Deadline, jobMod.Payment, jobMod.IsPaymentByHour, skills, ToDomainObject(jobMod.Client), ToDomainObject(jobMod.AssignedFreelancer), jobMod.Active, jobMod.Available);
@@ -35,7 +35,7 @@ namespace Backend.Persistence
 
             foreach (UserProficiencyModel pair in skillPairs)
             {
-                skills.Add(ToDomainObject(dbContext.Skills.Where(s => s.Id == pair.Skill.Id).First()),
+                skills.Add(ToDomainObject(dbContext.Skills.Where(s => s.NormalizedName == pair.Skill.NormalizedName).First()),
                     new Tuple<double, int>(pair.Rating, pair.RatingsDone));
             }
 
@@ -51,7 +51,7 @@ namespace Backend.Persistence
 
         protected Skill ToDomainObject(SkillModel skillMod)
         {
-            return new Skill(skillMod.Id, skillMod.Name, skillMod.NormalizedName);
+            return new Skill(skillMod.Name, skillMod.NormalizedName);
         }
     }
 }

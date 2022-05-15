@@ -2,10 +2,10 @@
 {
     public class RateJobInput
     {
-        public int JobId { get; set; }
+        public string JobId { get; set; }
         public double Rating { get; set; }
 
-        public RateJobInput(int jobId, double rating)
+        public RateJobInput(string jobId, double rating)
         {
             JobId = jobId;
             Rating = rating;

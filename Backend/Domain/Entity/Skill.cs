@@ -4,15 +4,12 @@ namespace Backend.Domain.Entity
 {
     public class Skill
     {
-
-        public string Id { get; set; }
         public string Name { get; set; }
         
         public string NormalizedName { get; set; }
 
-        public Skill(string id, string name, string normalizedName)
+        public Skill(string name, string normalizedName)
         {
-            Id = id;
             Name = name;
             NormalizedName = normalizedName;
         }
@@ -20,7 +17,7 @@ namespace Backend.Domain.Entity
         
         public override int GetHashCode()
         {
-            byte[] idBytes = Encoding.ASCII.GetBytes(Id);
+            byte[] idBytes = Encoding.ASCII.GetBytes(NormalizedName);
             return BitConverter.ToInt32(idBytes);
         }
 
@@ -35,7 +32,7 @@ namespace Backend.Domain.Entity
 
         public bool Equals(Skill obj)
         {
-            return obj != null && obj.Id == this.Id;
+            return obj != null && obj.NormalizedName.Equals(NormalizedName);
         }
     }
 }
