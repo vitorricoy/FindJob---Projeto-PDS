@@ -1,5 +1,6 @@
 import { Button } from "@material-ui/core";
 import styled from "styled-components";
+import { Props } from "./ClientJobView";
 
 export const Container = styled.div`
     width: 100vw;
@@ -58,13 +59,13 @@ export const LowerLeftDiv = styled.div`
     flex-direction: column;
 `
 
-export const LowerRightDiv = styled.div`
+export const LowerRightDiv = styled.div<Props>`
     width: 30vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     align-content: center;
-    justify-content: center;
+    justify-content: ${props => props.justifyContent};
 `
 
 export const ContainerAbility = styled.div`
@@ -163,7 +164,7 @@ export const UserIcon = styled.img`
     margin-right: 10px;
 `
 
-export const StyledButton = styled(Button)`
+export const StyledHireButton = styled(Button)`
     width: 80%;
     height: 20px;
     background-color: #04C35C !important;
@@ -182,5 +183,97 @@ export const StyledButton = styled(Button)`
 `;
 
 export const HireDiv = styled.div`
+    height: 20%;
+`;
+
+export const AboutFreelancerContainer = styled.div`
+    background: #E5E5E5;
+    border-radius: 30px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    width: 20vw;
+    justify-content: space-evenly;
+    margin-top: 30px;
+`
+
+export const AboutFreelancerTitle = styled.div`
+    font-family: 'Roboto Condensed', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
+    color: #000000;
+    margin-bottom: 15px;
+`
+
+export const AboutFreelancerSubtitle = styled.div`
+    font-family: 'Roboto Condensed', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 158.5%;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    
+    margin-bottom: 15px;
+`
+
+export const AboutFreelancerContent = styled.div`
+    font-family: 'Roboto Condensed', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 158.5%;
+    color: #000000;
+`
+
+export const StyledRateButton = styled(Button)`
+    width: 50%;
+    height: 45px;
+    background-color: #04C35C !important;
+
+    .MuiButton-label {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        color: white;
+    }
+
+    '&:hover': {
+        boxShadow: black;
+    }
+`;
+
+export const RatingDiv = styled.div`
+   display: flex;
+   margin: 20px 0px 20px 0px;
+
+   font-family: 'Roboto Condensed', sans-serif;
+   font-size: 20px;
+`
+
+export const StyledChatButton = styled(Button)`
+    width: 35%;
+    height: 45px;
+    background-color: #3f51b5 !important;
+
+    .MuiButton-label {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        color: white;
+    }
+
+    '&:hover': {
+        boxShadow: black;
+    }
+`;
+
+export const ChatAndRateJobDiv = styled.div`
     height: 20%;
 `;
