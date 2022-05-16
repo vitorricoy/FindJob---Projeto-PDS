@@ -30,6 +30,7 @@ import {
     Payment3,
     Payment4,
     CurrencyTextField,
+    StyledList,
 } from "./styles";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
@@ -110,7 +111,7 @@ export function CreateJob() {
                 <LeftDiv>
                     <DescribeYourJobDiv>
                         <DescribeYourJobUp>
-                            <br />Descreva seu job
+                            Descreva seu job
                         </DescribeYourJobUp>
 
                         <DescribeYourJobBottom style={{ margin: "auto", width: "90%", height: "40%" }}>
@@ -164,7 +165,7 @@ export function CreateJob() {
                                 >+</StyledAddSkillButton>
                             </Skills2>
                             <Skills3>
-                                <List dense={true}>
+                                <StyledList dense={true}>
                                     {abilities.map(ability => {
                                         return (
                                             <ListItem>
@@ -178,7 +179,7 @@ export function CreateJob() {
                                         )
                                     }
                                     )}
-                                </List>
+                                </StyledList>
                             </Skills3>
                         </GrayPaper>
                     </SkillsDiv>
@@ -213,7 +214,7 @@ export function CreateJob() {
                                 </FormGroup>
                             </Payment3>
                             <Payment4>
-                                {currency} <CurrencyTextField id="outlined-basic" variant="outlined" /> <sub>{totalChecked ? '' : '/hr'} </sub>
+                                {currency} <CurrencyTextField id="outlined-basic" variant="outlined" /> <sub>{totalChecked ? '' : '/h'} </sub>
                             </Payment4>
                         </GrayPaper>
                     </PaymentDiv>
