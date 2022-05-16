@@ -2,7 +2,7 @@ import { Button, Checkbox, FormControlLabel, ListItemText, Slider, TextField } f
 import styled from "styled-components";
 
 export const Container = styled.div`
-    display: flex;
+    display: block;
     height: 100vh;
     width: 100vw;
     position: relative;
@@ -55,7 +55,7 @@ export const RowContainer = styled.div`
     display: flex;
     height: 16%;
     margin-block: 0 auto;
-    justify-content: space-between;
+    justify-content: space-evenly;
 `;
 
 export const InputContainer = styled.div`

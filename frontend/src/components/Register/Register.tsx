@@ -59,7 +59,6 @@ export function Register () {
         <div>
 
             <Container>
-                <OuterContainer>
                     <StyledTitle>
                         Cadastro
                     </StyledTitle>
@@ -151,7 +150,6 @@ export function Register () {
                         <StyledRegisterButton> Cadastrar </StyledRegisterButton>
                     </StyledButtonContainer>
                     
-                </OuterContainer>
             </Container>
 
 
