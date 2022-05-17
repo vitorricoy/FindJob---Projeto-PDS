@@ -251,7 +251,6 @@ export const SkillField = styled(TextField)`
     & .MuiFormControl-root {
         width: 10vh;
     }
-
 `;
 
 export const StyledAddSkillButton = styled(Button)`
@@ -352,6 +351,10 @@ export const StyledList = styled(MuiList)`
     & .MuiListItem-root {
         padding-top: 0 !important;
         padding-bottom: 0 !important;
+    }
+
+    & .MuiIconButton-root {
+        padding: 1vh !important; 
     }
 
     padding-top: 0 !important;

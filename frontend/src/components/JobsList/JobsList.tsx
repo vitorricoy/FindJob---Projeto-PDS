@@ -25,6 +25,7 @@ import {
     Skills3,
     SkillsDiv,
     StyledAddSkillButton,
+    StyledList,
 } from "./styles";
 import { LeftDiv } from "../CreateJob/styles";
 import { Checkbox, Divider, FormControlLabel, IconButton, InputAdornment, List, ListItem, ListItemText, MenuItem, TextField, Typography } from "@material-ui/core";
@@ -174,7 +175,7 @@ export function JobsList () {
                                 >+</StyledAddSkillButton>
                             </Skills2>
                             <Skills3>
-                                <List dense={true}>
+                                <StyledList dense={true}>
                                     {abilities.map(ability => {
                                         return(
                                             <ListItem>
@@ -189,7 +190,7 @@ export function JobsList () {
                                             </ListItem>
                                         )}
                                     )}
-                                </List>
+                                </StyledList>
                             </Skills3>
                         </Filters7>
                     </GrayPaper>
