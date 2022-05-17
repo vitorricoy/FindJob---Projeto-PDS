@@ -38,6 +38,7 @@ import { Checkbox, FormControlLabel, FormGroup, List, ListItem, ListItemText, Me
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from '@mui/icons-material/Delete';
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const currencies = [
     {
@@ -102,6 +103,12 @@ export function CreateJob() {
             setPerHourChecked(true);
         }
     };
+
+    let navigate = useNavigate();
+
+    const handleButtonClick = (event: any) => {
+        return navigate("/jobs-list/my-jobs");
+    }
 
     return (
         <Container>
@@ -221,7 +228,7 @@ export function CreateJob() {
 
                     <PostJobDiv>
                         <div style={{ textAlign: "center", marginBlock: "5%" }}>
-                            <StyledButton variant="contained"> Postar job </StyledButton>
+                            <StyledButton variant="contained" onClick={handleButtonClick}> Postar job </StyledButton>
                         </div>
                     </PostJobDiv>
                 </RightDiv>

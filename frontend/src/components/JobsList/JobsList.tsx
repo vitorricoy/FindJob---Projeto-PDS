@@ -33,6 +33,7 @@ import React from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
 import { ListItemButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const currencies = [
     {
@@ -59,6 +60,8 @@ const currencies = [
 
 export function JobsList () {
     const [currency, setCurrency] = React.useState('BRL');
+
+    const [freelancer, setFreelancer] = React.useState(false);
 
     const handleCurrencyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrency(event.target.value);
@@ -107,11 +110,13 @@ export function JobsList () {
 
     const [availableJobs, setAvailableJobs] = React.useState<any[]>([{name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"]},{name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"]},{name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"]},{name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"]}]);
 
-    const styles = (theme: any) => ({
-        listItemText:{
-          fontSize:'0.7em'
+    let navigate = useNavigate();
+
+    const handleJobClick = (ref: string) => {
+        if (ref.length > 0) {
+            (freelancer? navigate("/freelancer-job-view/" + ref): navigate("/client-job-view/" + ref));
         }
-    });
+    };
     
     return (
         <Container>
@@ -231,7 +236,7 @@ export function JobsList () {
                                         return (
                                             <ListItem style={{display:"block"}}>
                                                 <ListItemDiv>
-                                                        <ListItemButton>
+                                                        <ListItemButton onClick={() => handleJobClick(job.name)}>
                                                             <ListItemText 
                                                                 disableTypography
                                                                 primary={<Typography variant="h5" style={{ color: '#000000' }}>{job.name}</Typography>}

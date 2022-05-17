@@ -7,9 +7,20 @@ import {
 } from "./styles";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
+import { useNavigate } from "react-router-dom";
 
 export function Home () {
-    const [freelancer, setFreelancer] = React.useState(false);
+    const [freelancer, setFreelancer] = React.useState(true);
+
+    let navigate = useNavigate();
+
+    const handleFirstButtonClick = (event: any) => {
+        return (freelancer?  navigate("/jobs-list/find-jobs"): navigate("/create-job"));
+    }
+
+    const handleSecondButtonClick = (event: any) => {
+        return navigate("/jobs-list/my-jobs");
+    }
     
     return (
         <Container>
@@ -27,11 +38,11 @@ export function Home () {
 
             <Buttons>
                 <div style={{alignSelf: "center"}}>
-                    <StyledButton variant="contained"> {freelancer? "Buscar jobs": "Novo job"} </StyledButton>
+                    <StyledButton variant="contained" onClick={handleFirstButtonClick}> {freelancer? "Buscar jobs": "Novo job"} </StyledButton>
                 </div>
                 
                 <div style={{alignSelf: "center"}}>
-                    <StyledButton variant="contained"> Meus jobs </StyledButton>
+                    <StyledButton variant="contained" onClick={handleSecondButtonClick}> Meus jobs </StyledButton>
                 </div>
             </Buttons>
 

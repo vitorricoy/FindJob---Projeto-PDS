@@ -13,6 +13,7 @@ import {
     SubTitle,
     Title,
 } from "./styles"
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
     const [freelancer, setFreelancer] = React.useState(false);
@@ -23,8 +24,14 @@ export function Header() {
     const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleMenuClose = () => {
+
+    let navigate = useNavigate();
+
+    const handleMenuClose = (ref: string) => {
         setAnchorEl(null);
+        if (ref.length > 0) {
+            return navigate("/" + ref);
+        }
     };
 
     return (
@@ -48,27 +55,32 @@ export function Header() {
                 >
                     <Box
                         role="presentation"
-                        onClick={handleMenuClose}
-                        onKeyDown={handleMenuClose}
+                        onClick={() => handleMenuClose("")}
+                        onKeyDown={() => handleMenuClose("")}
                     >
                         <List>
                             <ListItem>
-                                <ListItemButton onClick={handleMenuClose}>
+                                <ListItemButton onClick={() => handleMenuClose("home")}>
+                                    <ListItemText primary="Home" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemButton onClick={() => handleMenuClose("jobs-list/list")} >
                                     <ListItemText primary="Jobs" />
                                 </ListItemButton>
                             </ListItem>
                             <ListItem>
-                                <ListItemButton onClick={handleMenuClose}>
-                                    <ListItemText primary="Iniciar um novo job" />
+                                <ListItemButton onClick={() => handleMenuClose("create-job")} >
+                                    <ListItemText primary="Iniciar um novo job"/>
                                 </ListItemButton>
                             </ListItem>
                             <ListItem>
-                                <ListItemButton onClick={handleMenuClose}>
-                                    <ListItemText primary="Chat" />
+                                <ListItemButton onClick={() => handleMenuClose("chat")} >
+                                    <ListItemText primary="Chat"/>
                                 </ListItemButton>
                             </ListItem>
                             <ListItem>
-                                <ListItemButton onClick={handleMenuClose}>
+                                <ListItemButton onClick={() => handleMenuClose("")}>
                                     <ListItemText primary="Logout" />
                                 </ListItemButton>
                             </ListItem>
@@ -87,7 +99,7 @@ export function Header() {
             </HeaderTitle>
 
             <NotificationIcon>
-                <Button style={{ padding: "0 !important" }}>
+                <Button style={{ padding: "0 !important" }} href="./chat">
                     <Badge
                         badgeContent={notifications}
                         color="primary"

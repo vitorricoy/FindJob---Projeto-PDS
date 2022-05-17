@@ -1,5 +1,6 @@
 import { List, ListItem } from "@material-ui/core";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { 
     Container,
     OuterContainer,
@@ -54,6 +55,12 @@ export function Register () {
         setName("");
         setNewAbilityInput(false);
     };
+
+    let navigate = useNavigate();
+
+    const handleRegisterClick = (event: any) => {
+        navigate("/home");
+    }
 
     return (
         <Container>
@@ -146,7 +153,7 @@ export function Register () {
             </StyledRegisterInfoContainer>
 
             <StyledButtonContainer>
-                <StyledRegisterButton> Cadastrar </StyledRegisterButton>
+                <StyledRegisterButton onClick={handleRegisterClick}> Cadastrar </StyledRegisterButton>
             </StyledButtonContainer>   
         </Container>
     );

@@ -307,7 +307,7 @@ export const Payment2 = styled.div`
 `;
 
 export const Payment3 = styled.div`
-    height: 10%;
+    height: 25%;
     width: 90%;
     margin: auto;
     padding-top: 4%;
@@ -318,7 +318,6 @@ export const Payment4 = styled.div`
     width: 90%;
     margin: auto;
     text-align-last: center;
-    padding-top: 11%;
 
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
