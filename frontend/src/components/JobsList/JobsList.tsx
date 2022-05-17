@@ -34,6 +34,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
 import { ListItemButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useGlobalState } from "../..";
 
 const currencies = [
     {
@@ -61,7 +62,7 @@ const currencies = [
 export function JobsList () {
     const [currency, setCurrency] = React.useState('BRL');
 
-    const [freelancer, setFreelancer] = React.useState(false);
+    const [freelancer, setFreelancer] = useGlobalState('freelancer');
 
     const handleCurrencyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrency(event.target.value);
@@ -114,7 +115,7 @@ export function JobsList () {
 
     const handleJobClick = (ref: string) => {
         if (ref.length > 0) {
-            (freelancer? navigate("/freelancer-job-view/" + ref): navigate("/client-job-view/" + ref));
+            (freelancer? navigate("/freelancer-job-view"): navigate("/client-job-view"));
         }
     };
     

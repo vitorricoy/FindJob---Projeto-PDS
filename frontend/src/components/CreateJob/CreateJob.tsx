@@ -107,7 +107,7 @@ export function CreateJob() {
     let navigate = useNavigate();
 
     const handleButtonClick = (event: any) => {
-        return navigate("/jobs-list/my-jobs");
+        return navigate("/jobs-list");
     }
 
     return (

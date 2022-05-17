@@ -8,18 +8,19 @@ import {
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 import { useNavigate } from "react-router-dom";
+import { useGlobalState } from "../..";
 
 export function Home () {
-    const [freelancer, setFreelancer] = React.useState(true);
+    const [freelancer, setFreelancer] = useGlobalState('freelancer');
 
     let navigate = useNavigate();
 
     const handleFirstButtonClick = (event: any) => {
-        return (freelancer?  navigate("/jobs-list/find-jobs"): navigate("/create-job"));
+        return (freelancer?  navigate("/jobs-list"): navigate("/create-job"));
     }
 
     const handleSecondButtonClick = (event: any) => {
-        return navigate("/jobs-list/my-jobs");
+        return navigate("/jobs-list");
     }
     
     return (

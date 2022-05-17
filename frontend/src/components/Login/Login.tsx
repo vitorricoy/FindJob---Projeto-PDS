@@ -14,6 +14,7 @@ import {
     StyledInputDiv,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { setGlobalState, useGlobalState } from "../..";
 
 
 export function Login() {
@@ -28,6 +29,7 @@ export function Login() {
     },[loggedIn]);
 
     const handleLoginButtonClick = (event: any) => {
+        setGlobalState('freelancer', false);
         setLoggedIn(true);
     }
 

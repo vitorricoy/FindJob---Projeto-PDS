@@ -123,7 +123,7 @@ export const TitleDescription3 = styled.div`
 `;
 
 export const TitleDescription4 = styled.div`
-    height: 45%;
+    height: 47%;
     width: 90%;
     margin: auto;
     padding-top: 1.5%;
@@ -135,7 +135,6 @@ export const TitleDescription5 = styled.div`
     height: 15%;
     width: 90%;
     margin: auto;
-    padding-top: 1%;
 
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;

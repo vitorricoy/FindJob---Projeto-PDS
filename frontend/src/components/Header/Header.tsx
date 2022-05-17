@@ -14,9 +14,10 @@ import {
     Title,
 } from "./styles"
 import { useNavigate } from "react-router-dom";
+import { useGlobalState } from "../..";
 
 export function Header() {
-    const [freelancer, setFreelancer] = React.useState(false);
+    const [freelancer, setFreelancer] = useGlobalState('freelancer');
     const [notifications, setNotifications] = React.useState(2);
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -30,7 +31,7 @@ export function Header() {
     const handleMenuClose = (ref: string) => {
         setAnchorEl(null);
         if (ref.length > 0) {
-            return navigate("/" + ref);
+            return navigate("../" + ref);
         }
     };
 
@@ -65,7 +66,7 @@ export function Header() {
                                 </ListItemButton>
                             </ListItem>
                             <ListItem>
-                                <ListItemButton onClick={() => handleMenuClose("jobs-list/list")} >
+                                <ListItemButton onClick={() => handleMenuClose("jobs-list")} >
                                     <ListItemText primary="Jobs" />
                                 </ListItemButton>
                             </ListItem>
