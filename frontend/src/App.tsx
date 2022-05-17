@@ -12,7 +12,7 @@ import { ClientJobView } from './components/ClientJobView/ClientJobView';
 function App() {
   return (
     <div>
-      <JobsList />
+      <Chat />
     </div>
   );
 }
