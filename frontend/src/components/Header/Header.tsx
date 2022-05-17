@@ -70,11 +70,14 @@ export function Header() {
                                     <ListItemText primary="Jobs" />
                                 </ListItemButton>
                             </ListItem>
-                            <ListItem>
-                                <ListItemButton onClick={() => handleMenuClose("create-job")} >
-                                    <ListItemText primary="Iniciar um novo job"/>
-                                </ListItemButton>
-                            </ListItem>
+                            {!freelancer?
+                                <ListItem>
+                                    <ListItemButton onClick={() => handleMenuClose("create-job")} >
+                                        <ListItemText primary="Iniciar um novo job"/>
+                                    </ListItemButton>
+                                </ListItem>
+                                :
+                                null}
                             <ListItem>
                                 <ListItemButton onClick={() => handleMenuClose("chat")} >
                                     <ListItemText primary="Chat"/>
