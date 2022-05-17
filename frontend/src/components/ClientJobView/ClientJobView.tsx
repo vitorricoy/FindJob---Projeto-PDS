@@ -29,7 +29,9 @@ import {
     UserInfo,
     ChatAndRateJobDiv,
     StyledChatButton,
-    RatingDiv
+    RatingDiv,
+    UserName,
+    FreelancerIcon
 } from "./styles";
 import { Divider } from "@material-ui/core";
 import React, { FunctionComponent } from "react";
@@ -107,16 +109,16 @@ export function ClientJobView() {
                                                 Sobre o Freelancer Contratado
                                             </AboutFreelancerTitle>
                                             <AboutFreelancerSubtitle>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
+                                                <FreelancerIcon src="default-user-icon.svg"></FreelancerIcon>
                                                 John Doe
                                             </AboutFreelancerSubtitle>
                                             <AboutFreelancerContent>
-                                                E-mail: johndoe@example.com
+                                                johndoe@example.com
                                             </AboutFreelancerContent>
                                         </AboutFreelancerContainer>
                                         <RatingDiv>
                                             <span style={{ marginTop: "4px", marginRight: "4px" }}>Avaliação: </span>
-                                            <Rating name="half-rating" defaultValue={0.0} precision={0.2} size="large" />
+                                            <Rating name="half-rating" defaultValue={0.0} precision={0.2} size="large" style={{ fontSize: "140%" }} />
                                         </RatingDiv>
                                         <ChatAndRateJobDiv>
                                             <div style={{ textAlign: "center", marginBlock: "5%", display: "flex", justifyContent: "space-evenly" }}>
@@ -130,7 +132,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>
@@ -142,7 +144,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>
@@ -154,7 +156,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>
@@ -166,7 +168,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>
@@ -178,7 +180,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>
@@ -190,7 +192,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>
@@ -202,7 +204,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>
@@ -214,7 +216,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>
@@ -226,7 +228,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>
@@ -238,7 +240,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>
@@ -250,7 +252,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>
@@ -262,7 +264,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>
@@ -274,7 +276,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>
@@ -286,7 +288,7 @@ export function ClientJobView() {
                                         <FreelancerBidingContainer>
                                             <UserInfo>
                                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <span>Fulano da Silva</span>
+                                                <UserName>Fulano da Silva</UserName>
                                             </UserInfo>
                                             <HireDiv>
                                                 <div style={{ textAlign: "center" }}>

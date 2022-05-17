@@ -1,5 +1,6 @@
-import { Badge, Button, Menu, MenuItem } from "@material-ui/core";
+import { Badge, Box, Button, Drawer, List, ListItem, ListItemText, Menu, MenuItem } from "@material-ui/core";
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { ListItemButton } from "@mui/material";
 import React from "react";
 import {
     HeaderTitle,
@@ -40,29 +41,40 @@ export function Header() {
                         <MenuIconSvgPath />
                     </MenuIconSvg>
                 </StyledMenuButton>
-
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
+                <Drawer
+                    anchor="left"
                     open={open}
                     onClose={handleMenuClose}
-                    MenuListProps={{
-                        'aria-labelledby': 'basic-button',
-                    }}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'center',
-                    }}
                 >
-                    <MenuItem onClick={handleMenuClose}>Jobs</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Iniciar um novo job</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Chat</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
-                </Menu>
+                    <Box
+                        role="presentation"
+                        onClick={handleMenuClose}
+                        onKeyDown={handleMenuClose}
+                    >
+                        <List>
+                            <ListItem>
+                                <ListItemButton onClick={handleMenuClose}>
+                                    <ListItemText primary="Jobs" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemButton onClick={handleMenuClose}>
+                                    <ListItemText primary="Iniciar um novo job" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemButton onClick={handleMenuClose}>
+                                    <ListItemText primary="Chat" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemButton onClick={handleMenuClose}>
+                                    <ListItemText primary="Logout" />
+                                </ListItemButton>
+                            </ListItem>
+                        </List>
+                    </Box>
+                </Drawer>
             </MenuIcon>
 
             <HeaderTitle>
