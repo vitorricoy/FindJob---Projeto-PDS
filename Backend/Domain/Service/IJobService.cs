@@ -11,5 +11,9 @@ namespace Backend.Domain.Service
         public List<Job> SearchJobsForFreelancer(string userId);
 
         public Job GetJobById(string jobId);
+
+        public Job CreateNewJob(string title, string description, int deadline, double payment, bool isPaymentByHour, List<string> skills, string clientId, string assignedFreelancerId);
+
+        public bool AssignFreelancer(string jobId, string freelancerId);
     }
 }

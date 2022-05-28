@@ -10,9 +10,9 @@ namespace Backend.Persistence
 
         }
 
-        public User GetUserByEmailAndPasswordHash(string email, string password)
+        public User GetUserByEmail(string email)
         {
-            UserModel user = dbContext.Users.Where(u => u.Email.Equals(email) && u.Password.Equals(password)).First();
+            UserModel user = dbContext.Users.Where(u => u.Email.Equals(email)).First();
 
             return ToDomainObject(user);
         }
@@ -52,7 +52,9 @@ namespace Backend.Persistence
             }
             
             User returnValue = ToDomainObject(dbContext.Users.Add(UserModel.FromDomainObject(user)).Entity);
+            
             dbContext.SaveChanges();
+            
             return returnValue;
         }
     }

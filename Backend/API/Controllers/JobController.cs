@@ -1,6 +1,7 @@
 using Backend.API.Controllers.Models;
 using Backend.Domain.Entity;
 using Backend.Domain.Service;
+using Backend.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
@@ -24,6 +25,10 @@ namespace Backend.Controllers
             try
             {
                 return Ok(jobService.RateJob(input.JobId, input.Rating));
+            }
+            catch (InvalidJobIdException ex)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
             }
             catch (Exception ex)
             {
@@ -65,6 +70,49 @@ namespace Backend.Controllers
             try
             {
                 return Ok(jobService.GetJobById(jobId));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult CreateNewJob([FromBody] CreateJobInput input)
+        {
+            try
+            {
+                return Ok(jobService.CreateNewJob(input.Title, input.Description, input.Deadline, input.Payment, input.IsPaymentByHour, input.Skills, input.ClientId, input.AssignedFreelancerId));
+            }
+            catch (InvalidUserIdException ex)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("assign")]
+        public IActionResult AssignFreelancer([FromBody] AssignFreelancerInput input)
+        {
+            try
+            {
+                return Ok(jobService.AssignFreelancer(input.JobId, input.FreelancerId));
+            }
+            catch (InvalidJobIdException ex)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
+            }
+            catch (InvalidUserIdException ex)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
+            }
+            catch (UnavailableJobException ex)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
             }
             catch (Exception ex)
             {

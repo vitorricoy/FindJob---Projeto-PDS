@@ -4,7 +4,7 @@ namespace Backend.Domain.Repository
 {
     public interface IUserRepository
     {
-        public User GetUserByEmailAndPasswordHash(string email, string password);
+        public User GetUserByEmail(string email);
 
         public User GetUserById(string id);
 

@@ -8,11 +8,13 @@ namespace Backend.Domain.Service
     {
         private readonly IJobRepository jobRepository;
         private readonly IUserRepository userRepository;
+        private readonly ISkillRepository skillRepository;
 
-        public JobService(IJobRepository jobRepository, IUserRepository userRepository)
+        public JobService(IJobRepository jobRepository, IUserRepository userRepository, ISkillRepository skillRepository)
         {
             this.jobRepository = jobRepository;
             this.userRepository = userRepository;
+            this.skillRepository = skillRepository;
         }
 
         public List<Job> ListJobsByUser(string userId)
@@ -57,7 +59,7 @@ namespace Backend.Domain.Service
         public bool RateJob(string jobId, double rating)
         {
             Job job = jobRepository.GetJobById(jobId);
-            if (job == null)
+            if (job == null || job.AssignedFreelancer == null)
             {
                 throw new InvalidJobIdException();
             }
@@ -89,6 +91,54 @@ namespace Backend.Domain.Service
         public Job GetJobById(string jobId)
         {
             return jobRepository.GetJobById(jobId);
+        }
+
+        public Job CreateNewJob(string title, string description, int deadline, double payment, bool isPaymentByHour, List<string> skills, string clientId, string assignedFreelancerId)
+        {
+            List<Skill> skillObjs = new List<Skill>();
+            string normalizedName;
+
+            foreach(string skillName in skills){
+                normalizedName = skillName.ToLower().Replace(" ", "");
+                skillObjs.Add(skillRepository.CreateNewSkill(new Skill(skillName,normalizedName)));
+            }
+
+            User client = userRepository.GetUserById(clientId);
+            User assignedFreelancer = userRepository.GetUserById(assignedFreelancerId);
+
+            if (client == null || (assignedFreelancer == null && assignedFreelancerId != null))
+            {
+                throw new InvalidUserIdException();
+            }
+
+            Job newJob = new Job(Guid.NewGuid().ToString(), title, description, deadline, payment, isPaymentByHour, skillObjs, client, assignedFreelancer, true, true);
+
+            return jobRepository.CreateNewJob(newJob);
+        }
+
+        public bool AssignFreelancer(string jobId, string freelancerId)
+        {
+            Job job = jobRepository.GetJobById(jobId);
+            User freela = userRepository.GetUserById(freelancerId);
+
+            if(job == null)
+            {
+                throw new InvalidJobIdException();
+            }
+
+            if(freela == null)
+            {
+                throw new InvalidUserIdException();
+            }
+
+            if(!job.Available)
+            {
+                throw new UnavailableJobException();
+            }
+
+            jobRepository.SetJobFreelancer(jobId, freela);
+
+            return true;
         }
     }
 }

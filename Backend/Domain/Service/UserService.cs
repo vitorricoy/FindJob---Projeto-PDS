@@ -18,7 +18,7 @@ namespace Backend.Domain.Service
         public User RegisterClient(string name, string email, string password, string phone)
         {
             string hashedPassword = HashingUtil.getHash(password);
-            User findUser = userRepository.GetUserByEmailAndPasswordHash(email, hashedPassword);
+            User findUser = userRepository.GetUserByEmail(email);
 
             if (findUser != null)
             {
@@ -35,7 +35,7 @@ namespace Backend.Domain.Service
         public User RegisterFreelancer(string name, string email, string password, string phone, Dictionary<string,double> ratedSkills)
         {
             string hashedPassword = HashingUtil.getHash(password);
-            User findUser = userRepository.GetUserByEmailAndPasswordHash(email, hashedPassword);
+            User findUser = userRepository.GetUserByEmail(email);
 
             if (findUser != null)
             {
@@ -62,9 +62,9 @@ namespace Backend.Domain.Service
         public User Login(string email, string password)
         {
             string hashedPassword = HashingUtil.getHash(password);
-            User loggedUser = userRepository.GetUserByEmailAndPasswordHash(email, hashedPassword);
+            User loggedUser = userRepository.GetUserByEmail(email);
 
-            if(loggedUser == null)
+            if(loggedUser == null || loggedUser.Password != hashedPassword)
             {
                 throw new InvalidLoginCredentialsException();
             }

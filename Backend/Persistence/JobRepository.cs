@@ -54,6 +54,26 @@ namespace Backend.Persistence
             dbContext.SaveChanges();
         }
 
-        
+        public void SetJobFreelancer(string jobId, User freelancer)
+        {
+            JobModel jobModel = dbContext.Jobs.Where(j => j.Id.Equals(jobId)).First();
+
+            jobModel.Available = false;
+
+            jobModel.AssignedFreelancer = UserModel.FromDomainObject(freelancer);
+
+            dbContext.Jobs.Update(jobModel);
+
+            dbContext.SaveChanges();
+        }
+
+        public Job CreateNewJob(Job job)
+        {
+            Job returnValue = ToDomainObject(dbContext.Jobs.Add(JobModel.FromDomainObject(job)).Entity);
+            
+            dbContext.SaveChanges();
+            
+            return returnValue;
+        }
     }
 }
