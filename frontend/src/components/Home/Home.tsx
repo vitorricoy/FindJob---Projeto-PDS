@@ -7,9 +7,21 @@ import {
 } from "./styles";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
+import { useNavigate } from "react-router-dom";
+import { useGlobalState } from "../..";
 
 export function Home () {
-    const [freelancer, setFreelancer] = React.useState(true);
+    const [freelancer, setFreelancer] = useGlobalState('freelancer');
+
+    let navigate = useNavigate();
+
+    const handleFirstButtonClick = (event: any) => {
+        return (freelancer?  navigate("/jobs-list"): navigate("/create-job"));
+    }
+
+    const handleSecondButtonClick = (event: any) => {
+        return navigate("/jobs-list");
+    }
     
     return (
         <Container>
@@ -18,20 +30,20 @@ export function Home () {
 
             <Body>
                 <img draggable="false" src="https://i.imgur.com/auZepyp.jpg" alt="Workhome Login" width='100%' height='100%'/>
-                <div className="up-bottom-left">Encontre</div>
+                <div className="up-bottom-right">Encontre</div>
                 {freelancer? 
-                    <div className="bottom-left">Trabalhos para colocar em prática suas habilidades</div>
+                    <div className="bottom-right">Trabalhos para colocar em prática suas habilidades</div>
                     :
-                    <div className="bottom-left">Profissionais qualificados para qualquer tarefa</div>}
+                    <div className="bottom-right">Profissionais qualificados para qualquer tarefa</div>}
             </Body>
 
             <Buttons>
                 <div style={{alignSelf: "center"}}>
-                    <StyledButton variant="contained"> {freelancer? "Buscar jobs": "Novo job"} </StyledButton>
+                    <StyledButton variant="contained" onClick={handleFirstButtonClick}> {freelancer? "Buscar jobs": "Novo job"} </StyledButton>
                 </div>
                 
                 <div style={{alignSelf: "center"}}>
-                    <StyledButton variant="contained"> Meus jobs </StyledButton>
+                    <StyledButton variant="contained" onClick={handleSecondButtonClick}> Meus jobs </StyledButton>
                 </div>
             </Buttons>
 

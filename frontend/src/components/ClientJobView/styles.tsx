@@ -1,33 +1,33 @@
 import { Button } from "@material-ui/core";
 import styled from "styled-components";
+import { Props } from "./ClientJobView";
 
 export const Container = styled.div`
     width: 100vw;
-    height: 95vh;
-    position: relative;
+    height: 100vh;
     background-color: #E6E6E6;
-    justify-content: space-between;
 `;
 
 export const Body = styled.div`
-    height: 87.5vh;
-    max-height: 87.5vh;
+    height: 86.5vh;
+    max-height: 86.5vh;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 `;
 
 export const UpperDiv = styled.div`
-    height: 15vh;
-    max-height: 15vh;
+    height: 18%;
+    max-height: 18%;
     width: 100%;
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 50px;
-    line-height: 59px;
+    font-size: 310%;
+    line-height: 120%;
     color: #000000;
     display: flex;
-    margin: 15px 20px 5px 20px;
+    margin: 1% 2% 0.5% 2%;
     align-content: space-between;
 `
 
@@ -37,34 +37,33 @@ export const TitleDiv = styled.div`
 `;
 
 export const PriceDiv = styled.div`
-    width:25vw;
+    width:35vw;
     display: flex;
     align-items: center;
-    margin-left: 20px;
+    margin-left: 2%;
 `;
 
 export const LowerDiv = styled.div`
     display: flex;
     background-color: white;
     flex-direction: row;
-    height: 70.5vh;
-    max-height: 70.5vh;
+    overflow: hidden;
 `
 
 export const LowerLeftDiv = styled.div`
     width: 69vw;
-    margin: 15px 0px 0px 1vw;
+    margin: 1.5% 0px 0px 1vw;
     display: flex;
     flex-direction: column;
 `
 
-export const LowerRightDiv = styled.div`
+export const LowerRightDiv = styled.div<Props>`
     width: 30vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     align-content: center;
-    justify-content: center;
+    justify-content: ${props => props.justifyContent};
 `
 
 export const ContainerAbility = styled.div`
@@ -76,8 +75,8 @@ export const AbilityTitle = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 40px;
-    line-height: 47px;
+    font-size: 250%;
+    line-height: 120%;
 
     color: #000000;
 `
@@ -89,7 +88,7 @@ export const SkillsDiv = styled.div`
 `;
 
 export const Skill = styled.div`
-    line-height: 28px;
+    line-height: 180%;
     margin-inline: 1%;
     margin-block: 0.5%;
     border-radius: 10px;
@@ -107,13 +106,13 @@ export const ContainerDescription = styled.div`
 `
 
 export const DescriptionTitle = styled.div`
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 1.5%;
+    margin-top: 1.5%;
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 40px;
-    line-height: 47px;
+    font-size: 250%;
+    line-height: 120%;
     color: #000000;
 `
 
@@ -121,8 +120,8 @@ export const DescriptionContent = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 30px;
-    line-height: 35px;
+    font-size: 185%;
+    line-height: 120%;
     overflow:auto
     color: #000000;
 
@@ -131,10 +130,10 @@ export const DescriptionContent = styled.div`
 `
 
 export const ContainerFreelancerList = styled.div`
-    border-radius: 30px;
-    padding: 20px;
+    border-radius: 3vw;
+    padding: 6.5%;
     background-color: #E6E6E6;
-    width: 20vw;
+    width: 24vw;
     max-height: 85%;
     overflow: auto;
 `
@@ -144,8 +143,8 @@ export const FreelancerBidingContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 5%;
+    margin-top: 5%;
 `
 
 export const UserInfo = styled.div`
@@ -154,25 +153,31 @@ export const UserInfo = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 120%;
+    width: 55%;
+    margin-right: 5%;
+`
+
+export const UserName = styled.div`
+    width: 60%;
 `
 
 export const UserIcon = styled.img`
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
+    width: 30%;
+    height: 30%;
+    margin-right: 10%;
 `
 
-export const StyledButton = styled(Button)`
-    width: 80%;
-    height: 20px;
+export const StyledHireButton = styled(Button)`
+    width: 100%;
+    height: 50%;
     background-color: #04C35C !important;
 
     .MuiButton-label {
         font-family: 'Roboto Condensed', sans-serif;
         font-style: normal;
         font-weight: 700;
-        font-size: 10px;
+        font-size: 70%;
         color: white;
     }
 
@@ -183,4 +188,105 @@ export const StyledButton = styled(Button)`
 
 export const HireDiv = styled.div`
     height: 20%;
+    width: 40%;
 `;
+
+export const AboutFreelancerContainer = styled.div`
+    background: #E5E5E5;
+    border-radius: 3vw;
+    padding: 8%;
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    max-height: 381vh;
+    justify-content: space-evenly;
+    margin-top: 10%;
+`
+
+export const AboutFreelancerTitle = styled.div`
+    font-family: 'Roboto Condensed', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 160%;
+    line-height: 110%;
+    color: #000000;
+    margin-bottom: 7%;
+`
+
+export const AboutFreelancerSubtitle = styled.div`
+    font-family: 'Roboto Condensed', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 140%;
+    line-height: 140%;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    
+    margin-bottom: 7%;
+`
+
+export const AboutFreelancerContent = styled.div`
+    font-family: 'Roboto Condensed', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 120%;
+    line-height: 158.5%;
+    color: #000000;
+    word-wrap: break-word;
+`
+
+export const StyledRateButton = styled(Button)`
+    width: 50%;
+    height: 50%;
+    background-color: #04C35C !important;
+
+    .MuiButton-label {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 128%;
+        color: white;
+    }
+
+    '&:hover': {
+        boxShadow: black;
+    }
+`
+
+export const RatingDiv = styled.div`
+   display: flex;
+   margin: 8% 0px 8% 0px;
+
+   font-family: 'Roboto Condensed', sans-serif;
+   font-size: 130%;
+`
+
+export const StyledChatButton = styled(Button)`
+    width: 35%;
+    height: 50%;
+    background-color: #3f51b5 !important;
+
+    .MuiButton-label {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 128%;
+        color: white;
+    }
+
+    '&:hover': {
+        boxShadow: black;
+    }
+`
+
+export const ChatAndRateJobDiv = styled.div`
+    height: 20%;
+`;
+
+export const FreelancerIcon = styled.img`
+    width: 5vw;
+    height: 5vw;
+    margin-right: 10%;
+`

@@ -3,10 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createGlobalState } from 'react-hooks-global-state';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const {setGlobalState, useGlobalState} = createGlobalState({
+  freelancer: false,
+});
+
+export {setGlobalState, useGlobalState};
+
 root.render(
   <React.StrictMode>
     <App />

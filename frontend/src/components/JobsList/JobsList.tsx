@@ -25,6 +25,7 @@ import {
     Skills3,
     SkillsDiv,
     StyledAddSkillButton,
+    StyledList,
 } from "./styles";
 import { LeftDiv } from "../CreateJob/styles";
 import { Checkbox, Divider, FormControlLabel, IconButton, InputAdornment, List, ListItem, ListItemText, MenuItem, TextField, Typography } from "@material-ui/core";
@@ -32,6 +33,8 @@ import React from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
 import { ListItemButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useGlobalState } from "../..";
 
 const currencies = [
     {
@@ -58,6 +61,8 @@ const currencies = [
 
 export function JobsList () {
     const [currency, setCurrency] = React.useState('BRL');
+
+    const [freelancer, setFreelancer] = useGlobalState('freelancer');
 
     const handleCurrencyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrency(event.target.value);
@@ -106,11 +111,13 @@ export function JobsList () {
 
     const [availableJobs, setAvailableJobs] = React.useState<any[]>([{name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"]},{name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"]},{name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"]},{name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"]}]);
 
-    const styles = (theme: any) => ({
-        listItemText:{
-          fontSize:'0.7em'
+    let navigate = useNavigate();
+
+    const handleJobClick = (ref: string) => {
+        if (ref.length > 0) {
+            (freelancer? navigate("/freelancer-job-view"): navigate("/client-job-view"));
         }
-    });
+    };
     
     return (
         <Container>
@@ -174,7 +181,7 @@ export function JobsList () {
                                 >+</StyledAddSkillButton>
                             </Skills2>
                             <Skills3>
-                                <List dense={true}>
+                                <StyledList dense={true}>
                                     {abilities.map(ability => {
                                         return(
                                             <ListItem>
@@ -189,7 +196,7 @@ export function JobsList () {
                                             </ListItem>
                                         )}
                                     )}
-                                </List>
+                                </StyledList>
                             </Skills3>
                         </Filters7>
                     </GrayPaper>
@@ -230,7 +237,7 @@ export function JobsList () {
                                         return (
                                             <ListItem style={{display:"block"}}>
                                                 <ListItemDiv>
-                                                        <ListItemButton>
+                                                        <ListItemButton onClick={() => handleJobClick(job.name)}>
                                                             <ListItemText 
                                                                 disableTypography
                                                                 primary={<Typography variant="h5" style={{ color: '#000000' }}>{job.name}</Typography>}

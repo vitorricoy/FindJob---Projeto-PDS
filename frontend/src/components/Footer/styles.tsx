@@ -8,7 +8,7 @@ export const StyledFooter = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 1.3vh;
     color: white;
-    line-height: 14px;
+    line-height: 1.6vh;
 `;

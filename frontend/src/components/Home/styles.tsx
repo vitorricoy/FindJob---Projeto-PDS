@@ -10,34 +10,34 @@ export const Container = styled.div`
 `;
 
 export const Body = styled.div`
-    height: 60%;
+    height: 60vh;
 
-    .bottom-left {
+    .bottom-right {
         position: absolute;
-        bottom: 370px;
-        right: 150px;
+        bottom: 38vh;
+        right: 10vh;
 
         font-family: 'Roboto Condensed', sans-serif;
         font-style: normal;
         font-weight: 600;
-        font-size: 30px;
-        line-height: 35px;
+        font-size: 2.8vh;
+        line-height: 3vh;
         color: #FFFFFF;
 
         text-shadow: 2px 2px #000000;
         max-width: 280px;
     }
 
-    .up-bottom-left {
+    .up-bottom-right {
         position: absolute;
-        bottom: 500px;
-        right: 82px;
+        bottom: 50vh;
+        right: 20vh;
 
         font-family: 'Roboto Condensed', sans-serif;
         font-style: normal;
         font-weight: 700;
-        font-size: 60px;
-        line-height: 65px;
+        font-size: 7vh;
+        line-height: 7.5vh;
         color: #FFFFFF;
 
         text-shadow: 3px 3px #000000;
@@ -45,7 +45,7 @@ export const Body = styled.div`
 `;
 
 export const Buttons = styled.div`
-    height: 25%;
+    height: 27.5vh;
     display: flex;
     justify-content: space-between;
     margin-inline: 12%;
@@ -53,16 +53,16 @@ export const Buttons = styled.div`
 
 export const StyledButton = styled(Button)`
     margin: auto;
-    width: 420px;
-    height: 80px;
+    width: 50vh;
+    height: 7vh;
     background-color: #004E85 !important;
 
     .MuiButton-label {
         font-family: 'Roboto Condensed', sans-serif;
         font-style: normal;
         font-weight: 700;
-        font-size: 40px;
-        line-height: 47px;
+        font-size: 4vh;
+        line-height: 4.7vh;
         color: white;
     }
 

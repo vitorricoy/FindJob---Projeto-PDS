@@ -16,8 +16,7 @@ export const RightContainer = styled.div`
 `;
 
 export const StyledTitle = styled.div`
-    margin-bottom: 64px;
-    padding-top: 64px;
+    padding-top: 12vh;
 
     .title {
         font-family: 'Roboto Condensed', sans-serif;
@@ -44,8 +43,7 @@ export const OuterContainer = styled.div`
 `;
 
 export const StyledWelcomeMessage = styled.div`
-    margin-top: 96px;
-    margin-bottom: 16px;
+    margin-top: 10vh;
 
     .l1 {
         font-family: 'Roboto Condensed', sans-serif;
@@ -89,8 +87,7 @@ export const StyledLoginButton = styled(Button)`
 `;
 
 export const StyledSignUp = styled.div`
-    margin-top: 32px;
-    padding-bottom: 64px;
+    padding-bottom: 6vh;
     display: flex;
     position: absolute;
     bottom: 0;

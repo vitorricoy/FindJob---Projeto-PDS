@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {} from '@material-ui/core';
 import { 
     Container, 
@@ -13,8 +13,26 @@ import {
     OuterContainer,
     StyledInputDiv,
 } from "./styles";
+import { useNavigate } from "react-router-dom";
+import { setGlobalState, useGlobalState } from "../..";
+
 
 export function Login() {
+    const [loggedIn, setLoggedIn] = React.useState(false);
+
+    let navigate = useNavigate();
+
+    useEffect(() => {
+    if (loggedIn){
+        return navigate("/home");
+    }
+    },[loggedIn]);
+
+    const handleLoginButtonClick = (event: any) => {
+        setGlobalState('freelancer', false);
+        setLoggedIn(true);
+    }
+
     return (
         <Container>
             <LeftContainer>
@@ -42,11 +60,11 @@ export function Login() {
                     </StyledInputDiv>
 
                     <StyledInputDiv>
-                        <StyledLoginButton variant="contained"> Entrar </StyledLoginButton>
+                        <StyledLoginButton variant="contained" onClick={handleLoginButtonClick}> Entrar </StyledLoginButton>
                     </StyledInputDiv>
 
                     <StyledSignUp>
-                        <div>Não possui uma conta?</div><a style={{textDecoration: "none", color: "#2B6CB0"}} className="signUpButton" href="">Crie uma gratuitamente.</a>
+                        <div>Não possui uma conta?</div><a style={{textDecoration: "none", color: "#2B6CB0"}} className="signUpButton" href="./register">Crie uma gratuitamente.</a>
                     </StyledSignUp>
                 </OuterContainer>
             </RightContainer>

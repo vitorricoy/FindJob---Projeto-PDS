@@ -1,5 +1,6 @@
-import { Badge, Button, Menu, MenuItem } from "@material-ui/core";
+import { Badge, Box, Button, Drawer, List, ListItem, ListItemText, Menu, MenuItem } from "@material-ui/core";
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { ListItemButton } from "@mui/material";
 import React from "react";
 import {
     HeaderTitle,
@@ -12,9 +13,11 @@ import {
     SubTitle,
     Title,
 } from "./styles"
+import { useNavigate } from "react-router-dom";
+import { useGlobalState } from "../..";
 
 export function Header() {
-    const [freelancer, setFreelancer] = React.useState(false);
+    const [freelancer, setFreelancer] = useGlobalState('freelancer');
     const [notifications, setNotifications] = React.useState(2);
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -22,8 +25,14 @@ export function Header() {
     const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleMenuClose = () => {
+
+    let navigate = useNavigate();
+
+    const handleMenuClose = (ref: string) => {
         setAnchorEl(null);
+        if (ref.length > 0) {
+            return navigate("../" + ref);
+        }
     };
 
     return (
@@ -40,29 +49,48 @@ export function Header() {
                         <MenuIconSvgPath />
                     </MenuIconSvg>
                 </StyledMenuButton>
-
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
+                <Drawer
+                    anchor="left"
                     open={open}
                     onClose={handleMenuClose}
-                    MenuListProps={{
-                        'aria-labelledby': 'basic-button',
-                    }}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'center',
-                    }}
                 >
-                    <MenuItem onClick={handleMenuClose}>Jobs</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Iniciar um novo job</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Chat</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
-                </Menu>
+                    <Box
+                        role="presentation"
+                        onClick={() => handleMenuClose("")}
+                        onKeyDown={() => handleMenuClose("")}
+                    >
+                        <List>
+                            <ListItem>
+                                <ListItemButton onClick={() => handleMenuClose("home")}>
+                                    <ListItemText primary="Home" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemButton onClick={() => handleMenuClose("jobs-list")} >
+                                    <ListItemText primary="Jobs" />
+                                </ListItemButton>
+                            </ListItem>
+                            {!freelancer?
+                                <ListItem>
+                                    <ListItemButton onClick={() => handleMenuClose("create-job")} >
+                                        <ListItemText primary="Iniciar um novo job"/>
+                                    </ListItemButton>
+                                </ListItem>
+                                :
+                                null}
+                            <ListItem>
+                                <ListItemButton onClick={() => handleMenuClose("chat")} >
+                                    <ListItemText primary="Chat"/>
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem>
+                                <ListItemButton onClick={() => handleMenuClose("")}>
+                                    <ListItemText primary="Logout" />
+                                </ListItemButton>
+                            </ListItem>
+                        </List>
+                    </Box>
+                </Drawer>
             </MenuIcon>
 
             <HeaderTitle>
@@ -75,7 +103,7 @@ export function Header() {
             </HeaderTitle>
 
             <NotificationIcon>
-                <Button style={{ padding: "0 !important" }}>
+                <Button style={{ padding: "0 !important" }} href="./chat">
                     <Badge
                         badgeContent={notifications}
                         color="primary"

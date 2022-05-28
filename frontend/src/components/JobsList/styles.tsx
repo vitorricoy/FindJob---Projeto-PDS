@@ -1,5 +1,6 @@
-import { Button, ListItem, TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import styled from "styled-components";
+import MuiList from '@mui/material/List';
 
 export const Container = styled.div`
     height: 100vh;
@@ -10,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const Body = styled.div`
-    height: 85%;
+    height: 87.5vh;
     display: flex;
 `;
 
@@ -58,8 +59,8 @@ export const FindJobsBottom = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 27px;
-    line-height: 32px;
+    font-size: 2.7vh;
+    line-height: 2.9vh;
 
     color: #000000;
 `;
@@ -73,8 +74,8 @@ export const Filters1 = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 35px;
-    line-height: 41px;
+    font-size: 5vh;
+    line-height: 6vh;
 
     color: #000000;
 `;
@@ -93,8 +94,8 @@ export const Filters3 = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 2vh;
+    line-height: 3vh;
 
     color: #000000;
 `;
@@ -103,13 +104,13 @@ export const Filters4 = styled.div`
     margin: auto;
     width: 90%;
     height: 15%;
-    margin-bottom: 5%;
+    margin-block: 1%;
 
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 2vh;
+    line-height: 3vh;
 
     color: #000000;
 `;
@@ -122,8 +123,8 @@ export const Filters5 = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 25px;
-    line-height: 29px;
+    font-size: 3.8vh;
+    line-height: 4vh;
 
     color: #000000;
 `;
@@ -137,16 +138,14 @@ export const Filters6 = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 25px;
-    line-height: 29px;
+    font-size: 2.8vh;
+    line-height: 3vh;
 
     color: #000000;
 `;
 
 export const Filters7 = styled.div`
-    margin: auto;
-    width: 90%;
-    height: 36%;
+    height: 35%;
 `;
 
 export const CurrencyTextField = styled(TextField)`
@@ -165,28 +164,45 @@ export const CurrencyTextField = styled(TextField)`
     & .MuiOutlinedInput-input {
         height: 8px;
     }
+
+    & .MuiOutlinedInput-inputMarginDense {
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+    }
+
+    & .MuiOutlinedInput-input {
+        padding: 1vh 1vh;
+    }
 `;
 
 export const Skills1 = styled.div`
-    height: 14.5%;
-    margin-top: 5%;
-    margin-bottom: 1%;
+    height: 22.5%;
+    padding-top: 2%;
+    width: 90%;
+    margin: auto;
+    padding-bottom: 1%;
 
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 25px;
-    line-height: 29px;
+    font-size: 3.8vh;
+    line-height: 4vh;
     color: #000000;
 `;
 
 export const Skills2 = styled.div`
-    height: 17%;
+    padding-bottom: 2%;
+    width: 90%;
+    margin-inline: 5% 0;
+    display: flex;
 `;
 
 export const Skills3 = styled.div`
     height: 50%;
-    overflow-y: scroll;
+    width: 90%;
+    margin: auto;
+
+    overflow-y: auto;
 `;
 
 export const SkillField = styled(TextField)`
@@ -201,14 +217,23 @@ export const SkillField = styled(TextField)`
             border-width: 2px;
         }
     }
+
+    & .MuiOutlinedInput-inputMarginDense {
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+    }
+
+    & .MuiFormControl-root {
+        width: 10vh;
+    }
 `;
 
 export const StyledAddSkillButton = styled(Button)`
     background-color: #004E85 !important;
-    height: 28px !important;
-    min-width: 28px !important;
-    max-width: 28px !important;
-    padding: 18px 18px !important;
+    height: 2.5vh !important;
+    min-width: 2.5vh !important;
+    max-width: 2.5vh !important;
+    padding: 1.8vh 1.8vh !important;
 
     .MuiButton-label {
         color: #FFFFFF;
@@ -254,4 +279,17 @@ export const SkillsDiv = styled.div`
     margin-inline: 6%;
     display: flex;
     flex-flow: wrap;
+`;
+
+export const StyledList = styled(MuiList)`
+    & .MuiListItem-root {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    padding-top: 0 !important;
+
+    & .MuiIconButton-root {
+        padding: 1vh !important; 
+    }
 `;

@@ -1,5 +1,6 @@
 import { Button, TextField } from "@material-ui/core";
 import styled from "styled-components";
+import MuiList from '@mui/material/List';
 
 export const Container = styled.div`
     height: 100vh;
@@ -10,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const Body = styled.div`
-    height: 85%;
+    height: 87.5vh;
     display: flex;
 `;
 
@@ -60,14 +61,14 @@ export const PostJobDiv = styled.div`
 export const DescribeYourJobUp = styled.div`
     margin: auto;
     width: 90%;
-    height: 50%;
-    padding-block: 4px;
+    height: 35%;
+    padding-block: 3vh 0.5vh;
 
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 50px;
-    line-height: 59px;
+    font-size: 8vh;
+    line-height: 8.2vh;
 
     color: #000000;
 `;
@@ -80,14 +81,15 @@ export const DescribeYourJobBottom = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 27px;
-    line-height: 32px;
+    font-size: 4vh;
+    line-height: 4.2vh;
 
     color: #000000;
 `;
 
 export const TitleDescription1 = styled.div`
-    padding-top: 2.5%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
     height: 10%;
     width: 90%;
     margin: auto;
@@ -95,8 +97,8 @@ export const TitleDescription1 = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 35px;
-    line-height: 41px;
+    font-size: 6vh;
+    line-height: 6.2vh;
     color: #000000;
 `;
 
@@ -115,15 +117,17 @@ export const TitleDescription3 = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 35px;
-    line-height: 41px;
+    font-size: 6vh;
+    line-height: 6.2vh;
     color: #000000;
 `;
 
 export const TitleDescription4 = styled.div`
-    height: 50%;
+    height: 47%;
     width: 90%;
     margin: auto;
+    padding-top: 1.5%;
+    overflow-y: auto;
 
 `;
 
@@ -135,8 +139,8 @@ export const TitleDescription5 = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 35px;
-    line-height: 41px;
+    font-size: 6vh;
+    line-height: 6.2vh;
     color: #000000;
 `;
 
@@ -152,6 +156,11 @@ export const TitleTextField = styled(TextField)`
             border-width: 2px;
         }
     }
+
+    & .MuiOutlinedInput-inputMarginDense {
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+    }
 `;
 
 export const DescriptionTextField = styled(TextField)`
@@ -165,6 +174,10 @@ export const DescriptionTextField = styled(TextField)`
         &:hover fieldset {
             border-width: 2px;
         }
+    }
+
+    & .MuiOutlinedInput-multiline {
+        padding: 1vh 1.5vh;
     }
 `;
 
@@ -180,6 +193,12 @@ export const DateTextField = styled(TextField)`
             border-width: 2px;
         }
     }
+
+    & .MuiOutlinedInput-inputMarginDense {
+        padding-top: 1.5vh;
+        padding-bottom: 1.5vh;
+        font-size: 3vh;
+    }
 `;
 
 export const Skills1 = styled.div`
@@ -191,8 +210,8 @@ export const Skills1 = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 35px;
-    line-height: 41px;
+    font-size: 6vh;
+    line-height: 6.2vh;
     color: #000000;
 `;
 
@@ -207,7 +226,7 @@ export const Skills3 = styled.div`
     width: 90%;
     margin: auto;
 
-    overflow-y: scroll;
+    overflow-y: auto;
 `;
 
 export const SkillField = styled(TextField)`
@@ -222,14 +241,23 @@ export const SkillField = styled(TextField)`
             border-width: 2px;
         }
     }
+
+    & .MuiOutlinedInput-inputMarginDense {
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+    }
+
+    & .MuiFormControl-root {
+        width: 10vh;
+    }
 `;
 
 export const StyledAddSkillButton = styled(Button)`
     background-color: #004E85 !important;
-    height: 28px !important;
-    min-width: 28px !important;
-    max-width: 28px !important;
-    padding: 18px 18px !important;
+    height: 2.5vh !important;
+    min-width: 2.5vh !important;
+    max-width: 2.5vh !important;
+    padding: 1.8vh 1.8vh !important;
 
     .MuiButton-label {
         color: #FFFFFF;
@@ -247,8 +275,8 @@ export const StyledButton = styled(Button)`
         font-family: 'Roboto Condensed', sans-serif;
         font-style: normal;
         font-weight: 700;
-        font-size: 40px;
-        line-height: 47px;
+        font-size: 4.5vh;
+        line-height: 4.7vh;
         color: white;
     }
 
@@ -266,8 +294,8 @@ export const Payment1 = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 30px;
-    line-height: 35px;
+    font-size: 3.5vh;
+    line-height: 3.7vh;
     color: #000000;
 `;
 
@@ -278,13 +306,14 @@ export const Payment2 = styled.div`
 `;
 
 export const Payment3 = styled.div`
-    height: 20%;
+    height: 25%;
     width: 90%;
     margin: auto;
+    padding-top: 4%;
 `;
 
 export const Payment4 = styled.div`
-    height: 35%;
+    height: 20%;
     width: 90%;
     margin: auto;
     text-align-last: center;
@@ -292,8 +321,8 @@ export const Payment4 = styled.div`
     font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 55px;
-    line-height: 64px;
+    font-size: 6vh;
+    line-height: 6vh;
     color: #000000;
 `;
 
@@ -309,4 +338,22 @@ export const CurrencyTextField = styled(TextField)`
             border-width: 2px;
         }
     }
+
+    & .MuiOutlinedInput-input {
+        padding: 1.3vh 1.5vh;
+        font-size: 3vh;
+    }
+`;
+
+export const StyledList = styled(MuiList)`
+    & .MuiListItem-root {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    & .MuiIconButton-root {
+        padding: 1vh !important; 
+    }
+
+    padding-top: 0 !important;
 `;

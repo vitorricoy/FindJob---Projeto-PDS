@@ -91,7 +91,7 @@ export function FreelancerJobView() {
                                 John Doe
                             </AboutClientSubtitle>
                             <AboutClientContent>
-                                E-mail: johndoe@example.com
+                                johndoe@example.com
                             </AboutClientContent>
                         </AboutClientContainer>
                         <ApplyJobDiv>
