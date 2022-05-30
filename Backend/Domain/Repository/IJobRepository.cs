@@ -8,7 +8,7 @@ namespace Backend.Domain.Repository
         public void SetJobAsDone(string jobId);
         public List<Job> ListJobsByUser(string userId, bool isFreelancer);
         public List<Job> GetAllAvailableJobs();
-        public void SetJobFreelancer(string jobId, User freelancer);
+        public void UpdateJob(Job job);
         public Job CreateNewJob(Job job);
     }
 }

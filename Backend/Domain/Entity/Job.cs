@@ -14,7 +14,7 @@
         public bool Active { get; set; }
         public bool Available { get; set; }
 
-        public Job(string id, string title, string description, int deadline, double payment, bool isPaymentByHour, List<Skill> skills, User client, User assignedFreelancer, bool active, bool available)
+        public Job(string id, string title, string description, int deadline, double payment, bool isPaymentByHour, List<Skill> skills, User client, User? assignedFreelancer, bool active, bool available)
         {
             Id = id;
             Title = title;
