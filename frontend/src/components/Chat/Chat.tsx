@@ -10,8 +10,10 @@ import {
     Avatar,
     Message
 } from "@chatscope/chat-ui-kit-react";
+import axios, { AxiosResponse } from "axios"
 import { Footer } from "../Footer/Footer";
 import { Header } from "../Header/Header";
+import MessageModel from "../../models/Message";
 
 import {
     ChatContainerStyled,
@@ -19,6 +21,7 @@ import {
     ChatStyle,
     MessagesTextTitle
 } from "./styles";
+import { Constants } from "../../util/Constants";
 
 
 export function Chat() {
@@ -103,5 +106,16 @@ export function Chat() {
     </div>;
 
 }
+
+// export const getConversations = async (): Promise<AxiosResponse<MessageModel[]>> => {
+//     try {
+//         const todos: AxiosResponse<MessageModel> = await axios.get(
+//             Constants.BASE_URL + "/api/message/history"
+//         )
+//         return todos
+//     } catch (error) {
+//         throw new Error(error)
+//     }
+// }
 
 export default Chat;
