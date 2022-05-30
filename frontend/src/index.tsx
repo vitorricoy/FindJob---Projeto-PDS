@@ -4,16 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createGlobalState } from 'react-hooks-global-state';
+import User from './models/User';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const {setGlobalState, useGlobalState} = createGlobalState({
-  freelancer: false,
+const { setGlobalState, useGlobalState } = createGlobalState({
+  currentUser: {} as User
 });
 
-export {setGlobalState, useGlobalState};
+export { setGlobalState, useGlobalState };
 
 root.render(
   <React.StrictMode>
