@@ -39,5 +39,11 @@ namespace Backend.Domain.Service
         {
             return messageRepository.GetLastMessage(userId1, userId2);
         }
+
+        public List<User> GetUsersThatHaveChats(string userId)
+        {
+            List<string> userIds = messageRepository.GetUsersThatHaveChats(userId);
+            return userIds.Select(u => userService.GetUserById(u)).ToList();
+        }
     }
 }

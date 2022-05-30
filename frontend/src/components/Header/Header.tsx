@@ -17,8 +17,8 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalState } from "../..";
 
 export function Header() {
-    const [freelancer, setFreelancer] = useGlobalState('freelancer');
-    const [notifications, setNotifications] = React.useState(2);
+    const [currentUser, setCurrentUser] = useGlobalState('currentUser');
+    const [notifications, setNotifications] = React.useState(0);
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -73,17 +73,17 @@ export function Header() {
                                     <ListItemText primary="Jobs" />
                                 </ListItemButton>
                             </ListItem>
-                            {!freelancer?
+                            {!currentUser.IsFreelancer ?
                                 <ListItem>
                                     <ListItemButton onClick={() => handleMenuClose("create-job")} >
-                                        <ListItemText primary="Iniciar um novo job"/>
+                                        <ListItemText primary="Iniciar um novo job" />
                                     </ListItemButton>
                                 </ListItem>
                                 :
                                 null}
                             <ListItem>
                                 <ListItemButton onClick={() => handleMenuClose("chat")} >
-                                    <ListItemText primary="Chat"/>
+                                    <ListItemText primary="Chat" />
                                 </ListItemButton>
                             </ListItem>
                             <ListItem>
@@ -101,7 +101,7 @@ export function Header() {
                     FindJob
                 </Title>
                 <SubTitle>
-                    {freelancer ? "Freelancer" : "Cliente"}
+                    {currentUser.IsFreelancer ? "Freelancer" : "Cliente"}
                 </SubTitle>
             </HeaderTitle>
 

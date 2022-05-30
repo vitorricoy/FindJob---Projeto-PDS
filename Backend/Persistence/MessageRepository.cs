@@ -38,6 +38,14 @@ namespace Backend.Persistence
             return ToDomainObject(messMod);
         }
 
-        
+        public List<string> GetUsersThatHaveChats(string userId)
+        {
+            return dbContext.Messages
+                .Where(m => m.Sender.Id.Equals(userId) || m.Receiver.Id.Equals(userId))
+                .ToList()
+                .Select(m => m.SenderId != userId ? m.SenderId : m.ReceiverId)
+                .Distinct()
+                .ToList();
+        }
     }
 }
