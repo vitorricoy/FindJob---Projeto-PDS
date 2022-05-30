@@ -1,5 +1,5 @@
 import { List, ListItem } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
     Container,
@@ -21,9 +21,19 @@ import {
 
 export function Register () {
     const [checked, setChecked] = React.useState(false);
-    const [value, setValue] = React.useState<number>(30);
-    const [newAbilityInput, setNewAbilityInput] = React.useState<boolean>(false);
     const [abilities, setAbilities] = React.useState<any[]>(["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB"]);
+    const [skillLevel, setSkillLevel] = React.useState<any>({});
+    const [newAbilityInput, setNewAbilityInput] = React.useState<boolean>(false);
+
+    const [registeredSkills, setRegisteredSkills] = React.useState<any>({});
+
+    useEffect(() => {
+        let obj: any = {};
+        abilities.forEach((skill: any) => {
+            obj[skill] = 0;
+        })
+        setRegisteredSkills(obj);
+    }, [newAbilityInput]);
 
     const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
@@ -32,9 +42,9 @@ export function Register () {
 
     let abilitiesScore: any;
 
-    const handleSliderChange = (event: Event, newValue: number | number[]) => {
-        setValue(newValue as number);
-        abilitiesScore.habilidade = newValue;
+    const handleSliderStop = (event: any, newValue: number | number[]) => {
+        registeredSkills[event.target.ariaLabel] = newValue;
+        setRegisteredSkills(registeredSkills);
     };
 
     const handleAddNewAbilityInput = () => {
@@ -115,14 +125,15 @@ export function Register () {
                                             </div>
                                             <div style={{width: "60%", marginLeft: "4px"}}>
                                                 <StyledSlider
-                                                    aria-label="Skill Level"
+                                                    aria-label={ability}
                                                     defaultValue={0}
                                                     valueLabelDisplay="auto"
                                                     step={10}
                                                     marks
                                                     min={0}
                                                     max={100}
-                                                    onChange={() => handleSliderChange}
+                                                    value={skillLevel[ability]}
+                                                    onChangeCommitted={handleSliderStop}
                                                 />
                                             </div>
                                         </ListItem>
