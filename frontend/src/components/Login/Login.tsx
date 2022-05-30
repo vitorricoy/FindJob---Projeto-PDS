@@ -14,11 +14,21 @@ import {
     StyledInputDiv,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
-import { setGlobalState, useGlobalState } from "../..";
-
+import { setGlobalState } from "../..";
 
 export function Login() {
     const [loggedIn, setLoggedIn] = React.useState(false);
+
+    const [email, setEmail] = React.useState<string>("");
+    const [password, setPassword] = React.useState<string>("");
+
+    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(event.target.value);
+    };
+
+    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value);
+    };
 
     let navigate = useNavigate();
 
@@ -29,8 +39,15 @@ export function Login() {
     },[loggedIn]);
 
     const handleLoginButtonClick = (event: any) => {
+        const credentials = {
+            "email": email,
+            "password": password
+        };
+
         setGlobalState('freelancer', false);
         setLoggedIn(true);
+
+        console.log(credentials)
     }
 
     return (
@@ -52,11 +69,11 @@ export function Login() {
                     </StyledWelcomeMessage>
 
                     <StyledInputDiv>
-                        <StyledEmailInput id="outlined-email" label="E-mail" variant="outlined" />
+                        <StyledEmailInput id="login-email" label="E-mail" variant="outlined" value={email} onChange={handleEmailChange}/>
                     </StyledInputDiv>
 
                     <StyledInputDiv>
-                        <StyledPasswordInput id="outlined-password" label="Senha" variant="outlined" type="password"/>
+                        <StyledPasswordInput id="login-password" label="Senha" variant="outlined" type="password" value={password} onChange={handlePasswordChange}/>
                     </StyledInputDiv>
 
                     <StyledInputDiv>

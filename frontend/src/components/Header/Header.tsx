@@ -31,6 +31,9 @@ export function Header() {
     const handleMenuClose = (ref: string) => {
         setAnchorEl(null);
         if (ref.length > 0) {
+            if (ref === "logout") {
+                return navigate("../");
+            }
             return navigate("../" + ref);
         }
     };
@@ -84,7 +87,7 @@ export function Header() {
                                 </ListItemButton>
                             </ListItem>
                             <ListItem>
-                                <ListItemButton onClick={() => handleMenuClose("")}>
+                                <ListItemButton onClick={() => handleMenuClose("logout")}>
                                     <ListItemText primary="Logout" />
                                 </ListItemButton>
                             </ListItem>
