@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import {} from '@material-ui/core';
-import { 
-    Container, 
-    LeftContainer, 
+import { } from '@material-ui/core';
+import {
+    Container,
+    LeftContainer,
     RightContainer,
     StyledTitle,
     StyledWelcomeMessage,
@@ -69,7 +69,7 @@ export function Login() {
     return (
         <Container>
             <LeftContainer>
-                <img draggable="false" src="https://i.imgur.com/GIwPUzY.jpeg" alt="Workhome Login" width='100%' height='100%'/>
+                <img draggable="false" src="https://i.imgur.com/GIwPUzY.jpeg" alt="Workhome Login" width='100%' height='100%' />
             </LeftContainer>
 
             <RightContainer>
@@ -85,14 +85,14 @@ export function Login() {
                     </StyledWelcomeMessage>
 
                     <StyledInputDiv>
-                        <StyledEmailInput id="login-email" label="E-mail" variant="outlined" value={email} onChange={handleEmailChange}/>
+                        <StyledEmailInput id="login-email" label="E-mail" variant="outlined" value={email} onChange={handleEmailChange} />
                     </StyledInputDiv>
 
                     <StyledInputDiv>
-                        <StyledPasswordInput id="login-password" label="Senha" variant="outlined" type="password" value={password} onChange={handlePasswordChange}/>
+                        <StyledPasswordInput id="login-password" label="Senha" variant="outlined" type="password" value={password} onChange={handlePasswordChange} />
                     </StyledInputDiv>
 
-                    <div style={{color: "red", fontSize: "1.8vh"}}>
+                    <div style={{ color: "red", fontSize: "1.8vh" }}>
                         {loginError && "E-mail ou senha inválidos."}
                     </div>
 
@@ -101,7 +101,7 @@ export function Login() {
                     </StyledInputDiv>
 
                     <StyledSignUp>
-                        <div>Não possui uma conta?</div><a style={{textDecoration: "none", color: "#2B6CB0"}} className="signUpButton" href="./register">Crie uma gratuitamente.</a>
+                        <div>Não possui uma conta?</div><a style={{ textDecoration: "none", color: "#2B6CB0" }} className="signUpButton" href="./register">Crie uma gratuitamente.</a>
                     </StyledSignUp>
                 </OuterContainer>
             </RightContainer>

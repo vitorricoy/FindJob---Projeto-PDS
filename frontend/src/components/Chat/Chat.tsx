@@ -73,7 +73,10 @@ const getUserChat = async (conversationUser: User, currentUser: User) => {
     let messageElements = [];
 
     for (let i = 0; i < messages.length; i++) {
-        if (i == 0 || messages[i].SentTime.toLocaleDateString() !== messages[i - 1].SentTime.toLocaleDateString()) {
+        if (!messages[i].Content) {
+            continue;
+        }
+        if (i === 0 || messages[i].SentTime.toLocaleDateString() !== messages[i - 1].SentTime.toLocaleDateString()) {
             messageElements.push(
                 <MessageSeparator>
                     {getFormatedDate(messages[i].SentTime)}
@@ -121,7 +124,13 @@ const getConversationsComponents = async (user: User, setConversationUser: React
     let users = (await getConversations(user.Id)).data;
     for (let user of users) {
         let message = (await getLastSentMessage(user.Id, user.Id)).data;
-        if (message.Sender.Id === user.Id) {
+        if (!message.Content) {
+            conversations.push(
+                <Conversation onClick={setConversationUser(user)} className="regular-conversation" key={user.Id} name={user.Name}>
+                    <Avatar src={"default-user-icon.svg"} />
+                </Conversation>
+            );
+        } else if (message.Sender.Id === user.Id) {
             conversations.push(
                 <Conversation onClick={setConversationUser(user)} className="regular-conversation" key={user.Id} name={user.Name} info={"Você: " + message.Content}>
                     <Avatar src={"default-user-icon.svg"} />
