@@ -8,10 +8,8 @@ export default class CreateJobInput {
     IsPaymentByHour: boolean;
     Skills: string[];
     ClientId: string;
-    Candidates: User[];
-    Active: boolean;
 
-    constructor(title: string, description: string, deadline: number, payment: number, isPaymentByHour: boolean, skills: string[], clientId: string, candidates: User[], active: boolean) {
+    constructor(title: string, description: string, deadline: number, payment: number, isPaymentByHour: boolean, skills: string[], clientId: string) {
         this.Title = title;
         this.Description = description;
         this.Deadline = deadline;
@@ -19,7 +17,5 @@ export default class CreateJobInput {
         this.IsPaymentByHour = isPaymentByHour;
         this.Skills = skills;
         this.ClientId = clientId;
-        this.Candidates = candidates;
-        this.Active = active;
     }
 };

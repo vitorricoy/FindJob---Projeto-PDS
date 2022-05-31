@@ -22,6 +22,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.AddScoped<IJobService, JobService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IMessageService, MessageService>();
@@ -38,6 +39,7 @@ using(var scope = app.Services.CreateScope())
 {
 
     var client = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
     client?.Database.EnsureCreated();
 }
 

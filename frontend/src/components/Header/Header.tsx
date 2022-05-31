@@ -73,7 +73,7 @@ export function Header() {
                                     <ListItemText primary="Jobs" />
                                 </ListItemButton>
                             </ListItem>
-                            {!currentUser.IsFreelancer ?
+                            {!currentUser.isFreelancer ?
                                 <ListItem>
                                     <ListItemButton onClick={() => handleMenuClose("create-job")} >
                                         <ListItemText primary="Iniciar um novo job" />
@@ -101,7 +101,7 @@ export function Header() {
                     FindJob
                 </Title>
                 <SubTitle>
-                    {currentUser.IsFreelancer ? "Freelancer" : "Cliente"}
+                    {currentUser.isFreelancer ? "Freelancer" : "Cliente"}
                 </SubTitle>
             </HeaderTitle>
 
