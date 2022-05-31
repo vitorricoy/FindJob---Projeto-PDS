@@ -29,38 +29,37 @@ import {
 } from "./styles";
 import { LeftDiv } from "../CreateJob/styles";
 import { Checkbox, Divider, FormControlLabel, IconButton, InputAdornment, List, ListItem, ListItemText, MenuItem, TextField, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
 import { ListItemButton } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGlobalState } from "../..";
+import Job from "../../models/Job";
+import axios, { AxiosResponse } from "axios";
+import { Constants } from "../../util/Constants";
 
 const currencies = [
     {
-        value: 'BRL',
-        label: 'R$',
+        value: 'R$',
+        label: 'Real (BRL)',
     },
     {
-        value: 'USD',
-        label: 'US$',
+        value: 'US$',
+        label: 'Dólar (USD)',
     },
     {
-        value: 'EUR',
-        label: '€',
+        value: '€',
+        label: 'Euro (EUR)',
     },
     {
-        value: 'BTC',
-        label: '฿',
-    },
-    {
-        value: 'JPY',
-        label: '¥',
+        value: '¥',
+        label: 'Iene (JPY)',
     },
 ];
 
 export function JobsList() {
-    const [currency, setCurrency] = React.useState('BRL');
+    const [currency, setCurrency] = React.useState('R$');
 
     const [currentUser, setCurrentUser] = useGlobalState('currentUser');
 
@@ -75,12 +74,12 @@ export function JobsList() {
     const [totalTextFieldDisable, setTotalTextFieldDisable] = React.useState<boolean>(false);
 
     const handlePaymentMethodChange = (event: any) => {
-        if (event === 'total' && perHourChecked || event === 'total' && totalChecked) {
+        if ((event === 'total' && perHourChecked) || (event === 'total' && totalChecked)) {
             setTotalChecked(true);
             setTotalTextFieldDisable(false);
             setPerHourChecked(false);
             setPerHourTextFieldDisable(true);
-        } else if (event === 'hour' && totalChecked || event === 'hour' && perHourChecked) {
+        } else if ((event === 'hour' && totalChecked) || (event === 'hour' && perHourChecked)) {
             setTotalChecked(false);
             setTotalTextFieldDisable(true);
             setPerHourChecked(true);
@@ -88,7 +87,7 @@ export function JobsList() {
         }
     };
 
-    const [abilities, setAbilities] = React.useState<any[]>(["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB"]);
+    const [abilities, setAbilities] = React.useState<any[]>([]);
 
     const handleDeleteSkill = (ability: string) => {
         let newSkills = abilities.filter(skill => skill !== ability);
@@ -109,7 +108,51 @@ export function JobsList() {
         setName("");
     };
 
-    const [availableJobs, setAvailableJobs] = React.useState<any[]>([{ name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"] }, { name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"] }, { name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"] }, { name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"] }]);
+    const [availableJobs, setAvailableJobs] = React.useState<any[]>([]);
+
+    const {myJobs} = useParams();
+
+    const getJobs = async () => {
+        try {
+            if (currentUser.IsFreelancer && myJobs) {
+                var jobs: AxiosResponse<Job[]> = await axios.get(
+                    Constants.BASE_URL + "/api/job/list",
+                    {
+                        params: {
+                            "userId": currentUser.Id
+                        }
+                    }
+                );
+            } else if (currentUser.IsFreelancer && !myJobs) {
+                var jobs: AxiosResponse<Job[]> = await axios.get(
+                    Constants.BASE_URL + "/api/job/search",
+                    {
+                        params: {
+                            "userId": currentUser.Id
+                        }
+                    }
+                );
+            } else {
+                var jobs: AxiosResponse<Job[]> = await axios.get(
+                    Constants.BASE_URL + "/api/job/list",
+                    {
+                        params: {
+                            "userId": currentUser.Id
+                        }
+                    }
+                );
+            }
+            return jobs;
+        } catch (error: any) {
+            throw new Error(error);
+        }
+    }
+
+    useEffect(() => {
+        getJobs().then(result => {
+            setAvailableJobs(result.data)
+        })
+    }, [getJobs]);
 
     let navigate = useNavigate();
 
@@ -239,19 +282,19 @@ export function JobsList() {
                                                 return (
                                                     <ListItem style={{ display: "block" }}>
                                                         <ListItemDiv>
-                                                            <ListItemButton onClick={() => handleJobClick(job.name)}>
+                                                            <ListItemButton onClick={() => handleJobClick(job.Title)}>
                                                                 <ListItemText
                                                                     disableTypography
-                                                                    primary={<Typography variant="h5" style={{ color: '#000000' }}>{job.name}</Typography>}
-                                                                    secondary={<Typography style={{ color: '#000000', overflow: 'hidden', maxHeight: "48px" }}>{job.description}</Typography>}
+                                                                    primary={<Typography variant="h5" style={{ color: '#000000' }}>{job.Title}</Typography>}
+                                                                    secondary={<Typography style={{ color: '#000000', overflow: 'hidden', maxHeight: "48px" }}>{job.Description}</Typography>}
                                                                 />
                                                             </ListItemButton>
                                                         </ListItemDiv>
                                                         <SkillsDiv>
-                                                            {job.skills.map((skill: any) => {
+                                                            {job.Skills.map((skill: any) => {
                                                                 return (
                                                                     <div style={{ lineHeight: "28px", marginInline: "1%", marginBlock: "0.5%", borderRadius: "10px", backgroundColor: "#3f51b5", color: "white", maxHeight: "28px", paddingInline: "1%" }}>
-                                                                        {skill}
+                                                                        {skill.Name}
                                                                     </div>
                                                                 )
                                                             })}

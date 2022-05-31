@@ -46,24 +46,20 @@ import { useGlobalState } from "../..";
 
 const currencies = [
     {
-        value: 'BRL',
-        label: 'R$',
+        value: 'R$',
+        label: 'Real (BRL)',
     },
     {
-        value: 'USD',
-        label: 'US$',
+        value: 'US$',
+        label: 'Dólar (USD)',
     },
     {
-        value: 'EUR',
-        label: '€',
+        value: '€',
+        label: 'Euro (EUR)',
     },
     {
-        value: 'BTC',
-        label: '฿',
-    },
-    {
-        value: 'JPY',
-        label: '¥',
+        value: '¥',
+        label: 'Iene (JPY)',
     },
 ];
 
@@ -94,7 +90,7 @@ export function CreateJob() {
     const [title, setTitle] = React.useState<string>("");
     const [description, setDescription] = React.useState<string>("");
     const [deadline, setDeadline] = React.useState<string>("");
-    const [currency, setCurrency] = React.useState('BRL');
+    const [currency, setCurrency] = React.useState('R$');
     const [payment, setPayment] = React.useState<string>("");
     const [currentUser, setCurrentUser] = useGlobalState('currentUser');
 
