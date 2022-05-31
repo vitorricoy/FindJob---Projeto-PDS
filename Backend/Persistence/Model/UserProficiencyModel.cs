@@ -31,6 +31,11 @@ namespace Backend.Domain.Entity
 
         public static List<UserProficiencyModel> FromUserDomainObject(User user)
         {
+            if (user == null)
+            {
+                return null;
+            }
+
             List<UserProficiencyModel> proficiency_models = new List<UserProficiencyModel>();
             foreach(KeyValuePair<Skill,Tuple<double,int>> entry in user.Skills){
                 proficiency_models.Add(new UserProficiencyModel(UserModel.FromDomainObject(user), SkillModel.FromDomainObject(entry.Key), entry.Value.Item1, entry.Value.Item2));

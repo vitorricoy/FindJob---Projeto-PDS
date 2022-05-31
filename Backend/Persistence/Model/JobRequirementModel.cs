@@ -28,6 +28,11 @@ namespace Backend.Domain.Entity
 
         public static List<JobRequirementModel> FromJobDomainObject(Job job)
         {
+            if (job == null)
+            {
+                return null;
+            }
+
             List<JobRequirementModel> requirementModels = new List<JobRequirementModel>();
             foreach (Skill skill in job.Skills)
             {

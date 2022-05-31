@@ -43,37 +43,6 @@ namespace Backend.Persistence
             }
         }
 
-        public void SetJobAsDone(string jobId)
-        {
-            JobModel jobModel = dbContext.Jobs.Where(j => j.Id.Equals(jobId)).First();
-
-            jobModel.Active = false;
-
-            dbContext.Jobs.Update(jobModel);
-
-            dbContext.SaveChanges();
-        }
-
-        public void SetJobFreelancer(Job job, User freelancer)
-        {
-            JobModel jobModel = dbContext.Jobs.Where(j => j.Id == job.Id).First();
-
-            jobModel.Available = false;
-
-            jobModel.AssignedFreelancer = UserModel.FromDomainObject(freelancer);
-
-            dbContext.Jobs.Update(jobModel);
-
-            dbContext.SaveChanges();
-        }
-
-        public void AddJobCandidate(Job job, User candidate)
-        {
-            dbContext.JobCandidates.Add(new JobCandidateModel(JobModel.FromDomainObject(job), UserModel.FromDomainObject(candidate)));
-
-            dbContext.SaveChanges();
-        }
-
         public Job CreateNewJob(Job job)
         {
             Job returnValue = ToDomainObject(dbContext.Jobs.Add(JobModel.FromDomainObject(job)).Entity);
@@ -98,6 +67,23 @@ namespace Backend.Persistence
         {
 
             dbContext.Jobs.Update(JobModel.FromDomainObject(job));
+            
+            foreach(JobRequirementModel jobSkill in JobRequirementModel.FromJobDomainObject(job))
+            {
+                if (!dbContext.JobSkills.Any(s => s.Job.Id == job.Id && s.Skill.NormalizedName == jobSkill.Skill.NormalizedName))
+                {
+                    dbContext.JobSkills.Add(jobSkill);
+                }
+            }
+
+            foreach (JobCandidateModel jobCand in JobCandidateModel.FromJobDomainObject(job))
+            {
+                if (!dbContext.JobCandidates.Any(c => c.Job.Id == job.Id && c.Candidate.Id == jobCand.Candidate.Id))
+                {
+                    dbContext.JobCandidates.Add(jobCand);
+                }
+            }
+
             dbContext.SaveChanges();
         }
     }

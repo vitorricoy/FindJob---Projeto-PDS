@@ -43,6 +43,11 @@ namespace Backend.Domain.Entity
 
         public static UserModel FromDomainObject(User user)
         {
+            if (user == null)
+            {
+                return null;
+            }
+
             return new UserModel(user);
         }
     }

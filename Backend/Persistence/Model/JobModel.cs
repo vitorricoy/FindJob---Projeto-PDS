@@ -46,6 +46,10 @@ namespace Backend.Domain.Entity
 
         public static JobModel FromDomainObject(Job job)
         {
+            if(job == null)
+            {
+                return null;
+            }
             return new JobModel(job.Id, job.Title, job.Description, job.Payment, job.IsPaymentByHour, UserModel.FromDomainObject(job.Client), 
                     UserModel.FromDomainObject(job.AssignedFreelancer), job.Active, job.Available);
         }

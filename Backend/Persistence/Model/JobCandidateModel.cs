@@ -28,6 +28,11 @@ namespace Backend.Domain.Entity
 
         public static List<JobCandidateModel> FromJobDomainObject(Job job)
         {
+            if (job == null)
+            {
+                return null;
+            }
+
             List<JobCandidateModel> candidateModels = new List<JobCandidateModel>();
             foreach (User candidate in job.Candidates)
             {

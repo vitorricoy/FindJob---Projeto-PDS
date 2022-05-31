@@ -63,7 +63,6 @@ namespace Backend.Domain.Service
             {
                 throw new InvalidJobIdException();
             }
-            jobRepository.SetJobAsDone(jobId);
 
             User assignedFreelancer = job.AssignedFreelancer;
 
@@ -81,8 +80,10 @@ namespace Backend.Domain.Service
                 }
             }
 
+            job.Active = false;
             job.AssignedFreelancer = assignedFreelancer;
 
+            jobRepository.UpdateJob(job);
             userRepository.UpdateUser(assignedFreelancer);
 
             return true;
@@ -135,7 +136,8 @@ namespace Backend.Domain.Service
                 throw new UnavailableJobException();
             }
 
-            jobRepository.AddJobCandidate(job, freela);
+            job.Candidates.Add(freela);
+            jobRepository.UpdateJob(job);
 
             return true;
         }
@@ -160,7 +162,9 @@ namespace Backend.Domain.Service
                 throw new UnavailableJobException();
             }
 
-            jobRepository.SetJobFreelancer(job, freela);
+            job.Available = false;
+            job.AssignedFreelancer = freela;
+            jobRepository.UpdateJob(job);
 
             return true;
         }
