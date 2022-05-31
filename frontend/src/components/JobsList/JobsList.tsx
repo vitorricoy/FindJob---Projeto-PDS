@@ -38,6 +38,7 @@ import { useGlobalState } from "../..";
 import Job from "../../models/Job";
 import axios, { AxiosResponse } from "axios";
 import { Constants } from "../../util/Constants";
+import Skill from "../../models/Skill";
 
 const currencies = [
     {
@@ -68,24 +69,86 @@ export function JobsList() {
     };
 
     const [perHourChecked, setPerHourChecked] = React.useState<boolean>(false);
-    const [totalChecked, setTotalChecked] = React.useState<boolean>(true);
+    const [perHourPaymentMin, setPerHourPaymentMin] = React.useState();
+    const [perHourPaymentMax, setPerHourPaymentMax] = React.useState();
+
+    const [totalChecked, setTotalChecked] = React.useState<boolean>(false);
+    const [totalPaymentMin, setTotalPaymentMin] = React.useState();
+    const [totalPaymentMax, setTotalPaymentMax] = React.useState();
 
     const [perHourTextFieldDisable, setPerHourTextFieldDisable] = React.useState<boolean>(true);
-    const [totalTextFieldDisable, setTotalTextFieldDisable] = React.useState<boolean>(false);
+    const [totalTextFieldDisable, setTotalTextFieldDisable] = React.useState<boolean>(true);
+
+    const [deadlineMin, setDeadlineMin] = React.useState();
+    const [deadlineMax, setDeadlineMax] = React.useState();
+
+    const [searchQuery, setSearchQuery] = React.useState("");
 
     const handlePaymentMethodChange = (event: any) => {
-        if ((event === 'total' && perHourChecked) || (event === 'total' && totalChecked)) {
-            setTotalChecked(true);
-            setTotalTextFieldDisable(false);
+        if ((event === 'total')) {
+            setTotalChecked(!totalChecked);
+            setTotalTextFieldDisable(!totalTextFieldDisable);
             setPerHourChecked(false);
             setPerHourTextFieldDisable(true);
-        } else if ((event === 'hour' && totalChecked) || (event === 'hour' && perHourChecked)) {
+        } else if (event === 'hour') {
             setTotalChecked(false);
             setTotalTextFieldDisable(true);
-            setPerHourChecked(true);
-            setPerHourTextFieldDisable(false);
+            setPerHourChecked(!perHourChecked);
+            setPerHourTextFieldDisable(!perHourTextFieldDisable);
         }
     };
+
+    const handleTotalPaymentMinChange = (event: any) => {
+        setTotalPaymentMin(event.target.value);
+    }
+
+    const handleTotalPaymentMaxChange = (event: any) => {
+        setTotalPaymentMax(event.target.value);
+    }
+
+    const handlePerHourPaymentMinChange = (event: any) => {
+        setPerHourPaymentMin(event.target.value);
+    }
+
+    const handlePerHourPaymentMaxChange = (event: any) => {
+        setPerHourPaymentMax(event.target.value);
+    }
+
+    function checkPaymentInterval(price: number) {
+        if (totalChecked) {
+            if (price >= (totalPaymentMin ? totalPaymentMin : 0) && price <= (totalPaymentMax ? totalPaymentMax : Number.POSITIVE_INFINITY)) { return true }
+            else { return false }
+        } else if (perHourChecked) {
+            if (price >= (perHourPaymentMin ? perHourPaymentMin : 0) && price <= (perHourPaymentMax ? perHourPaymentMax : Number.POSITIVE_INFINITY)) { return true }
+            else { return false }
+        } else {
+            return true;
+        }
+    }
+
+    function checkPaymentType(isPaymentByHour: boolean) {
+        if (isPaymentByHour && totalChecked) {
+            return false;
+        } else if (!isPaymentByHour && perHourChecked) {
+            return false;
+        }
+        return true;
+    }
+
+    const handleDeadlineMinChange = (event: any) => {
+        setDeadlineMin(event.target.value);
+    }
+
+    const handleDeadlineMaxChange = (event: any) => {
+        setDeadlineMax(event.target.value);
+    }
+
+    function checkDeadlineInterval(deadline: number) {
+        if (deadline >= (deadlineMin ? deadlineMin : 0) && deadline <= (deadlineMax ? deadlineMax : Number.POSITIVE_INFINITY)) {
+            return true
+        }
+        return false;
+    }
 
     const [abilities, setAbilities] = React.useState<any[]>([]);
 
@@ -107,6 +170,30 @@ export function JobsList() {
         }
         setName("");
     };
+
+    function checkSkills(skills: Skill[]) {
+        if (abilities.length > 0) {
+            let jobSkills = skills.map(skill => {
+                return skill.name;
+            });
+
+            if (JSON.stringify(abilities.sort()) !== JSON.stringify(jobSkills.sort())) {
+                return false
+            }
+        }
+        return true;
+    }
+
+    const handleSearchQueryChange = (event: any) => {
+        setSearchQuery(event.target.value)
+    }
+
+    function checkSearchQuery(title: string) {
+        if (searchQuery && searchQuery.length > 0 && !title.includes(searchQuery)) {
+            return false;
+        }
+        return true;
+    }
 
     const [availableJobs, setAvailableJobs] = React.useState<Job[]>([]);
 
@@ -166,6 +253,8 @@ export function JobsList() {
         }
     };
 
+
+
     return (
         <Container>
             <Header />
@@ -197,19 +286,22 @@ export function JobsList() {
                             <div>
                                 <FormControlLabel control={<Checkbox defaultChecked color="primary" onChange={() => handlePaymentMethodChange('total')} checked={totalChecked} />} label="Valor total" />
                             </div>
-                            {currency} <CurrencyTextField disabled={totalTextFieldDisable} id="outlined-basic1" variant="outlined" size="small" /> - {currency} <CurrencyTextField disabled={totalTextFieldDisable} id="outlined-basic2" variant="outlined" size="small" />
+                            {currency} <CurrencyTextField onChange={handleTotalPaymentMinChange} value={totalPaymentMin} disabled={totalTextFieldDisable} id="outlined-basic1" variant="outlined" size="small" /> -
+                            {currency} <CurrencyTextField onChange={handleTotalPaymentMaxChange} value={totalPaymentMax} disabled={totalTextFieldDisable} id="outlined-basic2" variant="outlined" size="small" />
                         </Filters3>
                         <Filters4>
                             <div>
                                 <FormControlLabel control={<Checkbox color="primary" checked={perHourChecked} onChange={() => handlePaymentMethodChange('hour')} />} label="Por hora" />
                             </div>
-                            {currency} <CurrencyTextField disabled={perHourTextFieldDisable} id="outlined-basic3" variant="outlined" size="small" /> /h - {currency} <CurrencyTextField disabled={perHourTextFieldDisable} id="outlined-basic4" variant="outlined" size="small" /> /h
+                            {currency} <CurrencyTextField onChange={handlePerHourPaymentMinChange} value={perHourPaymentMin} disabled={perHourTextFieldDisable} id="outlined-basic3" variant="outlined" size="small" /> /h -
+                            {currency} <CurrencyTextField onChange={handlePerHourPaymentMaxChange} value={perHourPaymentMax} disabled={perHourTextFieldDisable} id="outlined-basic4" variant="outlined" size="small" /> /h
                         </Filters4>
                         <Filters5>
                             Prazo
                         </Filters5>
                         <Filters6>
-                            <CurrencyTextField id="outlined-basic5" variant="outlined" size="small" /> dias - <CurrencyTextField id="outlined-basic6" variant="outlined" size="small" /> dias
+                            <CurrencyTextField onChange={handleDeadlineMinChange} value={deadlineMin} id="outlined-basic5" variant="outlined" size="small" /> dias -
+                            <CurrencyTextField onChange={handleDeadlineMaxChange} value={deadlineMax} id="outlined-basic6" variant="outlined" size="small" /> dias
                         </Filters6>
                         <Filters7>
                             <Skills1>
@@ -275,6 +367,8 @@ export function JobsList() {
                                             </InputAdornment>
                                         ),
                                     }}
+                                    onChange={handleSearchQueryChange}
+                                    value={searchQuery}
                                 />
                             </JobsList1>
                             <JobsList2>
@@ -282,29 +376,31 @@ export function JobsList() {
                                     <div style={{}}>
                                         <List dense={true}>
                                             {availableJobs.map(job => {
-                                                return (
-                                                    <ListItem key={job.id} style={{ display: "block" }}>
-                                                        <ListItemDiv>
-                                                            <ListItemButton onClick={() => handleJobClick(job.title)}>
-                                                                <ListItemText
-                                                                    disableTypography
-                                                                    primary={<Typography variant="h5" style={{ color: '#000000' }}>{job.title}</Typography>}
-                                                                    secondary={<Typography style={{ color: '#000000', overflow: 'hidden', maxHeight: "48px" }}>{job.description}</Typography>}
-                                                                />
-                                                            </ListItemButton>
-                                                        </ListItemDiv>
-                                                        <SkillsDiv>
-                                                            {job.skills.map((skill: any) => {
-                                                                return (
-                                                                    <div style={{ lineHeight: "28px", marginInline: "1%", marginBlock: "0.5%", borderRadius: "10px", backgroundColor: "#3f51b5", color: "white", maxHeight: "28px", paddingInline: "1%" }}>
-                                                                        {skill.name}
-                                                                    </div>
-                                                                )
-                                                            })}
-                                                        </SkillsDiv>
-                                                        <Divider />
-                                                    </ListItem>
-                                                )
+                                                if (checkPaymentInterval(job.payment) && checkPaymentType(job.isPaymentByHour) && checkDeadlineInterval(job.deadline) && checkSkills(job.skills) && checkSearchQuery(job.title)) {
+                                                    return (
+                                                        <ListItem key={job.id} style={{ display: "block" }}>
+                                                            <ListItemDiv>
+                                                                <ListItemButton onClick={() => handleJobClick(job.title)}>
+                                                                    <ListItemText
+                                                                        disableTypography
+                                                                        primary={<Typography variant="h5" style={{ color: '#000000' }}>{job.title}</Typography>}
+                                                                        secondary={<Typography style={{ color: '#000000', overflow: 'hidden', maxHeight: "48px" }}>{job.description}</Typography>}
+                                                                    />
+                                                                </ListItemButton>
+                                                            </ListItemDiv>
+                                                            <SkillsDiv>
+                                                                {job.skills.map((skill: any) => {
+                                                                    return (
+                                                                        <div style={{ lineHeight: "28px", marginInline: "1%", marginBlock: "0.5%", borderRadius: "10px", backgroundColor: "#3f51b5", color: "white", maxHeight: "28px", paddingInline: "1%" }}>
+                                                                            {skill.name}
+                                                                        </div>
+                                                                    )
+                                                                })}
+                                                            </SkillsDiv>
+                                                            <Divider />
+                                                        </ListItem>
+                                                    )
+                                                }
                                             })}
                                         </List>
                                     </div>
