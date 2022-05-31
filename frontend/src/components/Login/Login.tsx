@@ -38,9 +38,9 @@ export function Login() {
     let navigate = useNavigate();
 
     useEffect(() => {
-    if (loggedIn){
-        return navigate("/home");
-    }
+        if (loggedIn){
+            return navigate("/home");
+        }
     },[loggedIn]);
 
     const handleLoginButtonClick = async (event: any) => {

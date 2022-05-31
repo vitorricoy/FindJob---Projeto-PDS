@@ -36,6 +36,7 @@ import {
 import { Divider } from "@material-ui/core";
 import React, { FunctionComponent } from "react";
 import { Rating } from "@mui/material";
+import { useParams } from "react-router-dom";
 
 export interface Props {
     justifyContent: string;
