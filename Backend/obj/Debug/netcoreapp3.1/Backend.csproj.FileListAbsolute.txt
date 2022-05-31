@@ -1,0 +1,7 @@
+D:\Repos\Backend\obj\Debug\netcoreapp3.1\Backend.csproj.AssemblyReference.cache
+D:\Repos\Backend\obj\Debug\netcoreapp3.1\Backend.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repos\Backend\obj\Debug\netcoreapp3.1\Backend.AssemblyInfoInputs.cache
+D:\Repos\Backend\obj\Debug\netcoreapp3.1\Backend.AssemblyInfo.cs
+D:\Repos\Backend\obj\Debug\netcoreapp3.1\Backend.csproj.CoreCompileInputs.cache
+D:\Repos\Backend\obj\Debug\netcoreapp3.1\Backend.MvcApplicationPartsAssemblyInfo.cs
+D:\Repos\Backend\obj\Debug\netcoreapp3.1\Backend.MvcApplicationPartsAssemblyInfo.cache

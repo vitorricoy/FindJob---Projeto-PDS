@@ -5,12 +5,15 @@ namespace Backend.Domain.Entity
 {
     public class JobCandidateModel
     {
-        [Key]
-        [ForeignKey("Id")]
+        public string JobId { get; set; }
+
+        public string CandidateId { get; set; }
+
+
+        [ForeignKey("JobId")]
         public virtual JobModel Job { get; set; }
 
-        [Key]
-        [ForeignKey("Id")]
+        [ForeignKey("CandidateId")]
         public virtual UserModel Candidate { get; set; }
 
 
@@ -19,6 +22,13 @@ namespace Backend.Domain.Entity
             Job = job;
             Candidate = candidate;
        
+        }
+
+        public JobCandidateModel(string job, string candidate)
+        {
+            JobId = job;
+            CandidateId = candidate;
+
         }
 
         public JobCandidateModel()
@@ -36,7 +46,7 @@ namespace Backend.Domain.Entity
             List<JobCandidateModel> candidateModels = new List<JobCandidateModel>();
             foreach (User candidate in job.Candidates)
             {
-                candidateModels.Add(new JobCandidateModel(JobModel.FromDomainObject(job), UserModel.FromDomainObject(candidate)));
+                candidateModels.Add(new JobCandidateModel(job.Id, candidate.Id));
             }
 
             return candidateModels;

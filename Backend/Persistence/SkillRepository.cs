@@ -24,7 +24,9 @@ namespace Backend.Persistence
 
         public List<Skill> GetAllSkills()
         {
-            return dbContext.Skills.ToList().Select(s => ToDomainObject(s)).ToList();
+            List<Skill> skills = dbContext.Skills.ToList().Select(s => ToDomainObject(s)).ToList();
+            dbContext.SaveChanges();
+            return skills;
         }
     }
 }

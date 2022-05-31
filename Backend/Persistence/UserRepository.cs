@@ -14,12 +14,19 @@ namespace Backend.Persistence
         {
             UserModel user = dbContext.Users.Where(u => u.Email.Equals(email)).FirstOrDefault();
 
-            return ToDomainObject(user);
+            User domainUser = ToDomainObject(user);
+
+            dbContext.SaveChanges();
+            return domainUser;
         }
 
         public User GetUserById(string id)
         {
-            return ToDomainObject(dbContext.Users.Where(u => u.Id == id).FirstOrDefault());
+            UserModel entity = dbContext.Users.Where(u => u.Id == id).FirstOrDefault();
+            User user = ToDomainObject(entity);
+            dbContext.Entry<UserModel>(entity).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+            dbContext.SaveChanges();
+            return user;
         }
 
         public User UpdateUser(User user)

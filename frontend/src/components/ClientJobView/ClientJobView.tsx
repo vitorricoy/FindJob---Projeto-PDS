@@ -88,7 +88,7 @@ export function ClientJobView() {
 
     const openChat = () => {
         // Cria mensagem vazia e redireciona
-        axios.post('/api/message', new CreateMessageInput('', new Date(), currentUser.Id, job.AssignedFreelancer.Id))
+        axios.post('/api/message', new CreateMessageInput('', new Date(), currentUser.id, job.AssignedFreelancer.id))
             .then(() => {
                 navigate("/chat");
             })
@@ -115,7 +115,7 @@ export function ClientJobView() {
                 <FreelancerBidingContainer>
                     <UserInfo>
                         <UserIcon src="default-user-icon.svg"></UserIcon>
-                        <UserName>{freelancer.Name}</UserName>
+                        <UserName>{freelancer.name}</UserName>
                     </UserInfo>
                     <HireDiv>
                         <div style={{ textAlign: "center" }}>
@@ -197,10 +197,10 @@ export function ClientJobView() {
                                             </AboutFreelancerTitle>
                                             <AboutFreelancerSubtitle>
                                                 <FreelancerIcon src="default-user-icon.svg"></FreelancerIcon>
-                                                {job.AssignedFreelancer.Name}
+                                                {job.AssignedFreelancer.name}
                                             </AboutFreelancerSubtitle>
                                             <AboutFreelancerContent>
-                                                {job.AssignedFreelancer.Email}
+                                                {job.AssignedFreelancer.email}
                                             </AboutFreelancerContent>
                                         </AboutFreelancerContainer>
                                         <RatingDiv>

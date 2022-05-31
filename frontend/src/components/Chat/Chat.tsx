@@ -68,7 +68,7 @@ const getUserChat = async (conversationUser: User, currentUser: User) => {
         </ConversationHeader>
     );
 
-    let messages: MessageModel[] = (await getConversationHistory(currentUser.Id, conversationUser.Id)).data;
+    let messages: MessageModel[] = (await getConversationHistory(currentUser.id, conversationUser.id)).data;
 
     let messageElements = [];
 
@@ -87,7 +87,7 @@ const getUserChat = async (conversationUser: User, currentUser: User) => {
             <Message key={0} model={{
                 message: messages[i].Content,
                 sentTime: messages[i].SentTime.getHours() + ":" + messages[i].SentTime.getMinutes(),
-                direction: messages[i].Receiver.Id === currentUser.Id ? 'incoming' : 'outgoing',
+                direction: messages[i].Receiver.id === currentUser.id ? 'incoming' : 'outgoing',
                 position: "single"
             }} />
         );
@@ -105,7 +105,7 @@ const getUserChat = async (conversationUser: User, currentUser: User) => {
 }
 
 const sendMessage = (textContent: string, currentUser: User, conversationUser: User) => {
-    axios.post('/api/message', new CreateMessageInput(textContent, new Date(), currentUser.Id, conversationUser.Id))
+    axios.post(Constants.BASE_URL + '/api/message', new CreateMessageInput(textContent, new Date(), currentUser.id, conversationUser.id))
         .catch(function (error) {
             console.log(error);
         });
@@ -121,24 +121,24 @@ const getFormatedDate = (date: Date): string => {
 
 const getConversationsComponents = async (user: User, setConversationUser: React.Dispatch<React.SetStateAction<User | undefined>>): Promise<JSX.Element[]> => {
     let conversations: JSX.Element[] = []
-    let users = (await getConversations(user.Id)).data;
+    let users = (await getConversations(user.id)).data;
     for (let user of users) {
-        let message = (await getLastSentMessage(user.Id, user.Id)).data;
+        let message = (await getLastSentMessage(user.id, user.id)).data;
         if (!message.Content) {
             conversations.push(
-                <Conversation onClick={setConversationUser(user)} className="regular-conversation" key={user.Id} name={user.Name}>
+                <Conversation onClick={setConversationUser(user)} className="regular-conversation" key={user.id} name={user.name}>
                     <Avatar src={"default-user-icon.svg"} />
                 </Conversation>
             );
-        } else if (message.Sender.Id === user.Id) {
+        } else if (message.Sender.id === user.id) {
             conversations.push(
-                <Conversation onClick={setConversationUser(user)} className="regular-conversation" key={user.Id} name={user.Name} info={"Você: " + message.Content}>
+                <Conversation onClick={setConversationUser(user)} className="regular-conversation" key={user.id} name={user.name} info={"Você: " + message.Content}>
                     <Avatar src={"default-user-icon.svg"} />
                 </Conversation>
             );
         } else {
             conversations.push(
-                <Conversation className="regular-conversation" key={user.Id} name={user.Name} info={user.Name.split(' ')[0] + ": " + message.Content}>
+                <Conversation className="regular-conversation" key={user.id} name={user.name} info={user.name.split(' ')[0] + ": " + message.Content}>
                     <Avatar src={"default-user-icon.svg"} />
                 </Conversation>
             );

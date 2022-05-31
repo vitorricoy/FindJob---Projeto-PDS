@@ -201,21 +201,21 @@ export function JobsList() {
 
     const getJobs = async () => {
         try {
-            if (currentUser.IsFreelancer && myJobs) {
+            if (currentUser.isFreelancer && myJobs) {
                 var jobs: AxiosResponse<Job[]> = await axios.get(
                     Constants.BASE_URL + "api/job/list",
                     {
                         params: {
-                            "userId": currentUser.Id
+                            "userId": currentUser.id
                         }
                     }
                 );
-            } else if (currentUser.IsFreelancer && !myJobs) {
+            } else if (currentUser.isFreelancer && !myJobs) {
                 var jobs: AxiosResponse<Job[]> = await axios.get(
                     Constants.BASE_URL + "api/job/search",
                     {
                         params: {
-                            "userId": currentUser.Id
+                            "userId": currentUser.id
                         }
                     }
                 );
@@ -224,7 +224,7 @@ export function JobsList() {
                     Constants.BASE_URL + "api/job/list",
                     {
                         params: {
-                            "userId": currentUser.Id
+                            "userId": currentUser.id
                         }
                     }
                 );
@@ -248,7 +248,7 @@ export function JobsList() {
     const handleJobClick = (ref: string) => {
         if (ref.length > 0) {
             // TODO: Enviar o jobId
-            (currentUser.IsFreelancer ? navigate("/freelancer-job-view") : navigate("/client-job-view"));
+            (currentUser.isFreelancer ? navigate("/freelancer-job-view") : navigate("/client-job-view"));
         }
     };
 

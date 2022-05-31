@@ -43,6 +43,7 @@ import { Payment } from "@mui/icons-material";
 import axios from "axios";
 import CreateJobInput from "../../models/CreateJobInput";
 import { useGlobalState } from "../..";
+import { Constants } from "../../util/Constants";
 
 const currencies = [
     {
@@ -131,14 +132,12 @@ export function CreateJob() {
             "title": title,
             "description": description,
             "deadline": deadline,
-            "payment": Payment,
+            "payment": payment,
             "isPaymentByHour": perHourChecked,
             "skills": abilities,
-            "clientId": currentUser.Id,
-            "candidates": [],
-            "active": true
-        }
-        axios.post('/job', new CreateJobInput(job.title, job.description, Number(job.deadline), Number(job.payment), job.isPaymentByHour, job.skills, job.clientId, job.candidates, job.active))
+            "clientId": currentUser.id
+        };
+        axios.post(Constants.BASE_URL + 'api/job', new CreateJobInput(job.title, job.description, Number(job.deadline), Number(job.payment), job.isPaymentByHour, job.skills, job.clientId))
             .catch(function (error) {
                 console.log(error);
             });

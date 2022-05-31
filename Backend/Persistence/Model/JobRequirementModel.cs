@@ -5,12 +5,17 @@ namespace Backend.Domain.Entity
 {
     public class JobRequirementModel
     {
-        [Key]
-        [ForeignKey("Id")]
+
+        public string JobId { get; set; }
+
+        public string SkillId { get; set; }
+
+
+        [ForeignKey("JobId")]
         public virtual JobModel Job { get; set; }
 
         [Key]
-        [ForeignKey("Id")]
+        [ForeignKey("SkillId")]
         public virtual SkillModel Skill { get; set; }
 
 
@@ -19,6 +24,13 @@ namespace Backend.Domain.Entity
             Job = job;
             Skill = skill;
        
+        }
+
+        public JobRequirementModel(string job, string skill)
+        {
+            JobId = job;
+            SkillId = skill;
+
         }
 
         public JobRequirementModel()
@@ -36,7 +48,7 @@ namespace Backend.Domain.Entity
             List<JobRequirementModel> requirementModels = new List<JobRequirementModel>();
             foreach (Skill skill in job.Skills)
             {
-                requirementModels.Add(new JobRequirementModel(JobModel.FromDomainObject(job), SkillModel.FromDomainObject(skill)));
+                requirementModels.Add(new JobRequirementModel(job.Id, skill.NormalizedName));
             }
 
             return requirementModels;

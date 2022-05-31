@@ -21,12 +21,14 @@ namespace Backend.Persistence
 
         public List<Message> GetHistory(string userId1, string userId2)
         {
-            return dbContext.Messages
+            List<Message> history = dbContext.Messages
                 .Where(m => m.Sender.Id.Equals(userId1) && m.Receiver.Id.Equals(userId2) || m.Sender.Id.Equals(userId2) && m.Receiver.Id.Equals(userId1))
                 .OrderByDescending(m => m.SentTime)
                 .ToList()
                 .Select(m => ToDomainObject(m))
                 .ToList();
+            dbContext.SaveChanges();
+            return history;
         }
 
         public Message GetLastMessage(string userId1, string userId2)
@@ -35,17 +37,21 @@ namespace Backend.Persistence
                 .Where(m => m.Sender.Id.Equals(userId1) && m.Receiver.Id.Equals(userId2) || m.Sender.Id.Equals(userId2) && m.Receiver.Id.Equals(userId1))
                 .OrderByDescending(m => m.SentTime)
                 .First();
-            return ToDomainObject(messMod);
+            Message message = ToDomainObject(messMod);
+            dbContext.SaveChanges();
+            return message;
         }
 
         public List<string> GetUsersThatHaveChats(string userId)
         {
-            return dbContext.Messages
+            List<string> users = dbContext.Messages
                 .Where(m => m.Sender.Id.Equals(userId) || m.Receiver.Id.Equals(userId))
                 .ToList()
                 .Select(m => m.SenderId != userId ? m.SenderId : m.ReceiverId)
                 .Distinct()
                 .ToList();
+            dbContext.SaveChanges();
+            return users;
         }
     }
 }

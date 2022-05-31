@@ -7,7 +7,12 @@ namespace Backend.Persistence
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+        }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<JobCandidateModel>().HasKey(cm => new { cm.CandidateId, cm.JobId });
+            modelBuilder.Entity<JobRequirementModel>().HasKey(rm => new { rm.SkillId, rm.JobId });
         }
 
         public DbSet<JobModel> Jobs { get; set; }

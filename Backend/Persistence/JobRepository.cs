@@ -12,48 +12,61 @@ namespace Backend.Persistence
 
         public List<Job> GetAllAvailableJobs()
         {
-            return dbContext.Jobs
+            List<Job> jobs = dbContext.Jobs
                 .Where(j => j.Available)
                 .ToList()
                 .Select(j => ToDomainObject(j))
                 .ToList();
+            dbContext.SaveChanges();
+            return jobs;
         }
 
         public Job GetJobById(string jobId)
         {
-            return ToDomainObject(dbContext.Jobs.Where(j => j.Id.Equals(jobId)).FirstOrDefault());
+            Job job = ToDomainObject(dbContext.Jobs.Where(j => j.Id.Equals(jobId)).FirstOrDefault());
+            dbContext.SaveChanges();
+            return job;
         }
 
         public List<Job> ListJobsByUser(string userId, bool isFreelancer)
         {
+            List<Job> jobs;
             if (isFreelancer)
             {
-                return dbContext.Jobs
+                jobs = dbContext.Jobs
                     .Where(j => j.AssignedFreelancer != null && j.AssignedFreelancer.Id == userId && j.Active)
                     .ToList()
                     .Select(j => ToDomainObject(j))
                     .ToList();
             } else
             {
-                return dbContext.Jobs
+                jobs = dbContext.Jobs
                     .Where(j => j.Client != null && j.Client.Id == userId && j.Active)
                     .ToList()
                     .Select(j => ToDomainObject(j))
                     .ToList();
             }
+            dbContext.SaveChanges();
+            return jobs;
         }
 
         public Job CreateNewJob(Job job)
         {
-            Job returnValue = ToDomainObject(dbContext.Jobs.Add(JobModel.FromDomainObject(job)).Entity);
+            JobModel jobEntity = dbContext.Jobs.Add(JobModel.FromDomainObject(job)).Entity;
+            Job returnValue = ToDomainObject(jobEntity);
+            dbContext.SaveChanges();
+            dbContext.Entry<JobModel>(jobEntity).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
 
-            foreach(Skill skill in job.Skills)
+            foreach (Skill skill in job.Skills)
             {
                 if (!dbContext.Skills.Any(s => s.NormalizedName == skill.NormalizedName))
                 {
-                    dbContext.Skills.Add(SkillModel.FromDomainObject(skill));
+                    SkillModel skillEntity = SkillModel.FromDomainObject(skill);
+                    dbContext.Skills.Add(skillEntity);
+                    dbContext.Entry<SkillModel>(skillEntity).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
                 }
             }
+            dbContext.SaveChanges();
 
             dbContext.JobSkills.AddRange(JobRequirementModel.FromJobDomainObject(job));
             dbContext.JobCandidates.AddRange(JobCandidateModel.FromJobDomainObject(job));

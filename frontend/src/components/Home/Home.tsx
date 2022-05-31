@@ -16,7 +16,7 @@ export function Home() {
     let navigate = useNavigate();
 
     const handleFirstButtonClick = (event: any) => {
-        return (currentUser.IsFreelancer ? navigate("/jobs-list/false") : navigate("/create-job"));
+        return (currentUser.isFreelancer ? navigate("/jobs-list/false") : navigate("/create-job"));
     }
 
     const handleSecondButtonClick = (event: any) => {
@@ -31,7 +31,7 @@ export function Home() {
             <Body>
                 <img draggable="false" src="https://i.imgur.com/auZepyp.jpg" alt="Workhome Login" width='100%' height='100%' />
                 <div className="up-bottom-right">Encontre</div>
-                {currentUser.IsFreelancer ?
+                {currentUser.isFreelancer ?
                     <div className="bottom-right">Trabalhos para colocar em prática suas habilidades</div>
                     :
                     <div className="bottom-right">Profissionais qualificados para qualquer tarefa</div>}
@@ -39,7 +39,7 @@ export function Home() {
 
             <Buttons>
                 <div style={{ alignSelf: "center" }}>
-                    <StyledButton variant="contained" onClick={handleFirstButtonClick}> {currentUser.IsFreelancer ? "Buscar jobs" : "Novo job"} </StyledButton>
+                    <StyledButton variant="contained" onClick={handleFirstButtonClick}> {currentUser.isFreelancer ? "Buscar jobs" : "Novo job"} </StyledButton>
                 </div>
 
                 <div style={{ alignSelf: "center" }}>

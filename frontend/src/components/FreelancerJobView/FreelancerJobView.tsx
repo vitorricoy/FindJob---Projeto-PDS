@@ -70,7 +70,7 @@ export function FreelancerJobView() {
     const apply = () => {
         try {
             axios.post(
-                Constants.BASE_URL + "/api/job/apply", new ApplyJobInput(job.Id, currentUser.Id)
+                Constants.BASE_URL + "/api/job/apply", new ApplyJobInput(job.Id, currentUser.id)
             );
         } catch (error: any) {
             throw new Error(error)
@@ -134,10 +134,10 @@ export function FreelancerJobView() {
                             </AboutClientTitle>
                             <AboutClientSubtitle>
                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                {job.Client.Name}
+                                {job.Client.name}
                             </AboutClientSubtitle>
                             <AboutClientContent>
-                                {job.Client.Email}
+                                {job.Client.email}
                             </AboutClientContent>
                         </AboutClientContainer>
                         <ApplyJobDiv>

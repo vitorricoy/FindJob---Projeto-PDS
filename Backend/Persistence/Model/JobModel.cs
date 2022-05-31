@@ -12,8 +12,7 @@ namespace Backend.Domain.Entity
         public int Deadline { get; set; }
         public double Payment { get; set; }
         public bool IsPaymentByHour { get; set; }
-      
-        public string AssignedFreelancerId { get; set; }
+        public string? AssignedFreelancerId { get; set; }
         public string ClientId { get; set; }
 
         [ForeignKey("ClientId")]
@@ -35,8 +34,21 @@ namespace Backend.Domain.Entity
             AssignedFreelancer = assignedFreelancer;
             Active = active;
             Available = available;
-            AssignedFreelancerId = assignedFreelancer.Id;
+            AssignedFreelancerId = assignedFreelancer?.Id;
             ClientId = client.Id;
+        }
+
+        public JobModel(string id, string title, string description, double payment, bool isPaymentByHour, string client, string? assignedFreelancer, bool active, bool available)
+        {
+            Id = id;
+            Title = title;
+            Description = description;
+            Payment = payment;
+            IsPaymentByHour = isPaymentByHour;
+            ClientId = client;
+            AssignedFreelancerId = assignedFreelancer;
+            Active = active;
+            Available = available;
         }
 
         public JobModel()
@@ -50,8 +62,8 @@ namespace Backend.Domain.Entity
             {
                 return null;
             }
-            return new JobModel(job.Id, job.Title, job.Description, job.Payment, job.IsPaymentByHour, UserModel.FromDomainObject(job.Client), 
-                    UserModel.FromDomainObject(job.AssignedFreelancer), job.Active, job.Available);
+            return new JobModel(job.Id, job.Title, job.Description, job.Payment, job.IsPaymentByHour, job.Client.Id, 
+                    job?.AssignedFreelancer?.Id, job.Active, job.Available);
         }
     }
 }
