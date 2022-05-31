@@ -139,11 +139,11 @@ export function CreateJob() {
             "active": true
         }
         axios.post('/job', new CreateJobInput(job.title, job.description, Number(job.deadline), Number(job.payment), job.isPaymentByHour, job.skills, job.clientId, job.candidates, job.active))
-        .catch(function (error) {
-            console.log(error);
-        });
+            .catch(function (error) {
+                console.log(error);
+            });
 
-        return navigate("/jobs-list");
+        return navigate("/jobs-list/true");
     }
 
     return (
@@ -181,7 +181,7 @@ export function CreateJob() {
                                     variant="outlined"
                                     placeholder="Ex: Preciso de um desenvolvedor capaz de..."
                                     onChange={handleDescriptionChange}
-                                    value={description} 
+                                    value={description}
                                 />
                             </TitleDescription4>
                             <TitleDescription5>

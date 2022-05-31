@@ -108,15 +108,15 @@ export function JobsList() {
         setName("");
     };
 
-    const [availableJobs, setAvailableJobs] = React.useState<any[]>([]);
+    const [availableJobs, setAvailableJobs] = React.useState<Job[]>([]);
 
-    const {myJobs} = useParams();
+    const { myJobs } = useParams();
 
     const getJobs = async () => {
         try {
             if (currentUser.IsFreelancer && myJobs) {
                 var jobs: AxiosResponse<Job[]> = await axios.get(
-                    Constants.BASE_URL + "/api/job/list",
+                    Constants.BASE_URL + "api/job/list",
                     {
                         params: {
                             "userId": currentUser.Id
@@ -125,7 +125,7 @@ export function JobsList() {
                 );
             } else if (currentUser.IsFreelancer && !myJobs) {
                 var jobs: AxiosResponse<Job[]> = await axios.get(
-                    Constants.BASE_URL + "/api/job/search",
+                    Constants.BASE_URL + "api/job/search",
                     {
                         params: {
                             "userId": currentUser.Id
@@ -134,7 +134,7 @@ export function JobsList() {
                 );
             } else {
                 var jobs: AxiosResponse<Job[]> = await axios.get(
-                    Constants.BASE_URL + "/api/job/list",
+                    Constants.BASE_URL + "api/job/list",
                     {
                         params: {
                             "userId": currentUser.Id
@@ -149,10 +149,12 @@ export function JobsList() {
     }
 
     useEffect(() => {
-        getJobs().then(result => {
-            setAvailableJobs(result.data)
-        })
-    }, [getJobs]);
+        if (availableJobs.length) {
+            getJobs().then(result => {
+                setAvailableJobs(result.data)
+            })
+        }
+    }, []);
 
     let navigate = useNavigate();
 

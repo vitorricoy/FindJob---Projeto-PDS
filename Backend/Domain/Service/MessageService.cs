@@ -7,18 +7,18 @@ namespace Backend.Domain.Service
     public class MessageService : IMessageService
     {
         private readonly IMessageRepository messageRepository;
-        private readonly IUserService userService;
+        private readonly IUserRepository userRepository;
 
-        public MessageService(IMessageRepository messageRepository, IUserService userService)
+        public MessageService(IMessageRepository messageRepository, IUserRepository userRepository)
         {
             this.messageRepository = messageRepository;
-            this.userService = userService;
+            this.userRepository = userRepository;
         }
 
         public Message CreateMessage(string text, DateTime sentTime, string senderId, string receiverId)
         {
-            User sender = userService.GetUserById(senderId);
-            User receiver = userService.GetUserById(receiverId);
+            User sender = userRepository.GetUserById(senderId);
+            User receiver = userRepository.GetUserById(receiverId);
 
             if (sender == null || receiver == null)
             {
@@ -43,7 +43,7 @@ namespace Backend.Domain.Service
         public List<User> GetUsersThatHaveChats(string userId)
         {
             List<string> userIds = messageRepository.GetUsersThatHaveChats(userId);
-            return userIds.Select(u => userService.GetUserById(u)).ToList();
+            return userIds.Select(u => userRepository.GetUserById(u)).ToList();
         }
     }
 }

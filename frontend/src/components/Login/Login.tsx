@@ -38,10 +38,10 @@ export function Login() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        if (loggedIn){
+        if (loggedIn) {
             return navigate("/home");
         }
-    },[loggedIn]);
+    }, [loggedIn]);
 
     const handleLoginButtonClick = async (event: any) => {
         const credentials = {
@@ -51,7 +51,7 @@ export function Login() {
 
         try {
             const user: AxiosResponse<User> = await axios.get(
-                Constants.BASE_URL + "/api/user/login",
+                Constants.BASE_URL + "api/user/login",
                 {
                     params: credentials
                 }
