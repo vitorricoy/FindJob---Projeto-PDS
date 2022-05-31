@@ -34,17 +34,68 @@ import {
     FreelancerIcon
 } from "./styles";
 import { Divider } from "@material-ui/core";
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import { Rating } from "@mui/material";
+import { useParams } from "react-router-dom";
+import { useGlobalState } from "../..";
+import Job from "../../models/Job";
+import { Constants } from "../../util/Constants";
+import axios, { AxiosResponse } from "axios";
 
 export interface Props {
     justifyContent: string;
 }
 
 export function ClientJobView() {
+
+    const [currentUser, setCurrentUser] = useGlobalState('currentUser');
     const { jobId } = useParams();
 
-    const [hasAssignedFreelancer, setAssignedFreelancer] = React.useState(true);
+    const [job, setJob] = React.useState({} as Job);
+
+    const getJob = async () => {
+        try {
+            const job: AxiosResponse<Job> = await axios.get(
+                Constants.BASE_URL + "/api/job",
+                {
+                    params: {
+                        'jobId': jobId
+                    }
+                }
+            );
+            return job;
+        } catch (error: any) {
+            throw new Error(error)
+        }
+    }
+
+    const getJobSkills = (): JSX.Element[] => {
+        let elements = []
+        for (let skill of job.Skills) {
+            elements.push(
+                <Skill>
+                    {skill.Name}
+                </Skill>
+            );
+        }
+        return elements;
+    }
+
+    const openChat = () => {
+        // Cria mensagem vazia e redireciona
+    };
+
+    const rateJob = () => {
+        // Avalia
+    };
+
+    useEffect(() => {
+        if (!job) {
+            getJob().then(job => {
+                setJob(job.data);
+            });
+        }
+    }, []);
 
     return (
         <Container>
@@ -54,10 +105,14 @@ export function ClientJobView() {
 
                 <UpperDiv>
                     <TitleDiv>
-                        Logomarca estilo pontilismo para e-commerce de canecas bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+                        {job.Title}
                     </TitleDiv>
                     <PriceDiv>
-                        R$ 40 <sub>/h</sub>
+                        R$ {job.Payment}
+                        {!job.IsPaymentByHour ?
+                            <sub>/h</sub>
+                            :
+                            null}
                     </PriceDiv>
                 </UpperDiv>
                 <LowerDiv>
@@ -67,19 +122,9 @@ export function ClientJobView() {
                                 Habilidades Necessárias
                             </AbilityTitle>
                             <SkillsDiv>
-                                <Skill>
-                                    Design Gráfico
-                                </Skill>
-                                <Skill>
-                                    Imagens Vetorizadas
-                                </Skill>
-                                <Skill>
-                                    Adobe Illustrator
-                                </Skill>
-                                <Skill>
-                                    Adobe Photoshop
-                                </Skill>
-
+                                {
+                                    getJobSkills()
+                                }
                             </SkillsDiv>
                         </ContainerAbility>
                         <ContainerDescription>
@@ -88,21 +133,15 @@ export function ClientJobView() {
                             </DescriptionTitle>
                             <DescriptionContent>
                                 <p style={{ marginTop: "0" }}>
-                                    &emsp;Nulla dolor quam, auctor vel est quis, placerat vulputate urna. Aliquam sit amet tempor neque, eget volutpat mauris. Nulla ante sem, venenatis et nisi sed, vestibulum cursus turpis. Praesent ex nisl, rhoncus at elit quis, sollicitudin mattis elit. Nunc tincidunt orci quis ex tincidunt, a maximus ante maximus. Donec est magna, luctus ut semper sollicitudin, dapibus semper felis. In aliquet pharetra vulputate. Pellentesque quis volutpat enim. Nunc placerat porttitor leo ac tempor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque vulputate commodo ipsum nec fringilla.
-                                </p>
-                                <p>
-                                    &emsp;Donec magna quam, interdum sed orci id, pellentesque feugiat est. Nullam tincidunt accumsan porta. Ut diam arcu, euismod sit amet metus ut, congue faucibus risus. Proin hendrerit dui ut urna molestie bibendum. Cras viverra eget nunc eget egestas. Suspendisse vulputate eu magna ac ullamcorper. Mauris egestas sem fermentum, sagittis ligula nec, porta mauris
-                                </p>
-                                <p>
-                                    &emsp;Donec magna quam, interdum sed orci id, pellentesque feugiat est. Nullam tincidunt accumsan porta. Ut diam arcu, euismod sit amet metus ut, congue faucibus risus. Proin hendrerit dui ut urna molestie bibendum. Cras viverra eget nunc eget egestas. Suspendisse vulputate eu magna ac ullamcorper. Mauris egestas sem fermentum, sagittis ligula nec, porta mauris
+                                    {job.Description}
                                 </p>
                             </DescriptionContent>
                         </ContainerDescription>
                     </LowerLeftDiv>
 
-                    <LowerRightDiv justifyContent={hasAssignedFreelancer ? "space-between" : "center"}>
+                    <LowerRightDiv justifyContent={job.Available ? "space-between" : "center"}>
                         {
-                            hasAssignedFreelancer ?
+                            job.Available ?
                                 (
                                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", alignContent: "center" }}>
                                         <AboutFreelancerContainer>
@@ -111,10 +150,10 @@ export function ClientJobView() {
                                             </AboutFreelancerTitle>
                                             <AboutFreelancerSubtitle>
                                                 <FreelancerIcon src="default-user-icon.svg"></FreelancerIcon>
-                                                John Doe
+                                                {job.AssignedFreelancer.Name}
                                             </AboutFreelancerSubtitle>
                                             <AboutFreelancerContent>
-                                                johndoe@example.com
+                                                {job.AssignedFreelancer.Email}
                                             </AboutFreelancerContent>
                                         </AboutFreelancerContainer>
                                         <RatingDiv>
@@ -123,8 +162,8 @@ export function ClientJobView() {
                                         </RatingDiv>
                                         <ChatAndRateJobDiv>
                                             <div style={{ textAlign: "center", marginBlock: "5%", display: "flex", justifyContent: "space-evenly" }}>
-                                                <StyledChatButton variant="contained"> Chat </StyledChatButton>
-                                                <StyledRateButton variant="contained"> Avaliar </StyledRateButton>
+                                                <StyledChatButton onClick={openChat} variant="contained"> Chat </StyledChatButton>
+                                                <StyledRateButton onClick={rateJob} variant="contained"> Avaliar </StyledRateButton>
                                             </div>
                                         </ChatAndRateJobDiv>
                                     </div>

@@ -63,7 +63,7 @@ namespace Backend.Domain.Service
             {
                 throw new InvalidJobIdException();
             }
-            jobRepository.SetJobAsDone(jobId);
+            job.Active = false;
 
             User assignedFreelancer = job.AssignedFreelancer;
 
@@ -83,6 +83,7 @@ namespace Backend.Domain.Service
 
             job.AssignedFreelancer = assignedFreelancer;
 
+            jobRepository.UpdateJob(job);
             userRepository.UpdateUser(assignedFreelancer);
 
             return true;

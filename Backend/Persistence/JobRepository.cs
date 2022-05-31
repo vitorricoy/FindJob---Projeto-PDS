@@ -29,29 +29,18 @@ namespace Backend.Persistence
             if (isFreelancer)
             {
                 return dbContext.Jobs
-                    .Where(j => j.AssignedFreelancer != null && j.AssignedFreelancer.Id == userId)
+                    .Where(j => j.AssignedFreelancer != null && j.AssignedFreelancer.Id == userId && j.Active)
                     .ToList()
                     .Select(j => ToDomainObject(j))
                     .ToList();
             } else
             {
                 return dbContext.Jobs
-                    .Where(j => j.Client != null && j.Client.Id == userId)
+                    .Where(j => j.Client != null && j.Client.Id == userId && j.Active)
                     .ToList()
                     .Select(j => ToDomainObject(j))
                     .ToList();
             }
-        }
-
-        public void SetJobAsDone(string jobId)
-        {
-            JobModel jobModel = dbContext.Jobs.Where(j => j.Id.Equals(jobId)).First();
-
-            jobModel.Active = false;
-
-            dbContext.Jobs.Update(jobModel);
-
-            dbContext.SaveChanges();
         }
 
         public Job CreateNewJob(Job job)

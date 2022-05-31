@@ -69,7 +69,7 @@ export function Header() {
                                 </ListItemButton>
                             </ListItem>
                             <ListItem>
-                                <ListItemButton onClick={() => handleMenuClose("jobs-list")} >
+                                <ListItemButton onClick={() => handleMenuClose("jobs-list/false")} >
                                     <ListItemText primary="Jobs" />
                                 </ListItemButton>
                             </ListItem>
