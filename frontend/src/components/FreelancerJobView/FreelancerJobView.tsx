@@ -24,8 +24,10 @@ import {
     ApplyJobDiv,
     StyledButton
 } from "./styles";
+import { useParams } from "react-router-dom";
 
 export function FreelancerJobView() {
+    const { jobId } = useParams();
 
     return (
         <Container>

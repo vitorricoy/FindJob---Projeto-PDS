@@ -93,7 +93,7 @@ namespace Backend.Domain.Service
             return jobRepository.GetJobById(jobId);
         }
 
-        public Job CreateNewJob(string title, string description, int deadline, double payment, bool isPaymentByHour, List<string> skills, string clientId, string assignedFreelancerId)
+        public Job CreateNewJob(string title, string description, int deadline, double payment, bool isPaymentByHour, List<string> skills, string clientId)
         {
             List<Skill> skillObjs = new List<Skill>();
             string normalizedName;
@@ -104,14 +104,13 @@ namespace Backend.Domain.Service
             }
 
             User client = userRepository.GetUserById(clientId);
-            User assignedFreelancer = userRepository.GetUserById(assignedFreelancerId);
 
-            if (client == null || (assignedFreelancer == null && assignedFreelancerId != null))
+            if (client == null)
             {
                 throw new InvalidUserIdException();
             }
 
-            Job newJob = new Job(Guid.NewGuid().ToString(), title, description, deadline, payment, isPaymentByHour, skillObjs, client, assignedFreelancer, true, true);
+            Job newJob = new Job(Guid.NewGuid().ToString(), title, description, deadline, payment, isPaymentByHour, skillObjs, client, null, true, true);
 
             return jobRepository.CreateNewJob(newJob);
         }
@@ -136,7 +135,10 @@ namespace Backend.Domain.Service
                 throw new UnavailableJobException();
             }
 
-            jobRepository.SetJobFreelancer(jobId, freela);
+            job.Available = false;
+            job.AssignedFreelancer = freela;
+
+            jobRepository.UpdateJob(job);
 
             return true;
         }

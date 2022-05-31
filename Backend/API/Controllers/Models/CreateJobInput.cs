@@ -10,9 +10,7 @@
         public List<string> Skills { get; set; }
         public string ClientId { get; set; }
 
-        public string? AssignedFreelancerId;
-
-        public CreateJobInput(string title, string description, int deadline, double payment, bool isPaymentByHour, List<string> skills, string clientId, string assignedFreelancerId)
+        public CreateJobInput(string title, string description, int deadline, double payment, bool isPaymentByHour, List<string> skills, string clientId)
         {
             Title = title;
             Description = description;
@@ -21,7 +19,6 @@
             IsPaymentByHour = isPaymentByHour;
             Skills = skills;
             ClientId = clientId;
-            AssignedFreelancerId = assignedFreelancerId;
         }
     }
 }

@@ -15,16 +15,16 @@ function App() {
     <div className="wrapper">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login/>} />
-          <Route path="/register" element={<Register/>} />
-          <Route path="/home" element={<Home/>} />
-          <Route path="/create-job" element={<CreateJob/>} />
-          <Route path="/jobs-list" element={<JobsList/>} />
-          <Route path="/freelancer-job-view" element={<FreelancerJobView/>} />
-          <Route path="/client-job-view" element={<ClientJobView/>} />
-          <Route path="/chat" element={<Chat/>} />
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/create-job" element={<CreateJob />} />
+          <Route path="/jobs-list/:myJobs" element={<JobsList />} />
+          <Route path="/freelancer-job-view/:jobId" element={<FreelancerJobView />} />
+          <Route path="/client-job-view/:jobId" element={<ClientJobView />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
-       </BrowserRouter>
+      </BrowserRouter>
     </div>
   );
 }

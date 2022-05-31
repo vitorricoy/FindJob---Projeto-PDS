@@ -42,6 +42,7 @@ export interface Props {
 }
 
 export function ClientJobView() {
+    const { jobId } = useParams();
 
     const [hasAssignedFreelancer, setAssignedFreelancer] = React.useState(true);
 
