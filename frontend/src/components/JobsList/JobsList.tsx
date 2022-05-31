@@ -248,8 +248,7 @@ export function JobsList() {
 
     const handleJobClick = (ref: string) => {
         if (ref.length > 0) {
-            // TODO: Enviar o jobId
-            (currentUser.isFreelancer ? navigate("/freelancer-job-view") : navigate("/client-job-view"));
+            (currentUser.isFreelancer ? navigate("/freelancer-job-view/" + ref) : navigate("/client-job-view/" + ref));
         }
     };
 
@@ -380,7 +379,7 @@ export function JobsList() {
                                                     return (
                                                         <ListItem key={job.id} style={{ display: "block" }}>
                                                             <ListItemDiv>
-                                                                <ListItemButton onClick={() => handleJobClick(job.title)}>
+                                                                <ListItemButton onClick={() => handleJobClick(job.id)}>
                                                                     <ListItemText
                                                                         disableTypography
                                                                         primary={<Typography variant="h5" style={{ color: '#000000' }}>{job.title}</Typography>}
