@@ -38,10 +38,10 @@ export function Login() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        if (loggedIn) {
+        if (loggedIn){
             return navigate("/home");
         }
-    }, [loggedIn]);
+    },[loggedIn]);
 
     const handleLoginButtonClick = async (event: any) => {
         const credentials = {

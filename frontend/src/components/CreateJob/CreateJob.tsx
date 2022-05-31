@@ -39,6 +39,10 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from '@mui/icons-material/Delete';
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Payment } from "@mui/icons-material";
+import axios from "axios";
+import CreateJobInput from "../../models/CreateJobInput";
+import { useGlobalState } from "../..";
 
 const currencies = [
     {
@@ -64,7 +68,7 @@ const currencies = [
 ];
 
 export function CreateJob() {
-    const [abilities, setAbilities] = React.useState<any[]>(["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB"]);
+    const [abilities, setAbilities] = React.useState<any[]>([]);
 
     const handleDeleteSkill = (ability: string) => {
         let newSkills = abilities.filter(skill => skill !== ability);
@@ -85,14 +89,18 @@ export function CreateJob() {
         setName("");
     };
 
+    const [perHourChecked, setPerHourChecked] = React.useState<boolean>(false);
+    const [totalChecked, setTotalChecked] = React.useState<boolean>(true);
+    const [title, setTitle] = React.useState<string>("");
+    const [description, setDescription] = React.useState<string>("");
+    const [deadline, setDeadline] = React.useState<string>("");
     const [currency, setCurrency] = React.useState('BRL');
+    const [payment, setPayment] = React.useState<string>("");
+    const [currentUser, setCurrentUser] = useGlobalState('currentUser');
 
     const handleCurrencyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrency(event.target.value);
     };
-
-    const [perHourChecked, setPerHourChecked] = React.useState<boolean>(false);
-    const [totalChecked, setTotalChecked] = React.useState<boolean>(true);
 
     const handlePaymentMethodChange = (event: any) => {
         if (event === 'total' && perHourChecked || event === 'total' && totalChecked) {
@@ -106,7 +114,39 @@ export function CreateJob() {
 
     let navigate = useNavigate();
 
+    const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTitle(event.target.value);
+    };
+
+    const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setDescription(event.target.value);
+    };
+
+    const handleDeadlineChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setDeadline(event.target.value);
+    };
+
+    const handlePaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPayment(event.target.value);
+    };
+
     const handleButtonClick = (event: any) => {
+        const job = {
+            "title": title,
+            "description": description,
+            "deadline": deadline,
+            "payment": Payment,
+            "isPaymentByHour": perHourChecked,
+            "skills": abilities,
+            "clientId": currentUser.Id,
+            "candidates": [],
+            "active": true
+        }
+        axios.post('/job', new CreateJobInput(job.title, job.description, Number(job.deadline), Number(job.payment), job.isPaymentByHour, job.skills, job.clientId, job.candidates, job.active))
+        .catch(function (error) {
+            console.log(error);
+        });
+
         return navigate("/jobs-list");
     }
 
@@ -132,7 +172,7 @@ export function CreateJob() {
                                 Título
                             </TitleDescription1>
                             <TitleDescription2>
-                                <TitleTextField id="outlined-basic" variant="outlined" size="small" placeholder="Ex: Website de comércio de roupas online" />
+                                <TitleTextField onChange={handleTitleChange} value={title} id="outlined-basic" variant="outlined" size="small" placeholder="Ex: Website de comércio de roupas online" />
                             </TitleDescription2>
                             <TitleDescription3>
                                 Descrição
@@ -144,10 +184,12 @@ export function CreateJob() {
                                     rows={10}
                                     variant="outlined"
                                     placeholder="Ex: Preciso de um desenvolvedor capaz de..."
+                                    onChange={handleDescriptionChange}
+                                    value={description} 
                                 />
                             </TitleDescription4>
                             <TitleDescription5>
-                                Prazo: <DateTextField id="outlined-basic" variant="outlined" size="small" /> dias.
+                                Prazo: <DateTextField onChange={handleDeadlineChange} value={deadline} id="outlined-basic" variant="outlined" size="small" /> dias.
                             </TitleDescription5>
                         </GrayPaper>
                     </TitleDescriptionDiv>
@@ -221,7 +263,7 @@ export function CreateJob() {
                                 </FormGroup>
                             </Payment3>
                             <Payment4>
-                                {currency} <CurrencyTextField id="outlined-basic" variant="outlined" /> <sub>{totalChecked ? '' : '/h'} </sub>
+                                {currency} <CurrencyTextField onChange={handlePaymentChange} value={payment} id="outlined-basic" variant="outlined" /> <sub>{totalChecked ? '' : '/h'} </sub>
                             </Payment4>
                         </GrayPaper>
                     </PaymentDiv>
