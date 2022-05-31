@@ -36,11 +36,13 @@ import {
 import { Divider } from "@material-ui/core";
 import React, { FunctionComponent, useEffect } from "react";
 import { Rating } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGlobalState } from "../..";
 import Job from "../../models/Job";
 import { Constants } from "../../util/Constants";
 import axios, { AxiosResponse } from "axios";
+import RateJobInput from "../../models/RateJobInput";
+import CreateMessageInput from "../../models/CreateMessageInput";
 
 export interface Props {
     justifyContent: string;
@@ -52,6 +54,9 @@ export function ClientJobView() {
     const { jobId } = useParams();
 
     const [job, setJob] = React.useState({} as Job);
+    const [rating, setRating] = React.useState(0);
+
+    let navigate = useNavigate();
 
     const getJob = async () => {
         try {
@@ -83,10 +88,52 @@ export function ClientJobView() {
 
     const openChat = () => {
         // Cria mensagem vazia e redireciona
+        axios.post('/api/message', new CreateMessageInput('', new Date(), currentUser.Id, job.AssignedFreelancer.Id))
+            .then(() => {
+                navigate("/chat");
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     };
 
     const rateJob = () => {
         // Avalia
+        try {
+            axios.post(
+                Constants.BASE_URL + "/api/job/rate", new RateJobInput(job.Id, rating)
+            );
+        } catch (error: any) {
+            throw new Error(error)
+        }
+    };
+
+    const getFreelancerBidings = () => {
+        let elements = []
+        for (let freelancer of job.Candidates) {
+            elements.push(
+                <FreelancerBidingContainer>
+                    <UserInfo>
+                        <UserIcon src="default-user-icon.svg"></UserIcon>
+                        <UserName>{freelancer.Name}</UserName>
+                    </UserInfo>
+                    <HireDiv>
+                        <div style={{ textAlign: "center" }}>
+                            <StyledHireButton variant="contained"> Contratar </StyledHireButton>
+                        </div>
+                    </HireDiv>
+                </FreelancerBidingContainer>
+            );
+            elements.push(<Divider />);
+        }
+        elements.pop(); // Remove ultimo divider
+        return elements;
+    };
+
+    const onRatingChange = (event: any, value: number | null) => {
+        if (value) {
+            setRating(value);
+        }
     };
 
     useEffect(() => {
@@ -158,7 +205,7 @@ export function ClientJobView() {
                                         </AboutFreelancerContainer>
                                         <RatingDiv>
                                             <span style={{ marginTop: "4px", marginRight: "4px" }}>Avaliação: </span>
-                                            <Rating name="half-rating" defaultValue={0.0} precision={0.2} size="large" style={{ fontSize: "140%" }} />
+                                            <Rating onChange={onRatingChange} name="half-rating" defaultValue={0.0} precision={0.2} size="large" style={{ fontSize: "140%" }} />
                                         </RatingDiv>
                                         <ChatAndRateJobDiv>
                                             <div style={{ textAlign: "center", marginBlock: "5%", display: "flex", justifyContent: "space-evenly" }}>
@@ -169,173 +216,7 @@ export function ClientJobView() {
                                     </div>
                                 ) : (
                                     (<ContainerFreelancerList>
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
-                                        <Divider />
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
-                                        <Divider />
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
-                                        <Divider />
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
-                                        <Divider />
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
-                                        <Divider />
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
-                                        <Divider />
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
-                                        <Divider />
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
-                                        <Divider />
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
-                                        <Divider />
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
-                                        <Divider />
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
-                                        <Divider />
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
-                                        <Divider />
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
-                                        <Divider />
-                                        <FreelancerBidingContainer>
-                                            <UserInfo>
-                                                <UserIcon src="default-user-icon.svg"></UserIcon>
-                                                <UserName>Fulano da Silva</UserName>
-                                            </UserInfo>
-                                            <HireDiv>
-                                                <div style={{ textAlign: "center" }}>
-                                                    <StyledHireButton variant="contained"> Contratar </StyledHireButton>
-                                                </div>
-                                            </HireDiv>
-                                        </FreelancerBidingContainer>
+                                        {getFreelancerBidings()}
                                     </ContainerFreelancerList>)
                                 )
                         }

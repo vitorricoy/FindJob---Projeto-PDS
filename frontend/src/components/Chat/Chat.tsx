@@ -105,7 +105,7 @@ const getUserChat = async (conversationUser: User, currentUser: User) => {
 }
 
 const sendMessage = (textContent: string, currentUser: User, conversationUser: User) => {
-    axios.post('/user', new CreateMessageInput(textContent, new Date(), currentUser.Id, conversationUser.Id))
+    axios.post('/api/message', new CreateMessageInput(textContent, new Date(), currentUser.Id, conversationUser.Id))
         .catch(function (error) {
             console.log(error);
         });
