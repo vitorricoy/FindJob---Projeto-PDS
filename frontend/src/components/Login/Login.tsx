@@ -56,6 +56,7 @@ export function Login() {
                     params: credentials
                 }
             );
+            localStorage.setItem("currentUser", JSON.stringify(user.data));
             setGlobalState("currentUser", user.data);
 
         } catch (error: any) {

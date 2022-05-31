@@ -129,6 +129,9 @@ export function Register() {
             }
 
             axios.post(Constants.BASE_URL + 'api/user/register/freelancer', new CreateFreelancerInput(info.email, info.password, info.name, info.phone, info.skills, info.ratings))
+                .then((res) => {
+                    localStorage.setItem("currentUser", JSON.stringify(res.data));
+                })
                 .catch(function (error) {
                     console.log(error);
                 });
@@ -142,6 +145,9 @@ export function Register() {
             }
 
             axios.post(Constants.BASE_URL + 'api/user/register/client', new CreateClientInput(info.email, info.password, info.name, info.phone))
+                .then((res) => {
+                    localStorage.setItem("currentUser", JSON.stringify(res.data));
+                })
                 .catch(function (error) {
                     console.log(error);
                 });
@@ -198,20 +204,20 @@ export function Register() {
                             <List style={{ marginInline: "19%", marginTop: "12px !important" }}>
                                 {abilities.map(ability => {
                                     return (
-                                        <ListItem style={{ justifyContent: "space-between", display: "flex" }} key={ability.Name}>
+                                        <ListItem style={{ justifyContent: "space-between", display: "flex" }} key={ability.name}>
                                             <div style={{ width: "40%", marginRight: "8px", overflow: "hidden", textOverflow: "ellipsis" }}>
-                                                <StyledListItemText primary={ability.Name} style={{ color: "#2D3748" }} />
+                                                <StyledListItemText primary={ability.name} style={{ color: "#2D3748" }} />
                                             </div>
                                             <div style={{ width: "60%", marginLeft: "4px" }}>
                                                 <StyledSlider
-                                                    aria-label={ability.Name}
+                                                    aria-label={ability.name}
                                                     defaultValue={0}
                                                     valueLabelDisplay="auto"
                                                     step={10}
                                                     marks
                                                     min={0}
                                                     max={100}
-                                                    value={skillLevel[ability.Name]}
+                                                    value={skillLevel[ability.name]}
                                                     onChangeCommitted={handleSliderStop}
                                                 />
                                             </div>

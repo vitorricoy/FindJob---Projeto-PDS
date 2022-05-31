@@ -57,10 +57,10 @@ export function FreelancerJobView() {
 
     const getJobSkills = (): JSX.Element[] => {
         let elements = []
-        for (let skill of job.Skills) {
+        for (let skill of job.skills) {
             elements.push(
                 <Skill>
-                    {skill.Name}
+                    {skill.name}
                 </Skill>
             );
         }
@@ -70,7 +70,7 @@ export function FreelancerJobView() {
     const apply = () => {
         try {
             axios.post(
-                Constants.BASE_URL + "/api/job/apply", new ApplyJobInput(job.Id, currentUser.id)
+                Constants.BASE_URL + "/api/job/apply", new ApplyJobInput(job.id, currentUser.id)
             );
         } catch (error: any) {
             throw new Error(error)
@@ -93,11 +93,11 @@ export function FreelancerJobView() {
 
                 <UpperDiv>
                     <TitleDiv>
-                        {job.Title}
+                        {job.title}
                     </TitleDiv>
                     <PriceDiv>
-                        R$ {job.Payment}
-                        {!job.IsPaymentByHour ?
+                        R$ {job.payment}
+                        {!job.isPaymentByHour ?
                             <sub>/h</sub>
                             :
                             null}
@@ -121,7 +121,7 @@ export function FreelancerJobView() {
                             </DescriptionTitle>
                             <DescriptionContent>
                                 <p style={{ marginTop: "0" }}>
-                                    {job.Description}
+                                    {job.description}
                                 </p>
                             </DescriptionContent>
                         </ContainerDescription>
@@ -134,10 +134,10 @@ export function FreelancerJobView() {
                             </AboutClientTitle>
                             <AboutClientSubtitle>
                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                {job.Client.name}
+                                {job.client.name}
                             </AboutClientSubtitle>
                             <AboutClientContent>
-                                {job.Client.email}
+                                {job.client.email}
                             </AboutClientContent>
                         </AboutClientContainer>
                         <ApplyJobDiv>

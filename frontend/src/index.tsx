@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 );
 
 const { setGlobalState, useGlobalState } = createGlobalState({
-  currentUser: {} as User
+  currentUser: JSON.parse(localStorage.getItem("currentUser") || "{}") as User
 });
 
 export { setGlobalState, useGlobalState };

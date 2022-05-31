@@ -76,10 +76,10 @@ export function ClientJobView() {
 
     const getJobSkills = (): JSX.Element[] => {
         let elements = []
-        for (let skill of job.Skills) {
+        for (let skill of job.skills) {
             elements.push(
                 <Skill>
-                    {skill.Name}
+                    {skill.name}
                 </Skill>
             );
         }
@@ -88,7 +88,7 @@ export function ClientJobView() {
 
     const openChat = () => {
         // Cria mensagem vazia e redireciona
-        axios.post('/api/message', new CreateMessageInput('', new Date(), currentUser.id, job.AssignedFreelancer.id))
+        axios.post('/api/message', new CreateMessageInput('', new Date(), currentUser.id, job.assignedFreelancer.id))
             .then(() => {
                 navigate("/chat");
             })
@@ -101,7 +101,7 @@ export function ClientJobView() {
         // Avalia
         try {
             axios.post(
-                Constants.BASE_URL + "/api/job/rate", new RateJobInput(job.Id, rating)
+                Constants.BASE_URL + "/api/job/rate", new RateJobInput(job.id, rating)
             );
         } catch (error: any) {
             throw new Error(error)
@@ -110,7 +110,7 @@ export function ClientJobView() {
 
     const getFreelancerBidings = () => {
         let elements = []
-        for (let freelancer of job.Candidates) {
+        for (let freelancer of job.candidates) {
             elements.push(
                 <FreelancerBidingContainer>
                     <UserInfo>
@@ -152,11 +152,11 @@ export function ClientJobView() {
 
                 <UpperDiv>
                     <TitleDiv>
-                        {job.Title}
+                        {job.title}
                     </TitleDiv>
                     <PriceDiv>
-                        R$ {job.Payment}
-                        {!job.IsPaymentByHour ?
+                        R$ {job.payment}
+                        {!job.isPaymentByHour ?
                             <sub>/h</sub>
                             :
                             null}
@@ -180,15 +180,15 @@ export function ClientJobView() {
                             </DescriptionTitle>
                             <DescriptionContent>
                                 <p style={{ marginTop: "0" }}>
-                                    {job.Description}
+                                    {job.description}
                                 </p>
                             </DescriptionContent>
                         </ContainerDescription>
                     </LowerLeftDiv>
 
-                    <LowerRightDiv justifyContent={job.Available ? "space-between" : "center"}>
+                    <LowerRightDiv justifyContent={job.available ? "space-between" : "center"}>
                         {
-                            job.Available ?
+                            job.available ?
                                 (
                                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", alignContent: "center" }}>
                                         <AboutFreelancerContainer>
@@ -197,10 +197,10 @@ export function ClientJobView() {
                                             </AboutFreelancerTitle>
                                             <AboutFreelancerSubtitle>
                                                 <FreelancerIcon src="default-user-icon.svg"></FreelancerIcon>
-                                                {job.AssignedFreelancer.name}
+                                                {job.assignedFreelancer.name}
                                             </AboutFreelancerSubtitle>
                                             <AboutFreelancerContent>
-                                                {job.AssignedFreelancer.email}
+                                                {job.assignedFreelancer.email}
                                             </AboutFreelancerContent>
                                         </AboutFreelancerContainer>
                                         <RatingDiv>

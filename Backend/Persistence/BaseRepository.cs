@@ -23,7 +23,7 @@ namespace Backend.Persistence
 
             foreach (JobRequirementModel pair in skillPairs)
             {
-                skills.Add(ToDomainObject(dbContext.Skills.Where(s => s.NormalizedName == pair.Skill.NormalizedName).First()));
+                skills.Add(ToDomainObject(dbContext.Skills.Where(s => s.NormalizedName == pair.SkillId).First()));
             }
 
             List<JobCandidateModel> candPairs = dbContext.JobCandidates.Where(js => js.Job.Id == jobMod.Id).ToList();
@@ -31,7 +31,7 @@ namespace Backend.Persistence
 
             foreach (JobCandidateModel pair in candPairs)
             {
-                candidates.Add(ToDomainObject(dbContext.Users.Where(u => u.Id == pair.Candidate.Id).First()));
+                candidates.Add(ToDomainObject(dbContext.Users.Where(u => u.Id == pair.CandidateId).First()));
             }
 
             return new Job(jobMod.Id, jobMod.Title, jobMod.Description, jobMod.Deadline, jobMod.Payment, jobMod.IsPaymentByHour, skills, ToDomainObject(jobMod.Client), ToDomainObject(jobMod.AssignedFreelancer), candidates, jobMod.Active, jobMod.Available);

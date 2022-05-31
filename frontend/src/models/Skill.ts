@@ -1,9 +1,9 @@
 export default class Skill {
-    Name: string;
-    NormalizedName: string;
+    name: string;
+    normalizedName: string;
 
     constructor(Name: string, NormalizedName: string) {
-        this.Name = Name;
-        this.NormalizedName = NormalizedName;
+        this.name = Name;
+        this.normalizedName = NormalizedName;
     }
 }

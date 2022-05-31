@@ -120,6 +120,7 @@ export function CreateJob() {
     };
 
     const handleDeadlineChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event);
         setDeadline(event.target.value);
     };
 

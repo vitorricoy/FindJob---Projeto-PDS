@@ -114,6 +114,7 @@ export function JobsList() {
 
     const getJobs = async () => {
         try {
+            console.log(currentUser);
             if (currentUser.isFreelancer && myJobs) {
                 var jobs: AxiosResponse<Job[]> = await axios.get(
                     Constants.BASE_URL + "api/job/list",
@@ -149,7 +150,7 @@ export function JobsList() {
     }
 
     useEffect(() => {
-        if (availableJobs.length) {
+        if (!availableJobs.length) {
             getJobs().then(result => {
                 setAvailableJobs(result.data)
             })
@@ -282,21 +283,21 @@ export function JobsList() {
                                         <List dense={true}>
                                             {availableJobs.map(job => {
                                                 return (
-                                                    <ListItem style={{ display: "block" }}>
+                                                    <ListItem key={job.id} style={{ display: "block" }}>
                                                         <ListItemDiv>
-                                                            <ListItemButton onClick={() => handleJobClick(job.Title)}>
+                                                            <ListItemButton onClick={() => handleJobClick(job.title)}>
                                                                 <ListItemText
                                                                     disableTypography
-                                                                    primary={<Typography variant="h5" style={{ color: '#000000' }}>{job.Title}</Typography>}
-                                                                    secondary={<Typography style={{ color: '#000000', overflow: 'hidden', maxHeight: "48px" }}>{job.Description}</Typography>}
+                                                                    primary={<Typography variant="h5" style={{ color: '#000000' }}>{job.title}</Typography>}
+                                                                    secondary={<Typography style={{ color: '#000000', overflow: 'hidden', maxHeight: "48px" }}>{job.description}</Typography>}
                                                                 />
                                                             </ListItemButton>
                                                         </ListItemDiv>
                                                         <SkillsDiv>
-                                                            {job.Skills.map((skill: any) => {
+                                                            {job.skills.map((skill: any) => {
                                                                 return (
                                                                     <div style={{ lineHeight: "28px", marginInline: "1%", marginBlock: "0.5%", borderRadius: "10px", backgroundColor: "#3f51b5", color: "white", maxHeight: "28px", paddingInline: "1%" }}>
-                                                                        {skill.Name}
+                                                                        {skill.name}
                                                                     </div>
                                                                 )
                                                             })}
