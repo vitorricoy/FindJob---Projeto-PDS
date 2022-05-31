@@ -93,14 +93,14 @@ namespace Backend.Domain.Service
             return jobRepository.GetJobById(jobId);
         }
 
-        public Job CreateNewJob(string title, string description, int deadline, double payment, bool isPaymentByHour, List<string> skills, string clientId, string assignedFreelancerId)
+        public Job CreateNewJob(string title, string description, int deadline, double payment, bool isPaymentByHour, List<string> skillNames, string clientId, string assignedFreelancerId)
         {
-            List<Skill> skillObjs = new List<Skill>();
+            List<Skill> skills = new List<Skill>();
             string normalizedName;
 
-            foreach(string skillName in skills){
+            foreach(string skillName in skillNames){
                 normalizedName = skillName.ToLower().Replace(" ", "");
-                skillObjs.Add(skillRepository.CreateNewSkill(new Skill(skillName,normalizedName)));
+                skills.Add(skillRepository.CreateNewSkill(new Skill(skillName,normalizedName)));
             }
 
             User client = userRepository.GetUserById(clientId);
@@ -111,12 +111,37 @@ namespace Backend.Domain.Service
                 throw new InvalidUserIdException();
             }
 
-            Job newJob = new Job(Guid.NewGuid().ToString(), title, description, deadline, payment, isPaymentByHour, skillObjs, client, assignedFreelancer, true, true);
+            Job newJob = new Job(Guid.NewGuid().ToString(), title, description, deadline, payment, isPaymentByHour, skills, client, assignedFreelancer, new List<User>(),true, true);
 
             return jobRepository.CreateNewJob(newJob);
         }
 
-        public bool AssignFreelancer(string jobId, string freelancerId)
+        public bool CandidateForJob(string jobId, string freelancerId)
+        {
+            Job job = jobRepository.GetJobById(jobId);
+            User freela = userRepository.GetUserById(freelancerId);
+
+            if (job == null)
+            {
+                throw new InvalidJobIdException();
+            }
+
+            if (freela == null)
+            {
+                throw new InvalidUserIdException();
+            }
+
+            if (!job.Available)
+            {
+                throw new UnavailableJobException();
+            }
+
+            jobRepository.AddJobCandidate(job, freela);
+
+            return true;
+        }
+
+        public bool ChooseFreelancerForJob(string jobId, string freelancerId)
         {
             Job job = jobRepository.GetJobById(jobId);
             User freela = userRepository.GetUserById(freelancerId);
@@ -126,7 +151,7 @@ namespace Backend.Domain.Service
                 throw new InvalidJobIdException();
             }
 
-            if(freela == null)
+            if(freela == null || !(job.Candidates.Contains(freela)))
             {
                 throw new InvalidUserIdException();
             }
@@ -136,9 +161,51 @@ namespace Backend.Domain.Service
                 throw new UnavailableJobException();
             }
 
-            jobRepository.SetJobFreelancer(jobId, freela);
+            jobRepository.SetJobFreelancer(job, freela);
 
             return true;
+        }
+        private static int CompareCandidatesByJob(User cand1, User cand2, Job job)
+        {
+            List<double> ratings1 = new List<double>();
+            List<double> ratings2 = new List<double>();
+            
+            foreach(Skill skill in job.Skills)
+            {
+                if (cand1.Skills.ContainsKey(skill))
+                {
+                    ratings1.Add(cand1.Skills[skill].Item1);
+                }
+                else
+                {
+                    ratings1.Add(0);
+                }
+
+                if (cand2.Skills.ContainsKey(skill))
+                {
+                    ratings2.Add(cand1.Skills[skill].Item1);
+                }
+                else
+                {
+                    ratings2.Add(0);
+                }
+            }
+            
+            return Math.Sign(ratings1.Average() - ratings2.Average());
+        }
+
+        public List<User> GetJobCandidatesBySkill(string jobId)
+        {
+            Job job = jobRepository.GetJobById(jobId);
+
+            if(job == null)
+            {
+                throw new InvalidJobIdException();
+            }
+
+            job.Candidates.Sort((freela1, freela2) => CompareCandidatesByJob(freela1, freela2, job));
+
+            return job.Candidates;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Backend.Domain.Service
 
             if (findUser != null)
             {
-                throw new AlreadyRegisteredUserException();
+                throw new InvalidSignUpCredentialsException();
             }
 
             User newUser = new User(Guid.NewGuid().ToString(), name, email, hashedPassword, phone, false, null);
@@ -32,27 +32,21 @@ namespace Backend.Domain.Service
             return newUser;
         }
 
-        public User RegisterFreelancer(string name, string email, string password, string phone, Dictionary<string,double> ratedSkills)
+        public User RegisterFreelancer(string name, string email, string password, string phone, List<string> skills, List<double> ratings)
         {
             string hashedPassword = HashingUtil.getHash(password);
             User findUser = userRepository.GetUserByEmail(email);
 
             if (findUser != null)
             {
-                throw new AlreadyRegisteredUserException();
+                throw new InvalidSignUpCredentialsException();
             }
 
-            Dictionary<Skill, Tuple<double, int>> skills = new Dictionary<Skill, Tuple<double, int>>();
-            string skillName,skillNormalizedName;
+            Dictionary<Skill, Tuple<double, int>> skillsDict = Enumerable.Range(0, Math.Min(skills.Count, ratings.Count))
+                                                                         .ToDictionary(i => new Skill(skills[i], skills[i].ToLower().Replace(" ", "")), 
+                                                                                       i => new Tuple<double, int>(ratings[i], 1));
 
-            foreach(KeyValuePair<string,double> entry in ratedSkills)
-            {
-                skillName = entry.Key;
-                skillNormalizedName = skillName.ToLower().Replace(" ", "");
-                skills.Add(new Skill(skillName, skillNormalizedName), new Tuple<double, int>(entry.Value, 1));
-            }
-
-            User newUser = new User(Guid.NewGuid().ToString(), name, email, hashedPassword, phone, true, skills);
+            User newUser = new User(Guid.NewGuid().ToString(), name, email, hashedPassword, phone, true, skillsDict);
 
             userRepository.CreateNewUser(newUser);
 

@@ -12,14 +12,14 @@ namespace Backend.Persistence
 
         public User GetUserByEmail(string email)
         {
-            UserModel user = dbContext.Users.Where(u => u.Email.Equals(email)).First();
+            UserModel user = dbContext.Users.Where(u => u.Email.Equals(email)).FirstOrDefault();
 
             return ToDomainObject(user);
         }
 
         public User GetUserById(string id)
         {
-            return ToDomainObject(dbContext.Users.Where(u => u.Id == id).First());
+            return ToDomainObject(dbContext.Users.Where(u => u.Id == id).FirstOrDefault());
         }
 
         public User UpdateUser(User user)
@@ -31,24 +31,17 @@ namespace Backend.Persistence
 
         public User CreateNewUser(User user)
         {
-            Skill findSkill;
-
             if(user.IsFreelancer)
             {
                 foreach(KeyValuePair<Skill,Tuple<double,int>> skillRate in user.Skills)
                 {
-                    findSkill = ToDomainObject(dbContext.Skills.Where(s => s.NormalizedName == skillRate.Key.NormalizedName).First());
-
-                    if(findSkill == null)
+                    if(!dbContext.Skills.Any(s => s.NormalizedName == skillRate.Key.NormalizedName))
                     {
                         dbContext.Skills.Add(SkillModel.FromDomainObject(skillRate.Key));
                     }
-
-                    foreach(UserProficiencyModel userSkillEntry in UserProficiencyModel.FromUserDomainObject(user))
-                    {
-                        dbContext.UserSkills.Add(userSkillEntry);
-                    }
                 }
+
+                dbContext.UserSkills.AddRange(UserProficiencyModel.FromUserDomainObject(user));
             }
             
             User returnValue = ToDomainObject(dbContext.Users.Add(UserModel.FromDomainObject(user)).Entity);

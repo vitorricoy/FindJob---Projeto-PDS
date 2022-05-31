@@ -95,12 +95,12 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        [Route("assign")]
-        public IActionResult AssignFreelancer([FromBody] AssignFreelancerInput input)
+        [Route("apply")]
+        public IActionResult ApplyFreelancerToJob([FromBody] ApplyFreelancerInput input)
         {
             try
             {
-                return Ok(jobService.AssignFreelancer(input.JobId, input.FreelancerId));
+                return Ok(jobService.CandidateForJob(input.JobId, input.FreelancerId));
             }
             catch (InvalidJobIdException ex)
             {
@@ -111,6 +111,50 @@ namespace Backend.Controllers
                 return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
             }
             catch (UnavailableJobException ex)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("choose")]
+        public IActionResult ChooseFreelancerForJob([FromBody] ApplyFreelancerInput input)
+        {
+            try
+            {
+                return Ok(jobService.ChooseFreelancerForJob(input.JobId, input.FreelancerId));
+            }
+            catch (InvalidJobIdException ex)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
+            }
+            catch (InvalidUserIdException ex)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
+            }
+            catch (UnavailableJobException ex)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("candidates")]
+        public IActionResult GetJobCandidatesBySkill([FromQuery(Name = "jobId")] string jobId)
+        {
+            try
+            {
+                return Ok(jobService.GetJobCandidatesBySkill(jobId));
+            }
+            catch (InvalidJobIdException ex)
             {
                 return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
             }

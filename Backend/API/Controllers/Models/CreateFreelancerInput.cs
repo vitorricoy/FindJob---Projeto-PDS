@@ -9,16 +9,21 @@
         public string Password { get; set; }
 
         public string Phone { get; set; }
+        public List<string> Skills { get; set; }
+        public List<double> Ratings { get; set; }
 
-        public Dictionary<string, double> SkillRates;
 
-        public CreateFreelancerInput(string name, string email, string password, string phone, Dictionary<string, double> skillRates)
+        
+
+        public CreateFreelancerInput(string name, string email, string password, string phone, List<string> skills, List<double> ratings)
         {
             Name = name;
             Email = email;
             Password = password;
             Phone = phone;
-            SkillRates = skillRates;
+            Skills = skills;
+            Ratings = ratings;
+            
         }
     }
 }

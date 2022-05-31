@@ -6,7 +6,7 @@ namespace Backend.Domain.Service
     {
         public User RegisterClient(string name, string email, string password, string phone);
 
-        public User RegisterFreelancer(string name, string email, string password, string phone, Dictionary<string, double> skills);
+        public User RegisterFreelancer(string name, string email, string password, string phone, List<string> skills, List<double> ratings);
         
         public User Login(string email, string password);
 

@@ -44,7 +44,7 @@ namespace Backend.Controllers
             {
                 return Ok(userService.RegisterClient(input.Name, input.Email, input.Password, input.Phone));
             }
-            catch (AlreadyRegisteredUserException ex)
+            catch (InvalidSignUpCredentialsException ex)
             {
                 return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
             }
@@ -60,9 +60,9 @@ namespace Backend.Controllers
         {
             try
             {
-                return Ok(userService.RegisterFreelancer(input.Name, input.Email, input.Password, input.Phone, input.SkillRates));
+                return Ok(userService.RegisterFreelancer(input.Name, input.Email, input.Password, input.Phone, input.Skills, input.Ratings));
             }
-            catch (AlreadyRegisteredUserException ex)
+            catch (InvalidSignUpCredentialsException ex)
             {
                 return StatusCode(StatusCodes.Status403Forbidden, ex.Message);
             }

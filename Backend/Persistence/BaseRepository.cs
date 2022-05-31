@@ -13,6 +13,11 @@ namespace Backend.Persistence
 
         protected Job ToDomainObject(JobModel jobMod)
         {
+            if (jobMod == null)
+            {
+                return null;
+            }
+
             List<JobRequirementModel> skillPairs = dbContext.JobSkills.Where(js => js.Job.Id == jobMod.Id).ToList();
             List<Skill> skills = new List<Skill>();
 
@@ -21,7 +26,15 @@ namespace Backend.Persistence
                 skills.Add(ToDomainObject(dbContext.Skills.Where(s => s.NormalizedName == pair.Skill.NormalizedName).First()));
             }
 
-            return new Job(jobMod.Id, jobMod.Title, jobMod.Description, jobMod.Deadline, jobMod.Payment, jobMod.IsPaymentByHour, skills, ToDomainObject(jobMod.Client), ToDomainObject(jobMod.AssignedFreelancer), jobMod.Active, jobMod.Available);
+            List<JobCandidateModel> candPairs = dbContext.JobCandidates.Where(js => js.Job.Id == jobMod.Id).ToList();
+            List<User> candidates = new List<User>();
+
+            foreach (JobCandidateModel pair in candPairs)
+            {
+                candidates.Add(ToDomainObject(dbContext.Users.Where(u => u.Id == pair.Candidate.Id).First()));
+            }
+
+            return new Job(jobMod.Id, jobMod.Title, jobMod.Description, jobMod.Deadline, jobMod.Payment, jobMod.IsPaymentByHour, skills, ToDomainObject(jobMod.Client), ToDomainObject(jobMod.AssignedFreelancer), candidates, jobMod.Active, jobMod.Available);
         }
 
         protected User ToDomainObject(UserModel userMod)
@@ -44,6 +57,11 @@ namespace Backend.Persistence
 
         protected Message ToDomainObject(MessageModel mesMod)
         {
+            if (mesMod == null)
+            {
+                return null;
+            }
+
             User sender = ToDomainObject(mesMod.Sender);
             User receiver = ToDomainObject(mesMod.Receiver);
             return new Message(mesMod.Id, mesMod.Content, sender, receiver, mesMod.SentTime, mesMod.IsRead);
@@ -51,6 +69,11 @@ namespace Backend.Persistence
 
         protected Skill ToDomainObject(SkillModel skillMod)
         {
+            if (skillMod == null)
+            {
+                return null;
+            }
+
             return new Skill(skillMod.Name, skillMod.NormalizedName);
         }
     }

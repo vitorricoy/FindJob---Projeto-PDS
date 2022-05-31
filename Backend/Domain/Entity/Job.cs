@@ -11,10 +11,11 @@
         public List<Skill> Skills { get; set; }
         public User Client { get; set; }
         public User? AssignedFreelancer;
+        public List<User> Candidates { get; set; }
         public bool Active { get; set; }
         public bool Available { get; set; }
 
-        public Job(string id, string title, string description, int deadline, double payment, bool isPaymentByHour, List<Skill> skills, User client, User assignedFreelancer, bool active, bool available)
+        public Job(string id, string title, string description, int deadline, double payment, bool isPaymentByHour, List<Skill> skills, User client, User assignedFreelancer, List<User> candidates, bool active, bool available)
         {
             Id = id;
             Title = title;
@@ -25,6 +26,7 @@
             Skills = skills;
             Client = client;
             AssignedFreelancer = assignedFreelancer;
+            Candidates = candidates;
             Active = active;
             Available = available;
         }

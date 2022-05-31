@@ -16,5 +16,6 @@ namespace Backend.Persistence
         public DbSet<UserModel> Users { get; set; }
         public DbSet<UserProficiencyModel> UserSkills { get; set; }
         public DbSet<JobRequirementModel> JobSkills { get; set; }
+        public DbSet<JobCandidateModel> JobCandidates { get; set; }
     }
 }

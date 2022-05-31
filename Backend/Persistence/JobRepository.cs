@@ -21,7 +21,7 @@ namespace Backend.Persistence
 
         public Job GetJobById(string jobId)
         {
-            return ToDomainObject(dbContext.Jobs.Where(j => j.Id.Equals(jobId)).First());
+            return ToDomainObject(dbContext.Jobs.Where(j => j.Id.Equals(jobId)).FirstOrDefault());
         }
 
         public List<Job> ListJobsByUser(string userId, bool isFreelancer)
@@ -54,9 +54,9 @@ namespace Backend.Persistence
             dbContext.SaveChanges();
         }
 
-        public void SetJobFreelancer(string jobId, User freelancer)
+        public void SetJobFreelancer(Job job, User freelancer)
         {
-            JobModel jobModel = dbContext.Jobs.Where(j => j.Id.Equals(jobId)).First();
+            JobModel jobModel = dbContext.Jobs.Where(j => j.Id == job.Id).First();
 
             jobModel.Available = false;
 
@@ -67,10 +67,28 @@ namespace Backend.Persistence
             dbContext.SaveChanges();
         }
 
+        public void AddJobCandidate(Job job, User candidate)
+        {
+            dbContext.JobCandidates.Add(new JobCandidateModel(JobModel.FromDomainObject(job), UserModel.FromDomainObject(candidate)));
+
+            dbContext.SaveChanges();
+        }
+
         public Job CreateNewJob(Job job)
         {
             Job returnValue = ToDomainObject(dbContext.Jobs.Add(JobModel.FromDomainObject(job)).Entity);
-            
+
+            foreach(Skill skill in job.Skills)
+            {
+                if (!dbContext.Skills.Any(s => s.NormalizedName == skill.NormalizedName))
+                {
+                    dbContext.Skills.Add(SkillModel.FromDomainObject(skill));
+                }
+            }
+
+            dbContext.JobSkills.AddRange(JobRequirementModel.FromJobDomainObject(job));
+            dbContext.JobCandidates.AddRange(JobCandidateModel.FromJobDomainObject(job));
+
             dbContext.SaveChanges();
             
             return returnValue;
