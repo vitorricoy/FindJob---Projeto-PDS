@@ -1,0 +1,25 @@
+import User from "./User";
+
+export default class CreateJobInput {
+    Title: string;
+    Description: string;
+    Deadline: number;
+    Payment: number;
+    IsPaymentByHour: boolean;
+    Skills: string[];
+    ClientId: string;
+    Candidates: User[];
+    Active: boolean;
+
+    constructor(title: string, description: string, deadline: number, payment: number, isPaymentByHour: boolean, skills: string[], clientId: string, candidates: User[], active: boolean) {
+        this.Title = title;
+        this.Description = description;
+        this.Deadline = deadline;
+        this.Payment = payment;
+        this.IsPaymentByHour = isPaymentByHour;
+        this.Skills = skills;
+        this.ClientId = clientId;
+        this.Candidates = candidates;
+        this.Active = active;
+    }
+};

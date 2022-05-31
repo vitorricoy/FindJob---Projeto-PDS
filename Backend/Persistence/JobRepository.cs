@@ -29,14 +29,14 @@ namespace Backend.Persistence
             if (isFreelancer)
             {
                 return dbContext.Jobs
-                    .Where(j => j.AssignedFreelancer != null && j.AssignedFreelancer.Id == userId)
+                    .Where(j => j.AssignedFreelancer != null && j.AssignedFreelancer.Id == userId && j.Active)
                     .ToList()
                     .Select(j => ToDomainObject(j))
                     .ToList();
             } else
             {
                 return dbContext.Jobs
-                    .Where(j => j.Client != null && j.Client.Id == userId)
+                    .Where(j => j.Client != null && j.Client.Id == userId && j.Active)
                     .ToList()
                     .Select(j => ToDomainObject(j))
                     .ToList();
@@ -92,6 +92,13 @@ namespace Backend.Persistence
             dbContext.SaveChanges();
             
             return returnValue;
+        }
+
+        public void UpdateJob(Job job)
+        {
+
+            dbContext.Jobs.Update(JobModel.FromDomainObject(job));
+            dbContext.SaveChanges();
         }
     }
 }

@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     display: flex;
-    height: 99.5vh;
-    width: 99.5vw;
+    height: 100vh;
+    width: 100vw;
 `;
 
 export const LeftContainer = styled.div`

@@ -1,6 +1,6 @@
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
-import { 
+import {
     Body,
     Container,
     CurrencyTextField,
@@ -29,40 +29,39 @@ import {
 } from "./styles";
 import { LeftDiv } from "../CreateJob/styles";
 import { Checkbox, Divider, FormControlLabel, IconButton, InputAdornment, List, ListItem, ListItemText, MenuItem, TextField, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
 import { ListItemButton } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGlobalState } from "../..";
+import Job from "../../models/Job";
+import axios, { AxiosResponse } from "axios";
+import { Constants } from "../../util/Constants";
 
 const currencies = [
     {
-        value: 'BRL',
-        label: 'R$',
+        value: 'R$',
+        label: 'Real (BRL)',
     },
     {
-         value: 'USD',
-         label: 'US$',
+        value: 'US$',
+        label: 'Dólar (USD)',
     },
     {
-        value: 'EUR',
-         label: '€',
+        value: '€',
+        label: 'Euro (EUR)',
     },
     {
-        value: 'BTC',
-        label: '฿',
+        value: '¥',
+        label: 'Iene (JPY)',
     },
-    {
-        value: 'JPY',
-        label: '¥',
-    },
-  ];
+];
 
-export function JobsList () {
-    const [currency, setCurrency] = React.useState('BRL');
+export function JobsList() {
+    const [currency, setCurrency] = React.useState('R$');
 
-    const [freelancer, setFreelancer] = useGlobalState('freelancer');
+    const [currentUser, setCurrentUser] = useGlobalState('currentUser');
 
     const handleCurrencyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrency(event.target.value);
@@ -75,12 +74,12 @@ export function JobsList () {
     const [totalTextFieldDisable, setTotalTextFieldDisable] = React.useState<boolean>(false);
 
     const handlePaymentMethodChange = (event: any) => {
-        if (event === 'total' && perHourChecked || event === 'total' && totalChecked) {
+        if ((event === 'total' && perHourChecked) || (event === 'total' && totalChecked)) {
             setTotalChecked(true);
             setTotalTextFieldDisable(false);
             setPerHourChecked(false);
             setPerHourTextFieldDisable(true);
-        } else if (event === 'hour' && totalChecked || event === 'hour' && perHourChecked) {
+        } else if ((event === 'hour' && totalChecked) || (event === 'hour' && perHourChecked)) {
             setTotalChecked(false);
             setTotalTextFieldDisable(true);
             setPerHourChecked(true);
@@ -88,7 +87,7 @@ export function JobsList () {
         }
     };
 
-    const [abilities, setAbilities] = React.useState<any[]>(["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB"]);
+    const [abilities, setAbilities] = React.useState<any[]>([]);
 
     const handleDeleteSkill = (ability: string) => {
         let newSkills = abilities.filter(skill => skill !== ability);
@@ -109,23 +108,70 @@ export function JobsList () {
         setName("");
     };
 
-    const [availableJobs, setAvailableJobs] = React.useState<any[]>([{name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"]},{name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"]},{name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"]},{name: "Job 1", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senect", skills: ["Java", "Python", "Habilidade Secreta Interessante", "Programação WEB", "Adobe Reader", "Microsoft Excel"]}]);
+    const [availableJobs, setAvailableJobs] = React.useState<Job[]>([]);
+
+    const { myJobs } = useParams();
+
+    const getJobs = async () => {
+        try {
+            if (currentUser.IsFreelancer && myJobs) {
+                var jobs: AxiosResponse<Job[]> = await axios.get(
+                    Constants.BASE_URL + "api/job/list",
+                    {
+                        params: {
+                            "userId": currentUser.Id
+                        }
+                    }
+                );
+            } else if (currentUser.IsFreelancer && !myJobs) {
+                var jobs: AxiosResponse<Job[]> = await axios.get(
+                    Constants.BASE_URL + "api/job/search",
+                    {
+                        params: {
+                            "userId": currentUser.Id
+                        }
+                    }
+                );
+            } else {
+                var jobs: AxiosResponse<Job[]> = await axios.get(
+                    Constants.BASE_URL + "api/job/list",
+                    {
+                        params: {
+                            "userId": currentUser.Id
+                        }
+                    }
+                );
+            }
+            return jobs;
+        } catch (error: any) {
+            throw new Error(error);
+        }
+    }
+
+    useEffect(() => {
+        if (availableJobs.length) {
+            getJobs().then(result => {
+                setAvailableJobs(result.data)
+            })
+        }
+    }, []);
 
     let navigate = useNavigate();
 
     const handleJobClick = (ref: string) => {
         if (ref.length > 0) {
-            (freelancer? navigate("/freelancer-job-view"): navigate("/client-job-view"));
+            // TODO: Enviar o jobId
+            (currentUser.IsFreelancer ? navigate("/freelancer-job-view") : navigate("/client-job-view"));
         }
     };
-    
+
     return (
         <Container>
-            <Header/>
+            <Header />
 
             <Body>
 
-                <LeftDiv style={{width: "30%"}}>
+                <LeftDiv style={{ width: "30%" }}>
                     <GrayPaper>
                         <Filters1>
                             Filtros
@@ -137,8 +183,8 @@ export function JobsList () {
                                 label="Moeda"
                                 value={currency}
                                 onChange={handleCurrencyChange}
-                                style={{width: "100%"}}
-                                >
+                                style={{ width: "100%" }}
+                            >
                                 {currencies.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
                                         {option.label}
@@ -148,34 +194,34 @@ export function JobsList () {
                         </Filters2>
                         <Filters3>
                             <div>
-                                <FormControlLabel control={<Checkbox defaultChecked color="primary" onChange={() => handlePaymentMethodChange('total')} checked={totalChecked}/>} label="Valor total" />
+                                <FormControlLabel control={<Checkbox defaultChecked color="primary" onChange={() => handlePaymentMethodChange('total')} checked={totalChecked} />} label="Valor total" />
                             </div>
-                            {currency} <CurrencyTextField disabled={totalTextFieldDisable} id="outlined-basic1" variant="outlined" size="small"/> - {currency} <CurrencyTextField disabled={totalTextFieldDisable} id="outlined-basic2" variant="outlined" size="small"/> 
+                            {currency} <CurrencyTextField disabled={totalTextFieldDisable} id="outlined-basic1" variant="outlined" size="small" /> - {currency} <CurrencyTextField disabled={totalTextFieldDisable} id="outlined-basic2" variant="outlined" size="small" />
                         </Filters3>
                         <Filters4>
                             <div>
-                                <FormControlLabel control={<Checkbox color="primary" checked={perHourChecked} onChange={() => handlePaymentMethodChange('hour')}/>} label="Por hora" />
+                                <FormControlLabel control={<Checkbox color="primary" checked={perHourChecked} onChange={() => handlePaymentMethodChange('hour')} />} label="Por hora" />
                             </div>
-                            {currency} <CurrencyTextField disabled={perHourTextFieldDisable} id="outlined-basic3" variant="outlined" size="small"/> /h - {currency} <CurrencyTextField disabled={perHourTextFieldDisable} id="outlined-basic4" variant="outlined" size="small"/> /h
+                            {currency} <CurrencyTextField disabled={perHourTextFieldDisable} id="outlined-basic3" variant="outlined" size="small" /> /h - {currency} <CurrencyTextField disabled={perHourTextFieldDisable} id="outlined-basic4" variant="outlined" size="small" /> /h
                         </Filters4>
                         <Filters5>
                             Prazo
                         </Filters5>
                         <Filters6>
-                            <CurrencyTextField id="outlined-basic5" variant="outlined" size="small"/> dias - <CurrencyTextField id="outlined-basic6" variant="outlined" size="small"/> dias
+                            <CurrencyTextField id="outlined-basic5" variant="outlined" size="small" /> dias - <CurrencyTextField id="outlined-basic6" variant="outlined" size="small" /> dias
                         </Filters6>
                         <Filters7>
                             <Skills1>
                                 Habilidades
                             </Skills1>
                             <Skills2>
-                                <SkillField 
-                                    id="outlined-basic" 
-                                    variant="outlined" 
+                                <SkillField
+                                    id="outlined-basic"
+                                    variant="outlined"
                                     size="small"
                                     value={name}
                                     onChange={handleChange}
-                                /> 
+                                />
                                 <StyledAddSkillButton
                                     onClick={() => handleAddNewAbility(name)}
                                 >+</StyledAddSkillButton>
@@ -183,9 +229,9 @@ export function JobsList () {
                             <Skills3>
                                 <StyledList dense={true}>
                                     {abilities.map(ability => {
-                                        return(
+                                        return (
                                             <ListItem>
-                                                <div style={{height: "6%", width: "100%", display: "flex", alignItems: "center"}}>
+                                                <div style={{ height: "6%", width: "100%", display: "flex", alignItems: "center" }}>
                                                     <ListItemText
                                                         primary={ability}
                                                     />
@@ -194,7 +240,8 @@ export function JobsList () {
                                                     </IconButton>
                                                 </div>
                                             </ListItem>
-                                        )}
+                                        )
+                                    }
                                     )}
                                 </StyledList>
                             </Skills3>
@@ -202,8 +249,8 @@ export function JobsList () {
                     </GrayPaper>
                 </LeftDiv>
 
-                <RightDiv style={{width: "70%"}}>
-                    <div style={{height: "20%"}}>
+                <RightDiv style={{ width: "70%" }}>
+                    <div style={{ height: "20%" }}>
                         <FindJobsUp>
                             Encontre Jobs
                         </FindJobsUp>
@@ -212,64 +259,64 @@ export function JobsList () {
                         </FindJobsBottom>
                     </div>
 
-                    <div style={{height: "80%"}}>
+                    <div style={{ height: "80%" }}>
                         <GrayPaper>
                             <JobsList1>
-                                <SearchJobTextField 
-                                    id="job-search" 
-                                    variant="outlined" 
-                                    size="small" 
+                                <SearchJobTextField
+                                    id="job-search"
+                                    variant="outlined"
+                                    size="small"
                                     placeholder="Pesquise Jobs disponíveis"
                                     InputProps={{
                                         endAdornment: (
                                             <InputAdornment position="end">
-                                                <SearchIcon/>
+                                                <SearchIcon />
                                             </InputAdornment>
                                         ),
                                     }}
                                 />
                             </JobsList1>
                             <JobsList2>
-                            <nav aria-label="main mailbox folders">
-                                <div style={{}}>
-                                <List dense={true}>
-                                    {availableJobs.map(job => {
-                                        return (
-                                            <ListItem style={{display:"block"}}>
-                                                <ListItemDiv>
-                                                        <ListItemButton onClick={() => handleJobClick(job.name)}>
-                                                            <ListItemText 
-                                                                disableTypography
-                                                                primary={<Typography variant="h5" style={{ color: '#000000' }}>{job.name}</Typography>}
-                                                                secondary={<Typography style={{ color: '#000000', overflow: 'hidden', maxHeight: "48px" }}>{job.description}</Typography>}
-                                                            />
-                                                        </ListItemButton>
-                                                </ListItemDiv>
-                                                <SkillsDiv>
-                                                    {job.skills.map((skill: any) => {
-                                                        return (
-                                                            <div style={{lineHeight: "28px", marginInline: "1%", marginBlock: "0.5%", borderRadius: "10px", backgroundColor: "#3f51b5", color: "white", maxHeight: "28px", paddingInline: "1%"}}>
-                                                                {skill}
-                                                            </div>
-                                                        )
-                                                    })}
-                                                </SkillsDiv>
-                                                <Divider/>
-                                            </ListItem>
-                                        )
-                                    })}
-                                </List>
-                                </div>
-                            </nav>
+                                <nav aria-label="main mailbox folders">
+                                    <div style={{}}>
+                                        <List dense={true}>
+                                            {availableJobs.map(job => {
+                                                return (
+                                                    <ListItem style={{ display: "block" }}>
+                                                        <ListItemDiv>
+                                                            <ListItemButton onClick={() => handleJobClick(job.Title)}>
+                                                                <ListItemText
+                                                                    disableTypography
+                                                                    primary={<Typography variant="h5" style={{ color: '#000000' }}>{job.Title}</Typography>}
+                                                                    secondary={<Typography style={{ color: '#000000', overflow: 'hidden', maxHeight: "48px" }}>{job.Description}</Typography>}
+                                                                />
+                                                            </ListItemButton>
+                                                        </ListItemDiv>
+                                                        <SkillsDiv>
+                                                            {job.Skills.map((skill: any) => {
+                                                                return (
+                                                                    <div style={{ lineHeight: "28px", marginInline: "1%", marginBlock: "0.5%", borderRadius: "10px", backgroundColor: "#3f51b5", color: "white", maxHeight: "28px", paddingInline: "1%" }}>
+                                                                        {skill.Name}
+                                                                    </div>
+                                                                )
+                                                            })}
+                                                        </SkillsDiv>
+                                                        <Divider />
+                                                    </ListItem>
+                                                )
+                                            })}
+                                        </List>
+                                    </div>
+                                </nav>
                             </JobsList2>
-                        </GrayPaper>    
+                        </GrayPaper>
                     </div>
 
                 </RightDiv>
 
             </Body>
 
-            <Footer/>
+            <Footer />
         </Container>
     );
 

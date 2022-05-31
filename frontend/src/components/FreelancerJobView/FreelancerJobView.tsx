@@ -24,8 +24,66 @@ import {
     ApplyJobDiv,
     StyledButton
 } from "./styles";
+import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import Job from "../../models/Job";
+import axios, { AxiosResponse } from "axios";
+import { Constants } from "../../util/Constants";
+import ApplyJobInput from "../../models/ApplyJobInput";
+import { useGlobalState } from "../..";
 
 export function FreelancerJobView() {
+
+    const [currentUser, setCurrentUser] = useGlobalState('currentUser');
+    const { jobId } = useParams();
+
+    const [job, setJob] = React.useState({} as Job);
+
+    const getJob = async () => {
+        try {
+            const job: AxiosResponse<Job> = await axios.get(
+                Constants.BASE_URL + "/api/job",
+                {
+                    params: {
+                        'jobId': jobId
+                    }
+                }
+            );
+            return job;
+        } catch (error: any) {
+            throw new Error(error)
+        }
+    }
+
+    const getJobSkills = (): JSX.Element[] => {
+        let elements = []
+        for (let skill of job.Skills) {
+            elements.push(
+                <Skill>
+                    {skill.Name}
+                </Skill>
+            );
+        }
+        return elements;
+    }
+
+    const apply = () => {
+        try {
+            axios.post(
+                Constants.BASE_URL + "/api/job/apply", new ApplyJobInput(job.Id, currentUser.Id)
+            );
+        } catch (error: any) {
+            throw new Error(error)
+        }
+    };
+
+    useEffect(() => {
+        if (!job) {
+            getJob().then(job => {
+                setJob(job.data);
+            });
+        }
+    }, []);
 
     return (
         <Container>
@@ -35,10 +93,14 @@ export function FreelancerJobView() {
 
                 <UpperDiv>
                     <TitleDiv>
-                        Logomarca estilo pontilismo para e-commerce de canecas bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+                        {job.Title}
                     </TitleDiv>
                     <PriceDiv>
-                        R$ 40 <sub>/h</sub>
+                        R$ {job.Payment}
+                        {!job.IsPaymentByHour ?
+                            <sub>/h</sub>
+                            :
+                            null}
                     </PriceDiv>
                 </UpperDiv>
                 <LowerDiv>
@@ -48,19 +110,9 @@ export function FreelancerJobView() {
                                 Habilidades Necessárias
                             </AbilityTitle>
                             <SkillsDiv>
-                                <Skill>
-                                    Design Gráfico
-                                </Skill>
-                                <Skill>
-                                    Imagens Vetorizadas
-                                </Skill>
-                                <Skill>
-                                    Adobe Illustrator
-                                </Skill>
-                                <Skill>
-                                    Adobe Photoshop
-                                </Skill>
-
+                                {
+                                    getJobSkills()
+                                }
                             </SkillsDiv>
                         </ContainerAbility>
                         <ContainerDescription>
@@ -69,13 +121,7 @@ export function FreelancerJobView() {
                             </DescriptionTitle>
                             <DescriptionContent>
                                 <p style={{ marginTop: "0" }}>
-                                    &emsp;Nulla dolor quam, auctor vel est quis, placerat vulputate urna. Aliquam sit amet tempor neque, eget volutpat mauris. Nulla ante sem, venenatis et nisi sed, vestibulum cursus turpis. Praesent ex nisl, rhoncus at elit quis, sollicitudin mattis elit. Nunc tincidunt orci quis ex tincidunt, a maximus ante maximus. Donec est magna, luctus ut semper sollicitudin, dapibus semper felis. In aliquet pharetra vulputate. Pellentesque quis volutpat enim. Nunc placerat porttitor leo ac tempor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque vulputate commodo ipsum nec fringilla.
-                                </p>
-                                <p>
-                                    &emsp;Donec magna quam, interdum sed orci id, pellentesque feugiat est. Nullam tincidunt accumsan porta. Ut diam arcu, euismod sit amet metus ut, congue faucibus risus. Proin hendrerit dui ut urna molestie bibendum. Cras viverra eget nunc eget egestas. Suspendisse vulputate eu magna ac ullamcorper. Mauris egestas sem fermentum, sagittis ligula nec, porta mauris
-                                </p>
-                                <p>
-                                    &emsp;Donec magna quam, interdum sed orci id, pellentesque feugiat est. Nullam tincidunt accumsan porta. Ut diam arcu, euismod sit amet metus ut, congue faucibus risus. Proin hendrerit dui ut urna molestie bibendum. Cras viverra eget nunc eget egestas. Suspendisse vulputate eu magna ac ullamcorper. Mauris egestas sem fermentum, sagittis ligula nec, porta mauris
+                                    {job.Description}
                                 </p>
                             </DescriptionContent>
                         </ContainerDescription>
@@ -88,15 +134,15 @@ export function FreelancerJobView() {
                             </AboutClientTitle>
                             <AboutClientSubtitle>
                                 <UserIcon src="default-user-icon.svg"></UserIcon>
-                                John Doe
+                                {job.Client.Name}
                             </AboutClientSubtitle>
                             <AboutClientContent>
-                                johndoe@example.com
+                                {job.Client.Email}
                             </AboutClientContent>
                         </AboutClientContainer>
                         <ApplyJobDiv>
                             <div style={{ textAlign: "center", marginBlock: "5%" }}>
-                                <StyledButton variant="contained"> Candidatar-se </StyledButton>
+                                <StyledButton variant="contained" onClick={apply}> Candidatar-se </StyledButton>
                             </div>
                         </ApplyJobDiv>
                     </LowerRightDiv>

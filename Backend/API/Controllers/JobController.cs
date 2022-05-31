@@ -82,7 +82,7 @@ namespace Backend.Controllers
         {
             try
             {
-                return Ok(jobService.CreateNewJob(input.Title, input.Description, input.Deadline, input.Payment, input.IsPaymentByHour, input.Skills, input.ClientId, input.AssignedFreelancerId));
+                return Ok(jobService.CreateNewJob(input.Title, input.Description, input.Deadline, input.Payment, input.IsPaymentByHour, input.Skills, input.ClientId));
             }
             catch (InvalidUserIdException ex)
             {

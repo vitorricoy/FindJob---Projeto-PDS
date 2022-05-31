@@ -30,6 +30,20 @@ namespace Backend.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+        
+        [HttpGet]
+        [Route("chats")]
+        public IActionResult GetUsersThatHaveChats([FromQuery(Name = "userId")] string userId)
+        {
+            try
+            {
+                return Ok(messageService.GetUsersThatHaveChats(userId));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
 
         [HttpGet]
         [Route("lastMessage")]
