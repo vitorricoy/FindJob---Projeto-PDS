@@ -62,7 +62,8 @@ const currencies = [
 export function JobsList () {
     const [currency, setCurrency] = React.useState('BRL');
 
-    const [freelancer, setFreelancer] = useGlobalState('freelancer');
+    const [currentUser, setCurrentUser] = useGlobalState('currentUser');
+    const freelancer = currentUser.IsFreelancer;
 
     const handleCurrencyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrency(event.target.value);

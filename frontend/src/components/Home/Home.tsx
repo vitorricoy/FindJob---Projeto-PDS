@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalState } from "../..";
 
 export function Home () {
-    const [freelancer, setFreelancer] = useGlobalState('freelancer');
+    const [currentUser, setCurrentUser] = useGlobalState('currentUser');
+    const freelancer = currentUser.IsFreelancer;
 
     let navigate = useNavigate();
 

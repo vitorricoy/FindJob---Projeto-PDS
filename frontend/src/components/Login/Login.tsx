@@ -15,12 +15,17 @@ import {
 } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { setGlobalState } from "../..";
+import axios, { AxiosResponse } from "axios";
+import { Constants } from "../../util/Constants";
+import User from "../../models/User";
 
 export function Login() {
     const [loggedIn, setLoggedIn] = React.useState(false);
 
     const [email, setEmail] = React.useState<string>("");
     const [password, setPassword] = React.useState<string>("");
+
+    const [loginError, setLoginError] = React.useState(false);
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
@@ -38,16 +43,27 @@ export function Login() {
     }
     },[loggedIn]);
 
-    const handleLoginButtonClick = (event: any) => {
+    const handleLoginButtonClick = async (event: any) => {
         const credentials = {
             "email": email,
             "password": password
         };
 
-        setGlobalState('freelancer', false);
-        setLoggedIn(true);
+        try {
+            const user: AxiosResponse<User> = await axios.get(
+                Constants.BASE_URL + "/api/user/login",
+                {
+                    params: credentials
+                }
+            );
+            setGlobalState("currentUser", user.data);
 
-        console.log(credentials)
+        } catch (error: any) {
+            setLoginError(true);
+            throw new Error(error);
+        }
+
+        setLoggedIn(true);
     }
 
     return (
@@ -75,6 +91,10 @@ export function Login() {
                     <StyledInputDiv>
                         <StyledPasswordInput id="login-password" label="Senha" variant="outlined" type="password" value={password} onChange={handlePasswordChange}/>
                     </StyledInputDiv>
+
+                    <div style={{color: "red", fontSize: "1.8vh"}}>
+                        {loginError && "E-mail ou senha inválidos."}
+                    </div>
 
                     <StyledInputDiv>
                         <StyledLoginButton variant="contained" onClick={handleLoginButtonClick}> Entrar </StyledLoginButton>
