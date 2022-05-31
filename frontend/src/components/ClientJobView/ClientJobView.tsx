@@ -36,12 +36,13 @@ import {
 import { Divider } from "@material-ui/core";
 import React, { FunctionComponent, useEffect } from "react";
 import { Rating } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGlobalState } from "../..";
 import Job from "../../models/Job";
 import { Constants } from "../../util/Constants";
 import axios, { AxiosResponse } from "axios";
 import RateJobInput from "../../models/RateJobInput";
+import CreateMessageInput from "../../models/CreateMessageInput";
 
 export interface Props {
     justifyContent: string;
@@ -54,6 +55,8 @@ export function ClientJobView() {
 
     const [job, setJob] = React.useState({} as Job);
     const [rating, setRating] = React.useState(0);
+
+    let navigate = useNavigate();
 
     const getJob = async () => {
         try {
@@ -85,6 +88,13 @@ export function ClientJobView() {
 
     const openChat = () => {
         // Cria mensagem vazia e redireciona
+        axios.post('/api/message', new CreateMessageInput('', new Date(), currentUser.Id, job.AssignedFreelancer.Id))
+            .then(() => {
+                navigate("/chat");
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     };
 
     const rateJob = () => {
