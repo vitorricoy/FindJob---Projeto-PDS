@@ -120,7 +120,6 @@ export function CreateJob() {
     };
 
     const handleDeadlineChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event);
         setDeadline(event.target.value);
     };
 
@@ -138,7 +137,8 @@ export function CreateJob() {
             "skills": abilities,
             "clientId": currentUser.id
         };
-        axios.post(Constants.BASE_URL + 'api/job', new CreateJobInput(job.title, job.description, Number(job.deadline), Number(job.payment), job.isPaymentByHour, job.skills, job.clientId))
+        console.log(job)
+        axios.post(Constants.BASE_URL + 'api/job', new CreateJobInput(job.title, job.description, parseInt(job.deadline), Number(job.payment), job.isPaymentByHour, job.skills, job.clientId))
             .catch(function (error) {
                 console.log(error);
             });
