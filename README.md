@@ -121,11 +121,24 @@ https://www.figma.com/file/MHr9zWxxdfCjEYeTqEYSRX/FindJob
 
 ### Documentação da Arquitetura
 
+A escolha da arquitetura do sistema é essencial em seu design, e traz diversos impactos positivos ao seu desenvolvimento. Nesse contexto, optamos por uma arquitetura baseada em Domain-Driven Design e Arquitetura Hexagonal como forma de organizar a estrutura do sistema.
+
 #### Arquitetura Hexagonal
 
 O sistema adota a arquitetura hexagonal com o objetivo de separar o código relativo às tecnologias usadas (Web API e SQLite com Entity Framework Core) do código do domínio do sistema. Assim, para isso, foram criados três pacotes principais: Controllers, Domain e Persistence. O pacote de Controllers implementa a Web API, o pacote de Persistence implementa o acesso ao banco de dados SQLite e o pacote Domain implementa as lógicas de negócio.
 
-Falar das portas de saída e entrada e dos adaptadores.
+Os pontos do sistema nos quais as tecnologias mencionadas são acessadas foram encapsulados em adaptadores, classes que servem como mediadoras do sistema ao acesso externo. Nesse caso, os adaptadores estão localizados nos pacotes Controllers, onde a entrada de informações é feita na API, e Persistance, onde é feita a saída de dados para o banco.
+
+Para cada adaptador, o acesso entre ele e o domínio é feito por meio de uma porta. Uma porta define uma interface, acessada ou implementada por cada adaptador, para permitir o acesso entre ele e o domínio. Desse modo, elas servem como forma de inverter as dependências do domínio aos adaptadores, nos quais as tecnologias são acessadas, estabelecendo por completo o seu isolamento. No sistema, as portas de entrada são definidas como interfaces acessadas pelos adaptadores em Controllers, e são implementadas pelas classes de serviço do domínio. Já as portas de saída são definidas como interfaces acessadas pelo domínio, e implementadas pelos repositórios do banco em Persistance. A seguinte imagem ilustra a relação do sistema com suas portas e adaptadores:
+
+[imagem :)]
+
+Note que há uma relação direta entre os adaptadores, as portas e os serviços do domínio. Evidentemente, como os serviços são bem divididos nas partes do sistema de interesse do contexto, o mais coerente seria que as portas e adaptadores também seguissem essa divisão.
+
+Desse modo, o pacote Controllers possui quatro adaptadores, UserController, JobController, SkillController e MessageController, cada um contendo as rotas das APIs relativas às ações de cada serviço associado, e ligado a ele por meio de uma interface que cada serviço implementa. Já o pacote Persistance possui também quatro adaptadores, UserRepository, JobRepository, SkillRepository e MessageRepository, cada um implementando os métodos de acesso ao banco de dados utilizados por cada serviço do domínio, e acessado por ele por meio de uma interface que cada repositório implementa.
+
+Com isso, o domínio fica completamente livre de tecnologias, que é o principal preceito da Arquitetura Hexagonal.
+
 
 #### Domain-Driven Design
 
