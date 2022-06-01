@@ -87,6 +87,7 @@ export function Register() {
     };
 
     const handleSliderStop = (event: any, newValue: number | number[]) => {
+        console.log(event.target.ariaLabel);
         registeredSkills[event.target.ariaLabel] = newValue;
         setRegisteredSkills(registeredSkills);
     };
