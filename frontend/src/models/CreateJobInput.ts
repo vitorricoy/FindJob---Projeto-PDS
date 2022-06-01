@@ -1,5 +1,3 @@
-import User from "./User";
-
 export default class CreateJobInput {
     Title: string;
     Description: string;

@@ -1,4 +1,4 @@
-import { Badge, Box, Button, Drawer, List, ListItem, ListItemText, Menu, MenuItem } from "@material-ui/core";
+import { Badge, Box, Button, Drawer, List, ListItem, ListItemText } from "@material-ui/core";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { ListItemButton } from "@mui/material";
 import React from "react";
@@ -17,8 +17,8 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalState } from "../..";
 
 export function Header() {
-    const [currentUser, setCurrentUser] = useGlobalState('currentUser');
-    const [notifications, setNotifications] = React.useState(0);
+    const [currentUser] = useGlobalState('currentUser');
+    const [notifications] = React.useState(0);
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);

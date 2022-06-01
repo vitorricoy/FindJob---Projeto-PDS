@@ -62,7 +62,7 @@ const currencies = [
 export function JobsList() {
     const [currency, setCurrency] = React.useState('R$');
 
-    const [currentUser, setCurrentUser] = useGlobalState('currentUser');
+    const [currentUser] = useGlobalState('currentUser');
 
     const handleCurrencyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrency(event.target.value);
@@ -173,15 +173,12 @@ export function JobsList() {
 
     function checkSkills(skills: Skill[]) {
         if (abilities.length > 0) {
-            let jobSkills = skills.map(skill => {
-                return skill.name;
+            let match = abilities.map(ability => {
+                return !!(skills.find(skill => skill.name === ability));
             });
 
-            if (JSON.stringify(abilities.sort()) !== JSON.stringify(jobSkills.sort())) {
-                return false
-            }
+            return !!(match.find(term => term === false));
         }
-        return true;
     }
 
     const handleSearchQueryChange = (event: any) => {
@@ -251,8 +248,6 @@ export function JobsList() {
             (currentUser.isFreelancer ? navigate("/freelancer-job-view/" + ref) : navigate("/client-job-view/" + ref));
         }
     };
-
-
 
     return (
         <Container>
