@@ -23,12 +23,13 @@ namespace Backend.Domain.Entity
         public bool Active { get; set; }
         public bool Available { get; set; }
 
-        public JobModel(string id, string title, string description, double payment, bool isPaymentByHour, UserModel client, UserModel assignedFreelancer, bool active, bool available)
+        public JobModel(string id, string title, int deadline, string description, double payment, bool isPaymentByHour, UserModel client, UserModel assignedFreelancer, bool active, bool available)
         {
             Id = id;
             Title = title;
             Description = description;
             Payment = payment;
+            Deadline = deadline;
             IsPaymentByHour = isPaymentByHour;
             Client = client;
             AssignedFreelancer = assignedFreelancer;
@@ -38,10 +39,11 @@ namespace Backend.Domain.Entity
             ClientId = client.Id;
         }
 
-        public JobModel(string id, string title, string description, double payment, bool isPaymentByHour, string client, string? assignedFreelancer, bool active, bool available)
+        public JobModel(string id, string title, int deadline, string description, double payment, bool isPaymentByHour, string client, string? assignedFreelancer, bool active, bool available)
         {
             Id = id;
             Title = title;
+            Deadline = deadline;
             Description = description;
             Payment = payment;
             IsPaymentByHour = isPaymentByHour;
@@ -62,7 +64,7 @@ namespace Backend.Domain.Entity
             {
                 return null;
             }
-            return new JobModel(job.Id, job.Title, job.Description, job.Payment, job.IsPaymentByHour, job.Client.Id, 
+            return new JobModel(job.Id, job.Title, job.Deadline, job.Description, job.Payment, job.IsPaymentByHour, job.Client.Id, 
                     job?.AssignedFreelancer?.Id, job.Active, job.Available);
         }
     }

@@ -174,10 +174,10 @@ export function JobsList() {
     function checkSkills(skills: Skill[]) {
         if (abilities.length > 0) {
             let match = abilities.map(ability => {
-                return !!(skills.find(skill => skill.name === ability));
+                return !!(skills.filter(skill => skill.name === ability).length);
             });
 
-            return !!(match.find(term => term === false));
+            return !(match.filter(term => term === false).length);
         }
         return true;
     }
@@ -199,7 +199,6 @@ export function JobsList() {
 
     const getJobs = async () => {
         try {
-            console.log(currentUser, myJobs);
             if (currentUser.isFreelancer && myJobs === 'true') {
                 var jobs: AxiosResponse<Job[]> = await axios.get(
                     Constants.BASE_URL + "api/job/list",

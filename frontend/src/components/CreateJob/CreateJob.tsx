@@ -136,7 +136,6 @@ export function CreateJob() {
             "skills": abilities,
             "clientId": currentUser.id
         };
-        console.log(job)
         axios.post(Constants.BASE_URL + 'api/job', new CreateJobInput(job.title, job.description, parseInt(job.deadline), Number(job.payment), job.isPaymentByHour, job.skills, job.clientId))
             .catch(function (error) {
                 console.log(error);

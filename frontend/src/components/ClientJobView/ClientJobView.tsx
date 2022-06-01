@@ -164,7 +164,6 @@ export function ClientJobView() {
     useEffect(() => {
         if (!Object.keys(job).length) {
             getJob().then(job => {
-                console.log(job);
                 setJob(job.data);
             });
         }
