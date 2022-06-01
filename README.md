@@ -125,4 +125,8 @@ https://www.figma.com/file/MHr9zWxxdfCjEYeTqEYSRX/FindJob
 
 O sistema adota a arquitetura hexagonal com o objetivo de separar o código relativo às tecnologias usadas (Web API e SQLite com Entity Framework Core) do código do domínio do sistema. Assim, para isso, foram criados três pacotes principais: Controllers, Domain e Persistence. O pacote de Controllers implementa a Web API, o pacote de Persistence implementa o acesso ao banco de dados SQLite e o pacote Domain implementa as lógicas de negócio.
 
+Falar das portas de saída e entrada e dos adaptadores.
+
 #### Domain-Driven Design
+
+Falar das entidades, classes de serviço, objeto de valor, agregados e da linguagem ubíqua.
