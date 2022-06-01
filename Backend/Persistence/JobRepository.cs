@@ -89,7 +89,9 @@ namespace Backend.Persistence
             {
                 if (!dbContext.JobSkills.Any(s => s.JobId == job.Id && s.SkillId == jobSkill.SkillId))
                 {
-                    dbContext.JobSkills.Add(jobSkill);
+                    var entity = dbContext.JobSkills.Add(jobSkill).Entity;
+                    dbContext.SaveChanges();
+                    dbContext.Entry<JobRequirementModel>(entity).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
                 }
             }
 
@@ -97,7 +99,9 @@ namespace Backend.Persistence
             {
                 if (!dbContext.JobCandidates.Any(c => c.JobId == job.Id && c.CandidateId == jobCand.CandidateId))
                 {
-                    dbContext.JobCandidates.Add(jobCand);
+                    var entity = dbContext.JobCandidates.Add(jobCand).Entity;
+                    dbContext.SaveChanges();
+                    dbContext.Entry<JobCandidateModel>(entity).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
                 }
             }
 

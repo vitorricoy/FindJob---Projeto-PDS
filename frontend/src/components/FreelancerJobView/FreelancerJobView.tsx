@@ -91,6 +91,7 @@ export function FreelancerJobView() {
                         setApplied(true);
                     }
                 }
+                console.log(job);
                 setJob(job.data);
             });
         }

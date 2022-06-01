@@ -105,7 +105,9 @@ export function ClientJobView() {
         try {
             axios.post(
                 Constants.BASE_URL + "api/job/rate", new RateJobInput(job.id, rating)
-            );
+            ).then(res => {
+                navigate('/home');
+            });
         } catch (error: any) {
             throw new Error(error)
         }

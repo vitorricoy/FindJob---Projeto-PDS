@@ -18,7 +18,7 @@ namespace Backend.Persistence
                 return null;
             }
 
-            List<JobRequirementModel> skillPairs = dbContext.JobSkills.Where(js => js.Job.Id == jobMod.Id).ToList();
+            List<JobRequirementModel> skillPairs = dbContext.JobSkills.Where(js => js.JobId == jobMod.Id).ToList();
             List<Skill> skills = new List<Skill>();
 
             foreach (JobRequirementModel pair in skillPairs)
@@ -26,7 +26,7 @@ namespace Backend.Persistence
                 skills.Add(ToDomainObject(dbContext.Skills.Where(s => s.NormalizedName == pair.SkillId).First()));
             }
 
-            List<JobCandidateModel> candPairs = dbContext.JobCandidates.Where(js => js.Job.Id == jobMod.Id).ToList();
+            List<JobCandidateModel> candPairs = dbContext.JobCandidates.Where(js => js.JobId == jobMod.Id).ToList();
             List<User> candidates = new List<User>();
 
             foreach (JobCandidateModel pair in candPairs)
@@ -46,7 +46,7 @@ namespace Backend.Persistence
             {
                 return null;
             }
-            List<UserProficiencyModel> skillPairs = dbContext.UserSkills.Where(us => us.Freelancer.Id == userMod.Id).ToList();
+            List<UserProficiencyModel> skillPairs = dbContext.UserSkills.Where(us => us.UserId == userMod.Id).ToList();
             Dictionary<Skill, Tuple<double, int>> skills = new Dictionary<Skill, Tuple<double, int>>();
 
             foreach (UserProficiencyModel pair in skillPairs)
