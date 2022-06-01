@@ -133,6 +133,7 @@ export function Register() {
                 .then((res) => {
                     localStorage.setItem("currentUser", JSON.stringify(res.data));
                     setGlobalState("currentUser", res.data);
+                    navigate("/home");
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -150,12 +151,12 @@ export function Register() {
                 .then((res) => {
                     localStorage.setItem("currentUser", JSON.stringify(res.data));
                     setGlobalState("currentUser", res.data);
+                    navigate("/home");
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         }
-        navigate("/home");
     }
 
     return (

@@ -137,11 +137,12 @@ export function CreateJob() {
             "clientId": currentUser.id
         };
         axios.post(Constants.BASE_URL + 'api/job', new CreateJobInput(job.title, job.description, parseInt(job.deadline), Number(job.payment), job.isPaymentByHour, job.skills, job.clientId))
+            .then((res) => {
+                navigate("/jobs-list/true");
+            })
             .catch(function (error) {
                 console.log(error);
             });
-
-        return navigate("/jobs-list/true");
     }
 
     return (
