@@ -117,15 +117,19 @@ export function Register() {
     const handleRegisterClick = (event: any) => {
 
         if (checked) {
-            let skills = abilities;
-            let ratings: any[] = Object.values(registeredSkills)
+            let skills = abilities.map(s => s.name);
+            let ratings = [];
+
+            for (let skill of skills) {
+                ratings.push(registeredSkills[skill] || 0);
+            }
 
             const info = {
                 "email": email,
                 "password": password,
                 "name": fullName,
                 "phone": phoneNumber,
-                "skills": skills.map(s => s.name),
+                "skills": skills,
                 "ratings": ratings
             }
 
