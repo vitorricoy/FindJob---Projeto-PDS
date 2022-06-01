@@ -172,3 +172,14 @@ A classe SkillService possui os métodos associados ao objeto de valor Skill. Se
 A classe MessageService possui os métodos associados à entidade Message. Como métodos ela tem CreateMessage, que cria no banco uma nova mensagem, dados seus atributos, GetHistory, que obtém do banco todas as mensagens dados os ids de dois usuários, em ordem cronológica, GetLastMessage, que obtém do banco a última mensagem trocada dados os ids de dois usuários e GetUsersThatHaveChats que, dado o id de um usuário, obtém do banco os usuários com os quais o usuário dado trocou mensagens.
 
 A classe JobService possui os métodos associados à entidade Job. Como métodos ela tem CreateNewJob, que cria um novo job no banco a partir de seus atributos, GetJobById, que busca no banco e retorna a entidade de um job dado seu id, ListJobsByUser, que busca no banco e retorna todos os jobs dos quais o usuário é cliente ou freelancer escolhido, SearchJobsForFreelancer, que busca no banco e retorna os jobs disponíveis, ordenados pela compatibilidade com as skills do freelancer, CandidateForJob, que adiciona um usuário à lista de candidatos de um job, GetCandidatesBySkill, que obtém os candidatos de um job e os ordena pela compatibilidade de suas skills com o job, ChooseFreelancerForJob, que escolhe, entre os jobs, o freelancer que irá realizá-lo, tornando o job indisponível, e RateJob, que avalia o desempenho do freelancer na execução do job.
+
+##### Agregados
+
+Agregados em DDD são coleções de entidades e objetos de valor, com uma entidade raiz. Conforme mencionado na descrição das entidades, algumas delas, no sistema, possuem dentro de si coleções de outras entidades e objetos de valor. É o caso das entidades User e Job.
+A entidade User possui um dicionário associando Skills a uma tupla de um double e um inteiro, que representam a classificação média do usuário naquela skill e o número de classificações feitas. Nesse caso, o User é a raiz do agregado, e as Skills os componentes.
+
+A entidade Job, por sua vez, possui uma lista de usuários, representando os candidatos do job, e uma lista de skills, representando as skills necessárias para o job. Um mesmo job é a raiz de dois agregados, representados pelas listas.
+
+##### Repositórios
+ 
+Em DDD, Repositórios são classes que encapsulam os métodos de acesso ao banco de dados. Como estamos utilizando DDD em conjunto com Arquitetura Hexagonal, os repositórios, nesse caso, são os adaptadores já mencionados. A diferença nesse caso é que, em vez de os serviços acessarem os repositórios diretamente, eles o fazem por meio de portas, as interfaces mencionadas antes.
