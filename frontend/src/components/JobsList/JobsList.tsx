@@ -179,6 +179,7 @@ export function JobsList() {
 
             return !!(match.find(term => term === false));
         }
+        return true;
     }
 
     const handleSearchQueryChange = (event: any) => {
