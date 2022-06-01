@@ -121,6 +121,7 @@ export function Register() {
             let ratings = [];
 
             for (let skill of skills) {
+                console.log(skill);
                 ratings.push(registeredSkills[skill] || 0);
             }
 
