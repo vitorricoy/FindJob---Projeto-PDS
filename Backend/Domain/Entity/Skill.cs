@@ -22,11 +22,10 @@ namespace Backend.Domain.Entity
 
         public override int GetHashCode()
         {
-            byte[] idBytes = Encoding.ASCII.GetBytes(NormalizedName);
-            return BitConverter.ToInt32(idBytes);
+            return NormalizedName.GetHashCode();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null)
             {

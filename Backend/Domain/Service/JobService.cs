@@ -194,7 +194,7 @@ namespace Backend.Domain.Service
                 }
             }
             
-            return Math.Sign(ratings1.Average() - ratings2.Average());
+            return Math.Sign(ratings2.Average() - ratings1.Average());
         }
 
         public List<User> GetJobCandidatesBySkill(string jobId)
