@@ -1,5 +1,6 @@
 import { List, ListItem } from "@material-ui/core";
 import axios, { AxiosResponse } from "axios";
+import { createVerify } from "crypto";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { setGlobalState } from "../..";
@@ -119,7 +120,7 @@ export function Register() {
         if (checked) {
             let skills = abilities.map(s => s.name);
             let ratings = [];
-
+            console.log(registeredSkills);
             for (let skill of skills) {
                 console.log(skill);
                 ratings.push(registeredSkills[skill] || 0);
