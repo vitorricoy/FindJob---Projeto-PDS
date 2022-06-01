@@ -13,7 +13,7 @@ namespace Backend.Persistence
 
         protected Job ToDomainObject(JobModel jobMod)
         {
-            if (jobMod == null)
+           if (jobMod == null)
             {
                 return null;
             }
@@ -34,7 +34,10 @@ namespace Backend.Persistence
                 candidates.Add(ToDomainObject(dbContext.Users.Where(u => u.Id == pair.CandidateId).First()));
             }
 
-            return new Job(jobMod.Id, jobMod.Title, jobMod.Description, jobMod.Deadline, jobMod.Payment, jobMod.IsPaymentByHour, skills, ToDomainObject(jobMod.Client), ToDomainObject(jobMod.AssignedFreelancer), candidates, jobMod.Active, jobMod.Available);
+            UserModel client = dbContext.Users.Where(u => u.Id == jobMod.ClientId).FirstOrDefault();
+            UserModel assignedFreelancer = dbContext.Users.Where(u => u.Id == jobMod.AssignedFreelancerId).FirstOrDefault();
+
+            return new Job(jobMod.Id, jobMod.Title, jobMod.Description, jobMod.Deadline, jobMod.Payment, jobMod.IsPaymentByHour, skills, ToDomainObject(client), ToDomainObject(assignedFreelancer), candidates, jobMod.Active, jobMod.Available);
         }
 
         protected User ToDomainObject(UserModel userMod)
@@ -48,7 +51,7 @@ namespace Backend.Persistence
 
             foreach (UserProficiencyModel pair in skillPairs)
             {
-                skills.Add(ToDomainObject(dbContext.Skills.Where(s => s.NormalizedName == pair.Skill.NormalizedName).First()),
+                skills.Add(ToDomainObject(dbContext.Skills.Where(s => s.NormalizedName == pair.SkillId).First()),
                     new Tuple<double, int>(pair.Rating, pair.RatingsDone));
             }
 
@@ -62,8 +65,11 @@ namespace Backend.Persistence
                 return null;
             }
 
-            User sender = ToDomainObject(mesMod.Sender);
-            User receiver = ToDomainObject(mesMod.Receiver);
+            UserModel senderModel = dbContext.Users.Where(u => u.Id == mesMod.SenderId).FirstOrDefault();
+            UserModel receiverModel = dbContext.Users.Where(u => u.Id == mesMod.ReceiverId).FirstOrDefault();
+
+            User sender = ToDomainObject(senderModel);
+            User receiver = ToDomainObject(receiverModel);
             return new Message(mesMod.Id, mesMod.Content, sender, receiver, mesMod.SentTime, mesMod.IsRead);
         }
 

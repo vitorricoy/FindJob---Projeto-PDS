@@ -10,7 +10,7 @@
         public bool IsPaymentByHour { get; set; }
         public List<Skill> Skills { get; set; }
         public User Client { get; set; }
-        public User? AssignedFreelancer;
+        public User? AssignedFreelancer { get; set; }
         public List<User> Candidates { get; set; }
         public bool Active { get; set; }
         public bool Available { get; set; }

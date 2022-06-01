@@ -13,6 +13,27 @@ namespace Backend.Persistence
         {
             modelBuilder.Entity<JobCandidateModel>().HasKey(cm => new { cm.CandidateId, cm.JobId });
             modelBuilder.Entity<JobRequirementModel>().HasKey(rm => new { rm.SkillId, rm.JobId });
+            modelBuilder.Entity<UserProficiencyModel>().HasKey(up => new { up.UserId, up.SkillId });
+
+            modelBuilder.Entity<JobModel>()
+                .HasOne<UserModel>(q => q.Client)
+                .WithMany()
+                .HasForeignKey(r => r.ClientId);
+
+            modelBuilder.Entity<JobModel>()
+                .HasOne<UserModel>(q => q.AssignedFreelancer)
+                .WithMany()
+                .HasForeignKey(r => r.AssignedFreelancerId);
+
+            modelBuilder.Entity<MessageModel>()
+                .HasOne<UserModel>(q => q.Sender)
+                .WithMany()
+                .HasForeignKey(r => r.SenderId);
+
+            modelBuilder.Entity<MessageModel>()
+                .HasOne<UserModel>(q => q.Receiver)
+                .WithMany()
+                .HasForeignKey(r => r.ReceiverId);
         }
 
         public DbSet<JobModel> Jobs { get; set; }

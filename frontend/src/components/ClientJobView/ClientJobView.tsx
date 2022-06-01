@@ -43,6 +43,7 @@ import { Constants } from "../../util/Constants";
 import axios, { AxiosResponse } from "axios";
 import RateJobInput from "../../models/RateJobInput";
 import CreateMessageInput from "../../models/CreateMessageInput";
+import ApplyJobInput from "../../models/ApplyJobInput";
 
 export interface Props {
     justifyContent: string;
@@ -61,7 +62,7 @@ export function ClientJobView() {
     const getJob = async () => {
         try {
             const job: AxiosResponse<Job> = await axios.get(
-                Constants.BASE_URL + "/api/job",
+                Constants.BASE_URL + "api/job",
                 {
                     params: {
                         'jobId': jobId
@@ -76,19 +77,21 @@ export function ClientJobView() {
 
     const getJobSkills = (): JSX.Element[] => {
         let elements = []
-        for (let skill of job.skills) {
-            elements.push(
-                <Skill>
-                    {skill.name}
-                </Skill>
-            );
+        if (job) {
+            for (let skill of job.skills || []) {
+                elements.push(
+                    <Skill>
+                        {skill.name}
+                    </Skill>
+                );
+            }
         }
         return elements;
     }
 
     const openChat = () => {
         // Cria mensagem vazia e redireciona
-        axios.post('/api/message', new CreateMessageInput('', new Date(), currentUser.id, job.assignedFreelancer.id))
+        axios.post(Constants.BASE_URL + 'api/message', new CreateMessageInput('', new Date(), currentUser.id, job.assignedFreelancer.id))
             .then(() => {
                 navigate("/chat");
             })
@@ -101,8 +104,22 @@ export function ClientJobView() {
         // Avalia
         try {
             axios.post(
-                Constants.BASE_URL + "/api/job/rate", new RateJobInput(job.id, rating)
+                Constants.BASE_URL + "api/job/rate", new RateJobInput(job.id, rating)
             );
+        } catch (error: any) {
+            throw new Error(error)
+        }
+    };
+
+    const choose = (userId: string) => {
+        try {
+            axios.post(
+                Constants.BASE_URL + "api/job/choose", new ApplyJobInput(job.id, userId)
+            ).then((res) => {
+                getJob().then(job => {
+                    setJob(job.data);
+                });
+            });
         } catch (error: any) {
             throw new Error(error)
         }
@@ -110,23 +127,31 @@ export function ClientJobView() {
 
     const getFreelancerBidings = () => {
         let elements = []
-        for (let freelancer of job.candidates) {
+        for (let freelancer of job.candidates || []) {
             elements.push(
                 <FreelancerBidingContainer>
                     <UserInfo>
-                        <UserIcon src="default-user-icon.svg"></UserIcon>
+                        <UserIcon src="../../default-user-icon.svg"></UserIcon>
                         <UserName>{freelancer.name}</UserName>
                     </UserInfo>
                     <HireDiv>
                         <div style={{ textAlign: "center" }}>
-                            <StyledHireButton variant="contained"> Contratar </StyledHireButton>
+                            <StyledHireButton variant="contained" onClick={() => choose(freelancer.id)} > Contratar </StyledHireButton>
                         </div>
                     </HireDiv>
                 </FreelancerBidingContainer>
             );
             elements.push(<Divider />);
         }
-        elements.pop(); // Remove ultimo divider
+        if (elements.length) {
+            elements.pop(); // Remove ultimo divider
+        } else {
+            elements.push(
+                <FreelancerBidingContainer>
+                    <DescriptionContent>Job ainda sem ofertas!</DescriptionContent>
+                </FreelancerBidingContainer>
+            )
+        }
         return elements;
     };
 
@@ -137,14 +162,15 @@ export function ClientJobView() {
     };
 
     useEffect(() => {
-        if (!job) {
+        if (!Object.keys(job).length) {
             getJob().then(job => {
+                console.log(job);
                 setJob(job.data);
             });
         }
     }, []);
 
-    return (
+    return !Object.keys(job).length ? <div></div> : (
         <Container>
             <Header />
 
@@ -188,7 +214,7 @@ export function ClientJobView() {
 
                     <LowerRightDiv justifyContent={job.available ? "space-between" : "center"}>
                         {
-                            job.available ?
+                            !job.available ?
                                 (
                                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", alignContent: "center" }}>
                                         <AboutFreelancerContainer>
@@ -196,7 +222,7 @@ export function ClientJobView() {
                                                 Sobre o Freelancer Contratado
                                             </AboutFreelancerTitle>
                                             <AboutFreelancerSubtitle>
-                                                <FreelancerIcon src="default-user-icon.svg"></FreelancerIcon>
+                                                <FreelancerIcon src="../../default-user-icon.svg"></FreelancerIcon>
                                                 {job.assignedFreelancer.name}
                                             </AboutFreelancerSubtitle>
                                             <AboutFreelancerContent>

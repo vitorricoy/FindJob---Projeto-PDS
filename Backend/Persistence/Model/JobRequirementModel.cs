@@ -12,11 +12,11 @@ namespace Backend.Domain.Entity
 
 
         [ForeignKey("JobId")]
-        public virtual JobModel Job { get; set; }
+        public JobModel Job { get; set; }
 
         [Key]
         [ForeignKey("SkillId")]
-        public virtual SkillModel Skill { get; set; }
+        public SkillModel Skill { get; set; }
 
 
         public JobRequirementModel(JobModel job, SkillModel skill)

@@ -23,8 +23,9 @@ namespace Backend.Persistence
 
         public Job GetJobById(string jobId)
         {
-            Job job = ToDomainObject(dbContext.Jobs.Where(j => j.Id.Equals(jobId)).FirstOrDefault());
-            dbContext.SaveChanges();
+            JobModel entity = dbContext.Jobs.Where(j => j.Id.Equals(jobId)).FirstOrDefault();
+            Job job = ToDomainObject(entity);
+            dbContext.Entry<JobModel>(entity).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
             return job;
         }
 
@@ -79,11 +80,14 @@ namespace Backend.Persistence
         public void UpdateJob(Job job)
         {
 
-            dbContext.Jobs.Update(JobModel.FromDomainObject(job));
-            
-            foreach(JobRequirementModel jobSkill in JobRequirementModel.FromJobDomainObject(job))
+            JobModel jobEntity = dbContext.Jobs.Update(JobModel.FromDomainObject(job)).Entity;
+
+            dbContext.SaveChanges();
+            dbContext.Entry<JobModel>(jobEntity).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+
+            foreach (JobRequirementModel jobSkill in JobRequirementModel.FromJobDomainObject(job))
             {
-                if (!dbContext.JobSkills.Any(s => s.Job.Id == job.Id && s.Skill.NormalizedName == jobSkill.Skill.NormalizedName))
+                if (!dbContext.JobSkills.Any(s => s.JobId == job.Id && s.SkillId == jobSkill.SkillId))
                 {
                     dbContext.JobSkills.Add(jobSkill);
                 }
@@ -91,7 +95,7 @@ namespace Backend.Persistence
 
             foreach (JobCandidateModel jobCand in JobCandidateModel.FromJobDomainObject(job))
             {
-                if (!dbContext.JobCandidates.Any(c => c.Job.Id == job.Id && c.Candidate.Id == jobCand.Candidate.Id))
+                if (!dbContext.JobCandidates.Any(c => c.JobId == job.Id && c.CandidateId == jobCand.CandidateId))
                 {
                     dbContext.JobCandidates.Add(jobCand);
                 }

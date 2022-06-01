@@ -24,13 +24,123 @@ import {
 } from "./styles";
 import { Constants } from "../../util/Constants";
 import User from "../../models/User";
-import React from "react";
+import React, { useEffect } from "react";
 import CreateMessageInput from "../../models/CreateMessageInput";
 
 
 export function Chat() {
     const [currentUser, setCurrentUser] = useGlobalState('currentUser');
-    const [conversationUser, setConversationUser] = React.useState<User>();
+    const [conversationUser, setConversationUser] = React.useState<User>({} as User);
+
+    const [userChatElements, setUserChatElements] = React.useState<JSX.Element[]>([]);
+    const [conversationElements, setConversationElements] = React.useState<JSX.Element[]>([]);
+
+    const getUserChat = (conversationUser: User, currentUser: User) => {
+        if (!Object.keys(conversationUser).length) {
+            return null;
+        }
+        let elements: JSX.Element[] = [];
+        elements.push(
+            <ConversationHeader>
+                <Avatar src={"../default-user-icon.svg"} name="Emily" />
+                <ConversationHeader.Content userName={conversationUser.name} info={conversationUser.isFreelancer ? "Freelancer" : "Cliente"} />
+            </ConversationHeader>
+        );
+
+        getConversationHistory(currentUser.id, conversationUser.id).then(messagesData => {
+            let messages = messagesData.data;
+            messages.reverse();
+            messages = messages.filter(m => m.content);
+            let messageElements = [];
+
+            for (let i = 0; i < messages.length; i++) {
+                if (i === 0 || new Date(messages[i].sentTime).toLocaleDateString() !== new Date(messages[i - 1].sentTime).toLocaleDateString()) {
+                    messageElements.push(
+                        <MessageSeparator>
+                            {getFormatedDate(new Date(messages[i].sentTime))}
+                        </MessageSeparator>
+                    );
+                }
+                messageElements.push(
+                    <Message key={0} model={{
+                        message: messages[i].content,
+                        sentTime: new Date(messages[i].sentTime).getHours() + ":" + new Date(messages[i].sentTime).getMinutes(),
+                        direction: messages[i].receiver.id === currentUser.id ? 'incoming' : 'outgoing',
+                        position: "single"
+                    }} />
+                );
+            }
+
+            elements.push(
+                <MessageList>
+                    {messageElements}
+                </MessageList>
+            );
+            elements.push(
+                <MessageInput attachButton={false} placeholder="Digite sua mensagem..." onSend={(innerHtml: String, textContent: String, innerText: String, nodes: NodeList) => sendMessage(textContent as string, currentUser, conversationUser)} />
+            );
+            setUserChatElements(elements);
+        });
+
+    }
+
+    const getConversationsComponents = (currentUser: User) => {
+        let conversations: JSX.Element[] = []
+        getConversations(currentUser.id).then(usersData => {
+            let users = usersData.data;
+            let promises = [];
+            for (let user of users) {
+                promises.push(getLastSentMessage(currentUser.id, user.id));
+            }
+            Promise.all(promises).then((promisesData: AxiosResponse<MessageModel>[]) => {
+                for (let i = 0; i < promisesData.length; i++) {
+                    let message = promisesData[i].data;
+                    let user = users[i];
+                    if (!message.content) {
+                        conversations.push(
+                            <Conversation onClick={() => setConversationUser(user)} className="regular-conversation" key={user.id} name={user.name}>
+                                <Avatar src={"../default-user-icon.svg"} />
+                            </Conversation>
+                        );
+                    } else if (message.sender.id !== user.id) {
+                        conversations.push(
+                            <Conversation onClick={() => setConversationUser(user)} className="regular-conversation" key={user.id} name={user.name} info={"Você: " + message.content}>
+                                <Avatar src={"../default-user-icon.svg"} />
+                            </Conversation>
+                        );
+                    } else {
+                        conversations.push(
+                            <Conversation onClick={() => setConversationUser(user)} className="regular-conversation" key={user.id} name={user.name} info={user.name.split(' ')[0] + ": " + message.content}>
+                                <Avatar src={"../default-user-icon.svg"} />
+                            </Conversation>
+                        );
+                    }
+                }
+                setConversationElements(conversations);
+            })
+
+        })
+    };
+
+    useEffect(() => {
+        getUserChat(conversationUser, currentUser);
+        getConversationsComponents(currentUser);
+    }, []);
+
+    useEffect(() => {
+        getUserChat(conversationUser, currentUser);
+        getConversationsComponents(currentUser);
+    }, [conversationUser]);
+
+    const sendMessage = (textContent: string, currentUser: User, conversationUser: User) => {
+        axios.post(Constants.BASE_URL + 'api/message', new CreateMessageInput(textContent, new Date(), currentUser.id, conversationUser.id))
+            .then((res) => {
+                getUserChat(conversationUser, currentUser);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
 
     return <div>
         <Header />
@@ -45,11 +155,11 @@ export function Chat() {
                                 </MessagesTextTitle>
                             </Avatar>
                         </Conversation>
-                        {getConversationsComponents(currentUser, setConversationUser)}
+                        {conversationElements}
                     </ConversationList>
                 </Sidebar>
                 <ChatContainerStyled>
-                    {getUserChat(conversationUser!, currentUser)}
+                    {userChatElements}
                 </ChatContainerStyled>
             </Container>
         </ChatStyle>
@@ -58,99 +168,19 @@ export function Chat() {
 
 }
 
-const getUserChat = async (conversationUser: User, currentUser: User) => {
-
-    let elements: JSX.Element[] = [];
-    elements.push(
-        <ConversationHeader>
-            <Avatar src={"default-user-icon.svg"} name="Emily" />
-            <ConversationHeader.Content userName="Emily" info="Freelancer" />
-        </ConversationHeader>
-    );
-
-    let messages: MessageModel[] = (await getConversationHistory(currentUser.id, conversationUser.id)).data;
-
-    let messageElements = [];
-
-    for (let i = 0; i < messages.length; i++) {
-        if (!messages[i].Content) {
-            continue;
-        }
-        if (i === 0 || messages[i].SentTime.toLocaleDateString() !== messages[i - 1].SentTime.toLocaleDateString()) {
-            messageElements.push(
-                <MessageSeparator>
-                    {getFormatedDate(messages[i].SentTime)}
-                </MessageSeparator>
-            );
-        }
-        messageElements.push(
-            <Message key={0} model={{
-                message: messages[i].Content,
-                sentTime: messages[i].SentTime.getHours() + ":" + messages[i].SentTime.getMinutes(),
-                direction: messages[i].Receiver.id === currentUser.id ? 'incoming' : 'outgoing',
-                position: "single"
-            }} />
-        );
-    }
-
-    elements.push(
-        <MessageList>
-            {messageElements}
-        </MessageList>
-    );
-    elements.push(
-        <MessageInput attachButton={false} placeholder="Digite sua mensagem..." onSend={(innerHtml: String, textContent: String, innerText: String, nodes: NodeList) => sendMessage(textContent as string, currentUser, conversationUser)} />
-    );
-    return elements;
-}
-
-const sendMessage = (textContent: string, currentUser: User, conversationUser: User) => {
-    axios.post(Constants.BASE_URL + '/api/message', new CreateMessageInput(textContent, new Date(), currentUser.id, conversationUser.id))
-        .catch(function (error) {
-            console.log(error);
-        });
-};
-
 const getFormatedDate = (date: Date): string => {
-    var weekDay = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"][date.getDay()];
-    var day = date.getDate();
-    var month = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"][date.getMonth()];
-    var year = date.getFullYear();
+    let realDate = new Date(date);
+    var weekDay = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"][realDate.getDay()];
+    var day = realDate.getDate();
+    var month = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"][realDate.getMonth()];
+    var year = realDate.getFullYear();
     return weekDay + ", " + day + " de " + month + " de " + year;
 }
-
-const getConversationsComponents = async (user: User, setConversationUser: React.Dispatch<React.SetStateAction<User | undefined>>): Promise<JSX.Element[]> => {
-    let conversations: JSX.Element[] = []
-    let users = (await getConversations(user.id)).data;
-    for (let user of users) {
-        let message = (await getLastSentMessage(user.id, user.id)).data;
-        if (!message.Content) {
-            conversations.push(
-                <Conversation onClick={setConversationUser(user)} className="regular-conversation" key={user.id} name={user.name}>
-                    <Avatar src={"default-user-icon.svg"} />
-                </Conversation>
-            );
-        } else if (message.Sender.id === user.id) {
-            conversations.push(
-                <Conversation onClick={setConversationUser(user)} className="regular-conversation" key={user.id} name={user.name} info={"Você: " + message.Content}>
-                    <Avatar src={"default-user-icon.svg"} />
-                </Conversation>
-            );
-        } else {
-            conversations.push(
-                <Conversation className="regular-conversation" key={user.id} name={user.name} info={user.name.split(' ')[0] + ": " + message.Content}>
-                    <Avatar src={"default-user-icon.svg"} />
-                </Conversation>
-            );
-        }
-    }
-    return conversations;
-};
 
 const getConversations = async (userId: string): Promise<AxiosResponse<User[]>> => {
     try {
         const conversations: AxiosResponse<User[]> = await axios.get(
-            Constants.BASE_URL + "/api/message/chats",
+            Constants.BASE_URL + "api/message/chats",
             {
                 params: {
                     'userId': userId
@@ -166,7 +196,7 @@ const getConversations = async (userId: string): Promise<AxiosResponse<User[]>> 
 const getConversationHistory = async (userId1: string, userId2: string): Promise<AxiosResponse<MessageModel[]>> => {
     try {
         const conversations: AxiosResponse<MessageModel[]> = await axios.get(
-            Constants.BASE_URL + "/api/message/history",
+            Constants.BASE_URL + "api/message/history",
             {
                 params: {
                     'userId1': userId1,
@@ -183,7 +213,7 @@ const getConversationHistory = async (userId1: string, userId2: string): Promise
 const getLastSentMessage = async (userId1: string, userId2: string): Promise<AxiosResponse<MessageModel>> => {
     try {
         const conversations: AxiosResponse<MessageModel> = await axios.get(
-            Constants.BASE_URL + "/api/message/lastMessage",
+            Constants.BASE_URL + "api/message/lastMessage",
             {
                 params: {
                     'userId1': userId1,

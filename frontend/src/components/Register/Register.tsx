@@ -2,6 +2,7 @@ import { List, ListItem } from "@material-ui/core";
 import axios, { AxiosResponse } from "axios";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { setGlobalState } from "../..";
 import CreateClientInput from "../../models/CreateClientInput";
 import CreateFreelancerInput from "../../models/CreateFreelancerInput";
 import CreateSkillInput from "../../models/CreateSkillInput";
@@ -36,7 +37,7 @@ export function Register() {
     const getSkills = async () => {
         try {
             const skills: AxiosResponse<Skill[]> = await axios.get(
-                Constants.BASE_URL + "/api/skill/all"
+                Constants.BASE_URL + "api/skill/all"
             );
             return skills;
         } catch (error: any) {
@@ -100,13 +101,15 @@ export function Register() {
 
     const handleAddNewAbility = async (ability: string) => {
         if (ability.trim().length > 0) {
-            axios.post('/skill', new CreateSkillInput(ability))
+            axios.post(Constants.BASE_URL + 'api/skill', new CreateSkillInput(ability))
+                .then((res) => {
+                    setName("");
+                    setNewAbilityInput(false);
+                })
                 .catch(function (error) {
                     console.log(error);
                 });
         }
-        setName("");
-        setNewAbilityInput(false);
     };
 
     let navigate = useNavigate();
@@ -122,13 +125,14 @@ export function Register() {
                 "password": password,
                 "name": fullName,
                 "phone": phoneNumber,
-                "skills": skills,
+                "skills": skills.map(s => s.name),
                 "ratings": ratings
             }
 
             axios.post(Constants.BASE_URL + 'api/user/register/freelancer', new CreateFreelancerInput(info.email, info.password, info.name, info.phone, info.skills, info.ratings))
                 .then((res) => {
                     localStorage.setItem("currentUser", JSON.stringify(res.data));
+                    setGlobalState("currentUser", res.data);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -145,6 +149,7 @@ export function Register() {
             axios.post(Constants.BASE_URL + 'api/user/register/client', new CreateClientInput(info.email, info.password, info.name, info.phone))
                 .then((res) => {
                     localStorage.setItem("currentUser", JSON.stringify(res.data));
+                    setGlobalState("currentUser", res.data);
                 })
                 .catch(function (error) {
                     console.log(error);

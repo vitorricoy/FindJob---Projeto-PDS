@@ -1,3 +1,4 @@
+using Backend.API.Controllers.Converters;
 using Backend.Domain.Repository;
 using Backend.Domain.Service;
 using Backend.Persistence;
@@ -8,7 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(opts =>
+    {
+        opts.JsonSerializerOptions.Converters.Add(new DictionarySkillConverter());
+    });
 
 // Add DB Context
 
@@ -37,9 +42,7 @@ var app = builder.Build();
 
 using(var scope = app.Services.CreateScope())
 {
-
     var client = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-
     client?.Database.EnsureCreated();
 }
 

@@ -184,7 +184,7 @@ export const UserIcon = styled.img`
 export const StyledButton = styled(Button)`
     width: 100%;
     height: 50%;
-    background-color: #04C35C !important;
+    background-color: ${props => props.disabled ? "#E6E6E6" : "#04C35C"} !important;
 
     .MuiButton-label {
         font-family: 'Roboto Condensed', sans-serif;
