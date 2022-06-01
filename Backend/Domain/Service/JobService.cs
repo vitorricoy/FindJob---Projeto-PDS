@@ -152,7 +152,7 @@ namespace Backend.Domain.Service
                 throw new InvalidJobIdException();
             }
 
-            if(freela == null || !(job.Candidates.Contains(freela)))
+            if(freela == null || !(job.Candidates.Select(j => j.Id).Contains(freela.Id)))
             {
                 throw new InvalidUserIdException();
             }

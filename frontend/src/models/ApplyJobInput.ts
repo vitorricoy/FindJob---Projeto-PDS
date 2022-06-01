@@ -1,9 +1,9 @@
 export default class ApplyJobInput {
     jobId: string;
-    userId: string;
+    freelancerId: string;
 
-    constructor(jobId: string, userId: string) {
+    constructor(jobId: string, freelancerId: string) {
         this.jobId = jobId;
-        this.userId = userId;
+        this.freelancerId = freelancerId;
     }
 }

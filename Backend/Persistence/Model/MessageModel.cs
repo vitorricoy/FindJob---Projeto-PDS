@@ -12,10 +12,10 @@ namespace Backend.Domain.Entity
         public string ReceiverId { get; set; }
 
         [ForeignKey("SenderId")]
-        public virtual UserModel Sender { get; set; }
+        public UserModel Sender { get; set; }
 
         [ForeignKey("ReceiverId")]
-        public virtual UserModel Receiver { get; set; }
+        public UserModel Receiver { get; set; }
         public DateTime SentTime { get; set; }
         public bool IsRead { get; set; }
 
@@ -29,6 +29,16 @@ namespace Backend.Domain.Entity
             IsRead = isRead;
         }
 
+        public MessageModel(string id, string content, string sender, string receiver, DateTime sentTime, bool isRead)
+        {
+            Id = id;
+            Content = content;
+            SenderId = sender;
+            ReceiverId = receiver;
+            SentTime = sentTime;
+            IsRead = isRead;
+        }
+
         public MessageModel()
         {
 
@@ -36,7 +46,7 @@ namespace Backend.Domain.Entity
 
         public static MessageModel FromDomainObject(Message message)
         {
-            return new MessageModel(message.Id, message.Content, UserModel.FromDomainObject(message.Sender), UserModel.FromDomainObject(message.Receiver), 
+            return new MessageModel(message.Id, message.Content, message.Sender.Id, message.Receiver.Id, 
                 message.SentTime, message.IsRead);
         }
     }

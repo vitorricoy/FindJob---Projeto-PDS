@@ -130,6 +130,7 @@ export const DescriptionContent = styled.div`
 `
 
 export const ContainerFreelancerList = styled.div`
+    margin-top: 3%;
     border-radius: 3vw;
     padding: 6.5%;
     background-color: #E6E6E6;

@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="API\Controllers\NovaPasta\**" />
+    <Content Remove="API\Controllers\NovaPasta\**" />
+    <EmbeddedResource Remove="API\Controllers\NovaPasta\**" />
+    <None Remove="API\Controllers\NovaPasta\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Persistence\IApplicationDbContext.cs" />
   </ItemGroup>
 

@@ -39,10 +39,12 @@ export function FreelancerJobView() {
 
     const [job, setJob] = React.useState({} as Job);
 
+    const [applied, setApplied] = React.useState(false);
+
     const getJob = async () => {
         try {
             const job: AxiosResponse<Job> = await axios.get(
-                Constants.BASE_URL + "/api/job",
+                Constants.BASE_URL + "api/job",
                 {
                     params: {
                         'jobId': jobId
@@ -57,12 +59,14 @@ export function FreelancerJobView() {
 
     const getJobSkills = (): JSX.Element[] => {
         let elements = []
-        for (let skill of job.skills) {
-            elements.push(
-                <Skill>
-                    {skill.name}
-                </Skill>
-            );
+        if (job) {
+            for (let skill of job.skills || []) {
+                elements.push(
+                    <Skill>
+                        {skill.name}
+                    </Skill>
+                );
+            }
         }
         return elements;
     }
@@ -70,22 +74,29 @@ export function FreelancerJobView() {
     const apply = () => {
         try {
             axios.post(
-                Constants.BASE_URL + "/api/job/apply", new ApplyJobInput(job.id, currentUser.id)
-            );
+                Constants.BASE_URL + "api/job/apply", new ApplyJobInput(job.id, currentUser.id)
+            ).then((res) => {
+                setApplied(true);
+            });
         } catch (error: any) {
             throw new Error(error)
         }
     };
 
     useEffect(() => {
-        if (!job) {
+        if (!Object.keys(job).length) {
             getJob().then(job => {
+                for (let candidate of job.data.candidates) {
+                    if (candidate.id === currentUser.id) {
+                        setApplied(true);
+                    }
+                }
                 setJob(job.data);
             });
         }
     }, []);
 
-    return (
+    return !Object.keys(job).length ? <div></div> : (
         <Container>
             <Header />
 
@@ -133,7 +144,7 @@ export function FreelancerJobView() {
                                 Sobre o Cliente
                             </AboutClientTitle>
                             <AboutClientSubtitle>
-                                <UserIcon src="default-user-icon.svg"></UserIcon>
+                                <UserIcon src="../../default-user-icon.svg"></UserIcon>
                                 {job.client.name}
                             </AboutClientSubtitle>
                             <AboutClientContent>
@@ -142,7 +153,7 @@ export function FreelancerJobView() {
                         </AboutClientContainer>
                         <ApplyJobDiv>
                             <div style={{ textAlign: "center", marginBlock: "5%" }}>
-                                <StyledButton variant="contained" onClick={apply}> Candidatar-se </StyledButton>
+                                <StyledButton variant="contained" onClick={apply} disabled={applied}> Candidatar-se </StyledButton>
                             </div>
                         </ApplyJobDiv>
                     </LowerRightDiv>

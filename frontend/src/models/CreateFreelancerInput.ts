@@ -5,10 +5,10 @@ export default class CreateFreelancerInput {
     Password: string;
     Name: string;
     Phone: string;
-    Skills: Skill[];
+    Skills: string[];
     Ratings: number[];
 
-    constructor(email: string, password: string, name: string, phone: string, skills: Skill[], ratings:number[]) {
+    constructor(email: string, password: string, name: string, phone: string, skills: string[], ratings: number[]) {
         this.Email = email;
         this.Password = password;
         this.Name = name;

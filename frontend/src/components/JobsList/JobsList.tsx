@@ -201,8 +201,8 @@ export function JobsList() {
 
     const getJobs = async () => {
         try {
-            console.log(currentUser);
-            if (currentUser.isFreelancer && myJobs) {
+            console.log(currentUser, myJobs);
+            if (currentUser.isFreelancer && myJobs === 'true') {
                 var jobs: AxiosResponse<Job[]> = await axios.get(
                     Constants.BASE_URL + "api/job/list",
                     {
@@ -211,7 +211,7 @@ export function JobsList() {
                         }
                     }
                 );
-            } else if (currentUser.isFreelancer && !myJobs) {
+            } else if (currentUser.isFreelancer && myJobs === 'false') {
                 var jobs: AxiosResponse<Job[]> = await axios.get(
                     Constants.BASE_URL + "api/job/search",
                     {

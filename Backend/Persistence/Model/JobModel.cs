@@ -16,10 +16,10 @@ namespace Backend.Domain.Entity
         public string ClientId { get; set; }
 
         [ForeignKey("ClientId")]
-        public virtual UserModel Client { get; set; }
+        public UserModel Client { get; set; }
 
         [ForeignKey("AssignedFreelancerId")]
-        public virtual UserModel? AssignedFreelancer { get; set; }
+        public UserModel? AssignedFreelancer { get; set; }
         public bool Active { get; set; }
         public bool Available { get; set; }
 

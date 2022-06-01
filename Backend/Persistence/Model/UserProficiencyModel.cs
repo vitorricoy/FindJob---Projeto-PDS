@@ -5,13 +5,15 @@ namespace Backend.Domain.Entity
 {
     public class UserProficiencyModel
     {
-        [Key]
-        [ForeignKey("Id")]
-        public virtual UserModel Freelancer { get; set; }
+        public string SkillId { get; set; }
 
-        [Key]
-        [ForeignKey("Id")]
-        public virtual SkillModel Skill { get; set; }
+        public string UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public UserModel Freelancer { get; set; }
+
+        [ForeignKey("SkillId")]
+        public SkillModel Skill { get; set; }
 
         public double Rating { get; set; }
         public int RatingsDone { get; set; }
@@ -20,6 +22,14 @@ namespace Backend.Domain.Entity
         {
             Freelancer = freelancer;
             Skill = skill;
+            Rating = rating;
+            RatingsDone = ratingsDone;
+        }
+
+        public UserProficiencyModel(string freelancer, string skill, double rating, int ratingsDone)
+        {
+            UserId = freelancer;
+            SkillId = skill;
             Rating = rating;
             RatingsDone = ratingsDone;
         }
@@ -38,7 +48,7 @@ namespace Backend.Domain.Entity
 
             List<UserProficiencyModel> proficiency_models = new List<UserProficiencyModel>();
             foreach(KeyValuePair<Skill,Tuple<double,int>> entry in user.Skills){
-                proficiency_models.Add(new UserProficiencyModel(UserModel.FromDomainObject(user), SkillModel.FromDomainObject(entry.Key), entry.Value.Item1, entry.Value.Item2));
+                proficiency_models.Add(new UserProficiencyModel(user.Id, entry.Key.NormalizedName, entry.Value.Item1, entry.Value.Item2));
             }
             
             return proficiency_models;

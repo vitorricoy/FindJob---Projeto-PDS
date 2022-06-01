@@ -14,7 +14,12 @@ namespace Backend.Domain.Entity
             NormalizedName = normalizedName;
         }
 
-        
+        public override string ToString()
+        {
+            return NormalizedName;
+        }
+
+
         public override int GetHashCode()
         {
             byte[] idBytes = Encoding.ASCII.GetBytes(NormalizedName);
