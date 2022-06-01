@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalState } from "../..";
 
 export function Home() {
-    const [currentUser, setCurrentUser] = useGlobalState('currentUser');
+    const [currentUser] = useGlobalState('currentUser');
 
     let navigate = useNavigate();
 

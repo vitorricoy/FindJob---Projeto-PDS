@@ -34,12 +34,11 @@ import {
 } from "./styles";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
-import { Checkbox, FormControlLabel, FormGroup, List, ListItem, ListItemText, MenuItem, TextField } from "@material-ui/core";
+import { Checkbox, FormControlLabel, FormGroup, ListItem, ListItemText, MenuItem, TextField } from "@material-ui/core";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from '@mui/icons-material/Delete';
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Payment } from "@mui/icons-material";
 import axios from "axios";
 import CreateJobInput from "../../models/CreateJobInput";
 import { useGlobalState } from "../..";
@@ -93,17 +92,17 @@ export function CreateJob() {
     const [deadline, setDeadline] = React.useState<string>("");
     const [currency, setCurrency] = React.useState('R$');
     const [payment, setPayment] = React.useState<string>("");
-    const [currentUser, setCurrentUser] = useGlobalState('currentUser');
+    const [currentUser] = useGlobalState('currentUser');
 
     const handleCurrencyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrency(event.target.value);
     };
 
     const handlePaymentMethodChange = (event: any) => {
-        if (event === 'total' && perHourChecked || event === 'total' && totalChecked) {
+        if ((event === 'total' && perHourChecked) || (event === 'total' && totalChecked)) {
             setTotalChecked(true);
             setPerHourChecked(false);
-        } else if (event === 'hour' && totalChecked || event === 'hour' && perHourChecked) {
+        } else if ((event === 'hour' && totalChecked) || (event === 'hour' && perHourChecked)) {
             setTotalChecked(false);
             setPerHourChecked(true);
         }

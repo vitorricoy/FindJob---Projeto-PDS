@@ -77,14 +77,12 @@ export function Register() {
             obj[skill] = 0;
         })
         setRegisteredSkills(obj);
-    }, [newAbilityInput]);
+    }, [newAbilityInput, abilities]);
 
     const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
         setNewAbilityInput(false);
     };
-
-    let abilitiesScore: any;
 
     const handleSliderStop = (event: any, newValue: number | number[]) => {
         registeredSkills[event.target.ariaLabel] = newValue;

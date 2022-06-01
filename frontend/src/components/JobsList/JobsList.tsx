@@ -62,7 +62,7 @@ const currencies = [
 export function JobsList() {
     const [currency, setCurrency] = React.useState('R$');
 
-    const [currentUser, setCurrentUser] = useGlobalState('currentUser');
+    const [currentUser] = useGlobalState('currentUser');
 
     const handleCurrencyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCurrency(event.target.value);
@@ -248,8 +248,6 @@ export function JobsList() {
             (currentUser.isFreelancer ? navigate("/freelancer-job-view/" + ref) : navigate("/client-job-view/" + ref));
         }
     };
-
-
 
     return (
         <Container>

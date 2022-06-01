@@ -41,7 +41,7 @@ export function Login() {
         if (loggedIn) {
             return navigate("/home");
         }
-    }, [loggedIn]);
+    }, [loggedIn, navigate]);
 
     const handleLoginButtonClick = async (event: any) => {
         const credentials = {
