@@ -131,7 +131,7 @@ Os pontos do sistema nos quais as tecnologias mencionadas são acessadas foram e
 
 Para cada adaptador, o acesso entre ele e o domínio é feito por meio de uma porta. Uma porta define uma interface, acessada ou implementada por cada adaptador, para permitir o acesso entre ele e o domínio. Desse modo, elas servem como forma de inverter as dependências do domínio aos adaptadores, nos quais as tecnologias são acessadas, estabelecendo por completo o seu isolamento. No sistema, as portas de entrada são definidas como interfaces acessadas pelos adaptadores em Controllers, e são implementadas pelas classes de serviço do domínio. Já as portas de saída são definidas como interfaces acessadas pelo domínio, e implementadas pelos repositórios do banco em Persistance. A seguinte imagem ilustra a relação do sistema com suas portas e adaptadores:
 
-[imagem :)]
+![Diagrama Arquitetura Hexagonal](https://raw.githubusercontent.com/vitorricoy/FindJob-Projeto-PDS/main/diagrama-hexagonal.png)
 
 Note que há uma relação direta entre os adaptadores, as portas e os serviços do domínio. Evidentemente, como os serviços são bem divididos nas partes do sistema de interesse do contexto, o mais coerente seria que as portas e adaptadores também seguissem essa divisão.
 
