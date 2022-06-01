@@ -42,7 +42,7 @@ export function Chat() {
         let elements: JSX.Element[] = [];
         elements.push(
             <ConversationHeader>
-                <Avatar src={"../default-user-icon.svg"} name="Emily" />
+                <Avatar src={"../default-user-icon.svg"} name={conversationUser.name} />
                 <ConversationHeader.Content userName={conversationUser.name} info={conversationUser.isFreelancer ? "Freelancer" : "Cliente"} />
             </ConversationHeader>
         );
@@ -135,6 +135,7 @@ export function Chat() {
     const sendMessage = (textContent: string, currentUser: User, conversationUser: User) => {
         axios.post(Constants.BASE_URL + 'api/message', new CreateMessageInput(textContent, new Date(), currentUser.id, conversationUser.id))
             .then((res) => {
+                getConversationsComponents(currentUser);
                 getUserChat(conversationUser, currentUser);
             })
             .catch(function (error) {
