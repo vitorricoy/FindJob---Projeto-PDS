@@ -139,7 +139,25 @@ Desse modo, o pacote Controllers possui quatro adaptadores, UserController, JobC
 
 Com isso, o domínio fica completamente livre de tecnologias, que é o principal preceito da Arquitetura Hexagonal.
 
-
 #### Domain-Driven Design
 
-Falar das entidades, classes de serviço, objeto de valor, agregados e da linguagem ubíqua.
+Embora a Arquitetura Hexagonal estabeleça o isolamento do domínio, é necessário definir seus aspectos e estruturas. Para isso, utilizamos o princípio de projeto Domain-Driven Design. Ele se fundamenta na ideia de que o domínio é a parte mais importante do sistema, e aquela à qual maior foco deve ser atribuído, enquanto outras partes, como tecnologias externas, devem apenas atender ao domínio.
+
+##### Linguagem Ubíqua
+
+Em DDD, a definição do domínio começa estabelecendo uma linguagem ubíqua, que se constitui em um conjunto de termos comuns ao sistema e ao contexto no qual ele será usado. No caso do sistema implementado, que é uma plataforma de comunicação entre clientes e freelancers, dentre os termos da linguagem ubíqua temos:
+
+>Job, Freelancer, Client, Candidate, Skill, Message, User, Chat, Rating.
+
+##### Entidades e Objetos de Valor
+
+Tendo estabelecido os termos, é necessário definir os objetos. As entidades em DDD representam objetos de identidade única, que os diferencia de outros objetos no sistema. Cada entidade representa um elemento semanticamente definido na linguagem ubíqua do sistema. No sistema, temos três entidades: User, Job e Message.
+
+A entidade User representa um usuário do sistema. Um usuário do sistema pode ser um cliente ou um freelancer, e ambos são representados no sistema por esta entidade. Um User possui como atributos um nome, email, senha, telefone e uma flag indicando se é um cliente ou um freelancer. Caso ele seja um freelancer, o User possui também um dicionário associando cada uma de suas Skills a uma nota.
+
+A entidade Job representa um job ofertado por um cliente. O job pode ou estar disponível, tendo uma lista de freelancers candidatos, ou indisponível, tendo um freelancer escolhido pelo cliente para realizá-lo. Um job possui como atributos um título, descrição, valor de pagamento, data de entrega, uma flag indicando se o pagamento é por hora, um usuário cliente, um usuário freelancer associado, que pode ou não estar definido, uma lista de usuários candidatos e flags indicando se o job está ativo e disponível.
+
+A entidade Message representa uma mensagem de chat entre dois usuários. Uma mensagem sempre está associada a dois usuários: um remetente e um destinatŕario. Assim, um objeto Message tem como atributos […]
+
+Objetos de valor, como entidades, também representam elementos da linguagem ubíqua. No entanto, objetos de valor não têm identificador, sendo identificados somente pelos seus atributos. No sistema, há apenas um objeto de valor, Skill, que representa uma habilidade do usuário. Ela tem como atributos o nome o nome normalizado, e é identificada pelo nome normalizado.
+
