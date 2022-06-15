@@ -121,12 +121,65 @@ https://www.figma.com/file/MHr9zWxxdfCjEYeTqEYSRX/FindJob
 
 ### Documentação da Arquitetura
 
+A escolha da arquitetura do sistema é essencial em seu design, e traz diversos impactos positivos ao seu desenvolvimento. Nesse contexto, optamos por uma arquitetura baseada em Domain-Driven Design e Arquitetura Hexagonal como forma de organizar a estrutura do sistema.
+
 #### Arquitetura Hexagonal
 
 O sistema adota a arquitetura hexagonal com o objetivo de separar o código relativo às tecnologias usadas (Web API e SQLite com Entity Framework Core) do código do domínio do sistema. Assim, para isso, foram criados três pacotes principais: Controllers, Domain e Persistence. O pacote de Controllers implementa a Web API, o pacote de Persistence implementa o acesso ao banco de dados SQLite e o pacote Domain implementa as lógicas de negócio.
 
-Falar das portas de saída e entrada e dos adaptadores.
+Os pontos do sistema nos quais as tecnologias mencionadas são acessadas foram encapsulados em adaptadores, classes que servem como mediadoras do sistema ao acesso externo. Nesse caso, os adaptadores estão localizados nos pacotes Controllers, onde a entrada de informações é feita na API, e Persistance, onde é feita a saída de dados para o banco.
+
+Para cada adaptador, o acesso entre ele e o domínio é feito por meio de uma porta. Uma porta define uma interface, acessada ou implementada por cada adaptador, para permitir o acesso entre ele e o domínio. Desse modo, elas servem como forma de inverter as dependências do domínio aos adaptadores, nos quais as tecnologias são acessadas, estabelecendo por completo o seu isolamento. No sistema, as portas de entrada são definidas como interfaces acessadas pelos adaptadores em Controllers, e são implementadas pelas classes de serviço do domínio. Já as portas de saída são definidas como interfaces acessadas pelo domínio, e implementadas pelos repositórios do banco em Persistance. A seguinte imagem ilustra a relação do sistema com suas portas e adaptadores:
+
+![Diagrama Arquitetura Hexagonal](https://raw.githubusercontent.com/vitorricoy/FindJob-Projeto-PDS/main/diagrama-hexagonal.png)
+
+Note que há uma relação direta entre os adaptadores, as portas e os serviços do domínio. Evidentemente, como os serviços são bem divididos nas partes do sistema de interesse do contexto, o mais coerente seria que as portas e adaptadores também seguissem essa divisão.
+
+Desse modo, o pacote Controllers possui quatro adaptadores, UserController, JobController, SkillController e MessageController, cada um contendo as rotas das APIs relativas às ações de cada serviço associado, e ligado a ele por meio de uma interface que cada serviço implementa. Já o pacote Persistance possui também quatro adaptadores, UserRepository, JobRepository, SkillRepository e MessageRepository, cada um implementando os métodos de acesso ao banco de dados utilizados por cada serviço do domínio, e acessado por ele por meio de uma interface que cada repositório implementa.
+
+Com isso, o domínio fica completamente livre de tecnologias, que é o principal preceito da Arquitetura Hexagonal.
 
 #### Domain-Driven Design
 
-Falar das entidades, classes de serviço, objeto de valor, agregados e da linguagem ubíqua.
+Embora a Arquitetura Hexagonal estabeleça o isolamento do domínio, é necessário definir seus aspectos e estruturas. Para isso, utilizamos o princípio de projeto Domain-Driven Design. Ele se fundamenta na ideia de que o domínio é a parte mais importante do sistema, e aquela à qual maior foco deve ser atribuído, enquanto outras partes, como tecnologias externas, devem apenas atender ao domínio.
+
+##### Linguagem Ubíqua
+
+Em DDD, a definição do domínio começa estabelecendo uma linguagem ubíqua, que se constitui em um conjunto de termos comuns ao sistema e ao contexto no qual ele será usado. No caso do sistema implementado, que é uma plataforma de comunicação entre clientes e freelancers, dentre os termos da linguagem ubíqua temos:
+
+>Job, Freelancer, Client, Candidate, Skill, Message, User, Chat, Rating.
+
+##### Entidades e Objetos de Valor
+
+Tendo estabelecido os termos, é necessário definir os objetos. As entidades em DDD representam objetos de identidade única, que os diferencia de outros objetos no sistema. Cada entidade representa um elemento semanticamente definido na linguagem ubíqua do sistema. No sistema, temos três entidades: User, Job e Message.
+
+A entidade User representa um usuário do sistema. Um usuário do sistema pode ser um cliente ou um freelancer, e ambos são representados no sistema por esta entidade. Um User possui como atributos um nome, email, senha, telefone e uma flag indicando se é um cliente ou um freelancer. Caso ele seja um freelancer, o User possui também um dicionário associando cada uma de suas Skills a uma nota.
+
+A entidade Job representa um job ofertado por um cliente. O job pode ou estar disponível, tendo uma lista de freelancers candidatos, ou indisponível, tendo um freelancer escolhido pelo cliente para realizá-lo. Um job possui como atributos um título, descrição, valor de pagamento, data de entrega, uma flag indicando se o pagamento é por hora, um usuário cliente, um usuário freelancer associado, que pode ou não estar definido, uma lista de usuários candidatos e flags indicando se o job está ativo e disponível.
+
+A entidade Message representa uma mensagem de chat entre dois usuários. Uma mensagem sempre está associada a dois usuários: um remetente e um destinatŕario. Assim, um objeto Message tem como atributos um usuário emissor, um usuário receptor, o conteúdo, a data de envio e uma flag indicando se a mensagem foi lida.
+
+Objetos de valor, como entidades, também representam elementos da linguagem ubíqua. No entanto, objetos de valor não têm identificador, sendo identificados somente pelos seus atributos. No sistema, há apenas um objeto de valor, Skill, que representa uma habilidade do usuário. Ela tem como atributos o nome o nome normalizado, e é identificada pelo nome normalizado.
+
+##### Serviços
+
+DDD define como serviços classes nas quais a lógica de negócio é implementada. Elas possuem as funções que definem as ações do sistema, e são as únicas capazes de alterar o estado das entidades. No projeto, foi decidido que haveria um serviço para cada entidade e objeto de valor do sistema, agrupando as principais operações realizadas sobre eles. Nesse sentido, o sistema tem quatro classes de serviço: UserService, JobService, MessageService e SkillService.
+
+A classe UserService possui todos os métodos associados à entidade do usuário. Como métodos ela tem GetUserById, que pesquisa no banco e retorna a entidade do usuário dado um id, Login, que pesquisa no banco e retorna a entidade do usuário dado o email e a senha, RegisterClient, que registra no banco de dados um usuário cliente, dados seus atributos, e RegisterFreelancer, que registra no banco de dados um usuário freelancer, dados os atributos.
+
+A classe SkillService possui os métodos associados ao objeto de valor Skill. Sendo um objeto de valor, ele não tem muitos métodos associados, mas eles não caberiam em outros serviços então a classe recebeu um serviço próprio. Como métodos, a classe tem CreateNewSkill, que cria uma nova skill no banco dado o seu nome, e GetAllSkills, que busca no banco todas as skills salvas.
+
+A classe MessageService possui os métodos associados à entidade Message. Como métodos ela tem CreateMessage, que cria no banco uma nova mensagem, dados seus atributos, GetHistory, que obtém do banco todas as mensagens dados os ids de dois usuários, em ordem cronológica, GetLastMessage, que obtém do banco a última mensagem trocada dados os ids de dois usuários e GetUsersThatHaveChats que, dado o id de um usuário, obtém do banco os usuários com os quais o usuário dado trocou mensagens.
+
+A classe JobService possui os métodos associados à entidade Job. Como métodos ela tem CreateNewJob, que cria um novo job no banco a partir de seus atributos, GetJobById, que busca no banco e retorna a entidade de um job dado seu id, ListJobsByUser, que busca no banco e retorna todos os jobs dos quais o usuário é cliente ou freelancer escolhido, SearchJobsForFreelancer, que busca no banco e retorna os jobs disponíveis, ordenados pela compatibilidade com as skills do freelancer, CandidateForJob, que adiciona um usuário à lista de candidatos de um job, GetCandidatesBySkill, que obtém os candidatos de um job e os ordena pela compatibilidade de suas skills com o job, ChooseFreelancerForJob, que escolhe, entre os jobs, o freelancer que irá realizá-lo, tornando o job indisponível, e RateJob, que avalia o desempenho do freelancer na execução do job.
+
+##### Agregados
+
+Agregados em DDD são coleções de entidades e objetos de valor, com uma entidade raiz. Conforme mencionado na descrição das entidades, algumas delas, no sistema, possuem dentro de si coleções de outras entidades e objetos de valor. É o caso das entidades User e Job.
+A entidade User possui um dicionário associando Skills a uma tupla de um double e um inteiro, que representam a classificação média do usuário naquela skill e o número de classificações feitas. Nesse caso, o User é a raiz do agregado, e as Skills os componentes.
+
+A entidade Job, por sua vez, possui uma lista de usuários, representando os candidatos do job, e uma lista de skills, representando as skills necessárias para o job. Um mesmo job é a raiz de dois agregados, representados pelas listas.
+
+##### Repositórios
+ 
+Em DDD, Repositórios são classes que encapsulam os métodos de acesso ao banco de dados. Como estamos utilizando DDD em conjunto com Arquitetura Hexagonal, os repositórios, nesse caso, são os adaptadores já mencionados. A diferença nesse caso é que, em vez de os serviços acessarem os repositórios diretamente, eles o fazem por meio de portas, as interfaces mencionadas antes.
