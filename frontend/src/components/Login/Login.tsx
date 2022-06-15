@@ -70,7 +70,7 @@ export function Login() {
     return (
         <Container>
             <LeftContainer>
-                <img draggable="false" src="https://i.imgur.com/GIwPUzY.jpeg" alt="Workhome Login" width='100%' height='100%' />
+                <img draggable="false" src="login.jpeg" alt="Workhome Login" width='100%' height='100%' />
             </LeftContainer>
 
             <RightContainer>

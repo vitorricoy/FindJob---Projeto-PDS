@@ -29,7 +29,7 @@ export function Home() {
             <Header />
 
             <Body>
-                <img draggable="false" src="https://i.imgur.com/auZepyp.jpg" alt="Workhome Login" width='100%' height='100%' />
+                <img draggable="false" src="../home.jpg" alt="Workhome Login" width='100%' height='100%' />
                 <div className="up-bottom-right">Encontre</div>
                 {currentUser.isFreelancer ?
                     <div className="bottom-right">Trabalhos para colocar em prática suas habilidades</div>

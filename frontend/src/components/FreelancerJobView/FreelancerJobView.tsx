@@ -109,7 +109,7 @@ export function FreelancerJobView() {
                     </TitleDiv>
                     <PriceDiv>
                         R$ {job.payment}
-                        {!job.isPaymentByHour ?
+                        {job.isPaymentByHour ?
                             <sub>/h</sub>
                             :
                             null}
