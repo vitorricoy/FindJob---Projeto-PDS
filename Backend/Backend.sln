@@ -5,6 +5,10 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Backend", "Backend.csproj", "{7B9425EB-09EA-40AC-8743-24EA8785876D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindJobUnitTests", "..\FindJobTests\FindJobUnitTests.csproj", "{29BB5947-DC33-40CD-AA1C-C8E5986573D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindJobIntegrationTests", "..\FindJobIntegrationTests\FindJobIntegrationTests.csproj", "{7C8D8213-7CF6-4E65-90CB-9CB1C6955FF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{7B9425EB-09EA-40AC-8743-24EA8785876D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B9425EB-09EA-40AC-8743-24EA8785876D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{7B9425EB-09EA-40AC-8743-24EA8785876D}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{29BB5947-DC33-40CD-AA1C-C8E5986573D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29BB5947-DC33-40CD-AA1C-C8E5986573D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29BB5947-DC33-40CD-AA1C-C8E5986573D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29BB5947-DC33-40CD-AA1C-C8E5986573D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C8D8213-7CF6-4E65-90CB-9CB1C6955FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C8D8213-7CF6-4E65-90CB-9CB1C6955FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C8D8213-7CF6-4E65-90CB-9CB1C6955FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C8D8213-7CF6-4E65-90CB-9CB1C6955FF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

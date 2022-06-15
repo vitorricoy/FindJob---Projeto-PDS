@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/vitorricoy/Documents/FindJob-Projeto-PDS/Backend/Backend.csproj": {}
+    "D:\\Repos\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "/home/vitorricoy/Documents/FindJob-Projeto-PDS/Backend/Backend.csproj": {
+    "D:\\Repos\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/vitorricoy/Documents/FindJob-Projeto-PDS/Backend/Backend.csproj",
+        "projectUniqueName": "D:\\Repos\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "/home/vitorricoy/Documents/FindJob-Projeto-PDS/Backend/Backend.csproj",
-        "packagesPath": "/home/vitorricoy/.nuget/packages/",
-        "outputPath": "/home/vitorricoy/Documents/FindJob-Projeto-PDS/Backend/obj/",
+        "projectPath": "D:\\Repos\\Backend\\Backend.csproj",
+        "packagesPath": "C:\\Users\\Vitor Rodarte\\.nuget\\packages\\",
+        "outputPath": "D:\\Repos\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/vitorricoy/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Vitor Rodarte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -65,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.300/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
