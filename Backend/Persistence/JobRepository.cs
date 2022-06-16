@@ -54,7 +54,6 @@ namespace Backend.Persistence
         public Job CreateNewJob(Job job)
         {
             JobModel jobEntity = dbContext.Jobs.Add(JobModel.FromDomainObject(job)).Entity;
-            Job returnValue = ToDomainObject(jobEntity);
             dbContext.SaveChanges();
             dbContext.Entry<JobModel>(jobEntity).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
 
@@ -73,8 +72,8 @@ namespace Backend.Persistence
             dbContext.JobCandidates.AddRange(JobCandidateModel.FromJobDomainObject(job));
 
             dbContext.SaveChanges();
-            
-            return returnValue;
+
+            return ToDomainObject(jobEntity);
         }
 
         public void UpdateJob(Job job)

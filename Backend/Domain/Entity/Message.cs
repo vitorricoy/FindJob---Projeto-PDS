@@ -18,5 +18,19 @@
             SentTime = sentTime;
             IsRead = isRead;
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            return Equals((Message)obj);
+        }
+
+        public bool Equals(Message obj)
+        {
+            return obj != null && obj.Id.Equals(Id) && obj.Content.Equals(Content) && obj.Sender.Equals(Sender) && obj.Receiver.Equals(Receiver) && obj.SentTime.Equals(SentTime) && obj.IsRead.Equals(IsRead);
+        }
     }
 }

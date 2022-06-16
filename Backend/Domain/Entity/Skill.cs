@@ -31,7 +31,7 @@ namespace Backend.Domain.Entity
             {
                 return false;
             }
-            return Equals(obj as Skill);
+            return Equals((Skill)obj);
         }
 
         public bool Equals(Skill obj)

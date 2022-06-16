@@ -30,5 +30,20 @@
             Active = active;
             Available = available;
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            return Equals((Job)obj);
+        }
+
+        public bool Equals(Job obj)
+        {
+            bool isAssignedFreelancerEqual = obj.AssignedFreelancer != null ? obj.AssignedFreelancer.Equals(AssignedFreelancer) : AssignedFreelancer == null;
+            return obj != null && obj.Id.Equals(Id) && obj.Title.Equals(Title) && obj.Description.Equals(Description) && obj.Deadline.Equals(Deadline) && obj.Payment.Equals(Payment) && obj.IsPaymentByHour.Equals(IsPaymentByHour) && Enumerable.SequenceEqual(obj.Skills, Skills) && obj.Client.Equals(Client) && isAssignedFreelancerEqual && Enumerable.SequenceEqual(obj.Candidates, Candidates) && obj.Active.Equals(Active) && obj.Available.Equals(Available);
+        }
     }
 }
