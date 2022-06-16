@@ -18,8 +18,11 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
+      working-directory: ./Backend/Backend
       run: dotnet restore
     - name: Build
+      working-directory: ./Backend/Backend
       run: dotnet build --no-restore
     - name: Test
+      working-directory: ./Backend/Backend
       run: dotnet test --no-build --verbosity normal
