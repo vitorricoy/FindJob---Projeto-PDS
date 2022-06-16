@@ -39,6 +39,23 @@ namespace Backend.Persistence
             UserModel entity = dbContext.Users.Update(UserModel.FromDomainObject(user)).Entity;
             dbContext.SaveChanges();
             dbContext.Entry<UserModel>(entity).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+
+            if (user.IsFreelancer)
+            {
+                foreach (Skill skill in user.Skills.Keys)
+                {
+                    UserProficiencyModel userProficiency = new UserProficiencyModel(user.Id, skill.NormalizedName, user.Skills[skill].Item1, user.Skills[skill].Item2);
+                    if (dbContext.UserSkills.Where(s => s.UserId.Equals(userProficiency.UserId) && s.SkillId.Equals(userProficiency.SkillId)).Any())
+                    {
+                        dbContext.UserSkills.Update(userProficiency);
+                    } else
+                    {
+                        dbContext.UserSkills.Add(userProficiency);
+                    }
+                    dbContext.SaveChanges();
+                }
+            }
+
             User returnValue = ToDomainObject(entity);
             return returnValue;
         }

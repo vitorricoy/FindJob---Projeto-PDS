@@ -79,10 +79,8 @@ namespace Backend.Persistence
         public void UpdateJob(Job job)
         {
 
-            JobModel jobEntity = dbContext.Jobs.Update(JobModel.FromDomainObject(job)).Entity;
-
+            dbContext.Jobs.Update(JobModel.FromDomainObject(job));
             dbContext.SaveChanges();
-            dbContext.Entry<JobModel>(jobEntity).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
 
             foreach (JobRequirementModel jobSkill in JobRequirementModel.FromJobDomainObject(job))
             {

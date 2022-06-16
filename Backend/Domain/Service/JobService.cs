@@ -186,7 +186,7 @@ namespace Backend.Domain.Service
 
                 if (cand2.Skills.ContainsKey(skill))
                 {
-                    ratings2.Add(cand1.Skills[skill].Item1);
+                    ratings2.Add(cand2.Skills[skill].Item1);
                 }
                 else
                 {
