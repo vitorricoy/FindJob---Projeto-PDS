@@ -43,7 +43,7 @@ export function Chat() {
         elements.push(
             <ConversationHeader>
                 <Avatar src={"../default-user-icon.svg"} name={conversationUser.name} />
-                <ConversationHeader.Content userName={conversationUser.name} info={conversationUser.isFreelancer ? "Freelancer" : "Cliente"} />
+                <ConversationHeader.Content data-testid="user-text" userName={conversationUser.name} info={conversationUser.isFreelancer ? "Freelancer" : "Cliente"} />
             </ConversationHeader>
         );
 
@@ -62,7 +62,7 @@ export function Chat() {
                     );
                 }
                 messageElements.push(
-                    <Message key={0} model={{
+                    <Message data-testid="message-text" key={0} model={{
                         message: messages[i].content,
                         sentTime: new Date(messages[i].sentTime).getHours() + ":" + new Date(messages[i].sentTime).getMinutes(),
                         direction: messages[i].receiver.id === currentUser.id ? 'incoming' : 'outgoing',
@@ -77,7 +77,7 @@ export function Chat() {
                 </MessageList>
             );
             elements.push(
-                <MessageInput attachButton={false} placeholder="Digite sua mensagem..." onSend={(innerHtml: String, textContent: String, innerText: String, nodes: NodeList) => sendMessage(textContent as string, currentUser, conversationUser)} />
+                <MessageInput data-testid="message-input" attachButton={false} placeholder="Digite sua mensagem..." onSend={(innerHtml: String, textContent: String, innerText: String, nodes: NodeList) => sendMessage(textContent as string, currentUser, conversationUser)} />
             );
             setUserChatElements(elements);
         });
@@ -98,19 +98,19 @@ export function Chat() {
                     let user = users[i];
                     if (!message.content) {
                         conversations.push(
-                            <Conversation onClick={() => setConversationUser(user)} className="regular-conversation" key={user.id} name={user.name}>
+                            <Conversation data-testid={user.name + "conversation-button"} onClick={() => setConversationUser(user)} className="regular-conversation" key={user.id} name={user.name}>
                                 <Avatar src={"../default-user-icon.svg"} />
                             </Conversation>
                         );
                     } else if (message.sender.id !== user.id) {
                         conversations.push(
-                            <Conversation onClick={() => setConversationUser(user)} className="regular-conversation" key={user.id} name={user.name} info={"Você: " + message.content}>
+                            <Conversation data-testid={user.name + "conversation-button"} onClick={() => setConversationUser(user)} className="regular-conversation" key={user.id} name={user.name} info={"Você: " + message.content}>
                                 <Avatar src={"../default-user-icon.svg"} />
                             </Conversation>
                         );
                     } else {
                         conversations.push(
-                            <Conversation onClick={() => setConversationUser(user)} className="regular-conversation" key={user.id} name={user.name} info={user.name.split(' ')[0] + ": " + message.content}>
+                            <Conversation data-testid={user.name + "conversation-button"} onClick={() => setConversationUser(user)} className="regular-conversation" key={user.id} name={user.name} info={user.name.split(' ')[0] + ": " + message.content}>
                                 <Avatar src={"../default-user-icon.svg"} />
                             </Conversation>
                         );

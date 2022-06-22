@@ -138,7 +138,7 @@ export function ClientJobView() {
                     </UserInfo>
                     <HireDiv>
                         <div style={{ textAlign: "center" }}>
-                            <StyledHireButton variant="contained" onClick={() => choose(freelancer.id)} > Contratar </StyledHireButton>
+                            <StyledHireButton data-testid="hire-button" variant="contained" onClick={() => choose(freelancer.id)} > Contratar </StyledHireButton>
                         </div>
                     </HireDiv>
                 </FreelancerBidingContainer>
@@ -219,7 +219,7 @@ export function ClientJobView() {
                                 (
                                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", alignContent: "center" }}>
                                         <AboutFreelancerContainer>
-                                            <AboutFreelancerTitle>
+                                            <AboutFreelancerTitle data-testid="about-div">
                                                 Sobre o Freelancer Contratado
                                             </AboutFreelancerTitle>
                                             <AboutFreelancerSubtitle>
@@ -232,12 +232,12 @@ export function ClientJobView() {
                                         </AboutFreelancerContainer>
                                         <RatingDiv>
                                             <span style={{ marginTop: "4px", marginRight: "4px" }}>Avaliação: </span>
-                                            <Rating onChange={onRatingChange} name="half-rating" defaultValue={0.0} precision={0.2} size="large" style={{ fontSize: "140%" }} />
+                                            <Rating data-testid="ratings-button" onChange={onRatingChange} name="half-rating" defaultValue={0.0} precision={0.2} size="large" style={{ fontSize: "140%" }} />
                                         </RatingDiv>
                                         <ChatAndRateJobDiv>
                                             <div style={{ textAlign: "center", marginBlock: "5%", display: "flex", justifyContent: "space-evenly" }}>
-                                                <StyledChatButton onClick={openChat} variant="contained"> Chat </StyledChatButton>
-                                                <StyledRateButton onClick={rateJob} variant="contained"> Avaliar </StyledRateButton>
+                                                <StyledChatButton data-testid="chat-button" onClick={openChat} variant="contained"> Chat </StyledChatButton>
+                                                <StyledRateButton data-testid="rate-button" onClick={rateJob} variant="contained"> Avaliar </StyledRateButton>
                                             </div>
                                         </ChatAndRateJobDiv>
                                     </div>

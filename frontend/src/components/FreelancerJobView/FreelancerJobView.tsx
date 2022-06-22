@@ -154,7 +154,7 @@ export function FreelancerJobView() {
                         </AboutClientContainer>
                         <ApplyJobDiv>
                             <div style={{ textAlign: "center", marginBlock: "5%" }}>
-                                <StyledButton data-testid="apply-button" variant="contained" onClick={apply} disabled={applied}> Candidatar-se </StyledButton>
+                                <StyledButton data-testid={applied? "gray-button": "apply-button"} variant="contained" onClick={apply} disabled={applied}> { applied? "Candidatado": "Candidatar-se"} </StyledButton>
                             </div>
                         </ApplyJobDiv>
                     </LowerRightDiv>

@@ -70,7 +70,7 @@ export function Header() {
                                 </ListItemButton>
                             </ListItem>
                             <ListItem>
-                                <ListItemButton onClick={() => handleMenuClose("jobs-list/false")} >
+                                <ListItemButton data-testid="jobslist-button" onClick={() => handleMenuClose("jobs-list/false")} >
                                     <ListItemText primary="Jobs" />
                                 </ListItemButton>
                             </ListItem>
@@ -101,7 +101,7 @@ export function Header() {
                 <Title>
                     FindJob
                 </Title>
-                <SubTitle>
+                <SubTitle data-testid="subtitle-div">
                     {currentUser.isFreelancer ? "Freelancer" : "Cliente"}
                 </SubTitle>
             </HeaderTitle>

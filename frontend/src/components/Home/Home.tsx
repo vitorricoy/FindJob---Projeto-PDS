@@ -43,7 +43,7 @@ export function Home() {
                 </div>
 
                 <div style={{ alignSelf: "center" }}>
-                    <StyledButton variant="contained" onClick={handleSecondButtonClick}> Meus jobs </StyledButton>
+                    <StyledButton data-testid="myjobs-button" variant="contained" onClick={handleSecondButtonClick}> Meus jobs </StyledButton>
                 </div>
             </Buttons>
 

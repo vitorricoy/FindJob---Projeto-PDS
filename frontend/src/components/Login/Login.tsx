@@ -93,7 +93,7 @@ export function Login() {
                         <StyledPasswordInput data-testid="password-input" id="login-password" label="Senha" variant="outlined" type="password" value={password} onChange={handlePasswordChange} />
                     </StyledInputDiv>
 
-                    <div style={{ color: "red", fontSize: "1.8vh" }}>
+                    <div data-testid="error-div" style={{ color: "red", fontSize: "1.8vh" }}>
                         {loginError && "E-mail ou senha inválidos."}
                     </div>
 
