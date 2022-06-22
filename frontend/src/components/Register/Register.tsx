@@ -174,20 +174,21 @@ export function Register() {
 
             <StyledRegisterInfoContainer>
                 <RowContainer>
-                    <InputContainer> <StyledInput onChange={handleEmailChange} value={email} variant="outlined" label="E-mail" InputLabelProps={{ shrink: true, required: true }} /> </InputContainer>
+                    <InputContainer> <StyledInput data-testid="email-input" onChange={handleEmailChange} value={email} variant="outlined" label="E-mail" InputLabelProps={{ shrink: true, required: true }} /> </InputContainer>
 
-                    <InputContainer> <StyledInput onChange={handlePasswordChange} value={password} variant="outlined" label="Senha" type="password" InputLabelProps={{ shrink: true, required: true }} /> </InputContainer>
+                    <InputContainer> <StyledInput data-testid="password-input" onChange={handlePasswordChange} value={password} variant="outlined" label="Senha" type="password" InputLabelProps={{ shrink: true, required: true }} /> </InputContainer>
                 </RowContainer>
 
                 <RowContainer>
-                    <InputContainer> <StyledInput onChange={handleFullNameChange} value={fullName} variant="outlined" label="Nome Completo" InputLabelProps={{ shrink: true, required: true }} /> </InputContainer>
+                    <InputContainer> <StyledInput data-testid="name-input" onChange={handleFullNameChange} value={fullName} variant="outlined" label="Nome Completo" InputLabelProps={{ shrink: true, required: true }} /> </InputContainer>
 
-                    <InputContainer> <StyledInput onChange={handlePhoneNumberChange} value={phoneNumber} variant="outlined" label="Telefone" InputLabelProps={{ shrink: true, required: true }} /> </InputContainer>
+                    <InputContainer> <StyledInput data-testid="phone-input" onChange={handlePhoneNumberChange} value={phoneNumber} variant="outlined" label="Telefone" InputLabelProps={{ shrink: true, required: true }} /> </InputContainer>
                 </RowContainer>
 
                 <div style={{ height: "8%", marginInline: "19%" }}>
                     <StyledFormControlLabel control={
                         <StyledCheckbox
+                            data-testid="freelancer-checkbox"
                             checked={checked}
                             onChange={handleCheck}
                             inputProps={{ 'aria-label': 'controlled' }}
@@ -241,6 +242,7 @@ export function Register() {
                                 {newAbilityInput &&
                                     <div style={{ padding: "0 16px" }}>
                                         <StyledInput
+                                            data-testid="skill-input"
                                             variant="standard"
                                             label="Nova habilidade"
                                             value={name}
@@ -252,7 +254,7 @@ export function Register() {
                                             }} />
                                     </div>}
 
-                                {!newAbilityInput && <StyledAddAbilityButton onClick={handleAddNewAbilityInput}>+</StyledAddAbilityButton>}
+                                {!newAbilityInput && <StyledAddAbilityButton data-testid="addskill-button" onClick={handleAddNewAbilityInput}>+</StyledAddAbilityButton>}
                             </div>
                         </div>
                         : null}
@@ -260,7 +262,7 @@ export function Register() {
             </StyledRegisterInfoContainer>
 
             <StyledButtonContainer>
-                <StyledRegisterButton onClick={handleRegisterClick}> Cadastrar </StyledRegisterButton>
+                <StyledRegisterButton data-testid="register-button" onClick={handleRegisterClick}> Cadastrar </StyledRegisterButton>
             </StyledButtonContainer>
         </Container>
     );
