@@ -86,11 +86,11 @@ export function Login() {
                     </StyledWelcomeMessage>
 
                     <StyledInputDiv>
-                        <StyledEmailInput id="login-email" label="E-mail" variant="outlined" value={email} onChange={handleEmailChange} />
+                        <StyledEmailInput data-testid="email-input" id="login-email" label="E-mail" variant="outlined" value={email} onChange={handleEmailChange} />
                     </StyledInputDiv>
 
                     <StyledInputDiv>
-                        <StyledPasswordInput id="login-password" label="Senha" variant="outlined" type="password" value={password} onChange={handlePasswordChange} />
+                        <StyledPasswordInput data-testid="password-input" id="login-password" label="Senha" variant="outlined" type="password" value={password} onChange={handlePasswordChange} />
                     </StyledInputDiv>
 
                     <div style={{ color: "red", fontSize: "1.8vh" }}>
@@ -98,11 +98,11 @@ export function Login() {
                     </div>
 
                     <StyledInputDiv>
-                        <StyledLoginButton variant="contained" onClick={handleLoginButtonClick}> Entrar </StyledLoginButton>
+                        <StyledLoginButton data-testid="login-button" variant="contained" onClick={handleLoginButtonClick}> Entrar </StyledLoginButton>
                     </StyledInputDiv>
 
                     <StyledSignUp>
-                        <div>Não possui uma conta?</div><a style={{ textDecoration: "none", color: "#2B6CB0" }} className="signUpButton" href="./register">Crie uma gratuitamente.</a>
+                        <div>Não possui uma conta?</div><a style={{ textDecoration: "none", color: "#2B6CB0" }} data-testid="signup-button" className="signUpButton" href="./register">Crie uma gratuitamente.</a>
                     </StyledSignUp>
                 </OuterContainer>
             </RightContainer>

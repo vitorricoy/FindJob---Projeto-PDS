@@ -167,13 +167,14 @@ export function CreateJob() {
                                 Título
                             </TitleDescription1>
                             <TitleDescription2>
-                                <TitleTextField onChange={handleTitleChange} value={title} id="outlined-basic" variant="outlined" size="small" placeholder="Ex: Website de comércio de roupas online" />
+                                <TitleTextField data-testid="title-input" onChange={handleTitleChange} value={title} id="outlined-basic" variant="outlined" size="small" placeholder="Ex: Website de comércio de roupas online" />
                             </TitleDescription2>
                             <TitleDescription3>
                                 Descrição
                             </TitleDescription3>
                             <TitleDescription4>
                                 <DescriptionTextField
+                                    data-testid="description-input"
                                     id="standard-multiline-static"
                                     multiline
                                     rows={10}
@@ -184,7 +185,7 @@ export function CreateJob() {
                                 />
                             </TitleDescription4>
                             <TitleDescription5>
-                                Prazo: <DateTextField onChange={handleDeadlineChange} value={deadline} id="outlined-basic" variant="outlined" size="small" /> dias.
+                                Prazo: <DateTextField data-testid="deadline-input" onChange={handleDeadlineChange} value={deadline} id="outlined-basic" variant="outlined" size="small" /> dias.
                             </TitleDescription5>
                         </GrayPaper>
                     </TitleDescriptionDiv>
@@ -198,6 +199,7 @@ export function CreateJob() {
                             </Skills1>
                             <Skills2>
                                 <SkillField
+                                    data-testid="skill-input"
                                     id="outlined-basic"
                                     variant="outlined"
                                     size="small"
@@ -205,6 +207,7 @@ export function CreateJob() {
                                     onChange={handleChange}
                                 />
                                 <StyledAddSkillButton
+                                    data-testid="addskill-button"
                                     onClick={() => handleAddNewAbility(name)}
                                 >+</StyledAddSkillButton>
                             </Skills2>
@@ -212,7 +215,7 @@ export function CreateJob() {
                                 <StyledList dense={true}>
                                     {abilities.map(ability => {
                                         return (
-                                            <ListItem>
+                                            <ListItem data-testid={ability + "-text"}>
                                                 <ListItemText
                                                     primary={ability}
                                                 />
@@ -253,19 +256,19 @@ export function CreateJob() {
                                 <FormGroup>
                                     <div style={{ display: "flex" }}>
                                         <FormControlLabel control={<Checkbox defaultChecked color="primary" onChange={() => handlePaymentMethodChange('total')} checked={totalChecked} />} label="Valor total" />
-                                        <FormControlLabel control={<Checkbox color="primary" checked={perHourChecked} onChange={() => handlePaymentMethodChange('hour')} />} label="Por hora" />
+                                        <FormControlLabel control={<Checkbox data-testid="perhour-checkbox" color="primary" checked={perHourChecked} onChange={() => handlePaymentMethodChange('hour')} />} label="Por hora" />
                                     </div>
                                 </FormGroup>
                             </Payment3>
                             <Payment4>
-                                {currency} <CurrencyTextField onChange={handlePaymentChange} value={payment} id="outlined-basic" variant="outlined" /> <sub>{totalChecked ? '' : '/h'} </sub>
+                                {currency} <CurrencyTextField data-testid="payment-input" onChange={handlePaymentChange} value={payment} id="outlined-basic" variant="outlined" /> <sub>{totalChecked ? '' : '/h'} </sub>
                             </Payment4>
                         </GrayPaper>
                     </PaymentDiv>
 
                     <PostJobDiv>
                         <div style={{ textAlign: "center", marginBlock: "5%" }}>
-                            <StyledButton variant="contained" onClick={handleButtonClick}> Postar job </StyledButton>
+                            <StyledButton data-testid="createjob-button" variant="contained" onClick={handleButtonClick}> Postar job </StyledButton>
                         </div>
                     </PostJobDiv>
                 </RightDiv>

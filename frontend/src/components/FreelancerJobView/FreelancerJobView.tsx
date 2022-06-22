@@ -107,7 +107,7 @@ export function FreelancerJobView() {
                     <TitleDiv>
                         {job.title}
                     </TitleDiv>
-                    <PriceDiv>
+                    <PriceDiv data-testid="price-div">
                         R$ {job.payment}
                         {job.isPaymentByHour ?
                             <sub>/h</sub>
@@ -121,7 +121,7 @@ export function FreelancerJobView() {
                             <AbilityTitle>
                                 Habilidades Necessárias
                             </AbilityTitle>
-                            <SkillsDiv>
+                            <SkillsDiv data-testid="skills-div">
                                 {
                                     getJobSkills()
                                 }
@@ -154,7 +154,7 @@ export function FreelancerJobView() {
                         </AboutClientContainer>
                         <ApplyJobDiv>
                             <div style={{ textAlign: "center", marginBlock: "5%" }}>
-                                <StyledButton variant="contained" onClick={apply} disabled={applied}> Candidatar-se </StyledButton>
+                                <StyledButton data-testid="apply-button" variant="contained" onClick={apply} disabled={applied}> Candidatar-se </StyledButton>
                             </div>
                         </ApplyJobDiv>
                     </LowerRightDiv>

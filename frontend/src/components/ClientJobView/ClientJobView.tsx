@@ -178,10 +178,10 @@ export function ClientJobView() {
             <Body>
 
                 <UpperDiv>
-                    <TitleDiv>
+                    <TitleDiv data-testid="title-div">
                         {job.title}
                     </TitleDiv>
-                    <PriceDiv>
+                    <PriceDiv data-testid="price-div">
                         R$ {job.payment}
                         {job.isPaymentByHour ?
                             <sub>/h</sub>
@@ -195,7 +195,7 @@ export function ClientJobView() {
                             <AbilityTitle>
                                 Habilidades Necessárias
                             </AbilityTitle>
-                            <SkillsDiv>
+                            <SkillsDiv data-testid="skills-div">
                                 {
                                     getJobSkills()
                                 }
@@ -205,7 +205,7 @@ export function ClientJobView() {
                             <DescriptionTitle>
                                 Descrição
                             </DescriptionTitle>
-                            <DescriptionContent>
+                            <DescriptionContent data-testid="description-div">
                                 <p style={{ marginTop: "0" }}>
                                     {job.description}
                                 </p>
@@ -242,7 +242,7 @@ export function ClientJobView() {
                                         </ChatAndRateJobDiv>
                                     </div>
                                 ) : (
-                                    (<ContainerFreelancerList>
+                                    (<ContainerFreelancerList data-testid="freelancers-div">
                                         {getFreelancerBidings()}
                                     </ContainerFreelancerList>)
                                 )

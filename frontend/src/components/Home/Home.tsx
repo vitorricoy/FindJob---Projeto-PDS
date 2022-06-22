@@ -39,7 +39,7 @@ export function Home() {
 
             <Buttons>
                 <div style={{ alignSelf: "center" }}>
-                    <StyledButton variant="contained" onClick={handleFirstButtonClick}> {currentUser.isFreelancer ? "Buscar jobs" : "Novo job"} </StyledButton>
+                    <StyledButton data-testid={currentUser.isFreelancer ? "findjobs-button" : "newjob-button"} variant="contained" onClick={handleFirstButtonClick}> {currentUser.isFreelancer ? "Buscar jobs" : "Novo job"} </StyledButton>
                 </div>
 
                 <div style={{ alignSelf: "center" }}>

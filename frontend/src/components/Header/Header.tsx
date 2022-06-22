@@ -42,6 +42,7 @@ export function Header() {
         <StyledHeader>
             <MenuIcon>
                 <StyledMenuButton
+                    data-testid="menu-button"
                     id="basic-button"
                     aria-controls={open ? 'basic-menu' : undefined}
                     aria-haspopup="true"
@@ -87,7 +88,7 @@ export function Header() {
                                 </ListItemButton>
                             </ListItem>
                             <ListItem>
-                                <ListItemButton onClick={() => handleMenuClose("logout")}>
+                                <ListItemButton data-testid="logout-button" onClick={() => handleMenuClose("logout")}>
                                     <ListItemText primary="Logout" />
                                 </ListItemButton>
                             </ListItem>

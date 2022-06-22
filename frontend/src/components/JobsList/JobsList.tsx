@@ -285,17 +285,17 @@ export function JobsList() {
                         </Filters3>
                         <Filters4>
                             <div>
-                                <FormControlLabel control={<Checkbox color="primary" checked={perHourChecked} onChange={() => handlePaymentMethodChange('hour')} />} label="Por hora" />
+                                <FormControlLabel control={<Checkbox data-testid="perhour-checkbox" color="primary" checked={perHourChecked} onChange={() => handlePaymentMethodChange('hour')} />} label="Por hora" />
                             </div>
-                            {currency} <CurrencyTextField onChange={handlePerHourPaymentMinChange} value={perHourPaymentMin} disabled={perHourTextFieldDisable} id="outlined-basic3" variant="outlined" size="small" /> /h -
-                            {currency} <CurrencyTextField onChange={handlePerHourPaymentMaxChange} value={perHourPaymentMax} disabled={perHourTextFieldDisable} id="outlined-basic4" variant="outlined" size="small" /> /h
+                            {currency} <CurrencyTextField data-testid="perhourlower-input" onChange={handlePerHourPaymentMinChange} value={perHourPaymentMin} disabled={perHourTextFieldDisable} id="outlined-basic3" variant="outlined" size="small" /> /h -
+                            {currency} <CurrencyTextField data-testid="perhourupper-input" onChange={handlePerHourPaymentMaxChange} value={perHourPaymentMax} disabled={perHourTextFieldDisable} id="outlined-basic4" variant="outlined" size="small" /> /h
                         </Filters4>
                         <Filters5>
                             Prazo
                         </Filters5>
                         <Filters6>
-                            <CurrencyTextField onChange={handleDeadlineMinChange} value={deadlineMin} id="outlined-basic5" variant="outlined" size="small" /> dias -
-                            <CurrencyTextField onChange={handleDeadlineMaxChange} value={deadlineMax} id="outlined-basic6" variant="outlined" size="small" /> dias
+                            <CurrencyTextField data-testid="deadlinelower-input" onChange={handleDeadlineMinChange} value={deadlineMin} id="outlined-basic5" variant="outlined" size="small" /> dias -
+                            <CurrencyTextField data-testid="deadlineupper-input" onChange={handleDeadlineMaxChange} value={deadlineMax} id="outlined-basic6" variant="outlined" size="small" /> dias
                         </Filters6>
                         <Filters7>
                             <Skills1>
@@ -303,6 +303,7 @@ export function JobsList() {
                             </Skills1>
                             <Skills2>
                                 <SkillField
+                                    data-testid="skill-input"
                                     id="outlined-basic"
                                     variant="outlined"
                                     size="small"
@@ -310,6 +311,7 @@ export function JobsList() {
                                     onChange={handleChange}
                                 />
                                 <StyledAddSkillButton
+                                    data-testid="addskill-button"
                                     onClick={() => handleAddNewAbility(name)}
                                 >+</StyledAddSkillButton>
                             </Skills2>
@@ -350,6 +352,7 @@ export function JobsList() {
                         <GrayPaper>
                             <JobsList1>
                                 <SearchJobTextField
+                                    data-testid="search-input"
                                     id="job-search"
                                     variant="outlined"
                                     size="small"
@@ -374,7 +377,7 @@ export function JobsList() {
                                                     return (
                                                         <ListItem key={job.id} style={{ display: "block" }}>
                                                             <ListItemDiv>
-                                                                <ListItemButton onClick={() => handleJobClick(job.id)}>
+                                                                <ListItemButton data-testid={job.title + "-button"} onClick={() => handleJobClick(job.id)}>
                                                                     <ListItemText
                                                                         disableTypography
                                                                         primary={<Typography variant="h5" style={{ color: '#000000' }}>{job.title}</Typography>}
@@ -385,7 +388,7 @@ export function JobsList() {
                                                             <SkillsDiv>
                                                                 {job.skills.map((skill: any) => {
                                                                     return (
-                                                                        <div style={{ lineHeight: "28px", marginInline: "1%", marginBlock: "0.5%", borderRadius: "10px", backgroundColor: "#3f51b5", color: "white", maxHeight: "28px", paddingInline: "1%" }}>
+                                                                        <div data-testid="skills-div" style={{ lineHeight: "28px", marginInline: "1%", marginBlock: "0.5%", borderRadius: "10px", backgroundColor: "#3f51b5", color: "white", maxHeight: "28px", paddingInline: "1%" }}>
                                                                             {skill.name}
                                                                         </div>
                                                                     )
