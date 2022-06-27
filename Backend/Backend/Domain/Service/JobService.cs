@@ -126,7 +126,7 @@ namespace Backend.Domain.Service
                 throw new InvalidJobIdException();
             }
 
-            if (freela == null)
+            if (freela == null || !freela.IsFreelancer)
             {
                 throw new InvalidUserIdException();
             }

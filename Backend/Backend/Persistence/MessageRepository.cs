@@ -36,7 +36,7 @@ namespace Backend.Persistence
             MessageModel messMod = dbContext.Messages
                 .Where(m => m.Sender.Id.Equals(userId1) && m.Receiver.Id.Equals(userId2) || m.Sender.Id.Equals(userId2) && m.Receiver.Id.Equals(userId1))
                 .OrderByDescending(m => m.SentTime)
-                .First();
+                .FirstOrDefault();
             Message message = ToDomainObject(messMod);
             dbContext.SaveChanges();
             return message;
