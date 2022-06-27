@@ -1,0 +1,4089 @@
+{
+  "Backend.dll": {
+    "D:\\Repos\\Backend\\Backend\\Program.cs": {
+      "Program": {
+        "System.Void Program::<Main>$(System.String[])": {
+          "Lines": {
+            "8": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "27": 0,
+            "28": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "41": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0,
+            "66": 0,
+            "68": 0,
+            "70": 0
+          },
+          "Branches": [
+            {
+              "Line": 46,
+              "Offset": 254,
+              "EndOffset": 258,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 254,
+              "EndOffset": 270,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 51,
+              "Offset": 299,
+              "EndOffset": 301,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 51,
+              "Offset": 299,
+              "EndOffset": 319,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Util\\HashingUtil.cs": {
+      "Backend.Util.HashingUtil": {
+        "System.String Backend.Util.HashingUtil::getHash(System.String)": {
+          "Lines": {
+            "10": 12,
+            "11": 12,
+            "12": 12,
+            "13": 12,
+            "14": 12
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Util.HashingUtil::.cctor()": {
+          "Lines": {
+            "8": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Persistence\\ApplicationDbContext.cs": {
+      "Backend.Persistence.ApplicationDbContext": {
+        "System.Void Backend.Persistence.ApplicationDbContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Backend.Domain.Entity.JobModel> Backend.Persistence.ApplicationDbContext::get_Jobs()": {
+          "Lines": {
+            "40": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Backend.Domain.Entity.MessageModel> Backend.Persistence.ApplicationDbContext::get_Messages()": {
+          "Lines": {
+            "41": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Backend.Domain.Entity.SkillModel> Backend.Persistence.ApplicationDbContext::get_Skills()": {
+          "Lines": {
+            "42": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Backend.Domain.Entity.UserModel> Backend.Persistence.ApplicationDbContext::get_Users()": {
+          "Lines": {
+            "43": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Backend.Domain.Entity.UserProficiencyModel> Backend.Persistence.ApplicationDbContext::get_UserSkills()": {
+          "Lines": {
+            "44": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Backend.Domain.Entity.JobRequirementModel> Backend.Persistence.ApplicationDbContext::get_JobSkills()": {
+          "Lines": {
+            "45": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<Backend.Domain.Entity.JobCandidateModel> Backend.Persistence.ApplicationDbContext::get_JobCandidates()": {
+          "Lines": {
+            "46": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Persistence.ApplicationDbContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Backend.Persistence.ApplicationDbContext>)": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "10": 0,
+            "11": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Persistence\\BaseRepository.cs": {
+      "Backend.Persistence.BaseRepository": {
+        "Backend.Domain.Entity.Job Backend.Persistence.BaseRepository::ToDomainObject(Backend.Domain.Entity.JobModel)": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "21": 0,
+            "22": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "29": 0,
+            "30": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "37": 0,
+            "38": 0,
+            "40": 0,
+            "41": 0
+          },
+          "Branches": [
+            {
+              "Line": 16,
+              "Offset": 27,
+              "EndOffset": 29,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 16,
+              "Offset": 27,
+              "EndOffset": 38,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 24,
+              "Offset": 377,
+              "EndOffset": 196,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 24,
+              "Offset": 377,
+              "EndOffset": 382,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 32,
+              "Offset": 740,
+              "EndOffset": 558,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 32,
+              "Offset": 740,
+              "EndOffset": 745,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            }
+          ]
+        },
+        "Backend.Domain.Entity.User Backend.Persistence.BaseRepository::ToDomainObject(Backend.Domain.Entity.UserModel)": {
+          "Lines": {
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "49": 0,
+            "50": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "58": 0,
+            "59": 0
+          },
+          "Branches": [
+            {
+              "Line": 45,
+              "Offset": 25,
+              "EndOffset": 27,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 45,
+              "Offset": 25,
+              "EndOffset": 36,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 52,
+              "Offset": 404,
+              "EndOffset": 194,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 52,
+              "Offset": 404,
+              "EndOffset": 409,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            }
+          ]
+        },
+        "Backend.Domain.Entity.Message Backend.Persistence.BaseRepository::ToDomainObject(Backend.Domain.Entity.MessageModel)": {
+          "Lines": {
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "68": 0,
+            "69": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0
+          },
+          "Branches": [
+            {
+              "Line": 63,
+              "Offset": 27,
+              "EndOffset": 29,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 63,
+              "Offset": 27,
+              "EndOffset": 38,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "Backend.Domain.Entity.Skill Backend.Persistence.BaseRepository::ToDomainObject(Backend.Domain.Entity.SkillModel)": {
+          "Lines": {
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "83": 0,
+            "84": 0
+          },
+          "Branches": [
+            {
+              "Line": 78,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 78,
+              "Offset": 7,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Persistence.BaseRepository::.ctor(Backend.Persistence.ApplicationDbContext)": {
+          "Lines": {
+            "9": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Persistence\\JobRepository.cs": {
+      "Backend.Persistence.JobRepository": {
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.Job> Backend.Persistence.JobRepository::GetAllAvailableJobs()": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.Job Backend.Persistence.JobRepository::GetJobById(System.String)": {
+          "Lines": {
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.Job> Backend.Persistence.JobRepository::ListJobsByUser(System.String,System.Boolean)": {
+          "Lines": {
+            "33": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0
+          },
+          "Branches": [
+            {
+              "Line": 35,
+              "Offset": 24,
+              "EndOffset": 29,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 35,
+              "Offset": 24,
+              "EndOffset": 266,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "Backend.Domain.Entity.Job Backend.Persistence.JobRepository::CreateNewJob(Backend.Domain.Entity.Job)": {
+          "Lines": {
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0,
+            "71": 0,
+            "72": 0,
+            "74": 0,
+            "76": 0,
+            "77": 0
+          },
+          "Branches": [
+            {
+              "Line": 60,
+              "Offset": 299,
+              "EndOffset": 78,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 62,
+              "Offset": 235,
+              "EndOffset": 237,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 62,
+              "Offset": 235,
+              "EndOffset": 291,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 60,
+              "Offset": 299,
+              "EndOffset": 304,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Persistence.JobRepository::UpdateJob(Backend.Domain.Entity.Job)": {
+          "Lines": {
+            "80": 0,
+            "82": 0,
+            "83": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "90": 0,
+            "91": 0,
+            "92": 0,
+            "93": 0,
+            "95": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0,
+            "99": 0,
+            "100": 0,
+            "101": 0,
+            "102": 0,
+            "103": 0,
+            "105": 0,
+            "106": 0
+          },
+          "Branches": [
+            {
+              "Line": 85,
+              "Offset": 412,
+              "EndOffset": 77,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 87,
+              "Offset": 339,
+              "EndOffset": 341,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 87,
+              "Offset": 339,
+              "EndOffset": 404,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 85,
+              "Offset": 412,
+              "EndOffset": 417,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 95,
+              "Offset": 801,
+              "EndOffset": 458,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 97,
+              "Offset": 727,
+              "EndOffset": 729,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 97,
+              "Offset": 727,
+              "EndOffset": 793,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 95,
+              "Offset": 801,
+              "EndOffset": 806,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Persistence.JobRepository::.ctor(Backend.Persistence.ApplicationDbContext)": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "11": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Persistence\\MessageRepository.cs": {
+      "Backend.Persistence.MessageRepository": {
+        "Backend.Domain.Entity.Message Backend.Persistence.MessageRepository::CreateMessage(Backend.Domain.Entity.Message)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.Message> Backend.Persistence.MessageRepository::GetHistory(System.String,System.String)": {
+          "Lines": {
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.Message Backend.Persistence.MessageRepository::GetLastMessage(System.String,System.String)": {
+          "Lines": {
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> Backend.Persistence.MessageRepository::GetUsersThatHaveChats(System.String)": {
+          "Lines": {
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0
+          },
+          "Branches": [
+            {
+              "Line": 50,
+              "Offset": 17,
+              "EndOffset": 19,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 50,
+              "Offset": 17,
+              "EndOffset": 27,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Persistence.MessageRepository::.ctor(Backend.Persistence.ApplicationDbContext)": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "11": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Persistence\\SkillRepository.cs": {
+      "Backend.Persistence.SkillRepository": {
+        "Backend.Domain.Entity.Skill Backend.Persistence.SkillRepository::CreateNewSkill(Backend.Domain.Entity.Skill)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0
+          },
+          "Branches": [
+            {
+              "Line": 15,
+              "Offset": 145,
+              "EndOffset": 150,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 15,
+              "Offset": 145,
+              "EndOffset": 295,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.Skill> Backend.Persistence.SkillRepository::GetAllSkills()": {
+          "Lines": {
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Persistence.SkillRepository::.ctor(Backend.Persistence.ApplicationDbContext)": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "11": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Persistence\\UserRepository.cs": {
+      "Backend.Persistence.UserRepository": {
+        "Backend.Domain.Entity.User Backend.Persistence.UserRepository::GetUserByEmail(System.String)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0
+          },
+          "Branches": [
+            {
+              "Line": 16,
+              "Offset": 161,
+              "EndOffset": 163,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 16,
+              "Offset": 161,
+              "EndOffset": 184,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "Backend.Domain.Entity.User Backend.Persistence.UserRepository::GetUserById(System.String)": {
+          "Lines": {
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0
+          },
+          "Branches": [
+            {
+              "Line": 29,
+              "Offset": 145,
+              "EndOffset": 147,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 29,
+              "Offset": 145,
+              "EndOffset": 168,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "Backend.Domain.Entity.User Backend.Persistence.UserRepository::UpdateUser(Backend.Domain.Entity.User)": {
+          "Lines": {
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "41": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "59": 0,
+            "60": 0,
+            "61": 0
+          },
+          "Branches": [
+            {
+              "Line": 43,
+              "Offset": 68,
+              "EndOffset": 73,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 45,
+              "Offset": 525,
+              "EndOffset": 97,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 48,
+              "Offset": 449,
+              "EndOffset": 451,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 48,
+              "Offset": 449,
+              "EndOffset": 479,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 45,
+              "Offset": 525,
+              "EndOffset": 530,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 68,
+              "EndOffset": 548,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "Backend.Domain.Entity.User Backend.Persistence.UserRepository::CreateNewUser(Backend.Domain.Entity.User)": {
+          "Lines": {
+            "64": 0,
+            "65": 0,
+            "66": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "83": 0,
+            "85": 0,
+            "86": 0
+          },
+          "Branches": [
+            {
+              "Line": 68,
+              "Offset": 49,
+              "EndOffset": 54,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 318,
+              "EndOffset": 73,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 72,
+              "Offset": 260,
+              "EndOffset": 262,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 72,
+              "Offset": 260,
+              "EndOffset": 310,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 318,
+              "EndOffset": 323,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 68,
+              "Offset": 49,
+              "EndOffset": 376,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Persistence.UserRepository::.ctor(Backend.Persistence.ApplicationDbContext)": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "11": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Domain\\Service\\JobService.cs": {
+      "Backend.Domain.Service.JobService": {
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.Job> Backend.Domain.Service.JobService::ListJobsByUser(System.String)": {
+          "Lines": {
+            "21": 2,
+            "22": 2,
+            "24": 2,
+            "25": 1,
+            "26": 1,
+            "29": 1,
+            "30": 1
+          },
+          "Branches": [
+            {
+              "Line": 24,
+              "Offset": 20,
+              "EndOffset": 22,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 24,
+              "Offset": 20,
+              "EndOffset": 29,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        },
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.Job> Backend.Domain.Service.JobService::SearchJobsForFreelancer(System.String)": {
+          "Lines": {
+            "33": 0,
+            "34": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "41": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "56": 0,
+            "57": 0
+          },
+          "Branches": [
+            {
+              "Line": 36,
+              "Offset": 31,
+              "EndOffset": 33,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 31,
+              "EndOffset": 49,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 52,
+              "EndOffset": 54,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 52,
+              "EndOffset": 61,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 104,
+              "EndOffset": 26,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 48,
+              "Offset": 54,
+              "EndOffset": 56,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 48,
+              "Offset": 54,
+              "EndOffset": 96,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 104,
+              "EndOffset": 106,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Boolean Backend.Domain.Service.JobService::RateJob(System.String,System.Double)": {
+          "Lines": {
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "67": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "83": 0,
+            "84": 0,
+            "86": 0,
+            "87": 0,
+            "89": 0,
+            "90": 0
+          },
+          "Branches": [
+            {
+              "Line": 62,
+              "Offset": 15,
+              "EndOffset": 17,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 62,
+              "Offset": 15,
+              "EndOffset": 28,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 62,
+              "Offset": 31,
+              "EndOffset": 33,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 62,
+              "Offset": 31,
+              "EndOffset": 40,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 69,
+              "Offset": 205,
+              "EndOffset": 65,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 92,
+              "EndOffset": 94,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 92,
+              "EndOffset": 174,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 69,
+              "Offset": 205,
+              "EndOffset": 210,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            }
+          ]
+        },
+        "Backend.Domain.Entity.Job Backend.Domain.Service.JobService::GetJobById(System.String)": {
+          "Lines": {
+            "93": 0,
+            "94": 0,
+            "95": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.Job Backend.Domain.Service.JobService::CreateNewJob(System.String,System.String,System.Int32,System.Double,System.Boolean,System.Collections.Generic.List`1<System.String>,System.String)": {
+          "Lines": {
+            "98": 0,
+            "99": 0,
+            "102": 0,
+            "103": 0,
+            "104": 0,
+            "105": 0,
+            "107": 0,
+            "109": 0,
+            "110": 0,
+            "111": 0,
+            "114": 0,
+            "116": 0,
+            "117": 0
+          },
+          "Branches": [
+            {
+              "Line": 102,
+              "Offset": 86,
+              "EndOffset": 19,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 102,
+              "Offset": 86,
+              "EndOffset": 88,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 109,
+              "Offset": 127,
+              "EndOffset": 129,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 109,
+              "Offset": 127,
+              "EndOffset": 136,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Boolean Backend.Domain.Service.JobService::CandidateForJob(System.String,System.String)": {
+          "Lines": {
+            "120": 0,
+            "121": 0,
+            "122": 0,
+            "124": 0,
+            "125": 0,
+            "126": 0,
+            "129": 0,
+            "130": 0,
+            "131": 0,
+            "134": 0,
+            "135": 0,
+            "136": 0,
+            "139": 0,
+            "140": 0,
+            "142": 0,
+            "143": 0
+          },
+          "Branches": [
+            {
+              "Line": 124,
+              "Offset": 33,
+              "EndOffset": 35,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 124,
+              "Offset": 33,
+              "EndOffset": 42,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 129,
+              "Offset": 43,
+              "EndOffset": 45,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 129,
+              "Offset": 43,
+              "EndOffset": 56,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 129,
+              "Offset": 59,
+              "EndOffset": 61,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 129,
+              "Offset": 59,
+              "EndOffset": 68,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 134,
+              "Offset": 81,
+              "EndOffset": 83,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 134,
+              "Offset": 81,
+              "EndOffset": 90,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Boolean Backend.Domain.Service.JobService::ChooseFreelancerForJob(System.String,System.String)": {
+          "Lines": {
+            "146": 0,
+            "147": 0,
+            "148": 0,
+            "150": 0,
+            "151": 0,
+            "152": 0,
+            "155": 0,
+            "156": 0,
+            "157": 0,
+            "160": 0,
+            "161": 0,
+            "162": 0,
+            "165": 0,
+            "166": 0,
+            "167": 0,
+            "169": 0,
+            "170": 0
+          },
+          "Branches": [
+            {
+              "Line": 150,
+              "Offset": 33,
+              "EndOffset": 35,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 150,
+              "Offset": 33,
+              "EndOffset": 42,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 155,
+              "Offset": 43,
+              "EndOffset": 45,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 155,
+              "Offset": 43,
+              "EndOffset": 103,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 155,
+              "Offset": 106,
+              "EndOffset": 108,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 155,
+              "Offset": 106,
+              "EndOffset": 115,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 160,
+              "Offset": 128,
+              "EndOffset": 130,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 160,
+              "Offset": 128,
+              "EndOffset": 137,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Int32 Backend.Domain.Service.JobService::CompareCandidatesByJob(Backend.Domain.Entity.User,Backend.Domain.Entity.User,Backend.Domain.Entity.Job)": {
+          "Lines": {
+            "172": 0,
+            "173": 0,
+            "174": 0,
+            "176": 0,
+            "177": 0,
+            "178": 0,
+            "179": 0,
+            "180": 0,
+            "181": 0,
+            "183": 0,
+            "184": 0,
+            "185": 0,
+            "187": 0,
+            "188": 0,
+            "189": 0,
+            "190": 0,
+            "192": 0,
+            "193": 0,
+            "194": 0,
+            "195": 0,
+            "197": 0,
+            "198": 0
+          },
+          "Branches": [
+            {
+              "Line": 176,
+              "Offset": 176,
+              "EndOffset": 31,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 178,
+              "Offset": 56,
+              "EndOffset": 58,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 178,
+              "Offset": 56,
+              "EndOffset": 86,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 187,
+              "Offset": 120,
+              "EndOffset": 122,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 187,
+              "Offset": 120,
+              "EndOffset": 150,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 176,
+              "Offset": 176,
+              "EndOffset": 181,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.User> Backend.Domain.Service.JobService::GetJobCandidatesBySkill(System.String)": {
+          "Lines": {
+            "201": 0,
+            "202": 0,
+            "204": 0,
+            "205": 0,
+            "206": 0,
+            "209": 0,
+            "211": 0,
+            "212": 0
+          },
+          "Branches": [
+            {
+              "Line": 204,
+              "Offset": 36,
+              "EndOffset": 38,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 204,
+              "Offset": 36,
+              "EndOffset": 45,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Domain.Service.JobService::.ctor(Backend.Domain.Repository.IJobRepository,Backend.Domain.Repository.IUserRepository,Backend.Domain.Repository.ISkillRepository)": {
+          "Lines": {
+            "13": 2,
+            "14": 2,
+            "15": 2,
+            "16": 2,
+            "17": 2,
+            "18": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Domain\\Service\\MessageService.cs": {
+      "Backend.Domain.Service.MessageService": {
+        "Backend.Domain.Entity.Message Backend.Domain.Service.MessageService::CreateMessage(System.String,System.DateTime,System.String,System.String)": {
+          "Lines": {
+            "19": 14,
+            "20": 14,
+            "21": 14,
+            "23": 14,
+            "24": 2,
+            "25": 2,
+            "28": 12,
+            "30": 12,
+            "31": 12
+          },
+          "Branches": [
+            {
+              "Line": 23,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 13
+            },
+            {
+              "Line": 23,
+              "Offset": 29,
+              "EndOffset": 37,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 23,
+              "Offset": 40,
+              "EndOffset": 42,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 2
+            },
+            {
+              "Line": 23,
+              "Offset": 40,
+              "EndOffset": 49,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 12
+            }
+          ]
+        },
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.Message> Backend.Domain.Service.MessageService::GetHistory(System.String,System.String)": {
+          "Lines": {
+            "34": 2,
+            "35": 2,
+            "36": 2
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.Message Backend.Domain.Service.MessageService::GetLastMessage(System.String,System.String)": {
+          "Lines": {
+            "39": 3,
+            "40": 3,
+            "41": 3
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.User> Backend.Domain.Service.MessageService::GetUsersThatHaveChats(System.String)": {
+          "Lines": {
+            "44": 2,
+            "45": 2,
+            "46": 4,
+            "47": 2
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Service.MessageService::.ctor(Backend.Domain.Repository.IMessageRepository,Backend.Domain.Repository.IUserRepository)": {
+          "Lines": {
+            "12": 10,
+            "13": 10,
+            "14": 10,
+            "15": 10,
+            "16": 10
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Domain\\Service\\SkillService.cs": {
+      "Backend.Domain.Service.SkillService": {
+        "Backend.Domain.Entity.Skill Backend.Domain.Service.SkillService::CreateNewSkill(System.String)": {
+          "Lines": {
+            "15": 9,
+            "16": 9,
+            "17": 9,
+            "18": 9
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.Skill> Backend.Domain.Service.SkillService::GetAllSkills()": {
+          "Lines": {
+            "21": 3,
+            "22": 3,
+            "23": 3
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Service.SkillService::.ctor(Backend.Domain.Repository.ISkillRepository)": {
+          "Lines": {
+            "9": 5,
+            "10": 5,
+            "11": 5,
+            "12": 5
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Domain\\Service\\UserService.cs": {
+      "Backend.Domain.Service.UserService": {
+        "Backend.Domain.Entity.User Backend.Domain.Service.UserService::RegisterClient(System.String,System.String,System.String,System.String)": {
+          "Lines": {
+            "19": 6,
+            "20": 6,
+            "21": 6,
+            "23": 6,
+            "24": 1,
+            "25": 1,
+            "28": 5,
+            "30": 5,
+            "32": 5,
+            "33": 5
+          },
+          "Branches": [
+            {
+              "Line": 23,
+              "Offset": 27,
+              "EndOffset": 29,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 23,
+              "Offset": 27,
+              "EndOffset": 36,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 5
+            }
+          ]
+        },
+        "Backend.Domain.Entity.User Backend.Domain.Service.UserService::RegisterFreelancer(System.String,System.String,System.String,System.String,System.Collections.Generic.List`1<System.String>,System.Collections.Generic.List`1<System.Double>)": {
+          "Lines": {
+            "36": 3,
+            "37": 3,
+            "38": 3,
+            "40": 3,
+            "41": 1,
+            "42": 1,
+            "45": 2,
+            "46": 4,
+            "47": 6,
+            "49": 2,
+            "51": 2,
+            "53": 2,
+            "54": 2
+          },
+          "Branches": [
+            {
+              "Line": 40,
+              "Offset": 51,
+              "EndOffset": 53,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 40,
+              "Offset": 51,
+              "EndOffset": 60,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            }
+          ]
+        },
+        "Backend.Domain.Entity.User Backend.Domain.Service.UserService::Login(System.String,System.String)": {
+          "Lines": {
+            "57": 3,
+            "58": 3,
+            "59": 3,
+            "61": 3,
+            "62": 2,
+            "63": 2,
+            "66": 1,
+            "67": 1
+          },
+          "Branches": [
+            {
+              "Line": 61,
+              "Offset": 22,
+              "EndOffset": 24,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            },
+            {
+              "Line": 61,
+              "Offset": 22,
+              "EndOffset": 38,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 61,
+              "Offset": 41,
+              "EndOffset": 43,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 2
+            },
+            {
+              "Line": 61,
+              "Offset": 41,
+              "EndOffset": 50,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        },
+        "Backend.Domain.Entity.User Backend.Domain.Service.UserService::GetUserById(System.String)": {
+          "Lines": {
+            "70": 2,
+            "71": 2,
+            "72": 2
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Service.UserService::.ctor(Backend.Domain.Repository.IUserRepository)": {
+          "Lines": {
+            "13": 9,
+            "14": 9,
+            "15": 9,
+            "16": 9
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Domain\\Entity\\Job.cs": {
+      "Backend.Domain.Entity.Job": {
+        "System.String Backend.Domain.Entity.Job::get_Id()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.Job::get_Title()": {
+          "Lines": {
+            "6": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.Job::get_Description()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 Backend.Domain.Entity.Job::get_Deadline()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.Double Backend.Domain.Entity.Job::get_Payment()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.Job::get_IsPaymentByHour()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.Skill> Backend.Domain.Entity.Job::get_Skills()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.User Backend.Domain.Entity.Job::get_Client()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.User Backend.Domain.Entity.Job::get_AssignedFreelancer()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.User> Backend.Domain.Entity.Job::get_Candidates()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.Job::get_Active()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.Job::get_Available()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.Job::Equals(System.Object)": {
+          "Lines": {
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "40": 0,
+            "41": 0
+          },
+          "Branches": [
+            {
+              "Line": 36,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 7,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Boolean Backend.Domain.Entity.Job::Equals(Backend.Domain.Entity.Job)": {
+          "Lines": {
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0
+          },
+          "Branches": [
+            {
+              "Line": 45,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 45,
+              "Offset": 7,
+              "EndOffset": 20,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 39,
+              "EndOffset": 44,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 61,
+              "EndOffset": 66,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 83,
+              "EndOffset": 88,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 105,
+              "EndOffset": 110,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 130,
+              "EndOffset": 135,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 155,
+              "EndOffset": 160,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 180,
+              "EndOffset": 182,
+              "Path": 0,
+              "Ordinal": 14,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 271,
+              "EndOffset": 273,
+              "Path": 0,
+              "Ordinal": 16,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 39,
+              "EndOffset": 292,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 61,
+              "EndOffset": 292,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 83,
+              "EndOffset": 292,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 105,
+              "EndOffset": 292,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 130,
+              "EndOffset": 292,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 155,
+              "EndOffset": 292,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 180,
+              "EndOffset": 292,
+              "Path": 1,
+              "Ordinal": 15,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 271,
+              "EndOffset": 292,
+              "Path": 1,
+              "Ordinal": 17,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 295,
+              "EndOffset": 300,
+              "Path": 0,
+              "Ordinal": 18,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 389,
+              "EndOffset": 391,
+              "Path": 0,
+              "Ordinal": 20,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 411,
+              "EndOffset": 413,
+              "Path": 0,
+              "Ordinal": 22,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 295,
+              "EndOffset": 435,
+              "Path": 1,
+              "Ordinal": 19,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 389,
+              "EndOffset": 435,
+              "Path": 1,
+              "Ordinal": 21,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 411,
+              "EndOffset": 435,
+              "Path": 1,
+              "Ordinal": 23,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Domain.Entity.Job::.ctor(System.String,System.String,System.String,System.Int32,System.Double,System.Boolean,System.Collections.Generic.List`1<Backend.Domain.Entity.Skill>,Backend.Domain.Entity.User,Backend.Domain.Entity.User,System.Collections.Generic.List`1<Backend.Domain.Entity.User>,System.Boolean,System.Boolean)": {
+          "Lines": {
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Domain\\Entity\\Message.cs": {
+      "Backend.Domain.Entity.Message": {
+        "System.String Backend.Domain.Entity.Message::get_Id()": {
+          "Lines": {
+            "5": 12
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.Message::get_Content()": {
+          "Lines": {
+            "6": 13
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.User Backend.Domain.Entity.Message::get_Sender()": {
+          "Lines": {
+            "7": 29
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.User Backend.Domain.Entity.Message::get_Receiver()": {
+          "Lines": {
+            "8": 24
+          },
+          "Branches": []
+        },
+        "System.DateTime Backend.Domain.Entity.Message::get_SentTime()": {
+          "Lines": {
+            "9": 20
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.Message::get_IsRead()": {
+          "Lines": {
+            "10": 13
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.Message::Equals(System.Object)": {
+          "Lines": {
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "28": 0,
+            "29": 0
+          },
+          "Branches": [
+            {
+              "Line": 24,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 24,
+              "Offset": 7,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Boolean Backend.Domain.Entity.Message::Equals(Backend.Domain.Entity.Message)": {
+          "Lines": {
+            "32": 0,
+            "33": 0,
+            "34": 0
+          },
+          "Branches": [
+            {
+              "Line": 33,
+              "Offset": 2,
+              "EndOffset": 4,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 33,
+              "Offset": 21,
+              "EndOffset": 23,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 33,
+              "Offset": 40,
+              "EndOffset": 42,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 33,
+              "Offset": 59,
+              "EndOffset": 61,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 33,
+              "Offset": 78,
+              "EndOffset": 80,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 33,
+              "Offset": 100,
+              "EndOffset": 102,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 0
+            },
+            {
+              "Line": 33,
+              "Offset": 2,
+              "EndOffset": 124,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 33,
+              "Offset": 21,
+              "EndOffset": 124,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 33,
+              "Offset": 40,
+              "EndOffset": 124,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 33,
+              "Offset": 59,
+              "EndOffset": 124,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 33,
+              "Offset": 78,
+              "EndOffset": 124,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 0
+            },
+            {
+              "Line": 33,
+              "Offset": 100,
+              "EndOffset": 124,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Domain.Entity.Message::.ctor(System.String,System.String,Backend.Domain.Entity.User,Backend.Domain.Entity.User,System.DateTime,System.Boolean)": {
+          "Lines": {
+            "12": 12,
+            "13": 12,
+            "14": 12,
+            "15": 12,
+            "16": 12,
+            "17": 12,
+            "18": 12,
+            "19": 12,
+            "20": 12
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Domain\\Entity\\Skill.cs": {
+      "Backend.Domain.Entity.Skill": {
+        "System.String Backend.Domain.Entity.Skill::get_Name()": {
+          "Lines": {
+            "7": 21
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.Skill::get_NormalizedName()": {
+          "Lines": {
+            "9": 53
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.Skill::ToString()": {
+          "Lines": {
+            "18": 0,
+            "19": 0,
+            "20": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 Backend.Domain.Entity.Skill::GetHashCode()": {
+          "Lines": {
+            "24": 6,
+            "25": 6,
+            "26": 6
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.Skill::Equals(System.Object)": {
+          "Lines": {
+            "29": 7,
+            "30": 7,
+            "31": 0,
+            "32": 0,
+            "34": 7,
+            "35": 7
+          },
+          "Branches": [
+            {
+              "Line": 30,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 30,
+              "Offset": 7,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 7
+            }
+          ]
+        },
+        "System.Boolean Backend.Domain.Entity.Skill::Equals(Backend.Domain.Entity.Skill)": {
+          "Lines": {
+            "38": 7,
+            "39": 7,
+            "40": 7
+          },
+          "Branches": [
+            {
+              "Line": 39,
+              "Offset": 2,
+              "EndOffset": 4,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 7
+            },
+            {
+              "Line": 39,
+              "Offset": 2,
+              "EndOffset": 23,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Domain.Entity.Skill::.ctor(System.String,System.String)": {
+          "Lines": {
+            "11": 19,
+            "12": 19,
+            "13": 19,
+            "14": 19,
+            "15": 19
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Domain\\Entity\\User.cs": {
+      "Backend.Domain.Entity.User": {
+        "System.String Backend.Domain.Entity.User::get_Id()": {
+          "Lines": {
+            "5": 36
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.User::get_Name()": {
+          "Lines": {
+            "6": 4
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.User::get_Email()": {
+          "Lines": {
+            "7": 9
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.User::get_Password()": {
+          "Lines": {
+            "8": 2
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.User::get_Phone()": {
+          "Lines": {
+            "9": 4
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.User::get_IsFreelancer()": {
+          "Lines": {
+            "10": 5
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.Dictionary`2<Backend.Domain.Entity.Skill,System.Tuple`2<System.Double,System.Int32>> Backend.Domain.Entity.User::get_Skills()": {
+          "Lines": {
+            "11": 5
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.User::Equals(System.Object)": {
+          "Lines": {
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "30": 0,
+            "31": 0
+          },
+          "Branches": [
+            {
+              "Line": 26,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 26,
+              "Offset": 7,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Boolean Backend.Domain.Entity.User::AreDictionariesEqual(System.Collections.Generic.Dictionary`2<Backend.Domain.Entity.Skill,System.Tuple`2<System.Double,System.Int32>>,System.Collections.Generic.Dictionary`2<Backend.Domain.Entity.Skill,System.Tuple`2<System.Double,System.Int32>>)": {
+          "Lines": {
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "38": 0,
+            "39": 0
+          },
+          "Branches": [
+            {
+              "Line": 35,
+              "Offset": 8,
+              "EndOffset": 10,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 35,
+              "Offset": 8,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 8,
+              "EndOffset": 10,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 8,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Boolean Backend.Domain.Entity.User::Equals(Backend.Domain.Entity.User)": {
+          "Lines": {
+            "42": 0,
+            "43": 0,
+            "44": 0
+          },
+          "Branches": [
+            {
+              "Line": 43,
+              "Offset": 2,
+              "EndOffset": 7,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 24,
+              "EndOffset": 26,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 43,
+              "EndOffset": 45,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 62,
+              "EndOffset": 64,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 81,
+              "EndOffset": 83,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 100,
+              "EndOffset": 102,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 122,
+              "EndOffset": 124,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 2,
+              "EndOffset": 144,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 24,
+              "EndOffset": 144,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 43,
+              "EndOffset": 144,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 62,
+              "EndOffset": 144,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 81,
+              "EndOffset": 144,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 100,
+              "EndOffset": 144,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 122,
+              "EndOffset": 144,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Domain.Entity.User::.ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Collections.Generic.Dictionary`2<Backend.Domain.Entity.Skill,System.Tuple`2<System.Double,System.Int32>>)": {
+          "Lines": {
+            "13": 38,
+            "14": 38,
+            "15": 38,
+            "16": 38,
+            "17": 38,
+            "18": 38,
+            "19": 38,
+            "20": 38,
+            "21": 38,
+            "22": 38
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Persistence\\Model\\JobCandidateModel.cs": {
+      "Backend.Domain.Entity.JobCandidateModel": {
+        "System.String Backend.Domain.Entity.JobCandidateModel::get_JobId()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.JobCandidateModel::get_CandidateId()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.JobModel Backend.Domain.Entity.JobCandidateModel::get_Job()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.UserModel Backend.Domain.Entity.JobCandidateModel::get_Candidate()": {
+          "Lines": {
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.JobCandidateModel> Backend.Domain.Entity.JobCandidateModel::FromJobDomainObject(Backend.Domain.Entity.Job)": {
+          "Lines": {
+            "40": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "52": 0,
+            "53": 0
+          },
+          "Branches": [
+            {
+              "Line": 41,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 41,
+              "Offset": 7,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 47,
+              "Offset": 78,
+              "EndOffset": 35,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 47,
+              "Offset": 78,
+              "EndOffset": 80,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Domain.Entity.JobCandidateModel::.ctor(Backend.Domain.Entity.JobModel,Backend.Domain.Entity.UserModel)": {
+          "Lines": {
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "25": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.JobCandidateModel::.ctor(System.String,System.String)": {
+          "Lines": {
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "32": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.JobCandidateModel::.ctor()": {
+          "Lines": {
+            "34": 0,
+            "35": 0,
+            "37": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Persistence\\Model\\JobModel.cs": {
+      "Backend.Domain.Entity.JobModel": {
+        "System.String Backend.Domain.Entity.JobModel::get_Id()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.JobModel::get_Title()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.JobModel::get_Description()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 Backend.Domain.Entity.JobModel::get_Deadline()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Double Backend.Domain.Entity.JobModel::get_Payment()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.JobModel::get_IsPaymentByHour()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.JobModel::get_AssignedFreelancerId()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.JobModel::get_ClientId()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.UserModel Backend.Domain.Entity.JobModel::get_Client()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.UserModel Backend.Domain.Entity.JobModel::get_AssignedFreelancer()": {
+          "Lines": {
+            "22": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.JobModel::get_Active()": {
+          "Lines": {
+            "23": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.JobModel::get_Available()": {
+          "Lines": {
+            "24": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.JobModel Backend.Domain.Entity.JobModel::FromDomainObject(Backend.Domain.Entity.Job)": {
+          "Lines": {
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "67": 0,
+            "68": 0,
+            "69": 0
+          },
+          "Branches": [
+            {
+              "Line": 63,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 63,
+              "Offset": 7,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 67,
+              "Offset": 62,
+              "EndOffset": 64,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 67,
+              "Offset": 62,
+              "EndOffset": 67,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 67,
+              "Offset": 74,
+              "EndOffset": 76,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 67,
+              "Offset": 74,
+              "EndOffset": 80,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Domain.Entity.JobModel::.ctor(System.String,System.String,System.Int32,System.String,System.Double,System.Boolean,Backend.Domain.Entity.UserModel,Backend.Domain.Entity.UserModel,System.Boolean,System.Boolean)": {
+          "Lines": {
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0
+          },
+          "Branches": [
+            {
+              "Line": 38,
+              "Offset": 98,
+              "EndOffset": 100,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 38,
+              "Offset": 98,
+              "EndOffset": 103,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Domain.Entity.JobModel::.ctor(System.String,System.String,System.Int32,System.String,System.Double,System.Boolean,System.String,System.String,System.Boolean,System.Boolean)": {
+          "Lines": {
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "54": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.JobModel::.ctor()": {
+          "Lines": {
+            "56": 0,
+            "57": 0,
+            "59": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Persistence\\Model\\JobRequirementModel.cs": {
+      "Backend.Domain.Entity.JobRequirementModel": {
+        "System.String Backend.Domain.Entity.JobRequirementModel::get_JobId()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.JobRequirementModel::get_SkillId()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.JobModel Backend.Domain.Entity.JobRequirementModel::get_Job()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.SkillModel Backend.Domain.Entity.JobRequirementModel::get_Skill()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.JobRequirementModel> Backend.Domain.Entity.JobRequirementModel::FromJobDomainObject(Backend.Domain.Entity.Job)": {
+          "Lines": {
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "54": 0,
+            "55": 0
+          },
+          "Branches": [
+            {
+              "Line": 43,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 7,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 49,
+              "Offset": 78,
+              "EndOffset": 35,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 49,
+              "Offset": 78,
+              "EndOffset": 80,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Domain.Entity.JobRequirementModel::.ctor(Backend.Domain.Entity.JobModel,Backend.Domain.Entity.SkillModel)": {
+          "Lines": {
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "27": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.JobRequirementModel::.ctor(System.String,System.String)": {
+          "Lines": {
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "34": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.JobRequirementModel::.ctor()": {
+          "Lines": {
+            "36": 0,
+            "37": 0,
+            "39": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Persistence\\Model\\MessageModel.cs": {
+      "Backend.Domain.Entity.MessageModel": {
+        "System.String Backend.Domain.Entity.MessageModel::get_Id()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.MessageModel::get_Content()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.MessageModel::get_SenderId()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.MessageModel::get_ReceiverId()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.UserModel Backend.Domain.Entity.MessageModel::get_Sender()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.UserModel Backend.Domain.Entity.MessageModel::get_Receiver()": {
+          "Lines": {
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.DateTime Backend.Domain.Entity.MessageModel::get_SentTime()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.MessageModel::get_IsRead()": {
+          "Lines": {
+            "20": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.MessageModel Backend.Domain.Entity.MessageModel::FromDomainObject(Backend.Domain.Entity.Message)": {
+          "Lines": {
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.MessageModel::.ctor(System.String,System.String,Backend.Domain.Entity.UserModel,Backend.Domain.Entity.UserModel,System.DateTime,System.Boolean)": {
+          "Lines": {
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.MessageModel::.ctor(System.String,System.String,System.String,System.String,System.DateTime,System.Boolean)": {
+          "Lines": {
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.MessageModel::.ctor()": {
+          "Lines": {
+            "42": 0,
+            "43": 0,
+            "45": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Persistence\\Model\\SkillModel.cs": {
+      "Backend.Domain.Entity.SkillModel": {
+        "System.String Backend.Domain.Entity.SkillModel::get_Name()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.SkillModel::get_NormalizedName()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.SkillModel Backend.Domain.Entity.SkillModel::FromDomainObject(Backend.Domain.Entity.Skill)": {
+          "Lines": {
+            "25": 0,
+            "26": 0,
+            "27": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.SkillModel::.ctor(System.String,System.String)": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.SkillModel::.ctor()": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "22": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Persistence\\Model\\UserModel.cs": {
+      "Backend.Domain.Entity.UserModel": {
+        "System.String Backend.Domain.Entity.UserModel::get_Id()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.UserModel::get_Name()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.UserModel::get_Email()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.UserModel::get_Password()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.UserModel::get_Phone()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.Domain.Entity.UserModel::get_IsFreelancer()": {
+          "Lines": {
+            "14": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.UserModel Backend.Domain.Entity.UserModel::FromDomainObject(Backend.Domain.Entity.User)": {
+          "Lines": {
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "51": 0,
+            "52": 0
+          },
+          "Branches": [
+            {
+              "Line": 46,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 7,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Domain.Entity.UserModel::.ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)": {
+          "Lines": {
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.UserModel::.ctor()": {
+          "Lines": {
+            "26": 0,
+            "27": 0,
+            "29": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.UserModel::.ctor(Backend.Domain.Entity.User)": {
+          "Lines": {
+            "31": 0,
+            "32": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\Persistence\\Model\\UserProficiencyModel.cs": {
+      "Backend.Domain.Entity.UserProficiencyModel": {
+        "System.String Backend.Domain.Entity.UserProficiencyModel::get_SkillId()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.Domain.Entity.UserProficiencyModel::get_UserId()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.UserModel Backend.Domain.Entity.UserProficiencyModel::get_Freelancer()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "Backend.Domain.Entity.SkillModel Backend.Domain.Entity.UserProficiencyModel::get_Skill()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.Double Backend.Domain.Entity.UserProficiencyModel::get_Rating()": {
+          "Lines": {
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 Backend.Domain.Entity.UserProficiencyModel::get_RatingsDone()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<Backend.Domain.Entity.UserProficiencyModel> Backend.Domain.Entity.UserProficiencyModel::FromUserDomainObject(Backend.Domain.Entity.User)": {
+          "Lines": {
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "54": 0,
+            "55": 0
+          },
+          "Branches": [
+            {
+              "Line": 44,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 44,
+              "Offset": 7,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 50,
+              "Offset": 107,
+              "EndOffset": 35,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 50,
+              "Offset": 107,
+              "EndOffset": 109,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Backend.Domain.Entity.UserProficiencyModel::.ctor(Backend.Domain.Entity.UserModel,Backend.Domain.Entity.SkillModel,System.Double,System.Int32)": {
+          "Lines": {
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.UserProficiencyModel::.ctor(System.String,System.String,System.Double,System.Int32)": {
+          "Lines": {
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "32": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Domain.Entity.UserProficiencyModel::.ctor()": {
+          "Lines": {
+            "37": 0,
+            "38": 0,
+            "40": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\API\\Controllers\\JobController.cs": {
+      "Backend.Controllers.JobController": {
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.JobController::RateJob(Backend.API.Controllers.Models.RateJobInput)": {
+          "Lines": {
+            "24": 0,
+            "26": 0,
+            "27": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "37": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.JobController::ListJobsByUser(System.String)": {
+          "Lines": {
+            "42": 0,
+            "44": 0,
+            "45": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "51": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.JobController::SearchJobsForFreelancer(System.String)": {
+          "Lines": {
+            "56": 0,
+            "58": 0,
+            "59": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "65": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.JobController::Get(System.String)": {
+          "Lines": {
+            "69": 0,
+            "71": 0,
+            "72": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "78": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.JobController::CreateNewJob(Backend.API.Controllers.Models.CreateJobInput)": {
+          "Lines": {
+            "82": 0,
+            "84": 0,
+            "85": 0,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "91": 0,
+            "92": 0,
+            "93": 0,
+            "95": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.JobController::ApplyFreelancerToJob(Backend.API.Controllers.Models.ApplyFreelancerInput)": {
+          "Lines": {
+            "100": 0,
+            "102": 0,
+            "103": 0,
+            "105": 0,
+            "106": 0,
+            "107": 0,
+            "109": 0,
+            "110": 0,
+            "111": 0,
+            "113": 0,
+            "114": 0,
+            "115": 0,
+            "117": 0,
+            "118": 0,
+            "119": 0,
+            "121": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.JobController::ChooseFreelancerForJob(Backend.API.Controllers.Models.ApplyFreelancerInput)": {
+          "Lines": {
+            "126": 0,
+            "128": 0,
+            "129": 0,
+            "131": 0,
+            "132": 0,
+            "133": 0,
+            "135": 0,
+            "136": 0,
+            "137": 0,
+            "139": 0,
+            "140": 0,
+            "141": 0,
+            "143": 0,
+            "144": 0,
+            "145": 0,
+            "147": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.JobController::GetJobCandidatesBySkill(System.String)": {
+          "Lines": {
+            "152": 0,
+            "154": 0,
+            "155": 0,
+            "157": 0,
+            "158": 0,
+            "159": 0,
+            "161": 0,
+            "162": 0,
+            "163": 0,
+            "165": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Controllers.JobController::.ctor(Backend.Domain.Service.IJobService)": {
+          "Lines": {
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\API\\Controllers\\MessageController.cs": {
+      "Backend.Controllers.MessageController": {
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.MessageController::GetHistory(System.String,System.String)": {
+          "Lines": {
+            "23": 0,
+            "25": 0,
+            "26": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "32": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.MessageController::GetUsersThatHaveChats(System.String)": {
+          "Lines": {
+            "37": 0,
+            "39": 0,
+            "40": 0,
+            "42": 0,
+            "43": 0,
+            "44": 0,
+            "46": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.MessageController::GetLastMessage(System.String,System.String)": {
+          "Lines": {
+            "51": 0,
+            "53": 0,
+            "54": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "60": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.MessageController::CreateMessage(Backend.API.Controllers.Models.CreateMessageInput)": {
+          "Lines": {
+            "64": 0,
+            "66": 0,
+            "67": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "73": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Controllers.MessageController::.ctor(Backend.Domain.Service.IMessageService)": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\API\\Controllers\\SkillController.cs": {
+      "Backend.Controllers.SkillController": {
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.SkillController::GetAllSkills()": {
+          "Lines": {
+            "23": 0,
+            "25": 0,
+            "26": 0,
+            "28": 0,
+            "29": 0,
+            "30": 0,
+            "32": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.SkillController::CreateNewSkill(Backend.API.Controllers.Models.CreateSkillInput)": {
+          "Lines": {
+            "36": 0,
+            "38": 0,
+            "39": 0,
+            "41": 0,
+            "42": 0,
+            "43": 0,
+            "45": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Controllers.SkillController::.ctor(Backend.Domain.Service.ISkillService)": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\API\\Controllers\\UserController.cs": {
+      "Backend.Controllers.UserController": {
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.UserController::Login(System.String,System.String)": {
+          "Lines": {
+            "24": 0,
+            "26": 0,
+            "27": 0,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "37": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.UserController::RegisterClient(Backend.API.Controllers.Models.CreateClientInput)": {
+          "Lines": {
+            "42": 0,
+            "44": 0,
+            "45": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "51": 0,
+            "52": 0,
+            "53": 0,
+            "55": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.AspNetCore.Mvc.IActionResult Backend.Controllers.UserController::RegisterFreelancer(Backend.API.Controllers.Models.CreateFreelancerInput)": {
+          "Lines": {
+            "60": 0,
+            "62": 0,
+            "63": 0,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "73": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.Controllers.UserController::.ctor(Backend.Domain.Service.IUserService)": {
+          "Lines": {
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\API\\Controllers\\Models\\ApplyFreelancerInput.cs": {
+      "Backend.API.Controllers.Models.ApplyFreelancerInput": {
+        "System.String Backend.API.Controllers.Models.ApplyFreelancerInput::get_JobId()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.ApplyFreelancerInput::get_FreelancerId()": {
+          "Lines": {
+            "6": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.API.Controllers.Models.ApplyFreelancerInput::.ctor(System.String,System.String)": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\API\\Controllers\\Models\\CreateClientInput.cs": {
+      "Backend.API.Controllers.Models.CreateClientInput": {
+        "System.String Backend.API.Controllers.Models.CreateClientInput::get_Name()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.CreateClientInput::get_Email()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.CreateClientInput::get_Password()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.CreateClientInput::get_Phone()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.API.Controllers.Models.CreateClientInput::.ctor(System.String,System.String,System.String,System.String)": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\API\\Controllers\\Models\\CreateFreelancerInput.cs": {
+      "Backend.API.Controllers.Models.CreateFreelancerInput": {
+        "System.String Backend.API.Controllers.Models.CreateFreelancerInput::get_Name()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.CreateFreelancerInput::get_Email()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.CreateFreelancerInput::get_Password()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.CreateFreelancerInput::get_Phone()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> Backend.API.Controllers.Models.CreateFreelancerInput::get_Skills()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.Double> Backend.API.Controllers.Models.CreateFreelancerInput::get_Ratings()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.API.Controllers.Models.CreateFreelancerInput::.ctor(System.String,System.String,System.String,System.String,System.Collections.Generic.List`1<System.String>,System.Collections.Generic.List`1<System.Double>)": {
+          "Lines": {
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "27": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\API\\Controllers\\Models\\CreateJobInput.cs": {
+      "Backend.API.Controllers.Models.CreateJobInput": {
+        "System.String Backend.API.Controllers.Models.CreateJobInput::get_Title()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.CreateJobInput::get_Description()": {
+          "Lines": {
+            "6": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 Backend.API.Controllers.Models.CreateJobInput::get_Deadline()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.Double Backend.API.Controllers.Models.CreateJobInput::get_Payment()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.API.Controllers.Models.CreateJobInput::get_IsPaymentByHour()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> Backend.API.Controllers.Models.CreateJobInput::get_Skills()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.CreateJobInput::get_ClientId()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.API.Controllers.Models.CreateJobInput::.ctor(System.String,System.String,System.Int32,System.Double,System.Boolean,System.Collections.Generic.List`1<System.String>,System.String)": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\API\\Controllers\\Models\\CreateMessageInput.cs": {
+      "Backend.API.Controllers.Models.CreateMessageInput": {
+        "System.String Backend.API.Controllers.Models.CreateMessageInput::get_Text()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.DateTime Backend.API.Controllers.Models.CreateMessageInput::get_SentTime()": {
+          "Lines": {
+            "6": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.CreateMessageInput::get_SenderId()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.CreateMessageInput::get_ReceiverId()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.API.Controllers.Models.CreateMessageInput::.ctor(System.String,System.DateTime,System.String,System.String)": {
+          "Lines": {
+            "10": 0,
+            "11": 0,
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\API\\Controllers\\Models\\CreateSkillInput.cs": {
+      "Backend.API.Controllers.Models.CreateSkillInput": {
+        "System.String Backend.API.Controllers.Models.CreateSkillInput::get_Name()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.API.Controllers.Models.CreateSkillInput::.ctor(System.String)": {
+          "Lines": {
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\API\\Controllers\\Models\\RateJobInput.cs": {
+      "Backend.API.Controllers.Models.RateJobInput": {
+        "System.String Backend.API.Controllers.Models.RateJobInput::get_JobId()": {
+          "Lines": {
+            "5": 0
+          },
+          "Branches": []
+        },
+        "System.Double Backend.API.Controllers.Models.RateJobInput::get_Rating()": {
+          "Lines": {
+            "6": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.API.Controllers.Models.RateJobInput::.ctor(System.String,System.Double)": {
+          "Lines": {
+            "8": 0,
+            "9": 0,
+            "10": 0,
+            "11": 0,
+            "12": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\API\\Controllers\\Models\\UserOutput.cs": {
+      "Backend.API.Controllers.Models.UserOutput": {
+        "System.String Backend.API.Controllers.Models.UserOutput::get_Id()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.UserOutput::get_Name()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.UserOutput::get_Email()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.UserOutput::get_Password()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.String Backend.API.Controllers.Models.UserOutput::get_Phone()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Backend.API.Controllers.Models.UserOutput::get_IsFreelancer()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.Dictionary`2<System.String,System.Tuple`2<System.Double,System.Int32>> Backend.API.Controllers.Models.UserOutput::get_Skills()": {
+          "Lines": {
+            "13": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.API.Controllers.Models.UserOutput::.ctor(Backend.Domain.Entity.User)": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\Repos\\Backend\\Backend\\API\\Controllers\\Converters\\DictionarySkillConverter.cs": {
+      "Backend.API.Controllers.Converters.DictionarySkillConverter": {
+        "System.Collections.Generic.Dictionary`2<Backend.Domain.Entity.Skill,System.Tuple`2<System.Double,System.Int32>> Backend.API.Controllers.Converters.DictionarySkillConverter::Read(System.Text.Json.Utf8JsonReader&,System.Type,System.Text.Json.JsonSerializerOptions)": {
+          "Lines": {
+            "10": 0,
+            "11": 0
+          },
+          "Branches": []
+        },
+        "System.Void Backend.API.Controllers.Converters.DictionarySkillConverter::Write(System.Text.Json.Utf8JsonWriter,System.Collections.Generic.Dictionary`2<Backend.Domain.Entity.Skill,System.Tuple`2<System.Double,System.Int32>>,System.Text.Json.JsonSerializerOptions)": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "18": 0,
+            "19": 0,
+            "20": 0,
+            "21": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "27": 0,
+            "28": 0
+          },
+          "Branches": [
+            {
+              "Line": 18,
+              "Offset": 106,
+              "EndOffset": 18,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 18,
+              "Offset": 106,
+              "EndOffset": 108,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    }
+  }
+}
