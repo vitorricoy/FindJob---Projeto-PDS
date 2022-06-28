@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "pvBLUjlqBQfJ4JA4zoN6pfkhO+aSQb9tpcktsryCPL9Zn56GbO7jmHHCBXbaFV3gRVPqLM5TzvA6a89JvmgSLg==",
+  "dgSpecHash": "3pIibYIHQS+TrF46ovweKHae64VK35+WYgtsrSZ0RYWm4s0uNlhDxF7VnUZgU8UfIrIKf3lDzm9xpigN31rz6A==",
   "success": true,
   "projectFilePath": "C:\\UFMG\\7_Periodo\\PDS\\FindJob-Projeto-PDS\\Backend\\FindJobUnitTests\\FindJobUnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\andre\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
+    "C:\\Users\\andre\\.nuget\\packages\\coverlet.msbuild\\3.1.2\\coverlet.msbuild.3.1.2.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.codecoverage\\16.11.0\\microsoft.codecoverage.16.11.0.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.4\\microsoft.data.sqlite.core.6.0.4.nupkg.sha512",

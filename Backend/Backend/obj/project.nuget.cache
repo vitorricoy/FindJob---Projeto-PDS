@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "9z6Bsk0AWdEcY8kXQgAZs4RisKzC9HdPJ6U2KpwLqx18C01Z/jVUDXgmkJLbUQmOlXjCUnYoMR6tkhLvtyM2mw==",
+  "dgSpecHash": "1pNXqNmTTOjN0uZftxU2abUAu9A3CfBUuWv6DDZD9sIMDPDyiI3+kJ0mXqmISMKehuJRZjhoAQqdcOqdxmiBZQ==",
   "success": true,
   "projectFilePath": "C:\\UFMG\\7_Periodo\\PDS\\FindJob-Projeto-PDS\\Backend\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\andre\\.nuget\\packages\\coverlet.msbuild\\3.1.2\\coverlet.msbuild.3.1.2.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.4\\microsoft.data.sqlite.core.6.0.4.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.4\\microsoft.entityframeworkcore.6.0.4.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.4\\microsoft.entityframeworkcore.abstractions.6.0.4.nupkg.sha512",
