@@ -7281,19 +7281,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\andre\\.nuget\\packages\\": {}
+    "C:\\Users\\Vitor Rodarte\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\UFMG\\7_Periodo\\PDS\\FindJob-Projeto-PDS\\Backend\\FindJobIntegrationTests\\FindJobIntegrationTests.csproj",
+      "projectUniqueName": "D:\\Repos\\Backend\\FindJobIntegrationTests\\FindJobIntegrationTests.csproj",
       "projectName": "FindJobIntegrationTests",
-      "projectPath": "C:\\UFMG\\7_Periodo\\PDS\\FindJob-Projeto-PDS\\Backend\\FindJobIntegrationTests\\FindJobIntegrationTests.csproj",
-      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-      "outputPath": "C:\\UFMG\\7_Periodo\\PDS\\FindJob-Projeto-PDS\\Backend\\FindJobIntegrationTests\\obj\\",
+      "projectPath": "D:\\Repos\\Backend\\FindJobIntegrationTests\\FindJobIntegrationTests.csproj",
+      "packagesPath": "C:\\Users\\Vitor Rodarte\\.nuget\\packages\\",
+      "outputPath": "D:\\Repos\\Backend\\FindJobIntegrationTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Vitor Rodarte\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7307,8 +7307,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\UFMG\\7_Periodo\\PDS\\FindJob-Projeto-PDS\\Backend\\Backend\\Backend.csproj": {
-              "projectPath": "C:\\UFMG\\7_Periodo\\PDS\\FindJob-Projeto-PDS\\Backend\\Backend\\Backend.csproj"
+            "D:\\Repos\\Backend\\Backend\\Backend.csproj": {
+              "projectPath": "D:\\Repos\\Backend\\Backend\\Backend.csproj"
             }
           }
         }
@@ -7373,7 +7373,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

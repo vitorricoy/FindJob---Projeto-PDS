@@ -52,7 +52,7 @@ namespace Backend.Tests
             List<Skill> skills = new(){ cSharp, java };
 
 
-            Job jobToCreate = new Job(Guid.NewGuid().ToString(), "testJob", "Test Job", 10, 2.5, true, skills, client, null, new List<User>(), true, true); ;
+            Job jobToCreate = new Job(Guid.NewGuid().ToString(), "testJob", "Test Job", 10, 2.5, true, skills, client, null, new List<User>(), true, true);
             CreateJobInput input = new CreateJobInput(jobToCreate.Title, jobToCreate.Description, jobToCreate.Deadline, jobToCreate.Payment, jobToCreate.IsPaymentByHour, jobToCreate.Skills.Select(s => s.NormalizedName).ToList(), jobToCreate.Client.Id);
             OkObjectResult? actionResult = jobController.CreateNewJob(input) as OkObjectResult;
 
