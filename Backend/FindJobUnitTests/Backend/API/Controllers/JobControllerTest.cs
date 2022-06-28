@@ -25,14 +25,14 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.RateJob(Arg.Any<string>(), Arg.Any<double>()).Returns(args => true);
-            JobController controller = new JobController(jobServiceMock);
-            RateJobInput input = new RateJobInput("1", 1.0);
+            JobController controller = new(jobServiceMock);
+            RateJobInput input = new("1", 1.0);
             OkObjectResult? actionResult = controller.RateJob(input) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            Boolean responseObject = (Boolean) actionResult.Value;
+            bool? responseObject = actionResult?.Value as bool?;
             Assert.True(responseObject);
         }
 
@@ -41,12 +41,12 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.RateJob(Arg.Any<string>(), Arg.Any<double>()).Returns(args => { throw new InvalidJobIdException(); });
-            JobController controller = new JobController(jobServiceMock);
-            RateJobInput input = new RateJobInput("1", 1.0);
+            JobController controller = new(jobServiceMock);
+            RateJobInput input = new("1", 1.0);
             ObjectResult? actionResult = controller.RateJob(input) as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(403, actionResult.StatusCode);
+            Assert.Equal(403, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -54,12 +54,12 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.RateJob(Arg.Any<string>(), Arg.Any<double>()).Returns(args => { throw new Exception(); });
-            JobController controller = new JobController(jobServiceMock);
-            RateJobInput input = new RateJobInput("1", 1.0);
+            JobController controller = new(jobServiceMock);
+            RateJobInput input = new("1", 1.0);
             ObjectResult? actionResult = controller.RateJob(input) as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(500, actionResult.StatusCode);
+            Assert.Equal(500, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -67,16 +67,16 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             User client = new(Guid.NewGuid().ToString(), "client", "client@test.com", "test", "333333333", false, new Dictionary<Skill, Tuple<double, int>>());
-            Job job1 = new Job(Guid.NewGuid().ToString(), "testJob1", "Test Job 1", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
-            Job job2 = new Job(Guid.NewGuid().ToString(), "testJob2", "Test Job 2", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
+            Job job1 = new(Guid.NewGuid().ToString(), "testJob1", "Test Job 1", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
+            Job job2 = new(Guid.NewGuid().ToString(), "testJob2", "Test Job 2", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
             jobServiceMock.ListJobsByUser(Arg.Any<string>()).Returns(args => new List<Job>() { job1, job2});
-            JobController controller = new JobController(jobServiceMock);
+            JobController controller = new(jobServiceMock);
             OkObjectResult? actionResult = controller.ListJobsByUser("123") as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            List<Job> responseObject = (List<Job>) actionResult.Value;
+            List<Job>? responseObject = actionResult?.Value as List<Job>;
             Assert.Equal(new List<Job>() { job1, job2 }, responseObject);
         }
 
@@ -85,11 +85,11 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.ListJobsByUser(Arg.Any<string>()).Returns(args => { throw new Exception(); });
-            JobController controller = new JobController(jobServiceMock);
+            JobController controller = new(jobServiceMock);
             ObjectResult? actionResult = controller.ListJobsByUser("123") as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(500, actionResult.StatusCode);
+            Assert.Equal(500, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -97,16 +97,16 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             User client = new(Guid.NewGuid().ToString(), "client", "client@test.com", "test", "333333333", false, new Dictionary<Skill, Tuple<double, int>>());
-            Job job1 = new Job(Guid.NewGuid().ToString(), "testJob1", "Test Job 1", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
-            Job job2 = new Job(Guid.NewGuid().ToString(), "testJob2", "Test Job 2", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
+            Job job1 = new(Guid.NewGuid().ToString(), "testJob1", "Test Job 1", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
+            Job job2 = new(Guid.NewGuid().ToString(), "testJob2", "Test Job 2", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
             jobServiceMock.SearchJobsForFreelancer(Arg.Any<string>()).Returns(args => new List<Job>() { job1, job2 });
-            JobController controller = new JobController(jobServiceMock);
+            JobController controller = new(jobServiceMock);
             OkObjectResult? actionResult = controller.SearchJobsForFreelancer("123") as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            List<Job> responseObject = (List<Job>)actionResult.Value;
+            List<Job>? responseObject = actionResult?.Value as List<Job>;
             Assert.Equal(new List<Job>() { job1, job2 }, responseObject);
         }
 
@@ -115,11 +115,11 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.SearchJobsForFreelancer(Arg.Any<string>()).Returns(args => { throw new Exception(); });
-            JobController controller = new JobController(jobServiceMock);
+            JobController controller = new(jobServiceMock);
             ObjectResult? actionResult = controller.SearchJobsForFreelancer("123") as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(500, actionResult.StatusCode);
+            Assert.Equal(500, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -127,15 +127,15 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             User client = new(Guid.NewGuid().ToString(), "client", "client@test.com", "test", "333333333", false, new Dictionary<Skill, Tuple<double, int>>());
-            Job job = new Job(Guid.NewGuid().ToString(), "testJob", "Test Job ", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
+            Job job = new(Guid.NewGuid().ToString(), "testJob", "Test Job ", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
             jobServiceMock.GetJobById(Arg.Any<string>()).Returns(args =>job);
-            JobController controller = new JobController(jobServiceMock);
+            JobController controller = new(jobServiceMock);
             OkObjectResult? actionResult = controller.Get("123") as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            Job responseObject = (Job)actionResult.Value;
+            Job? responseObject = actionResult?.Value as Job;
             Assert.Equal(job, responseObject);
         }
 
@@ -144,11 +144,11 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.GetJobById(Arg.Any<string>()).Returns(args => { throw new Exception(); });
-            JobController controller = new JobController(jobServiceMock);
+            JobController controller = new(jobServiceMock);
             ObjectResult? actionResult = controller.Get("123") as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(500, actionResult.StatusCode);
+            Assert.Equal(500, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -158,14 +158,14 @@ namespace FindJobUnitTests.Backend.API.Controllers
             User client = new(Guid.NewGuid().ToString(), "client", "client@test.com", "test", "333333333", false, new Dictionary<Skill, Tuple<double, int>>());
             Job job = new Job(Guid.NewGuid().ToString(), "testJob", "Test Job ", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
             jobServiceMock.CreateNewJob(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<double>(), Arg.Any<bool>(), Arg.Any<List<string>>(), Arg.Any<string>()).Returns(args => job);
-            JobController controller = new JobController(jobServiceMock);
-            CreateJobInput input = new CreateJobInput(job.Title, job.Description, job.Deadline, job.Payment, job.IsPaymentByHour, job.Skills.Select(s => s.Name).ToList(), job.Client.Id);
+            JobController controller = new(jobServiceMock);
+            CreateJobInput input = new(job.Title, job.Description, job.Deadline, job.Payment, job.IsPaymentByHour, job.Skills.Select(s => s.Name).ToList(), job.Client.Id);
             OkObjectResult? actionResult = controller.CreateNewJob(input) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            Job responseObject = (Job)actionResult.Value;
+            Job? responseObject = actionResult?.Value as Job;
             Assert.Equal(job, responseObject);
         }
 
@@ -174,14 +174,14 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             User client = new(Guid.NewGuid().ToString(), "client", "client@test.com", "test", "333333333", false, new Dictionary<Skill, Tuple<double, int>>());
-            Job job = new Job(Guid.NewGuid().ToString(), "testJob", "Test Job ", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
+            Job job = new(Guid.NewGuid().ToString(), "testJob", "Test Job ", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
             jobServiceMock.CreateNewJob(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<double>(), Arg.Any<bool>(), Arg.Any<List<string>>(), Arg.Any<string>()).Returns(args => { throw new InvalidUserIdException(); });
-            JobController controller = new JobController(jobServiceMock);
-            CreateJobInput input = new CreateJobInput(job.Title, job.Description, job.Deadline, job.Payment, job.IsPaymentByHour, job.Skills.Select(s => s.Name).ToList(), job.Client.Id);
+            JobController controller = new(jobServiceMock);
+            CreateJobInput input = new(job.Title, job.Description, job.Deadline, job.Payment, job.IsPaymentByHour, job.Skills.Select(s => s.Name).ToList(), job.Client.Id);
             ObjectResult? actionResult = controller.CreateNewJob(input) as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(403, actionResult.StatusCode);
+            Assert.Equal(403, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -191,12 +191,12 @@ namespace FindJobUnitTests.Backend.API.Controllers
             User client = new(Guid.NewGuid().ToString(), "client", "client@test.com", "test", "333333333", false, new Dictionary<Skill, Tuple<double, int>>());
             Job job = new Job(Guid.NewGuid().ToString(), "testJob", "Test Job ", 10, 2.5, true, new List<Skill>(), client, null, new List<User>(), true, true);
             jobServiceMock.CreateNewJob(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<int>(), Arg.Any<double>(), Arg.Any<bool>(), Arg.Any<List<string>>(), Arg.Any<string>()).Returns(args => { throw new Exception(); });
-            JobController controller = new JobController(jobServiceMock);
-            CreateJobInput input = new CreateJobInput(job.Title, job.Description, job.Deadline, job.Payment, job.IsPaymentByHour, job.Skills.Select(s => s.Name).ToList(), job.Client.Id);
+            JobController controller = new(jobServiceMock);
+            CreateJobInput input = new(job.Title, job.Description, job.Deadline, job.Payment, job.IsPaymentByHour, job.Skills.Select(s => s.Name).ToList(), job.Client.Id);
             ObjectResult? actionResult = controller.CreateNewJob(input) as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(500, actionResult.StatusCode);
+            Assert.Equal(500, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -204,14 +204,14 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.CandidateForJob(Arg.Any<string>(), Arg.Any<string>()).Returns(args => true);
-            JobController controller = new JobController(jobServiceMock);
-            ApplyFreelancerInput input = new ApplyFreelancerInput("1", "2");
+            JobController controller = new(jobServiceMock);
+            ApplyFreelancerInput input = new("1", "2");
             OkObjectResult? actionResult = controller.ApplyFreelancerToJob(input) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            Boolean responseObject = (Boolean) actionResult.Value;
+            bool? responseObject = actionResult?.Value as bool?;
             Assert.True(responseObject);
         }
 
@@ -220,12 +220,12 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.CandidateForJob(Arg.Any<string>(), Arg.Any<string>()).Returns(args => { throw new InvalidJobIdException(); });
-            JobController controller = new JobController(jobServiceMock);
-            ApplyFreelancerInput input = new ApplyFreelancerInput("1", "2");
+            JobController controller = new(jobServiceMock);
+            ApplyFreelancerInput input = new("1", "2");
             ObjectResult? actionResult = controller.ApplyFreelancerToJob(input) as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(403, actionResult.StatusCode);
+            Assert.Equal(403, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -233,12 +233,12 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.CandidateForJob(Arg.Any<string>(), Arg.Any<string>()).Returns(args => { throw new InvalidUserIdException(); });
-            JobController controller = new JobController(jobServiceMock);
-            ApplyFreelancerInput input = new ApplyFreelancerInput("1", "2");
+            JobController controller = new(jobServiceMock);
+            ApplyFreelancerInput input = new("1", "2");
             ObjectResult? actionResult = controller.ApplyFreelancerToJob(input) as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(403, actionResult.StatusCode);
+            Assert.Equal(403, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -246,12 +246,12 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.CandidateForJob(Arg.Any<string>(), Arg.Any<string>()).Returns(args => { throw new UnavailableJobException(); });
-            JobController controller = new JobController(jobServiceMock);
-            ApplyFreelancerInput input = new ApplyFreelancerInput("1", "2");
+            JobController controller = new(jobServiceMock);
+            ApplyFreelancerInput input = new("1", "2");
             ObjectResult? actionResult = controller.ApplyFreelancerToJob(input) as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(403, actionResult.StatusCode);
+            Assert.Equal(403, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -259,12 +259,12 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.CandidateForJob(Arg.Any<string>(), Arg.Any<string>()).Returns(args => { throw new Exception(); });
-            JobController controller = new JobController(jobServiceMock);
-            ApplyFreelancerInput input = new ApplyFreelancerInput("1", "2");
+            JobController controller = new(jobServiceMock);
+            ApplyFreelancerInput input = new("1", "2");
             ObjectResult? actionResult = controller.ApplyFreelancerToJob(input) as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(500, actionResult.StatusCode);
+            Assert.Equal(500, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -272,14 +272,14 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.ChooseFreelancerForJob(Arg.Any<string>(), Arg.Any<string>()).Returns(args => true);
-            JobController controller = new JobController(jobServiceMock);
-            ApplyFreelancerInput input = new ApplyFreelancerInput("1", "2");
+            JobController controller = new(jobServiceMock);
+            ApplyFreelancerInput input = new("1", "2");
             OkObjectResult? actionResult = controller.ChooseFreelancerForJob(input) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            Boolean responseObject = (Boolean)actionResult.Value;
+            bool? responseObject = actionResult?.Value as bool?;
             Assert.True(responseObject);
         }
 
@@ -288,12 +288,12 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.ChooseFreelancerForJob(Arg.Any<string>(), Arg.Any<string>()).Returns(args => { throw new InvalidJobIdException(); });
-            JobController controller = new JobController(jobServiceMock);
-            ApplyFreelancerInput input = new ApplyFreelancerInput("1", "2");
+            JobController controller = new(jobServiceMock);
+            ApplyFreelancerInput input = new("1", "2");
             ObjectResult? actionResult = controller.ChooseFreelancerForJob(input) as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(403, actionResult.StatusCode);
+            Assert.Equal(403, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -301,12 +301,12 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.ChooseFreelancerForJob(Arg.Any<string>(), Arg.Any<string>()).Returns(args => { throw new InvalidUserIdException(); });
-            JobController controller = new JobController(jobServiceMock);
-            ApplyFreelancerInput input = new ApplyFreelancerInput("1", "2");
+            JobController controller = new(jobServiceMock);
+            ApplyFreelancerInput input = new("1", "2");
             ObjectResult? actionResult = controller.ChooseFreelancerForJob(input) as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(403, actionResult.StatusCode);
+            Assert.Equal(403, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -314,12 +314,12 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.ChooseFreelancerForJob(Arg.Any<string>(), Arg.Any<string>()).Returns(args => { throw new UnavailableJobException(); });
-            JobController controller = new JobController(jobServiceMock);
-            ApplyFreelancerInput input = new ApplyFreelancerInput("1", "2");
+            JobController controller = new(jobServiceMock);
+            ApplyFreelancerInput input = new("1", "2");
             ObjectResult? actionResult = controller.ChooseFreelancerForJob(input) as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(403, actionResult.StatusCode);
+            Assert.Equal(403, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -327,12 +327,12 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.ChooseFreelancerForJob(Arg.Any<string>(), Arg.Any<string>()).Returns(args => { throw new Exception(); });
-            JobController controller = new JobController(jobServiceMock);
-            ApplyFreelancerInput input = new ApplyFreelancerInput("1", "2");
+            JobController controller = new(jobServiceMock);
+            ApplyFreelancerInput input = new("1", "2");
             ObjectResult? actionResult = controller.ChooseFreelancerForJob(input) as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(500, actionResult.StatusCode);
+            Assert.Equal(500, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -343,13 +343,13 @@ namespace FindJobUnitTests.Backend.API.Controllers
             User freelancer2 = new(Guid.NewGuid().ToString(), "frreelancer2", "frreelancer2@test.com", "test2", "444444444", true, new Dictionary<Skill, Tuple<double, int>>());
 
             jobServiceMock.GetJobCandidatesBySkill(Arg.Any<string>()).Returns(args => new List<User>() { freelancer1, freelancer2 });
-            JobController controller = new JobController(jobServiceMock);
+            JobController controller = new(jobServiceMock);
             OkObjectResult? actionResult = controller.GetJobCandidatesBySkill("1") as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            List<User> responseObject = (List<User>)actionResult.Value;
+            List<User>? responseObject = actionResult?.Value as List<User>;
             Assert.Equal(new List<User>() { freelancer1, freelancer2 }, responseObject);
         }
 
@@ -358,11 +358,11 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.GetJobCandidatesBySkill(Arg.Any<string>()).Returns(args => { throw new InvalidJobIdException(); });
-            JobController controller = new JobController(jobServiceMock);
+            JobController controller = new(jobServiceMock);
             ObjectResult? actionResult = controller.GetJobCandidatesBySkill("1") as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(403, actionResult.StatusCode);
+            Assert.Equal(403, actionResult?.StatusCode);
         }
 
         [Fact]
@@ -370,11 +370,11 @@ namespace FindJobUnitTests.Backend.API.Controllers
         {
             IJobService jobServiceMock = Substitute.For<IJobService>();
             jobServiceMock.GetJobCandidatesBySkill(Arg.Any<string>()).Returns(args => { throw new Exception(); });
-            JobController controller = new JobController(jobServiceMock);
+            JobController controller = new(jobServiceMock);
             ObjectResult? actionResult = controller.GetJobCandidatesBySkill("1") as ObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(500, actionResult.StatusCode);
+            Assert.Equal(500, actionResult?.StatusCode);
         }
 
     }

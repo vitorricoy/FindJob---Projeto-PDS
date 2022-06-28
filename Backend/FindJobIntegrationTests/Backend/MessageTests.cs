@@ -48,18 +48,18 @@ namespace Backend.Tests
             TestingHelper.CreateUserInDatabase(freelancer, context);
 
             CreateMessageInput input = new("mensagem teste", DateTime.Now, client.Id, freelancer.Id);
-            OkObjectResult actionResult = messageController.CreateMessage(input) as OkObjectResult;
+            OkObjectResult? actionResult = messageController.CreateMessage(input) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            Message? responseObject = actionResult.Value as Message;
+            Message? responseObject = actionResult?.Value as Message;
             Assert.NotNull(responseObject);
 
-            Assert.Equal(input.Text, responseObject.Content);
-            Assert.Equal(input.SentTime, responseObject.SentTime);
-            Assert.Equal(client, responseObject.Sender);
-            Assert.Equal(freelancer, responseObject.Receiver);
+            Assert.Equal(input.Text, responseObject?.Content);
+            Assert.Equal(input.SentTime, responseObject?.SentTime);
+            Assert.Equal(client, responseObject?.Sender);
+            Assert.Equal(freelancer, responseObject?.Receiver);
         }
 
         [Fact]
@@ -89,19 +89,19 @@ namespace Backend.Tests
             TestingHelper.CreateMessageInDatabase(message5, context);
             TestingHelper.CreateMessageInDatabase(message6, context);
 
-            OkObjectResult actionResult = messageController.GetHistory(client.Id, freelancer.Id) as OkObjectResult;
+            OkObjectResult? actionResult = messageController.GetHistory(client.Id, freelancer.Id) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            List<Message>? responseObject = actionResult.Value as List<Message>;
+            List<Message>? responseObject = actionResult?.Value as List<Message>;
             Assert.NotNull(responseObject);
-            Assert.Equal(5, responseObject.Count);
-            Assert.Equal(message5, responseObject[0]);
-            Assert.Equal(message4, responseObject[1]);
-            Assert.Equal(message3, responseObject[2]);
-            Assert.Equal(message2, responseObject[3]);
-            Assert.Equal(message1, responseObject[4]);
+            Assert.Equal(5, responseObject?.Count);
+            Assert.Equal(message5, responseObject?[0]);
+            Assert.Equal(message4, responseObject?[1]);
+            Assert.Equal(message3, responseObject?[2]);
+            Assert.Equal(message2, responseObject?[3]);
+            Assert.Equal(message1, responseObject?[4]);
         }
 
         [Fact]
@@ -136,17 +136,17 @@ namespace Backend.Tests
             TestingHelper.CreateMessageInDatabase(message4, context);
             TestingHelper.CreateMessageInDatabase(message5, context);
 
-            OkObjectResult actionResult = messageController.GetUsersThatHaveChats(freelancer.Id) as OkObjectResult;
+            OkObjectResult? actionResult = messageController.GetUsersThatHaveChats(freelancer.Id) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            List<User>? responseObject = actionResult.Value as List<User>;
+            List<User>? responseObject = actionResult?.Value as List<User>;
             Assert.NotNull(responseObject);
-            Assert.Equal(3, responseObject.Count);
-            Assert.Equal(client1, responseObject[0]);
-            Assert.Equal(client2, responseObject[1]);
-            Assert.Equal(client3, responseObject[2]);
+            Assert.Equal(3, responseObject?.Count);
+            Assert.Equal(client1, responseObject?[0]);
+            Assert.Equal(client2, responseObject?[1]);
+            Assert.Equal(client3, responseObject?[2]);
         }
 
         [Fact]
@@ -176,12 +176,12 @@ namespace Backend.Tests
             TestingHelper.CreateMessageInDatabase(message5, context);
             TestingHelper.CreateMessageInDatabase(message6, context);
 
-            OkObjectResult actionResult = messageController.GetLastMessage(client.Id, freelancer.Id) as OkObjectResult;
+            OkObjectResult? actionResult = messageController.GetLastMessage(client.Id, freelancer.Id) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            Message? responseObject = actionResult.Value as Message;
+            Message? responseObject = actionResult?.Value as Message;
             Assert.NotNull(responseObject);
             Assert.Equal(message5, responseObject);
         }
