@@ -46,7 +46,7 @@ namespace Backend.Domain.Service.Tests
         {
             Skill response = skillService.CreateNewSkill("C++");
             Assert.Equal("C++", response.Name);
-            Assert.Equal("c++", response.NormalizedName);
+            Assert.Equal("C++", response.NormalizedName);
 
             mockRepo.Clear();
         }
