@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace FindJobUnitTests.Backend.API.Controllers
+namespace Backend.API.Controllers
 {
     public class MessageControllerTest
     {

@@ -25,7 +25,10 @@ namespace Backend.Persistence
         {
             JobModel entity = dbContext.Jobs.Where(j => j.Id.Equals(jobId)).FirstOrDefault();
             Job job = ToDomainObject(entity);
-            dbContext.Entry<JobModel>(entity).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+            if (entity != null)
+            {
+                dbContext.Entry<JobModel>(entity).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+            }
             return job;
         }
 

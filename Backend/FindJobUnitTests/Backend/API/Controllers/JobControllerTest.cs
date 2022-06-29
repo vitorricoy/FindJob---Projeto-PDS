@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace FindJobUnitTests.Backend.API.Controllers
+namespace Backend.API.Controllers
 {
     public class JobControllerTest
     {

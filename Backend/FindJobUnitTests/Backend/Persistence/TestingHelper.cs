@@ -2,7 +2,7 @@
 using Backend.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace Backend.Domain.Repository.Tests
+namespace Backend.Persistence.Tests
 {
     public static class TestingHelper
     {
@@ -55,5 +55,13 @@ namespace Backend.Domain.Repository.Tests
                 entity.State = EntityState.Detached;
             }
         }
+
+        public static void ClearDatabaseAttachedEntities(ApplicationDbContext context)
+        {
+            foreach (var entity in context.ChangeTracker.Entries())
+            {
+                entity.State = EntityState.Detached;
+            }
+        } 
     }
 }

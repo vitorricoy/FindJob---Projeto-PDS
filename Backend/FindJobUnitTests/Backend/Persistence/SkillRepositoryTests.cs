@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Backend.Domain.Repository.Tests
+namespace Backend.Persistence.Tests
 {
     public class SkillRepositoryTests
     {
@@ -23,7 +23,7 @@ namespace Backend.Domain.Repository.Tests
         public SkillRepositoryTests()
         {
             var _contextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
-                 .UseInMemoryDatabase("SkillRepositoryTests")
+                 .UseInMemoryDatabase("SkillRepositoryTests" + Guid.NewGuid().ToString())
                  .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                  .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                  .Options;

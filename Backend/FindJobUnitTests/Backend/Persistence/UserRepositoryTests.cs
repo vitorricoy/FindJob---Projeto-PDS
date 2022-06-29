@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Backend.Domain.Repository.Tests
+namespace Backend.Persistence.Tests
 {
     public class UserRepositoryTests
     {
@@ -40,11 +40,17 @@ namespace Backend.Domain.Repository.Tests
         [Fact]
         public void TestCreateUserCreatesNewSkills()
         {
+            Skill skill1 = new Skill("java", "java");
+            Skill skill2 = new Skill("python", "python");
+
             var skills = new Dictionary<Skill, Tuple<double, int>>()
             {
-                [new Skill("java", "java")] = new Tuple<double, int>(5, 1),
-                [new Skill("python", "python")] = new Tuple<double, int>(10, 1)
+                [skill1] = new Tuple<double, int>(5, 1),
+                [skill2] = new Tuple<double, int>(10, 1)
             };
+
+            TestingHelper.CreateSkillsInDatabase(skill1, dbContextMock);
+            TestingHelper.CreateSkillsInDatabase(skill2, dbContextMock);
 
             var response = userRepository.CreateNewUser(new User("id_teste", "teste", "teste", "teste", "teste", true, skills));
 
@@ -65,11 +71,17 @@ namespace Backend.Domain.Repository.Tests
         [Fact]
         public void TestCreateUserAddsUserProficiencies()
         {
+            Skill skill1 = new Skill("java", "java");
+            Skill skill2 = new Skill("python", "python");
+
             var skills = new Dictionary<Skill, Tuple<double, int>>()
             {
-                [new Skill("java", "java")] = new Tuple<double, int>(5, 1),
-                [new Skill("python", "python")] = new Tuple<double, int>(10, 1)
+                [skill1] = new Tuple<double, int>(5, 1),
+                [skill2] = new Tuple<double, int>(10, 1)
             };
+
+            TestingHelper.CreateSkillsInDatabase(skill1, dbContextMock);
+            TestingHelper.CreateSkillsInDatabase(skill2, dbContextMock);
 
             userRepository.CreateNewUser(new User("id_teste", "teste", "teste", "teste", "teste", true, skills));
 
@@ -84,6 +96,9 @@ namespace Backend.Domain.Repository.Tests
         public void TestUpdateUserUpdatesValues()
         {
             userRepository.CreateNewUser(new User("id_teste", "teste", "teste", "teste", "teste", true, new Dictionary<Skill, Tuple<double, int>>()));
+
+            TestingHelper.ClearDatabaseAttachedEntities(dbContextMock);
+
             var response = userRepository.UpdateUser(new User("id_teste", "teste2", "teste2", "teste2", "teste2", true, new Dictionary<Skill, Tuple<double, int>>()));
             
             Assert.Equal("id_teste", response.Id);
@@ -98,13 +113,22 @@ namespace Backend.Domain.Repository.Tests
         [Fact]
         public void TestUpdateUserAddsNewProficiencies()
         {
+            Skill skill1 = new Skill("java", "java");
+            Skill skill2 = new Skill("python", "python");
+
+            TestingHelper.CreateSkillsInDatabase(skill1, dbContextMock);
+            TestingHelper.CreateSkillsInDatabase(skill2, dbContextMock);
+
             var skills = new Dictionary<Skill, Tuple<double, int>>()
             {
-                [new Skill("java", "java")] = new Tuple<double, int>(5, 1),
-                [new Skill("python", "python")] = new Tuple<double, int>(10, 1)
+                [skill1] = new Tuple<double, int>(5, 1),
+                [skill2] = new Tuple<double, int>(10, 1)
             };
 
             userRepository.CreateNewUser(new User("id_teste", "teste", "teste", "teste", "teste", true, new Dictionary<Skill, Tuple<double, int>>()));
+
+            TestingHelper.ClearDatabaseAttachedEntities(dbContextMock);
+
             userRepository.UpdateUser(new User("id_teste", "teste", "teste", "teste", "teste", true, skills));
 
             var createdProfs = dbContextMock.UserSkills.ToList();

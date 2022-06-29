@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Backend.Domain.Repository.Tests
+namespace Backend.Persistence.Tests
 {
     public class MessageRepositoryTests
     {
@@ -78,20 +78,24 @@ namespace Backend.Domain.Repository.Tests
         [Fact]
         public void TestGetLastMessageWithValidUserIds()
         {
-            var user1 = new User("id_1", "teste", "teste", "teste", "teste", false, new Dictionary<Skill, Tuple<double, int>>());
-            var user2 = new User("id_2", "teste", "teste", "teste", "teste", false, new Dictionary<Skill, Tuple<double, int>>());
+            var user1 = new User(Guid.NewGuid().ToString(), "teste", "teste", "teste", "teste", false, new Dictionary<Skill, Tuple<double, int>>());
+            var user2 = new User(Guid.NewGuid().ToString(), "teste", "teste", "teste", "teste", false, new Dictionary<Skill, Tuple<double, int>>());
 
             TestingHelper.CreateUserInDatabase(user1, dbContextMock);
             TestingHelper.CreateUserInDatabase(user2, dbContextMock);
 
-            messageRepository.CreateMessage(new Message("id_teste", "teste", user1, user2, new DateTime(0), false));
-            messageRepository.CreateMessage(new Message("id_teste2", "teste", user2, user1, new DateTime(1), false));
-            messageRepository.CreateMessage(new Message("id_teste3", "teste", user1, user2, new DateTime(2), false));
+            Message message1 = new Message(Guid.NewGuid().ToString(), "teste", user1, user2, DateTime.Now, false);
+            Message message2 = new Message(Guid.NewGuid().ToString(), "teste", user2, user1, DateTime.Now.AddMinutes(1), false);
+            Message message3 = new Message(Guid.NewGuid().ToString(), "teste", user1, user2, DateTime.Now.AddMinutes(2), false);
 
-            var response = messageRepository.GetLastMessage("id_1", "id_2");
+            messageRepository.CreateMessage(message1);
+            messageRepository.CreateMessage(message2);
+            messageRepository.CreateMessage(message3);
+
+            var response = messageRepository.GetLastMessage(user1.Id, user2.Id);
 
             Assert.NotNull(response);
-            Assert.Equal("id_teste3",response.Id);
+            Assert.Equal(message3, response);
         }
 
         [Fact]

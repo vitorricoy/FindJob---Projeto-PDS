@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Backend.Domain.Repository.Tests
+namespace Backend.Persistence.Tests
 {
     public class JobRepositoryTests
     {
@@ -24,7 +24,7 @@ namespace Backend.Domain.Repository.Tests
         {
 
             var _contextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
-                 .UseInMemoryDatabase("MessageRepositoryTests")
+                 .UseInMemoryDatabase("MessageRepositoryTests" + Guid.NewGuid().ToString())
                  .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                  .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                  .Options;
@@ -43,11 +43,15 @@ namespace Backend.Domain.Repository.Tests
         [Fact]
         public void TestCreateJobCreatesNewSkills()
         {
+            Skill skill = new Skill("java", "java");
+
+            TestingHelper.CreateSkillsInDatabase(skill, dbContextMock);
+
             var user1 = new User("id_1", "teste", "teste", "teste", "teste", false, new Dictionary<Skill, Tuple<double, int>>());
             
             TestingHelper.CreateUserInDatabase(user1, dbContextMock);
 
-            var job = new Job("id_teste", "teste", "teste", 0, 0, false, new List<Skill>() { new Skill("java","java")},user1, null, new List<User>(), true, false);
+            var job = new Job("id_teste", "teste", "teste", 0, 0, false, new List<Skill>() { skill},user1, null, new List<User>(), true, false);
 
             jobRepository.CreateNewJob(job);
 
@@ -59,11 +63,15 @@ namespace Backend.Domain.Repository.Tests
         [Fact]
         public void TestCreateJobAddsJobRequirement()
         {
+            Skill skill = new Skill("java", "java");
+
+            TestingHelper.CreateSkillsInDatabase(skill, dbContextMock);
+
             var user1 = new User("id_1", "teste", "teste", "teste", "teste", false, new Dictionary<Skill, Tuple<double, int>>());
             
             TestingHelper.CreateUserInDatabase(user1, dbContextMock);
 
-            var job = new Job("id_teste", "teste", "teste", 0, 0, false, new List<Skill>() { new Skill("java", "java") }, user1, null, new List<User>(), true, false);
+            var job = new Job("id_teste", "teste", "teste", 0, 0, false, new List<Skill>() { skill }, user1, null, new List<User>(), true, false);
 
             jobRepository.CreateNewJob(job);
 
@@ -93,6 +101,10 @@ namespace Backend.Domain.Repository.Tests
         [Fact]
         public void TestUpdateJobAddsNewSkills()
         {
+            Skill skill = new Skill("java", "java");
+
+            TestingHelper.CreateSkillsInDatabase(skill, dbContextMock);
+
             var user1 = new User("id_1", "teste", "teste", "teste", "teste", false, new Dictionary<Skill, Tuple<double, int>>());
 
             TestingHelper.CreateUserInDatabase(user1, dbContextMock);
@@ -101,7 +113,7 @@ namespace Backend.Domain.Repository.Tests
 
             jobRepository.CreateNewJob(job);
 
-            job.Skills.Add(new Skill("java", "java"));
+            job.Skills.Add(skill);
 
             jobRepository.UpdateJob(job);
 
@@ -206,7 +218,7 @@ namespace Backend.Domain.Repository.Tests
             TestingHelper.CreateUserInDatabase(user1, dbContextMock);
             TestingHelper.CreateUserInDatabase(user2, dbContextMock);
 
-            var job = new Job("id_teste", "teste", "teste", 0, 0, false, new List<Skill>(), user1, null, new List<User>() { user2}, true, false);
+            var job = new Job("id_teste", "teste", "teste", 0, 0, false, new List<Skill>(), user1, user2, new List<User>() { user2 }, true, false);
 
             jobRepository.CreateNewJob(job);
 
