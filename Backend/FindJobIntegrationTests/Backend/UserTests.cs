@@ -44,12 +44,12 @@ namespace Backend.Tests
             User client = new(Guid.NewGuid().ToString(), "client", "client@test.com", HashingUtil.getHash("test"), "333333333", false, new Dictionary<Skill, Tuple<double, int>>());
             TestingHelper.CreateUserInDatabase(client, context);
 
-            OkObjectResult actionResult = userController.Login("client@test.com", "test") as OkObjectResult;
+            OkObjectResult? actionResult = userController.Login("client@test.com", "test") as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            User? responseObject = actionResult.Value as User;
+            User? responseObject = actionResult?.Value as User;
             Assert.NotNull(responseObject);
             Assert.Equal(client, responseObject);
         }
@@ -60,12 +60,12 @@ namespace Backend.Tests
             User freelancer = new(Guid.NewGuid().ToString(), "freelancer", "freelancer@test.com", HashingUtil.getHash("test"), "333344443", true, new Dictionary<Skill, Tuple<double, int>>());
             TestingHelper.CreateUserInDatabase(freelancer, context);
 
-            OkObjectResult actionResult = userController.Login("freelancer@test.com", "test") as OkObjectResult;
+            OkObjectResult? actionResult = userController.Login("freelancer@test.com", "test") as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            User? responseObject = actionResult.Value as User;
+            User? responseObject = actionResult?.Value as User;
             Assert.NotNull(responseObject);
             Assert.Equal(freelancer, responseObject);
         }
@@ -74,30 +74,30 @@ namespace Backend.Tests
         public void TestCreateClient()
         {
             CreateClientInput input = new("Cliente Teste", "client@test.com", "testclient", "33333333");
-            OkObjectResult actionResult = userController.RegisterClient(input) as OkObjectResult;
+            OkObjectResult? actionResult = userController.RegisterClient(input) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            User? responseObject = actionResult.Value as User;
+            User? responseObject = actionResult?.Value as User;
 
-            Assert.Equal(input.Name, responseObject.Name);
-            Assert.Equal(input.Email, responseObject.Email);
-            Assert.Equal(HashingUtil.getHash(input.Password), responseObject.Password);
-            Assert.Equal(input.Phone, responseObject.Phone);
-            Assert.False(responseObject.IsFreelancer);
+            Assert.Equal(input.Name, responseObject?.Name);
+            Assert.Equal(input.Email, responseObject?.Email);
+            Assert.Equal(HashingUtil.getHash(input.Password), responseObject?.Password);
+            Assert.Equal(input.Phone, responseObject?.Phone);
+            Assert.False(responseObject?.IsFreelancer);
         }
 
         [Fact]
         public void TestCreateFreelancer()
         {
             CreateFreelancerInput input = new("Freelancer Teste", "freelancer@test.com", "freelancer", "44444444", new List<string>() { "java", "c#", "c++", "html" }, new List<double>() { 2.0, 4.0, 5.0, 1.0});
-            OkObjectResult actionResult = userController.RegisterFreelancer(input) as OkObjectResult;
+            OkObjectResult? actionResult = userController.RegisterFreelancer(input) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            User? responseObject = actionResult.Value as User;
+            User? responseObject = actionResult?.Value as User;
 
             Dictionary<Skill, Tuple<double, int>> expectedDict = new Dictionary<Skill, Tuple<double, int>>()
             {
@@ -107,12 +107,12 @@ namespace Backend.Tests
                 {new Skill("html", "html"), Tuple.Create(1.0, 1) }
             };
 
-            Assert.Equal(input.Name, responseObject.Name);
-            Assert.Equal(input.Email, responseObject.Email);
-            Assert.Equal(HashingUtil.getHash(input.Password), responseObject.Password);
-            Assert.Equal(input.Phone, responseObject.Phone);
-            Assert.True(responseObject.IsFreelancer);
-            Assert.Equal(expectedDict, responseObject.Skills);
+            Assert.Equal(input.Name, responseObject?.Name);
+            Assert.Equal(input.Email, responseObject?.Email);
+            Assert.Equal(HashingUtil.getHash(input.Password), responseObject?.Password);
+            Assert.Equal(input.Phone, responseObject?.Phone);
+            Assert.True(responseObject?.IsFreelancer);
+            Assert.Equal(expectedDict, responseObject?.Skills);
         }
     }
 }

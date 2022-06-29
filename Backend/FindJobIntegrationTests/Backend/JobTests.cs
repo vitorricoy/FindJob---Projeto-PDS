@@ -52,27 +52,27 @@ namespace Backend.Tests
             List<Skill> skills = new(){ cSharp, java };
 
 
-            Job jobToCreate = new Job(Guid.NewGuid().ToString(), "testJob", "Test Job", 10, 2.5, true, skills, client, null, new List<User>(), true, true); ;
+            Job jobToCreate = new Job(Guid.NewGuid().ToString(), "testJob", "Test Job", 10, 2.5, true, skills, client, null, new List<User>(), true, true);
             CreateJobInput input = new CreateJobInput(jobToCreate.Title, jobToCreate.Description, jobToCreate.Deadline, jobToCreate.Payment, jobToCreate.IsPaymentByHour, jobToCreate.Skills.Select(s => s.NormalizedName).ToList(), jobToCreate.Client.Id);
             OkObjectResult? actionResult = jobController.CreateNewJob(input) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            Job? responseObject = actionResult.Value as Job;
+            Job? responseObject = actionResult?.Value as Job;
             Assert.NotNull(responseObject);
 
-            Assert.Equal(jobToCreate.Title, responseObject.Title);
-            Assert.Equal(jobToCreate.Description, responseObject.Description);
-            Assert.Equal(jobToCreate.Deadline, responseObject.Deadline);
-            Assert.Equal(jobToCreate.Payment, responseObject.Payment);
-            Assert.Equal(jobToCreate.IsPaymentByHour, responseObject.IsPaymentByHour);
-            Assert.Equal(jobToCreate.Skills.Reverse<Skill>(), responseObject.Skills);
-            Assert.Equal(jobToCreate.Client, responseObject.Client);
-            Assert.Equal(jobToCreate.AssignedFreelancer, responseObject.AssignedFreelancer);
-            Assert.Equal(jobToCreate.Candidates, responseObject.Candidates);
-            Assert.Equal(jobToCreate.Active, responseObject.Active);
-            Assert.Equal(jobToCreate.Available, responseObject.Available);
+            Assert.Equal(jobToCreate.Title, responseObject?.Title);
+            Assert.Equal(jobToCreate.Description, responseObject?.Description);
+            Assert.Equal(jobToCreate.Deadline, responseObject?.Deadline);
+            Assert.Equal(jobToCreate.Payment, responseObject?.Payment);
+            Assert.Equal(jobToCreate.IsPaymentByHour, responseObject?.IsPaymentByHour);
+            Assert.Equal(jobToCreate.Skills.Reverse<Skill>(), responseObject?.Skills);
+            Assert.Equal(jobToCreate.Client, responseObject?.Client);
+            Assert.Equal(jobToCreate.AssignedFreelancer, responseObject?.AssignedFreelancer);
+            Assert.Equal(jobToCreate.Candidates, responseObject?.Candidates);
+            Assert.Equal(jobToCreate.Active, responseObject?.Active);
+            Assert.Equal(jobToCreate.Available, responseObject?.Available);
         }
 
         [Fact]
@@ -106,15 +106,15 @@ namespace Backend.Tests
             OkObjectResult? actionResult = jobController.ListJobsByUser(client.Id) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            List<Job>? responseObject = actionResult.Value as List<Job>;
+            List<Job>? responseObject = actionResult?.Value as List<Job>;
             Assert.NotNull(responseObject);
 
-            Assert.Equal(2, responseObject.Count);
+            Assert.Equal(2, responseObject?.Count);
 
-            Assert.Equal(firstClientJob, responseObject[0]);
-            Assert.Equal(secondClientJob, responseObject[1]);
+            Assert.Equal(firstClientJob, responseObject?[0]);
+            Assert.Equal(secondClientJob, responseObject?[1]);
         }
 
         [Fact]
@@ -153,15 +153,15 @@ namespace Backend.Tests
             OkObjectResult? actionResult = jobController.ListJobsByUser(freelancer.Id) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            List<Job>? responseObject = actionResult.Value as List<Job>;
+            List<Job>? responseObject = actionResult?.Value as List<Job>;
             Assert.NotNull(responseObject);
 
-            Assert.Equal(2, responseObject.Count);
+            Assert.Equal(2, responseObject?.Count);
 
-            Assert.Equal(firstClientJob, responseObject[0]);
-            Assert.Equal(secondClientJob, responseObject[1]);
+            Assert.Equal(firstClientJob, responseObject?[0]);
+            Assert.Equal(secondClientJob, responseObject?[1]);
         }
 
         [Fact]
@@ -199,16 +199,16 @@ namespace Backend.Tests
             OkObjectResult? actionResult = jobController.SearchJobsForFreelancer(freelancer.Id) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            List<Job>? responseObject = actionResult.Value as List<Job>;
+            List<Job>? responseObject = actionResult?.Value as List<Job>;
             Assert.NotNull(responseObject);
 
-            Assert.Equal(3, responseObject.Count);
+            Assert.Equal(3, responseObject?.Count);
 
-            Assert.Equal(otherClientJob, responseObject[0]);
-            Assert.Equal(firstClientJob, responseObject[1]);
-            Assert.Equal(secondClientJob, responseObject[2]);
+            Assert.Equal(otherClientJob, responseObject?[0]);
+            Assert.Equal(firstClientJob, responseObject?[1]);
+            Assert.Equal(secondClientJob, responseObject?[2]);
             
         }
 
@@ -239,9 +239,9 @@ namespace Backend.Tests
             OkObjectResult? actionResult = jobController.ApplyFreelancerToJob(input) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            Boolean resultValue = (Boolean)actionResult.Value;
+            bool? resultValue = actionResult?.Value as bool?;
             Assert.True(resultValue);
 
             List<JobCandidateModel> candidatesJob = context.JobCandidates.Where(j => j.JobId.Equals(job.Id)).ToList();
@@ -290,13 +290,13 @@ namespace Backend.Tests
             OkObjectResult? actionResult = jobController.GetJobCandidatesBySkill(job.Id) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            List<User> resultValue = actionResult.Value as List<User>;
+            List<User>? resultValue = actionResult?.Value as List<User>;
             Assert.NotNull(resultValue);
-            Assert.Equal(2, resultValue.Count);
-            Assert.Equal(freelancer, resultValue[0]);
-            Assert.Equal(otherFreelancer, resultValue[1]);
+            Assert.Equal(2, resultValue?.Count);
+            Assert.Equal(freelancer, resultValue?[0]);
+            Assert.Equal(otherFreelancer, resultValue?[1]);
         }
 
         [Fact]
@@ -342,9 +342,9 @@ namespace Backend.Tests
             OkObjectResult? actionResult = jobController.ChooseFreelancerForJob(input) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            Boolean resultValue = (Boolean)actionResult.Value;
+            bool? resultValue = actionResult?.Value as bool?;
             Assert.True(resultValue);
 
             var jobModel = context.Jobs.Where(j => j.Id.Equals(job.Id)).First();
@@ -387,9 +387,9 @@ namespace Backend.Tests
             OkObjectResult? actionResult = jobController.RateJob(input) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            Boolean resultValue = (Boolean)actionResult.Value;
+            bool? resultValue = actionResult?.Value as bool?;
             Assert.True(resultValue);
 
             var jobModel = context.Jobs.Where(j => j.Id.Equals(job.Id)).First();

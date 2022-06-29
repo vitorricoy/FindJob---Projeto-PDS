@@ -46,17 +46,17 @@ namespace Backend.Tests
             TestingHelper.CreateSkillsInDatabase(teste2, context);
             TestingHelper.CreateSkillsInDatabase(teste3, context);
 
-            OkObjectResult actionResult = skillController.GetAllSkills() as OkObjectResult;
+            OkObjectResult? actionResult = skillController.GetAllSkills() as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            List<Skill>? responseObject = actionResult.Value as List<Skill>;
+            List<Skill>? responseObject = actionResult?.Value as List<Skill>;
             Assert.NotNull(responseObject);
-            Assert.Equal(3, responseObject.Count);
-            Assert.Equal(teste1, responseObject[0]);
-            Assert.Equal(teste2, responseObject[1]);
-            Assert.Equal(teste3, responseObject[2]);
+            Assert.Equal(3, responseObject?.Count);
+            Assert.Equal(teste1, responseObject?[0]);
+            Assert.Equal(teste2, responseObject?[1]);
+            Assert.Equal(teste3, responseObject?[2]);
 
         }
 
@@ -64,16 +64,16 @@ namespace Backend.Tests
         public void TestCreateSkill()
         {
             CreateSkillInput input = new("Teste");
-            OkObjectResult actionResult = skillController.CreateNewSkill(input) as OkObjectResult;
+            OkObjectResult? actionResult = skillController.CreateNewSkill(input) as OkObjectResult;
 
             Assert.NotNull(actionResult);
-            Assert.Equal(200, actionResult.StatusCode);
+            Assert.Equal(200, actionResult?.StatusCode);
 
-            Skill? responseObject = actionResult.Value as Skill;
+            Skill? responseObject = actionResult?.Value as Skill;
             Assert.NotNull(responseObject);
 
-            Assert.Equal("Teste", responseObject.Name);
-            Assert.Equal("teste", responseObject.NormalizedName);
+            Assert.Equal("Teste", responseObject?.Name);
+            Assert.Equal("teste", responseObject?.NormalizedName);
         }
     }
 }
