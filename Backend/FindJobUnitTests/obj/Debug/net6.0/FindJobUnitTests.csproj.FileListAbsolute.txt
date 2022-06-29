@@ -412,3 +412,4 @@ D:\Repos\Backend\FindJobUnitTests\obj\Debug\net6.0\refint\FindJobUnitTests.dll
 D:\Repos\Backend\FindJobUnitTests\obj\Debug\net6.0\FindJobUnitTests.pdb
 D:\Repos\Backend\FindJobUnitTests\obj\Debug\net6.0\FindJobUnitTests.genruntimeconfig.cache
 D:\Repos\Backend\FindJobUnitTests\obj\Debug\net6.0\ref\FindJobUnitTests.dll
+C:\UFMG\7_Periodo\PDS\FindJob-Projeto-PDS\Backend\FindJobUnitTests\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll

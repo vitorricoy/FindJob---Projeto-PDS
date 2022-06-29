@@ -11,7 +11,7 @@ using Xunit;
 
 namespace Backend.Domain.Service.Tests
 {
-    public class JobServiceTests
+    public class JobRepositoryTests
     {
         List<Job> mockRepo;
 
@@ -26,7 +26,7 @@ namespace Backend.Domain.Service.Tests
         User freela1;
 
 
-        public JobServiceTests()
+        public JobRepositoryTests()
         {
             skillRepositoryMock = Substitute.For<ISkillRepository>();
 

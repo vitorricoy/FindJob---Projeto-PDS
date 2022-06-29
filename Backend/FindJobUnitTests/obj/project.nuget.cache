@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3pIibYIHQS+TrF46ovweKHae64VK35+WYgtsrSZ0RYWm4s0uNlhDxF7VnUZgU8UfIrIKf3lDzm9xpigN31rz6A==",
+  "dgSpecHash": "22nZ9zP1+l2Yafdj0adiNlwiD/utoBu7a9+fzlCqBac6sdW2WZq92KWrKmmQmfMCMS2SoJO4qz8qTSvi7paQ+w==",
   "success": true,
   "projectFilePath": "C:\\UFMG\\7_Periodo\\PDS\\FindJob-Projeto-PDS\\Backend\\FindJobUnitTests\\FindJobUnitTests.csproj",
   "expectedPackageFiles": [
@@ -10,9 +10,10 @@
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.codecoverage\\16.11.0\\microsoft.codecoverage.16.11.0.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.4\\microsoft.data.sqlite.core.6.0.4.nupkg.sha512",
-    "C:\\Users\\andre\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.4\\microsoft.entityframeworkcore.6.0.4.nupkg.sha512",
-    "C:\\Users\\andre\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.4\\microsoft.entityframeworkcore.abstractions.6.0.4.nupkg.sha512",
-    "C:\\Users\\andre\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.4\\microsoft.entityframeworkcore.analyzers.6.0.4.nupkg.sha512",
+    "C:\\Users\\andre\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.6\\microsoft.entityframeworkcore.6.0.6.nupkg.sha512",
+    "C:\\Users\\andre\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.6\\microsoft.entityframeworkcore.abstractions.6.0.6.nupkg.sha512",
+    "C:\\Users\\andre\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.6\\microsoft.entityframeworkcore.analyzers.6.0.6.nupkg.sha512",
+    "C:\\Users\\andre\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\6.0.6\\microsoft.entityframeworkcore.inmemory.6.0.6.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.4\\microsoft.entityframeworkcore.relational.6.0.4.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\6.0.4\\microsoft.entityframeworkcore.sqlite.6.0.4.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\6.0.4\\microsoft.entityframeworkcore.sqlite.core.6.0.4.nupkg.sha512",
