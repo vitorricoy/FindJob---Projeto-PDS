@@ -24,7 +24,7 @@ namespace Backend.Controllers
         {
             try
             {
-                return Ok(jobService.RateJob1(input.JobId, input.Rating));
+                return Ok(jobService.RateJob(input.JobId, input.Rating));
             }
             catch (InvalidJobIdException ex)
             {
